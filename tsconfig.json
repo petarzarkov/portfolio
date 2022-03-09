@@ -22,6 +22,7 @@
       "@hooks": ["./src/hooks"],
       "@store": ["./src/store"],
       "@utils": ["./src/utils"],
+      "@screens": ["./src/screens"],
       "@styles": ["./src/styles"]
     }
   },
