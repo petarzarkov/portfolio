@@ -12,6 +12,7 @@ export default defineConfig({
       "@hooks": path.resolve(__dirname, "./src/hooks"),
       "@screens": path.resolve(__dirname, "./src/screens"),
       "@config": path.resolve(__dirname, "./src/config"),
+      "@theme": path.resolve(__dirname, "./src/theme"),
     }
   },
   plugins: [react()]
