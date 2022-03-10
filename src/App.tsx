@@ -1,12 +1,19 @@
-import React, { FC } from "react";
-import { DrawerMenu } from "@components";
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+import { NotFound, NavBar } from "@components";
+import { Heading } from "@chakra-ui/react";
 
-const App: FC = () => {
+function App() {
   return (
-    <div style={{ height: "100vh", width: "100%" }}>
-      <DrawerMenu />
-    </div>
+    <Routes>
+      <Route path="/" element={<NavBar />}>
+        <Route path="skills" element={<Heading>Skills</Heading>} />
+        <Route path="about" element={<Heading>About</Heading>} />
+        <Route path="contact" element={<Heading>Contact</Heading>} />
+        <Route path="*" element={<NotFound />} />
+      </Route>
+    </Routes>
   );
-};
+}
 
 export default App;
