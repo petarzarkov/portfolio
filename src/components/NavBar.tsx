@@ -21,7 +21,7 @@ import {
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon, MoonIcon, SunIcon } from "@chakra-ui/icons";
 import { routes } from "@config";
-import { Link as RLink, Outlet } from "react-router-dom";
+import { Link as RLink, Outlet, useMatch, useResolvedPath } from "react-router-dom";
 import { Footer } from "@components";
 import { IconType } from "react-icons";
 import { CONFETTI_DARK, CONFETTI_LIGHT } from "@theme";
@@ -29,43 +29,48 @@ import { CONFETTI_DARK, CONFETTI_LIGHT } from "@theme";
 // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
 const Links = Object.entries(routes);
 
-const NavLink = ({ children, icon, to = "#" }: { children: ReactNode; icon: IconType; to?: string }) => (
-  <Link
-    px={2}
-    py={1}
-    rounded={"md"}
-    _hover={{
-      textDecoration: "none",
-      bg: useColorModeValue("gray.200", "gray.700"),
-    }}
-    as={RLink}
-    to={to}
-  >
-    <Flex
-      align="center"
-      p="2"
-      mx="2"
-      borderRadius="lg"
-      role="group"
-      cursor="pointer"
+const NavLink = ({ children, icon, to = "#" }: { children: ReactNode; icon: IconType; to?: string }) => {
+  const resolved = useResolvedPath(to);
+  const match = useMatch({ path: resolved.pathname, end: true });
+  return (
+    <Link
+      px={2}
+      py={1}
+      rounded={"md"}
+      background={match ? useColorModeValue("gray.200", "gray.700") : undefined}
       _hover={{
-        bg: "cyan.400",
-        color: "white",
-      }}>
-      {icon && (
-        <Icon
-          mr="2"
-          fontSize="16"
-          _groupHover={{
-            color: "white",
-          }}
-          as={icon}
-        />
-      )}
-      {children}
-    </Flex>
-  </Link>
-);
+        textDecoration: "none",
+        bg: useColorModeValue("gray.200", "gray.700"),
+      }}
+      as={RLink}
+      to={to}
+    >
+      <Flex
+        align="center"
+        p="2"
+        mx="2"
+        borderRadius="lg"
+        role="group"
+        cursor="pointer"
+        _hover={{
+          bg: "cyan.400",
+          color: "white",
+        }}>
+        {icon && (
+          <Icon
+            mr="2"
+            fontSize="16"
+            _groupHover={{
+              color: "white",
+            }}
+            as={icon}
+          />
+        )}
+        {children}
+      </Flex>
+    </Link>
+  );
+};
 
 export const NavBar: FC = () => {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -139,7 +144,7 @@ export const NavBar: FC = () => {
         bg={useColorModeValue("white.100", "gray.800")}
         align="center"
         justify="center"
-        minHeight={"86.3vh"}
+        minHeight={"84.6vh"}
         css={{
           backgroundImage: useColorModeValue(CONFETTI_LIGHT, CONFETTI_DARK),
           backgroundAttachment: "fixed",

@@ -9,7 +9,6 @@ import {
   Input,
   InputGroup,
   InputLeftElement,
-  Link,
   Stack,
   Textarea,
   Tooltip,
@@ -20,6 +19,7 @@ import {
 import { BsGithub, BsLinkedin, BsPerson, BsTwitter } from "react-icons/bs";
 import { MdEmail, MdOutlineEmail } from "react-icons/md";
 import { portfolio } from "@config";
+import { IconLink } from "@components";
 
 export const Contact = () => {
   const { hasCopied, onCopy } = useClipboard(portfolio.email);
@@ -61,48 +61,24 @@ export const Contact = () => {
               />
             </Tooltip>
 
-            <Link href="#">
-              <IconButton
-                aria-label="github"
-                variant="ghost"
-                size="lg"
-                fontSize="3xl"
-                icon={<BsGithub />}
-                _hover={{
-                  bg: "blue.500",
-                  color: useColorModeValue("white", "gray.700"),
-                }}
-                isRound
-              />
-            </Link>
-
-            <Link href="#">
-              <IconButton
-                aria-label="twitter"
-                variant="ghost"
-                size="lg"
-                icon={<BsTwitter size="28px" />}
-                _hover={{
-                  bg: "blue.500",
-                  color: useColorModeValue("white", "gray.700"),
-                }}
-                isRound
-              />
-            </Link>
-
-            <Link href="#">
-              <IconButton
-                aria-label="linkedin"
-                variant="ghost"
-                size="lg"
-                icon={<BsLinkedin size="28px" />}
-                _hover={{
-                  bg: "blue.500",
-                  color: useColorModeValue("white", "gray.700"),
-                }}
-                isRound
-              />
-            </Link>
+            <IconLink
+              to={portfolio.github}
+              icon={<BsGithub />}
+              label={"github"}
+              btnProps={{
+                fontSize: "3xl"
+              }}
+            />
+            <IconLink
+              to={portfolio.twitter}
+              icon={<BsTwitter size="28px" />}
+              label={"twitter"}
+            />
+            <IconLink
+              to={portfolio.linkedin}
+              icon={<BsLinkedin size="28px" />}
+              label={"linkedin"}
+            />
           </Stack>
 
           <Box
