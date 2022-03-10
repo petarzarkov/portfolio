@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { Heading } from "@chakra-ui/react";
 
-export const Home: FC = () => <>
-  <Heading>Home</Heading>
+export const Skills: FC = () => <>
+  <Heading>Skills</Heading>
 </>;

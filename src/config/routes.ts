@@ -1,5 +1,20 @@
+import { FiHome, FiTerminal, FiZap, FiSend } from "react-icons/fi";
+
 export const routes = {
-  about: "About",
-  skills: "Skills",
-  contact: "Contact"
+  "/": {
+    name: "Home",
+    icon: FiHome
+  },
+  about: {
+    name: "About",
+    icon: FiTerminal
+  },
+  skills: {
+    name: "Skills",
+    icon: FiZap
+  },
+  contact: {
+    name: "Contact",
+    icon: FiSend
+  },
 };
