@@ -1,3 +1,3 @@
 export * from "./NavBar";
 export * from "./Footer";
-export * from "./IconLink";
+export * from "./common";
