@@ -139,7 +139,7 @@ export const NavBar: FC = () => {
         bg={useColorModeValue("white.100", "gray.800")}
         align="center"
         justify="center"
-        height={"100vh"}
+        minHeight={"86.3vh"}
         css={{
           backgroundImage: useColorModeValue(CONFETTI_LIGHT, CONFETTI_DARK),
           backgroundAttachment: "fixed",

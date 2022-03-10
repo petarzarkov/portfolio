@@ -49,7 +49,7 @@ export const Footer = () => {
         left: 0,
         bottom: 0,
         right: 0,
-        position: "fixed"
+        position: "inherit"
       }}
       bg={useColorModeValue("gray.100", "gray.900")}
       color={useColorModeValue("gray.700", "gray.200")}>
