@@ -20,10 +20,8 @@
       "@components": ["./src/components"],
       "@contracts": ["./src/contracts"],
       "@hooks": ["./src/hooks"],
-      "@store": ["./src/store"],
-      "@utils": ["./src/utils"],
       "@screens": ["./src/screens"],
-      "@styles": ["./src/styles"]
+      "@config": ["./src/config"],
     }
   },
   "include": ["./src"],
