@@ -8,7 +8,7 @@ import "./index.css";
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter basename="portfolio">
+    <BrowserRouter basename="/portfolio">
       <ChakraProvider>
         <App />
       </ChakraProvider>

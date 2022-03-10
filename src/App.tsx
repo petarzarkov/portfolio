@@ -7,7 +7,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<NavBar />}>
-        <Route path="/" element={<Home />} />
+        <Route index element={<Home />} />
         <Route path="skills" element={<Skills />} />
         <Route path="about" element={<About />} />
         <Route path="contact" element={<Contact />} />

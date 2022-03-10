@@ -1,4 +1,7 @@
 export const portfolio = {
   name: "Petar Zarkov",
-  email: "pzarko1@gmail.com"
+  email: "pzarko1@gmail.com",
+  github: "https://github.com/petarzarkov?tab=repositories",
+  linkedin: "https://www.linkedin.com/in/%E2%98%95-petar-zarkov-7989a670/",
+  twitter: "https://twitter.com/flaeryw"
 };
