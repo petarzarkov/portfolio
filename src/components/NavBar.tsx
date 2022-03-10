@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import React, { FC, ReactNode } from "react";
+import React, { FC, ReactNode, useMemo } from "react";
 import {
   Box,
   Flex,
@@ -25,9 +25,6 @@ import { Link as RLink, Outlet, useMatch, useResolvedPath } from "react-router-d
 import { Footer } from "@components";
 import { IconType } from "react-icons";
 import { CONFETTI_DARK, CONFETTI_LIGHT } from "@theme";
-
-// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-const Links = Object.entries(routes);
 
 const NavLink = ({ children, icon, to = "#" }: { children: ReactNode; icon: IconType; to?: string }) => {
   const resolved = useResolvedPath(to);
@@ -75,6 +72,10 @@ const NavLink = ({ children, icon, to = "#" }: { children: ReactNode; icon: Icon
 export const NavBar: FC = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const Links = useMemo(() => Object.entries(routes), undefined);
+  const LinksRendered = useMemo(() => Links.map(([link, info]) => (
+    <NavLink key={info.name} to={link} icon={info.icon}>{info.name}</NavLink>
+  )), Links);
 
   return (
     <>
@@ -92,9 +93,7 @@ export const NavBar: FC = () => {
               as={"nav"}
               spacing={4}
               display={{ base: "none", md: "flex" }}>
-              {Links.map((link) => (
-                <NavLink key={link[1].name} to={link[0]} icon={link[1].icon}>{link[1].name}</NavLink>
-              ))}
+              {LinksRendered}
             </HStack>
           </HStack>
           <Flex alignItems={"center"}>
@@ -132,9 +131,7 @@ export const NavBar: FC = () => {
         {isOpen ? (
           <Box pb={4} display={{ md: "none" }}>
             <Stack as={"nav"} spacing={4}>
-              {Links.map((link) => (
-                <NavLink key={link[1].name} to={link[0]} icon={link[1].icon}>{link[1].name}</NavLink>
-              ))}
+              {LinksRendered}
             </Stack>
           </Box>
         ) : null}
