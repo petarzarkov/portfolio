@@ -18,14 +18,29 @@ import {
 } from "@chakra-ui/react";
 import { BsGithub, BsLinkedin, BsPerson, BsTwitter } from "react-icons/bs";
 import { MdEmail, MdOutlineEmail } from "react-icons/md";
-import { portfolio } from "@config";
+import { portfolio, email } from "@config";
 import { IconLink } from "@components";
-import { Field, Form, Formik } from "formik";
+import { Field, Form, Formik, FormikHelpers } from "formik";
+import emailjs from "@emailjs/browser";
 
 type FormValues = { name?: string; email?: string; message?: string };
 
 export const Contact = () => {
   const { hasCopied, onCopy } = useClipboard(portfolio.email);
+  const sendEmail = (values: FormValues, actions: FormikHelpers<FormValues>) => {
+    return emailjs.send(email.serviceId, email.templateId, {
+      from_name: values.name,
+      message: values.message,
+      reply_to: values.email
+    }, email.userId)
+      .then(() => {
+        alert("Email sent.");
+        actions.setSubmitting(false);
+      }, () => {
+        alert("Error on sending email.");
+        actions.setSubmitting(false);
+      });
+  };
 
   return (
     <Box>
@@ -35,7 +50,7 @@ export const Contact = () => {
             base: "4xl",
             md: "5xl",
           }}>
-              Get in Touch
+          Get in Touch
         </Heading>
 
         <Stack
@@ -92,40 +107,35 @@ export const Contact = () => {
             shadow="base">
             <Formik<FormValues>
               initialValues={{ name: undefined, email: undefined, message: undefined }}
-              onSubmit={(values, actions) => {
-                setTimeout(() => {
-                  alert(JSON.stringify(values, null, 2));
-                  actions.setSubmitting(false);
-                }, 1000);
-              }}
+              onSubmit={sendEmail}
             >
               {(props) => (
                 <Form>
                   <Field name='name'>
-                    {() => (
+                    {({ field }: { field: unknown }) => (
                       <FormControl isRequired marginBottom={5}>
                         <FormLabel htmlFor='name'>Name</FormLabel>
                         <InputGroup>
                           <InputLeftElement>
                             <BsPerson />
                           </InputLeftElement>
-                          <Input type="text" id="name" name="name" placeholder="Your Name" />
+                          <Input {...field} type="text" id="name" placeholder="Your Name" />
                         </InputGroup>
                       </FormControl>
                     )}
                   </Field>
                   <Field name='email'>
-                    {() => (
+                    {({ field }: { field: unknown }) => (
                       <FormControl isRequired marginBottom={5}>
-                        <FormLabel>Email</FormLabel>
+                        <FormLabel htmlFor='email'>Email</FormLabel>
                         <InputGroup>
                           <InputLeftElement>
                             <MdOutlineEmail />
                           </InputLeftElement>
                           <Input
+                            {...field}
                             id="email"
                             type="email"
-                            name="email"
                             placeholder="Your Email"
                           />
                         </InputGroup>
@@ -133,12 +143,12 @@ export const Contact = () => {
                     )}
                   </Field>
                   <Field name='message'>
-                    {() => (
+                    {({ field }: { field: unknown }) => (
                       <FormControl isRequired marginBottom={5}>
                         <FormLabel>Message</FormLabel>
                         <Textarea
+                          {...field}
                           id="message"
-                          name="message"
                           placeholder="Your Message"
                           rows={6}
                           resize="none"
