@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   Button,
@@ -19,7 +19,7 @@ import {
 import { BsGithub, BsLinkedin, BsPerson, BsTwitter } from "react-icons/bs";
 import { MdEmail, MdOutlineEmail } from "react-icons/md";
 import { portfolio, email } from "@config";
-import { IconLink } from "@components";
+import { BaseModal, IconLink } from "@components";
 import { Field, Form, Formik, FormikHelpers } from "formik";
 import emailjs from "@emailjs/browser";
 
@@ -27,6 +27,8 @@ type FormValues = { name?: string; email?: string; message?: string };
 
 export const Contact = () => {
   const { hasCopied, onCopy } = useClipboard(portfolio.email);
+  const [showModal, setShowModal] = useState({ show: true, response: "" });
+  console.log(JSON.stringify(email));
   const sendEmail = (values: FormValues, actions: FormikHelpers<FormValues>) => {
     return emailjs.send(email.serviceId, email.templateId, {
       from_name: values.name,
@@ -34,16 +36,17 @@ export const Contact = () => {
       reply_to: values.email
     }, email.userId)
       .then(() => {
-        alert("Email sent.");
+        setShowModal({ show: true, response: "Email sent." });
         actions.setSubmitting(false);
       }, () => {
-        alert("Error on sending email.");
+        setShowModal({ show: true, response: "Error on sending email." });
         actions.setSubmitting(false);
       });
   };
 
   return (
     <Box>
+      <BaseModal title="Email" content={showModal.response} isOpen={showModal.show} onClose={() => setShowModal({ show: false, response: "" })} />
       <VStack spacing={{ base: 2, md: 4, lg: 16 }}>
         <Heading
           fontSize={{
