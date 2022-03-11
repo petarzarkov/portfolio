@@ -25,6 +25,9 @@ jobs:
       run: |
         npm install
         npm run build
+        echo ${#VITE_SERVICE_ID}
+        echo ${#VITE_USER_ID}
+        echo ${#VITE_TEMPLATE_ID}
       env:
         VITE_SERVICE_ID: ${{ secrets.VITE_SERVICE_ID }}
         VITE_USER_ID: ${{ secrets.VITE_USER_ID }}
