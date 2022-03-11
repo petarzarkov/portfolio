@@ -1,6 +1,11 @@
 import React, { FC } from "react";
-import { Heading } from "@chakra-ui/react";
+import { BasicStats, Card } from "@components";
 
-export const About: FC = () => <>
-  <Heading>About</Heading>
-</>;
+export const About: FC = () => {
+  return (
+    <>
+      <Card />
+      <BasicStats />
+    </>
+  );
+};

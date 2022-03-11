@@ -6,15 +6,50 @@ import {
   chakra,
   Flex,
   Icon,
+  Image,
   Text,
   SimpleGrid,
   VStack,
   useColorModeValue,
 } from "@chakra-ui/react";
 import { BsHeartFill, BsYoutube } from "react-icons/bs";
+import { FaGooglePlay } from "react-icons/fa";
 import { IconLink } from "@components";
 
 const descriptions = [
+  {
+    name: "Impossible Quiz",
+    role: "done in React Native",
+    content:
+        <VStack>
+          <Text
+            fontFamily={"Inter"}
+            fontWeight={"medium"}
+          >
+              A simple android app I have recently published on Google Play.
+          </Text>
+          <Image
+            h={"400px"}
+            w={"200px"}
+            src={
+              "images/impQuiz.jpg"
+            }/>
+          <Text
+            fontFamily={"Inter"}
+            fontWeight={"medium"}
+          >
+             Check it out:
+          </Text>
+          <IconLink
+            to={"https://play.google.com/store/apps/details?id=com.impossiblequiz"}
+            icon={<FaGooglePlay size="40px" color="teal" />}
+            label={"ImpossibleQuiz"}
+            bgHover={"gray.300"}
+          />
+        </VStack>,
+    avatar:
+        "https://lh3.googleusercontent.com/JCn8S_Y1mXbKDb1nSa2pLjAZDupiMDxBTngEH5iVPYbKq3BfrnYB-tVJGjM_dbUY6g",
+  },
   {
     name: "Fireship",
     role: "The best programming content creator",
@@ -28,7 +63,7 @@ const descriptions = [
           </Text>
           <IconLink
             to={"https://www.youtube.com/c/Fireship"}
-            icon={<BsYoutube size="28px" color="red" />}
+            icon={<BsYoutube size="48px" color="red" />}
             label={"youtube-fireship"}
             bgHover={"gray.300"}
           />
@@ -48,7 +83,7 @@ const descriptions = [
       </Text>
       <IconLink
         to={"https://www.youtube.com/c/EngineerMan"}
-        icon={<BsYoutube size="28px" color="red" />}
+        icon={<BsYoutube size="48px" color="red" />}
         label={"youtube-engineering-man"}
         bgHover={"gray.300"}
       />
