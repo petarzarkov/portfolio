@@ -25,6 +25,10 @@ jobs:
       run: |
         npm install
         npm run build
+      env:
+        VITE_SERVICE_ID: ${{ secrets.VITE_SERVICE_ID }}
+        VITE_USER_ID: ${{ secrets.VITE_USER_ID }}
+        VITE_TEMPLATE_ID: ${{ secrets.VITE_TEMPLATE_ID }}
     - name: Push to GitHub Pages
       # You may pin to the exact commit or the version.
       # uses: crazy-max/ghaction-github-pages@a117e4aa1fb4854d021546d2abdfac95be568a3a
