@@ -6,7 +6,7 @@ import path from "path";
 export default defineConfig(({ mode }) => {
   // Load app-level env vars to node-level env vars.
   process.env = { ...process.env, ...loadEnv(mode, process.cwd()) };
-  console.log({ env: process.env });
+
   return {
     base: "/portfolio/",
     resolve: {
