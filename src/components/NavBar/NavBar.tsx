@@ -11,7 +11,6 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
-  MenuDivider,
   useDisclosure,
   useColorModeValue,
   Stack,
@@ -69,14 +68,7 @@ export const NavBar: FC = () => {
                 />
               </MenuButton>
               <MenuList>
-                <MenuItem>
-                  Link 1
-                </MenuItem>
-                <MenuItem>
-                  Link 2
-                </MenuItem>
-                <MenuDivider />
-                <MenuItem>Link 3</MenuItem>
+                {LinksRendered.map(lr => <MenuItem key={lr.key}>{lr}</MenuItem>)}
               </MenuList>
             </Menu>
           </Flex>
