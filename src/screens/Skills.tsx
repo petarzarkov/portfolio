@@ -3,8 +3,6 @@ import { ReactElement } from "react";
 import { Box, SimpleGrid, Icon, Text, Stack, Flex, HStack } from "@chakra-ui/react";
 import { SiTypescript, SiJavascript, SiReact, SiPython, SiJava } from "react-icons/si";
 import { IoLogoNodejs } from "react-icons/io";
-import { MdSignalCellular1Bar, MdSignalCellular2Bar, MdSignalCellular3Bar, MdSignalCellular4Bar } from "react-icons/md";
-import { IconBaseProps } from "react-icons";
 
 const Skill: FC<{
   title: string;
@@ -12,18 +10,18 @@ const Skill: FC<{
   level?: 1 | 2 | 3 | 4;
   icon: ReactElement;
 }> = ({ title, text, icon, level = 1 }) => {
-  const Level: FC<{ lProps: IconBaseProps }> = ({ lProps }) => {
+  const getLevel = () => {
     switch (level) {
       case 1:
-        return <MdSignalCellular1Bar {...lProps} />;
+        return <Text fontWeight={700} color="green.300">{"Beginner"}</Text>;
       case 2:
-        return <MdSignalCellular2Bar {...lProps} />;
+        return <Text fontWeight={700} color="blue.300">{"Intermediate"}</Text>;
       case 3:
-        return <MdSignalCellular3Bar {...lProps} />;
+        return <Text fontWeight={700} color="blue.500">{"Advanced"}</Text>;
       case 4:
-        return <MdSignalCellular4Bar {...lProps} />;
+        return <Text fontWeight={700} color="purple.300">{"Pro"}</Text>;
       default:
-        return <MdSignalCellular1Bar {...lProps} />;
+        return <Text fontWeight={700} color="green.300">{"Beginner"}</Text>;
     }
   };
   return (
@@ -40,11 +38,9 @@ const Skill: FC<{
         {icon}
       </Flex>
       <Text fontWeight={600}>{title}</Text>
-      <HStack spacing={0}>
-        <Level lProps={{
-          color: "green",
-          size: 45
-        }} />
+      <HStack spacing={1}>
+        <Text fontWeight={500}>{"Level:"}</Text>
+        {getLevel()}
       </HStack>
       {text ? <Text color={"gray.600"}>{text}</Text> : null}
     </Stack>

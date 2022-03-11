@@ -20,6 +20,9 @@ import { BsGithub, BsLinkedin, BsPerson, BsTwitter } from "react-icons/bs";
 import { MdEmail, MdOutlineEmail } from "react-icons/md";
 import { portfolio } from "@config";
 import { IconLink } from "@components";
+import { Field, Form, Formik } from "formik";
+
+type FormValues = { name?: string; email?: string; message?: string };
 
 export const Contact = () => {
   const { hasCopied, onCopy } = useClipboard(portfolio.email);
@@ -84,58 +87,80 @@ export const Contact = () => {
           <Box
             bg={useColorModeValue("white", "gray.700")}
             borderRadius="lg"
-            p={8}
+            p={6}
             color={useColorModeValue("gray.700", "whiteAlpha.900")}
             shadow="base">
-            <VStack spacing={5}>
-              <FormControl isRequired>
-                <FormLabel>Name</FormLabel>
-
-                <InputGroup>
-                  <InputLeftElement>
-                    <BsPerson />
-                  </InputLeftElement>
-                  <Input type="text" name="name" placeholder="Your Name" />
-                </InputGroup>
-              </FormControl>
-
-              <FormControl isRequired>
-                <FormLabel>Email</FormLabel>
-
-                <InputGroup>
-                  <InputLeftElement>
-                    <MdOutlineEmail />
-                  </InputLeftElement>
-                  <Input
-                    type="email"
-                    name="email"
-                    placeholder="Your Email"
-                  />
-                </InputGroup>
-              </FormControl>
-
-              <FormControl isRequired>
-                <FormLabel>Message</FormLabel>
-
-                <Textarea
-                  name="message"
-                  placeholder="Your Message"
-                  rows={6}
-                  resize="none"
-                />
-              </FormControl>
-
-              <Button
-                colorScheme="blue"
-                bg="blue.400"
-                color="white"
-                _hover={{
-                  bg: "blue.500",
-                }}
-                isFullWidth>
+            <Formik<FormValues>
+              initialValues={{ name: undefined, email: undefined, message: undefined }}
+              onSubmit={(values, actions) => {
+                setTimeout(() => {
+                  alert(JSON.stringify(values, null, 2));
+                  actions.setSubmitting(false);
+                }, 1000);
+              }}
+            >
+              {(props) => (
+                <Form>
+                  <Field name='name'>
+                    {() => (
+                      <FormControl isRequired marginBottom={5}>
+                        <FormLabel htmlFor='name'>Name</FormLabel>
+                        <InputGroup>
+                          <InputLeftElement>
+                            <BsPerson />
+                          </InputLeftElement>
+                          <Input type="text" id="name" name="name" placeholder="Your Name" />
+                        </InputGroup>
+                      </FormControl>
+                    )}
+                  </Field>
+                  <Field name='email'>
+                    {() => (
+                      <FormControl isRequired marginBottom={5}>
+                        <FormLabel>Email</FormLabel>
+                        <InputGroup>
+                          <InputLeftElement>
+                            <MdOutlineEmail />
+                          </InputLeftElement>
+                          <Input
+                            id="email"
+                            type="email"
+                            name="email"
+                            placeholder="Your Email"
+                          />
+                        </InputGroup>
+                      </FormControl>
+                    )}
+                  </Field>
+                  <Field name='message'>
+                    {() => (
+                      <FormControl isRequired marginBottom={5}>
+                        <FormLabel>Message</FormLabel>
+                        <Textarea
+                          id="message"
+                          name="message"
+                          placeholder="Your Message"
+                          rows={6}
+                          resize="none"
+                        />
+                      </FormControl>
+                    )}
+                  </Field>
+                  <Button
+                    isLoading={props.isSubmitting}
+                    type='submit'
+                    colorScheme="blue"
+                    bg="blue.400"
+                    color="white"
+                    _hover={{
+                      bg: "blue.500",
+                    }}
+                    isFullWidth>
                     Send Message
-              </Button>
-            </VStack>
+                  </Button>
+                </Form>
+              )}
+            </Formik>
           </Box>
         </Stack>
       </VStack>

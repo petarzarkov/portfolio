@@ -6,7 +6,9 @@ import {
   chakra,
   Flex,
   Icon,
+  Text,
   SimpleGrid,
+  VStack,
   useColorModeValue,
 } from "@chakra-ui/react";
 import { backgrounds } from "@config";
@@ -18,28 +20,40 @@ const descriptions = [
     name: "Fireship",
     role: "The best programming content creator",
     content:
-        <div>
+        <VStack>
+          <Text
+            fontFamily={"Inter"}
+            fontWeight={"medium"}
+          >
+              Check him out:
+          </Text>
           <IconLink
             to={"https://www.youtube.com/c/Fireship"}
             icon={<BsYoutube size="28px" color="red" />}
             label={"youtube-fireship"}
             bgHover={"gray.300"}
           />
-        </div>,
+        </VStack>,
     avatar:
         "https://yt3.ggpht.com/ytc/AKedOLTcIl6kKt3lEPJEySUf_hpHiKDKiFeo9eWPReLysQ=s88-c-k-c0x00ffffff-no-rj",
   },
   {
     name: "Engineering Man",
     role: "Arranging 0's and 1's in the exact right order",
-    content: <div>
+    content: <VStack>
+      <Text
+        fontFamily={"Inter"}
+        fontWeight={"medium"}
+      >
+              Check him out:
+      </Text>
       <IconLink
         to={"https://www.youtube.com/c/EngineerMan"}
         icon={<BsYoutube size="28px" color="red" />}
         label={"youtube-engineering-man"}
         bgHover={"gray.300"}
       />
-    </div>,
+    </VStack>,
     avatar:
         "https://yt3.ggpht.com/ytc/AKedOLT4T_g-knQFqV1Bln8ZjowePaTU0wwQioCj-bEJbw=s88-c-k-c0x00ffffff-no-rj",
   },
