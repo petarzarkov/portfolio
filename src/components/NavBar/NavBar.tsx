@@ -1,11 +1,10 @@
 /* eslint-disable max-len */
-import React, { FC, ReactNode, useMemo } from "react";
+import React, { FC, useMemo } from "react";
 import {
   Box,
   Flex,
   Avatar,
   HStack,
-  Link,
   IconButton,
   Button,
   Menu,
@@ -17,57 +16,12 @@ import {
   useColorModeValue,
   Stack,
   useColorMode,
-  Icon
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon, MoonIcon, SunIcon } from "@chakra-ui/icons";
 import { routes } from "@config";
-import { Link as RLink, Outlet, useMatch, useResolvedPath } from "react-router-dom";
-import { Footer } from "@components";
-import { IconType } from "react-icons";
+import { Outlet } from "react-router-dom";
+import { Footer, NavLink } from "@components";
 import { CONFETTI_DARK, CONFETTI_LIGHT } from "@theme";
-
-const NavLink = ({ children, icon, to = "#" }: { children: ReactNode; icon: IconType; to?: string }) => {
-  const resolved = useResolvedPath(to);
-  const match = useMatch({ path: resolved.pathname, end: true });
-  return (
-    <Link
-      px={2}
-      py={1}
-      rounded={"md"}
-      background={match ? useColorModeValue("gray.200", "gray.700") : undefined}
-      _hover={{
-        textDecoration: "none",
-        bg: useColorModeValue("gray.200", "gray.700"),
-      }}
-      as={RLink}
-      to={to}
-    >
-      <Flex
-        align="center"
-        p="2"
-        mx="2"
-        borderRadius="lg"
-        role="group"
-        cursor="pointer"
-        _hover={{
-          bg: "cyan.400",
-          color: "white",
-        }}>
-        {icon && (
-          <Icon
-            mr="2"
-            fontSize="16"
-            _groupHover={{
-              color: "white",
-            }}
-            as={icon}
-          />
-        )}
-        {children}
-      </Flex>
-    </Link>
-  );
-};
 
 export const NavBar: FC = () => {
   const { colorMode, toggleColorMode } = useColorMode();
