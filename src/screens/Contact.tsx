@@ -27,8 +27,7 @@ type FormValues = { name?: string; email?: string; message?: string };
 
 export const Contact = () => {
   const { hasCopied, onCopy } = useClipboard(portfolio.email);
-  const [showModal, setShowModal] = useState({ show: true, response: "" });
-  console.log(JSON.stringify(email));
+  const [showModal, setShowModal] = useState<{ show: boolean; response?: string }>({ show: false });
   const sendEmail = (values: FormValues, actions: FormikHelpers<FormValues>) => {
     return emailjs.send(email.serviceId, email.templateId, {
       from_name: values.name,
@@ -46,7 +45,7 @@ export const Contact = () => {
 
   return (
     <Box>
-      <BaseModal title="Email" content={showModal.response} isOpen={showModal.show} onClose={() => setShowModal({ show: false, response: "" })} />
+      <BaseModal title="Email" content={showModal.response as string} isOpen={showModal.show} onClose={() => setShowModal({ show: false })} />
       <VStack spacing={{ base: 2, md: 4, lg: 16 }}>
         <Heading
           fontSize={{
