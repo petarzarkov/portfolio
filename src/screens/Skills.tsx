@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { ReactElement } from "react";
 import { Box, SimpleGrid, Icon, Text, Stack, Flex, HStack } from "@chakra-ui/react";
-import { SiTypescript, SiJavascript, SiReact, SiPython, SiJava } from "react-icons/si";
+import { SiTypescript, SiJavascript, SiReact, SiPython, SiJava, SiCsharp } from "react-icons/si";
 import { IoLogoNodejs } from "react-icons/io";
 
 const Skill: FC<{
@@ -84,6 +84,11 @@ export const Skills: FC = () => {
         <Skill
           icon={<Icon as={SiJava} w={10} h={10} color={"red.600"} />}
           title={"Java"}
+          level={1}
+        />
+        <Skill
+          icon={<Icon as={SiCsharp} w={10} h={10} color={"blue.700"} />}
+          title={"C#"}
           level={1}
         />
       </SimpleGrid>

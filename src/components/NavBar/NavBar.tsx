@@ -68,7 +68,7 @@ export const NavBar: FC = () => {
                 />
               </MenuButton>
               <MenuList>
-                {LinksRendered.map(lr => <MenuItem key={lr.key}>{lr}</MenuItem>)}
+                {LinksRendered.map(lr => <MenuItem key={lr.key} padding={0} margin={0}>{lr}</MenuItem>)}
               </MenuList>
             </Menu>
           </Flex>
