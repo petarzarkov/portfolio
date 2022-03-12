@@ -1,8 +1,7 @@
-import React, { FC } from "react";
+import React, { FC, createElement } from "react";
 import { ReactElement } from "react";
-import { Box, SimpleGrid, Icon, Text, Stack, Flex, HStack } from "@chakra-ui/react";
-import { SiTypescript, SiJavascript, SiReact, SiPython, SiJava, SiCsharp } from "react-icons/si";
-import { IoLogoNodejs } from "react-icons/io";
+import { Box, SimpleGrid, Text, Stack, Flex, HStack } from "@chakra-ui/react";
+import { Libs, Title } from "@components";
 
 const Skill: FC<{
   title: string;
@@ -48,49 +47,21 @@ const Skill: FC<{
 };
 
 export const Skills: FC = () => {
+  const skills = Object.entries(Libs).map((lib, index) =>
+    <Skill
+      key={index}
+      title={lib[0]}
+      icon={createElement(lib[1].icon)}
+      level={lib[1].level as 1 | 2 | 3 | 4 | undefined}
+    />);
   return (
     <Box p={4}>
+      <Title
+        title={"Skills"}
+        subTitle={"Acquired throughout the years."}
+      />
       <SimpleGrid columns={{ base: 2, md: 3, lg: 4 }} spacing={10}>
-        <Skill
-          icon={<Icon as={IoLogoNodejs} w={10} h={10} color={"green.600"} />}
-          title={"NodeJS"}
-          level={4}
-        />
-        <Skill
-          icon={<Icon as={SiTypescript} w={10} h={10} color={"blue.600"} />}
-          title={"Typescript"}
-          level={3}
-        />
-        <Skill
-          icon={<Icon as={SiJavascript} w={10} h={10} color={"#f0db4f"} />}
-          title={"JavaScript"}
-          level={4}
-        />
-        <Skill
-          icon={<Icon as={SiReact} w={10} h={10} color={"blue.200"} />}
-          title={"React"}
-          level={2}
-        />
-        <Skill
-          icon={<Icon as={SiReact} w={10} h={10} color={"blue.300"} />}
-          title={"React Native"}
-          level={2}
-        />
-        <Skill
-          icon={<Icon as={SiPython} w={10} h={10} color={"green.600"} />}
-          title={"Python"}
-          level={2}
-        />
-        <Skill
-          icon={<Icon as={SiJava} w={10} h={10} color={"red.600"} />}
-          title={"Java"}
-          level={1}
-        />
-        <Skill
-          icon={<Icon as={SiCsharp} w={10} h={10} color={"blue.700"} />}
-          title={"C#"}
-          level={1}
-        />
+        {skills}
       </SimpleGrid>
     </Box>
   );

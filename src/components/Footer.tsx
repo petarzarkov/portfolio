@@ -6,9 +6,7 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { BsLinkedin, BsGithub } from "react-icons/bs";
-import { portfolio } from "@config";
-import { IconLink } from "@components";
+import { Socials } from "@components";
 
 export const Footer = () => {
   return (
@@ -31,19 +29,8 @@ export const Footer = () => {
         align={{ base: "center", md: "center" }}>
         <Text>{`© Petar Zarkov ${new Date().getFullYear()}`}</Text>
         <Stack direction={"row"} spacing={6}>
-          <IconLink
-            to={portfolio.linkedin}
-            icon={<BsLinkedin size="28px" />}
-            label={"linkedin"}
-          />
-          <IconLink
-            to={portfolio.github}
-            icon={<BsGithub />}
-            label={"github"}
-            btnProps={{
-              fontSize: "3xl"
-            }}
-          />
+          <Socials.LinkedIn />
+          <Socials.GitHub />
         </Stack>
       </Container>
     </Box>
