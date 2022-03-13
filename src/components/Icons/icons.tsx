@@ -6,14 +6,15 @@ import { Icon, Image } from "@chakra-ui/react";
 import {
   SiTypescript, SiReact, SiCsharp, SiJavascript, SiDatadog, SiSequelize,
   SiNextdotjs, SiNestjs, SiPostgresql, SiSocketdotio, SiDocker, SiKubernetes,
-  SiCucumber, SiPrisma, SiEslint, SiOctopusdeploy, SiBamboo, SiBitbucket, SiCplusplus
+  SiCucumber, SiPrisma, SiEslint, SiOctopusdeploy, SiBamboo, SiBitbucket, SiCplusplus, SiExpress
 } from "react-icons/si";
 import { IoLogoNodejs } from "react-icons/io";
 import { GrMysql } from "react-icons/gr";
+import { FaNpm } from "react-icons/fa";
 
 export const Socials = {
-  GitHub: () => <IconLink
-    to={portfolio.github}
+  GitHub: ({ to = portfolio.github }) => <IconLink
+    to={to}
     icon={<BsGithub />}
     label={"github"}
     btnProps={{
@@ -54,9 +55,12 @@ export const SecondaryLibs = {
   MySQL: { icon: () => <Icon as={GrMysql} w={10} h={10} color={"blue.500"} />, level: 3 },
   Postgres: { icon: () => <Icon as={SiPostgresql} w={10} h={10} color={"blue.600"} />, level: 4 },
   Redis: { icon: () => <Image w={10} h={10} src="https://pbs.twimg.com/profile_images/1285653263824691205/mu4nJ7Gb_normal.png" />, level: 2 },
+  Koa: { icon: () => <Image w={10} src="images/koa.jpg" />, level: 4 },
   SocketIO: { icon: () => <Icon as={SiSocketdotio} w={10} h={10} color={"gray.800"} />, level: 4 },
   Jest: { icon: () => <Image w={10} h={10} src="https://jestjs.io/img/jest.png" />, level: 4 },
   ESLint: { icon: () => <Icon as={SiEslint} w={10} h={10} color={"purple.800"} />, level: 4 },
+  Express: { icon: () => <Icon as={SiExpress} w={10} h={10} color={"gray.600"} />, level: 4 },
+  npm: { icon: () => <Icon as={FaNpm} w={10} h={10} color={"red.600"} />, level: 4 },
 };
 
 export const CiLibs = {
