@@ -1,7 +1,7 @@
 import React, { FC, createElement } from "react";
 import { ReactElement } from "react";
-import { Box, SimpleGrid, Text, Stack, Flex, HStack } from "@chakra-ui/react";
-import { Libs, Title } from "@components";
+import { Box, SimpleGrid, Text, Stack, Flex, HStack, Container } from "@chakra-ui/react";
+import { CiLibs, Libs, SecondaryLibs, Title } from "@components";
 
 const Skill: FC<{
   title: string;
@@ -54,15 +54,49 @@ export const Skills: FC = () => {
       icon={createElement(lib[1].icon)}
       level={lib[1].level as 1 | 2 | 3 | 4 | undefined}
     />);
+  const skillsSecondary = Object.entries(SecondaryLibs).map((lib, index) =>
+    <Skill
+      key={index}
+      title={lib[0]}
+      icon={createElement(lib[1].icon)}
+      level={lib[1].level as 1 | 2 | 3 | 4 | undefined}
+    />);
+  const skillsCI = Object.entries(CiLibs).map((lib, index) =>
+    <Skill
+      key={index}
+      title={lib[0]}
+      icon={createElement(lib[1].icon)}
+      level={lib[1].level as 1 | 2 | 3 | 4 | undefined}
+    />);
   return (
     <Box p={4}>
-      <Title
-        title={"Skills"}
-        subTitle={"Acquired throughout the years."}
-      />
-      <SimpleGrid columns={{ base: 2, md: 3, lg: 4 }} spacing={10}>
-        {skills}
-      </SimpleGrid>
+      <Container maxW={"6xl"}>
+        <Title
+          title={"Primary"}
+          subTitle={"Acquired throughout the years."}
+        />
+        <SimpleGrid columns={{ base: 2, md: 3, lg: 5 }} spacing={10}>
+          {skills}
+        </SimpleGrid>
+      </Container>
+      <Container maxW={"6xl"} mt={10}>
+        <Title
+          title={"Secondary"}
+          subTitle={"Acquired throughout the years."}
+        />
+        <SimpleGrid columns={{ base: 2, md: 3, lg: 5 }} spacing={10}>
+          {skillsSecondary}
+        </SimpleGrid>
+      </Container>
+      <Container maxW={"6xl"} mt={10}>
+        <Title
+          title={"CI/CD"}
+          subTitle={"Acquired throughout the years."}
+        />
+        <SimpleGrid columns={{ base: 2, md: 3, lg: 5 }} spacing={10}>
+          {skillsCI}
+        </SimpleGrid>
+      </Container>
     </Box>
   );
 };

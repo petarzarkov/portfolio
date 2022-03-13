@@ -39,7 +39,7 @@ export const About: FC = () => {
         title={"About"}
         subTitle={"Software developer with 7 years of experience in the sphere and another roughly 5 years in the area of IT."}
       />
-      <Container maxW={"6xl"} mt={10}>
+      <Container maxW={"6xl"}>
         <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} spacing={10}>
           {features.map((feature, index) => (
             <HStack key={`${feature.title}-${index}`} align={"top"}>
