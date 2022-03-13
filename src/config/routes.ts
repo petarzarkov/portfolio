@@ -9,8 +9,8 @@ export const routes = {
     name: "Skills",
     icon: FiZap
   },
-  about: {
-    name: "About",
+  projects: {
+    name: "Projects",
     icon: FiTerminal
   },
   contact: {

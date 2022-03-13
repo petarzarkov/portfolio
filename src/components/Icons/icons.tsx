@@ -6,7 +6,7 @@ import { Icon, Image } from "@chakra-ui/react";
 import {
   SiTypescript, SiReact, SiCsharp, SiJavascript, SiDatadog, SiSequelize,
   SiNextdotjs, SiNestjs, SiPostgresql, SiSocketdotio, SiDocker, SiKubernetes,
-  SiCucumber, SiPrisma, SiEslint, SiOctopusdeploy, SiBamboo
+  SiCucumber, SiPrisma, SiEslint, SiOctopusdeploy, SiBamboo, SiBitbucket, SiCplusplus
 } from "react-icons/si";
 import { IoLogoNodejs } from "react-icons/io";
 import { GrMysql } from "react-icons/gr";
@@ -40,7 +40,8 @@ export const Libs = {
   Java: { icon: () => <Image w={10} h={10} src="https://img.icons8.com/color/48/000000/java-coffee-cup-logo--v1.png" />, level: 2 },
   React: { icon: () => <Icon as={SiReact} w={10} h={10} color={"blue.200"} />, level: 4 },
   ReactNative: { icon: () => <Icon as={SiReact} w={10} h={10} color={"blue.300"} />, level: 3 },
-  "C#": { icon: () => <Icon as={SiCsharp} w={10} h={10} color={"blue.700"} />, level: 1 },
+  Csharp: { icon: () => <Icon as={SiCsharp} w={10} h={10} color={"blue.700"} />, level: 1, title: "C#" },
+  Cpp: { icon: () => <Icon as={SiCplusplus} w={10} h={10} color={"blue.700"} />, level: 1, title: "C++" },
   GO: { icon: () => <Image src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Go_Logo_Blue.svg/215px-Go_Logo_Blue.svg.png" />, level: 1 },
 };
 
@@ -66,4 +67,5 @@ export const CiLibs = {
   Jenkins: { icon: () => <Image  src="https://www.jenkins.io/images/logos/jenkins/jenkins.svg" />, level: 4 },
   AWS: { icon: () => <Image  src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/512px-Amazon_Web_Services_Logo.svg.png?20170912170050" />, level: 2 },
   Bamboo: { icon: () => <Icon as={SiBamboo} w={10} h={10} color={"blue.600"} />, level: 4 },
+  BitBucket: { icon: () => <Icon as={SiBitbucket} w={10} h={10} color={"blue.800"} />, level: 4 },
 };

@@ -50,7 +50,7 @@ export const Skills: FC = () => {
   const skills = Object.entries(Libs).map((lib, index) =>
     <Skill
       key={index}
-      title={lib[0]}
+      title={(lib[1] as { title?: string })?.title || lib[0]}
       icon={createElement(lib[1].icon)}
       level={lib[1].level as 1 | 2 | 3 | 4 | undefined}
     />);
@@ -73,7 +73,7 @@ export const Skills: FC = () => {
       <Container maxW={"6xl"}>
         <Title
           title={"Primary"}
-          subTitle={"Acquired throughout the years."}
+          subTitle={"Programming languages and supersets."}
         />
         <SimpleGrid columns={{ base: 2, md: 3, lg: 5 }} spacing={10}>
           {skills}
@@ -82,7 +82,7 @@ export const Skills: FC = () => {
       <Container maxW={"6xl"} mt={10}>
         <Title
           title={"Secondary"}
-          subTitle={"Acquired throughout the years."}
+          subTitle={"Libraries, packages, tools."}
         />
         <SimpleGrid columns={{ base: 2, md: 3, lg: 5 }} spacing={10}>
           {skillsSecondary}
@@ -91,7 +91,7 @@ export const Skills: FC = () => {
       <Container maxW={"6xl"} mt={10}>
         <Title
           title={"CI/CD"}
-          subTitle={"Acquired throughout the years."}
+          subTitle={"Continuous Integration, Continuous Delivery, Continuous Deployment."}
         />
         <SimpleGrid columns={{ base: 2, md: 3, lg: 5 }} spacing={10}>
           {skillsCI}
