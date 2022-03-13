@@ -9,17 +9,18 @@ import {
   Text,
   Stack,
   useColorModeValue,
+  ThemingProps,
 } from "@chakra-ui/react";
 import { portfolio } from "@config";
 
-export const Card: FC<{ name?: string; subName?: string }> =
-({ name = portfolio.name, subName = portfolio.title }) => {
+export const Card: FC<{ name?: string; subName?: string; avatarSize?: ThemingProps<"Avatar">["size"] }> =
+({ name = portfolio.name, subName = portfolio.title, avatarSize = "xl" }) => {
   return (
     <Center py={6}>
       <Box
         maxW={"270px"}
         w={"full"}
-        bg={useColorModeValue("white", "gray.800")}
+        bg={useColorModeValue("white", "gray.900")}
         boxShadow={"2xl"}
         rounded={"md"}
         overflow={"hidden"}>
@@ -33,9 +34,9 @@ export const Card: FC<{ name?: string; subName?: string }> =
         />
         <Flex justify={"center"} mt={-12}>
           <Avatar
-            size={"xl"}
+            size={avatarSize}
             src={
-              "images/avatar.jpg"
+              "images/avtr1.jpg"
             }
             title={name}
             css={{

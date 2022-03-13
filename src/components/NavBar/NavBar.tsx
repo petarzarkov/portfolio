@@ -17,7 +17,7 @@ import {
 import { HamburgerIcon, CloseIcon, MoonIcon, SunIcon } from "@chakra-ui/icons";
 import { routes } from "@config";
 import { Outlet } from "react-router-dom";
-import { Footer, NavLink } from "@components";
+import { BackTop, Footer, NavLink } from "@components";
 import { CONFETTI_DARK, CONFETTI_LIGHT } from "@theme";
 
 export const NavBar: FC = () => {
@@ -96,7 +96,7 @@ export const NavBar: FC = () => {
           <Outlet />
         </Box>
       </Flex>
-
+      <BackTop />
       <Footer />
     </>
   );

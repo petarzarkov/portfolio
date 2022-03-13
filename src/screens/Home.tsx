@@ -4,7 +4,7 @@ import { BasicStats, Card } from "@components";
 export const Home: FC = () => {
   return (
     <>
-      <Card />
+      <Card avatarSize={"full"} />
       <BasicStats />
     </>
   );
