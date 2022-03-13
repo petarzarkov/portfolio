@@ -13,7 +13,12 @@ import {
 } from "@chakra-ui/react";
 import { portfolio } from "@config";
 
-export const Card: FC<{ name?: string; subName?: string; avatarSize?: ThemingProps<"Avatar">["size"] }> =
+export const Card: FC<
+{
+  name?: string;
+  subName?: string;
+  avatarSize?: ThemingProps<"Avatar">["size"];
+}> =
 ({ name = portfolio.name, subName = portfolio.title, avatarSize = "xl" }) => {
   return (
     <Center py={6}>

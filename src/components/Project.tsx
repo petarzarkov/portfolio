@@ -1,14 +1,13 @@
 import React, { FC, ReactElement } from "react";
 import {
-  Stack, Flex, Text, Container, Heading,
+  Stack, Flex, Text, Container, Heading, HStack,
   SimpleGrid, StackDivider, useColorModeValue, Image
 } from "@chakra-ui/react";
 
 export const Feature: FC<{
-  text: string;
-  iconBg: string;
+  text?: ReactElement;
   icon?: ReactElement;
-}> = ({ text, icon, iconBg }) => {
+}> = ({ text, icon }) => {
   return (
     <Stack direction={"row"} align={"center"}>
       <Flex
@@ -16,11 +15,10 @@ export const Feature: FC<{
         h={8}
         align={"center"}
         justify={"center"}
-        rounded={"full"}
-        bg={iconBg}>
+        rounded={"full"}>
         {icon}
       </Flex>
-      <Text fontWeight={600}>{text}</Text>
+      {text && text}
     </Stack>
   );
 };
@@ -30,9 +28,11 @@ export const Project: FC<{
   subTitle: string;
   description: string;
   features: ReactElement[];
-}> = ({ title, subTitle, description, features }) => {
+  devStack: ReactElement[];
+  preview?: ReactElement;
+}> = ({ title, subTitle, description, features, preview, devStack }) => {
   return (
-    <Container maxW={"5xl"} py={12}>
+    <Container maxW={"5xl"} py={12} borderRadius={25} borderColor={"blue.200"} borderWidth={"thin"} mt={10} >
       <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
         <Stack spacing={4}>
           <Text
@@ -54,21 +54,37 @@ export const Project: FC<{
             spacing={4}
             divider={
               <StackDivider
-                borderColor={useColorModeValue("gray.100", "gray.700")}
+                borderColor={useColorModeValue("gray.300", "gray.700")}
               />
             }>
             {features}
           </Stack>
+          {devStack?.length &&
+          <>
+            <Text color={useColorModeValue("gray.700", "gray.300")} fontSize={"lg"}>
+              {"Tech Stack"}
+            </Text>
+            <HStack
+              wrap={"wrap"}
+              spacing={4}
+              divider={<StackDivider
+                borderColor={useColorModeValue("gray.300", "gray.700")} />}>
+              {devStack}
+            </HStack>
+          </>}
         </Stack>
         <Flex>
-          <Image
-            rounded={"md"}
-            alt={"feature image"}
-            src={
-              "images/img6.jpg"
-            }
-            objectFit={"cover"}
-          />
+          {preview ?
+            preview
+            :
+            <Image
+              rounded={"md"}
+              alt={"feature image"}
+              src={
+                "images/img6.jpg"
+              }
+              objectFit={"cover"}
+            />}
         </Flex>
       </SimpleGrid>
     </Container>
