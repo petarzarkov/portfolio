@@ -5,13 +5,13 @@ export const routes = {
     name: "Home",
     icon: FiHome
   },
-  about: {
-    name: "About",
-    icon: FiTerminal
-  },
   skills: {
     name: "Skills",
     icon: FiZap
+  },
+  about: {
+    name: "About",
+    icon: FiTerminal
   },
   contact: {
     name: "Contact",
