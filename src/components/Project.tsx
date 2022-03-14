@@ -5,9 +5,9 @@ import {
 } from "@chakra-ui/react";
 
 export const Feature: FC<{
-  text?: ReactElement;
+  content?: ReactElement;
   icon?: ReactElement;
-}> = ({ text, icon }) => {
+}> = ({ content, icon }) => {
   return (
     <Stack direction={"row"} align={"center"}>
       <Flex
@@ -18,7 +18,7 @@ export const Feature: FC<{
         rounded={"full"}>
         {icon}
       </Flex>
-      {text && text}
+      {content && content}
     </Stack>
   );
 };
@@ -61,7 +61,7 @@ export const Project: FC<{
           </Stack>
           {devStack?.length &&
           <>
-            <Text color={useColorModeValue("gray.700", "gray.300")} fontSize={"lg"}>
+            <Text color={useColorModeValue("gray.700", "gray.300")} fontSize={"lg"} fontWeight={600}>
               {"Tech Stack"}
             </Text>
             <HStack
@@ -81,7 +81,7 @@ export const Project: FC<{
               rounded={"md"}
               alt={"feature image"}
               src={
-                "images/img6.jpg"
+                "images/img5.jpg"
               }
               objectFit={"cover"}
             />}
