@@ -13,11 +13,12 @@ import {
   useColorModeValue,
   Stack,
   useColorMode,
+  MenuList,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon, MoonIcon, SunIcon } from "@chakra-ui/icons";
 import { routes } from "@config";
 import { Outlet } from "react-router-dom";
-import { BackTop, Footer, NavLink } from "@components";
+import { BackTop, BasicStats, Card, Footer, NavLink } from "@components";
 import { CONFETTI_DARK, CONFETTI_LIGHT } from "@theme";
 
 export const NavBar: FC = () => {
@@ -65,6 +66,10 @@ export const NavBar: FC = () => {
                   }
                 />
               </MenuButton>
+              <MenuList>
+                <Card avatarSize={"2xl"} />
+                <BasicStats />
+              </MenuList>
             </Menu>
           </Flex>
         </Flex>

@@ -19,6 +19,8 @@ export default defineConfig(({ mode }) => {
         "@theme": path.resolve(__dirname, "./src/theme"),
       }
     },
-    plugins: [react()]
+    plugins: [
+      react()
+    ]
   };
 });

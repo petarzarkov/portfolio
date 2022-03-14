@@ -41,7 +41,7 @@ export const Card: FC<
           <Avatar
             size={avatarSize}
             src={
-              "images/avtr1.jpg"
+              "images/avatar.jpg"
             }
             title={name}
             css={{
