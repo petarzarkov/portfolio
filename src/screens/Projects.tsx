@@ -74,6 +74,31 @@ export const Projects: FC = () => {
         />
       ]
     },
+    {
+      title: "🕹️ Impossible Quiz",
+      subTitle: "android app",
+      description: "Developed with React Native. Over 4000 Trivia Questions",
+      devStack: [
+        <Libs.NodeJS.icon key={"NodeIQ"} />,
+        <Libs.ReactNative.icon key={"rnIQ"} />,
+        <Libs.Typescript.icon key={"TSIQ"} />,
+        <Libs.JavaScript.icon key={"JSIQ"} />,
+        <SecondaryLibs.ESLint.icon key={"EslintIQ"} />,
+      ],
+      features: [
+        <Feature
+          key={"IQGplay"}
+          icon={<SecondaryLibs.GooglePlay.icon to={"https://play.google.com/store/apps/details?id=com.impossiblequiz"} />}
+          content={<ExternalLink to={"https://play.google.com/store/apps/details?id=com.impossiblequiz"} text={"Get it on Google Play"} />}
+        />,
+        <Feature
+          key={"IQRepo"}
+          icon={<Socials.GitHub to={"https://github.com/petarzarkov/rn-impossible-quiz"} />}
+          content={<ExternalLink to={"https://github.com/petarzarkov/rn-impossible-quiz"} text={"repo"} />}
+        />,
+      ],
+      previewImg: "images/impQuiz.jpg"
+    },
   ];
 
   return (

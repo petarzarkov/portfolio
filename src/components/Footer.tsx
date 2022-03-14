@@ -27,7 +27,7 @@ export const Footer = () => {
         spacing={4}
         justify={{ base: "center", md: "space-between" }}
         align={{ base: "center", md: "center" }}>
-        <Text>{`© Petar Zarkov ${new Date().getFullYear()}`}</Text>
+        <Text>{`©️ Petar Zarkov ${new Date().getFullYear()}`}</Text>
         <Stack direction={"row"} spacing={6}>
           <Socials.LinkedIn />
           <Socials.GitHub />

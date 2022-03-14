@@ -26,13 +26,11 @@ const Skill: FC<{
   return (
     <Stack>
       <Flex
-        w={16}
-        h={16}
+        w={12}
+        h={12}
         align={"center"}
         justify={"center"}
-        color={"white"}
         rounded={"full"}
-        bg={"gray.100"}
         mb={1}>
         {icon}
       </Flex>
