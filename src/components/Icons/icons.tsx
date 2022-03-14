@@ -63,6 +63,10 @@ export const SecondaryLibs = {
   npm: { icon: ({ to }: { to?: string }) => <IconLink icon={<Icon as={FaNpm} w={10} h={10} color={"red.600"} />} to={to || "https://www.npmjs.com/"}/>, level: 4 },
   html: { icon: () => <IconLink icon={<Icon as={SiHtml5} w={10} h={10} color={"orange.400"} />} to={"https://developer.mozilla.org/en-US/docs/Web/HTML"}/>, level: 4 },
   css: { icon: () => <IconLink icon={<Icon as={SiCss3} w={10} h={10} color={"teal.400"} />} to={"https://developer.mozilla.org/en-US/docs/Web/CSS"}/>, level: 4 },
+  GooglePlay: {
+    icon: ({ to }: { to?: string }) => <IconLink icon={<Image w={10} h={10} src="https://www.gstatic.com/android/market_images/web/favicon_v2.ico" />} to={to || "https://play.google.com/"}/>,
+    level: 4
+  },
 };
 
 export const CiLibs = {

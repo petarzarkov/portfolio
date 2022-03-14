@@ -30,9 +30,10 @@ export const Project: FC<{
   features: ReactElement[];
   devStack: ReactElement[];
   preview?: ReactElement;
-}> = ({ title, subTitle, description, features, preview, devStack }) => {
+  previewImg?: string;
+}> = ({ title, subTitle, description, features, preview, devStack, previewImg }) => {
   return (
-    <Container maxW={"5xl"} py={12} borderRadius={25} borderColor={"blue.200"} borderWidth={"thin"} mt={10} >
+    <Container maxW={"5xl"} py={12} borderRadius={25} borderColor={"blue.400"} borderWidth={"thin"} mt={10} >
       <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
         <Stack spacing={4}>
           <Text
@@ -81,7 +82,7 @@ export const Project: FC<{
               rounded={"md"}
               alt={"feature image"}
               src={
-                "images/img5.jpg"
+                previewImg || "images/img5.jpg"
               }
               objectFit={"cover"}
             />}
