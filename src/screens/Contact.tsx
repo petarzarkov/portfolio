@@ -44,14 +44,13 @@ export const Contact = () => {
 
   return (
     <Box>
+      <Title
+        title={"Get in Touch"}
+        subTitle={"Email me or contact me on any of my social links."}
+      />
       {showModal.show &&
       <BaseModal title="Email" content={showModal.response} isOpen={showModal.show} onClose={() => setShowModal({ show: false })} />}
       <VStack spacing={{ base: 2, md: 4, lg: 22 }}>
-        <Title
-          title={"Get in Touch"}
-          subTitle={"Email me or contact me on any of my social links."}
-        />
-
         <Stack
           spacing={{ base: 2, md: 4, lg: 22 }}
           direction={{ base: "column", md: "row" }}>

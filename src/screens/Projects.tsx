@@ -102,7 +102,7 @@ export const Projects: FC = () => {
   ];
 
   return (
-    <Box p={4}>
+    <Box>
       <Title
         title={"Projects"}
         subTitle={"Showcasing some of my projects."}

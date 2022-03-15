@@ -2,12 +2,12 @@ import React, { FC, ReactNode } from "react";
 import {
   Box,
   chakra,
-  Flex,
   SimpleGrid,
   Stat,
   StatLabel,
   StatNumber,
   useColorModeValue,
+  VStack,
 } from "@chakra-ui/react";
 import { Libs } from "@components";
 
@@ -25,12 +25,12 @@ const StatsCard: FC<{
       border={"1px solid"}
       borderColor={useColorModeValue("gray.800", "gray.500")}
       rounded={"lg"}>
-      <Flex justifyContent={"space-between"}>
-        <Box pl={{ base: 2, md: 4 }}>
-          <StatLabel fontWeight={"medium"} isTruncated>
+      <VStack>
+        <Box >
+          <StatLabel isTruncated fontSize={"sm"}>
             {title}
           </StatLabel>
-          <StatNumber fontSize={"2xl"} fontWeight={"medium"}>
+          <StatNumber fontSize={"md"} fontWeight={"medium"}>
             {stat}
           </StatNumber>
         </Box>
@@ -40,7 +40,7 @@ const StatsCard: FC<{
           alignContent={"center"}>
           {icon}
         </Box>
-      </Flex>
+      </VStack>
     </Stat>
   );
 };
@@ -52,10 +52,10 @@ export const BasicStats: FC = () => {
     { stat: "NodeJS", title: "Expand on", icon: <Libs.NodeJS.icon /> },
   ];
   return (
-    <Box maxW="7xl" mx={"auto"} pt={5} px={{ base: 2, sm: 12, md: 17 }}>
+    <Box w={"full"} mx={"auto"} pt={5} px={{ base: 2, sm: 12, md: 17 }}>
       <chakra.h1
         textAlign={"center"}
-        fontSize={"4xl"}
+        fontSize={"xl"}
         py={10}
         fontWeight={"bold"}>
           Current Focuses

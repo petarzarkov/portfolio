@@ -67,7 +67,7 @@ export const Skills: FC = () => {
       level={lib[1].level as 1 | 2 | 3 | 4 | undefined}
     />);
   return (
-    <Box p={4}>
+    <Box>
       <Container maxW={"6xl"}>
         <Title
           title={"Primary"}
