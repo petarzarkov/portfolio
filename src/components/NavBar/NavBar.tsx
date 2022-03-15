@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import React, { FC, useMemo } from "react";
 import {
   Box,
@@ -17,9 +16,7 @@ import {
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon, MoonIcon, SunIcon } from "@chakra-ui/icons";
 import { routes } from "@config";
-import { Outlet } from "react-router-dom";
-import { BackTop, BasicStats, Card, Footer, NavLink } from "@components";
-import { CONFETTI_DARK, CONFETTI_LIGHT } from "@theme";
+import { BasicStats, Card, NavLink } from "@components";
 
 export const NavBar: FC = () => {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -30,79 +27,61 @@ export const NavBar: FC = () => {
   )), Links);
 
   return (
-    <>
-      <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
-        <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
-          <IconButton
-            size={"md"}
-            icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
-            aria-label={"Open Menu"}
-            display={{ md: "none" }}
-            onClick={isOpen ? onClose : onOpen}
-          />
-          <HStack spacing={8} alignItems={"center"}>
-            <HStack
-              as={"nav"}
-              spacing={4}
-              display={{ base: "none", md: "flex" }}>
-              {LinksRendered}
-            </HStack>
+    <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
+      <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
+        <IconButton
+          size={"md"}
+          icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
+          aria-label={"Open Menu"}
+          display={{ md: "none" }}
+          onClick={isOpen ? onClose : onOpen}
+        />
+        <HStack spacing={8} alignItems={"center"}>
+          <HStack
+            as={"nav"}
+            spacing={4}
+            display={{ base: "none", md: "flex" }}>
+            {LinksRendered}
           </HStack>
-          <Flex alignItems={"center"}>
-            <Button onClick={toggleColorMode} margin={5}>
-              {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
-            </Button>
-            <Menu>
-              <MenuButton
-                as={Button}
-                rounded={"full"}
-                variant={"link"}
-                cursor={"pointer"}
-                minW={0}>
-                <Avatar
-                  size={"sm"}
-                  src={
-                    "images/avatar.jpg"
-                  }
-                />
-              </MenuButton>
-              <MenuList>
+        </HStack>
+        <Flex alignItems={"center"}>
+          <Button onClick={toggleColorMode} margin={5}>
+            {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
+          </Button>
+          <Menu isLazy lazyBehavior="keepMounted">
+            <MenuButton
+              as={Button}
+              rounded={"full"}
+              variant={"link"}
+              cursor={"pointer"}
+              minW={0}>
+              <Avatar
+                size={"sm"}
+                src={
+                  "images/avatar.jpg"
+                }
+                css={{
+                  border: useColorModeValue("thin solid black", "thin solid white"),
+                }}
+              />
+            </MenuButton>
+            <MenuList>
+              <Box minW={305}>
                 <Card avatarSize={"2xl"} />
                 <BasicStats />
-              </MenuList>
-            </Menu>
-          </Flex>
+              </Box>
+            </MenuList>
+          </Menu>
         </Flex>
-
-        {isOpen ? (
-          <Box pb={4} display={{ md: "none" }}>
-            <Stack as={"nav"} spacing={4}>
-              {LinksRendered}
-            </Stack>
-          </Box>
-        ) : null}
-      </Box>
-
-      <Flex
-        bg={useColorModeValue("white.100", "gray.800")}
-        align="center"
-        justify="center"
-        minHeight={"84.6vh"}
-        css={{
-          backgroundImage: useColorModeValue(CONFETTI_LIGHT, CONFETTI_DARK),
-          backgroundAttachment: "fixed",
-        }}
-      >
-        <Box
-          borderRadius="md"
-          m={{ base: 2, md: 8, lg: 5 }}
-          p={{ base: 2, lg: 8 }}
-        >
-          <Outlet />
-        </Box>
       </Flex>
-      <BackTop />
-      <Footer />
-    </>
+
+      {isOpen ? (
+        <Box pb={4} display={{ md: "none" }}>
+          <Stack as={"nav"} spacing={4}>
+            {LinksRendered}
+          </Stack>
+        </Box>
+      ) : null}
+    </Box>
   );
 };

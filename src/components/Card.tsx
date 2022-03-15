@@ -45,7 +45,7 @@ export const Card: FC<
             }
             title={name}
             css={{
-              border: "2px solid white",
+              border: useColorModeValue("2px solid gray", "2px solid white"),
             }}
           />
         </Flex>
