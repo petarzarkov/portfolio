@@ -8,7 +8,6 @@ export default defineConfig(({ mode }) => {
   process.env = { ...process.env, ...loadEnv(mode, process.cwd()) };
 
   return {
-    base: "/portfolio/",
     resolve: {
       alias: {
         "@components": path.resolve(__dirname, "./src/components"),
