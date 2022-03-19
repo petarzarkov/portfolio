@@ -28,4 +28,4 @@ npm start
 
 ### Demo
 
-<a href="https://petarzarkov.github.io/portfolio/" target="_blank">Preview</a>
+<a href="http://petarzarkov.com/" target="_blank">Preview</a>
