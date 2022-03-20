@@ -1,5 +1,5 @@
 import React, { FC, useState } from "react";
-import { AspectRatio, Box, Text, Spinner, Code } from "@chakra-ui/react";
+import { AspectRatio, Box, Text, Spinner, Code, VStack, Flex } from "@chakra-ui/react";
 import { ExternalLink, Feature, Libs, Project, SecondaryLibs, Socials, Title } from "@components";
 
 export const Projects: FC = () => {
@@ -72,7 +72,20 @@ export const Projects: FC = () => {
           icon={<SecondaryLibs.npm.icon to={"https://www.npmjs.com/package/hot-utils"} />}
           content={<ExternalLink to={"https://www.npmjs.com/package/hot-utils"} text={"npm hot-utils"} />}
         />
-      ]
+      ],
+      preview: <Flex
+        justify="center"
+        w={"full"}
+        minH={"320px"}
+        alignItems={"center"}
+        backgroundImage={"images/img5.jpg"} rounded={"md"} backgroundSize={"cover"} backgroundRepeat="no-repeat" backgroundPosition={"center"}>
+        <VStack>
+          <a href="https://github.com/petarzarkov/hotstuff/actions/"><img src="https://github.com/petarzarkov/hotstuff/actions/workflows/build.yml/badge.svg?branch=main" alt="Build status" /></a>
+          <a href="https://packagephobia.now.sh/result?p=hot-utils"><img src="https://badgen.net/packagephobia/install/hot-utils" alt="Current version" /></a>
+          <a href="https://www.npmjs.com/package/hot-utils"><img src="https://img.shields.io/npm/v/hot-utils" alt="Install size"/></a>
+          <a href="https://github.com/petarzarkov/hotstuff/blob/main/LICENSE"><img src="https://img.shields.io/github/license/petarzarkov/hotstuff" alt="License"/></a>
+        </VStack>
+      </Flex>
     },
     {
       title: "🕹️ Impossible Quiz",
