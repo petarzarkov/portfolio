@@ -35,7 +35,7 @@ const Skill: FC<{
         {icon}
       </Flex>
       <Text fontWeight={600}>{title}</Text>
-      <HStack spacing={1}>
+      <HStack spacing={1} wrap={"wrap"}>
         <Text fontWeight={500}>{"Level:"}</Text>
         {getLevel()}
       </HStack>

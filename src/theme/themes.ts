@@ -3,7 +3,7 @@
 import { theme as chakraTheme } from "@chakra-ui/react";
 import { extendTheme } from "@chakra-ui/react";
 
-export const theme = extendTheme({
+export const teal = extendTheme({
   fonts: {
     ...chakraTheme.fonts,
     body: `'Courier New', monospace;`,
@@ -26,3 +26,32 @@ export const theme = extendTheme({
   },
 });
 
+export const gray = extendTheme({
+  fonts: {
+    ...chakraTheme.fonts,
+    body: `'Courier New', monospace;`,
+    heading: `'Courier New', monospace;`
+  },
+  colors: {
+    ...chakraTheme.colors,
+    primary: chakraTheme.colors.gray,
+  },
+});
+
+export const orange = extendTheme({
+  fonts: {
+    ...chakraTheme.fonts,
+    body: `'Courier New', monospace;`,
+    heading: `'Courier New', monospace;`
+  },
+  colors: {
+    ...chakraTheme.colors,
+    primary: chakraTheme.colors.orange,
+  },
+});
+
+export const themes = {
+  orange,
+  teal,
+  gray
+};
