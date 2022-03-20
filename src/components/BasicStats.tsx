@@ -51,7 +51,7 @@ export const BasicStats: FC = () => {
     { stat: "NodeJS", title: "Expand on", icon: <Libs.NodeJS.icon /> },
   ];
   return (
-    <Box w={"full"} mx={"auto"} pt={5} px={{ base: 2, sm: 12, md: 17 }}>
+    <Box w={"full"} mx={"auto"} pt={1} px={{ base: 2, sm: 12, md: 17 }}>
       <chakra.h1
         textAlign={"center"}
         fontSize={"xl"}

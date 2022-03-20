@@ -31,6 +31,7 @@ const Skill: FC<{
         align={"center"}
         justify={"center"}
         rounded={"full"}
+        bgColor="#41bebb2e"
         mb={1}>
         {icon}
       </Flex>
