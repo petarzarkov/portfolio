@@ -20,7 +20,6 @@ const StatsCard: FC<{
   return (
     <Stat
       px={{ base: 2, md: 4 }}
-      py={"5"}
       shadow={"xl"}
       border={"1px solid"}
       borderColor={useColorModeValue("primary.800", "primary.500")}
@@ -56,7 +55,7 @@ export const BasicStats: FC = () => {
       <chakra.h1
         textAlign={"center"}
         fontSize={"xl"}
-        py={10}
+        pb={1}
         fontWeight={"bold"}>
           Current Focuses
       </chakra.h1>

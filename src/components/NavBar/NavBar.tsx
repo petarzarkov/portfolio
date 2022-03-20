@@ -66,7 +66,7 @@ export const NavBar: FC = () => {
                 }}
               />
             </MenuButton>
-            <MenuList bgColor={useColorModeValue("primary.200", "primary.600")}>
+            <MenuList bgColor={useColorModeValue("primary.200", "primary.800")}>
               <Box minW={305}>
                 <Card avatarSize={"2xl"} />
                 <BasicStats />
