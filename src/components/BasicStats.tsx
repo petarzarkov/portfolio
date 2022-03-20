@@ -26,7 +26,7 @@ const StatsCard: FC<{
       rounded={"lg"}>
       <VStack>
         <Box >
-          <StatLabel isTruncated fontSize={"sm"}>
+          <StatLabel isTruncated fontSize={"xs"}>
             {title}
           </StatLabel>
           <StatNumber fontSize={"md"} fontWeight={"medium"}>

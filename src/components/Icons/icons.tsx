@@ -1,8 +1,8 @@
-import React from "react";
+import React, { FC } from "react";
 import { portfolio } from "@config";
 import { BsGithub, BsLinkedin, BsTwitter } from "react-icons/bs";
-import { IconLink } from "@components";
-import { Icon, Image } from "@chakra-ui/react";
+import { IconLink as IconLinkBase } from "@components";
+import { Flex, Icon as IconBase, Image as ImageBase, useColorModeValue } from "@chakra-ui/react";
 import {
   SiTypescript, SiReact, SiCsharp, SiJavascript, SiDatadog, SiSequelize,
   SiNextdotjs, SiNestjs, SiPostgresql, SiSocketdotio, SiDocker, SiKubernetes,
@@ -11,6 +11,26 @@ import {
 import { IoLogoNodejs } from "react-icons/io";
 import { GrMysql } from "react-icons/gr";
 import { FaNpm } from "react-icons/fa";
+
+const FlexIcon: FC = ({ children }) => <Flex
+  w={12}
+  h={12}
+  align={"center"}
+  justify={"center"}
+  rounded={"full"}
+  bgColor={useColorModeValue("#41bebb2e", "#41bebb14")}
+  mb={1}>
+  {children}
+</Flex>;
+const Icon: FC<Parameters<typeof IconBase>[0]> = (props) => <FlexIcon>
+  <IconBase {...props} />
+</FlexIcon>;
+const IconLink: FC<Parameters<typeof IconLinkBase>[0]> = (props) => <FlexIcon>
+  <IconLinkBase {...props} />
+</FlexIcon>;
+const Image: FC<Parameters<typeof ImageBase>[0]> = (props) => <FlexIcon>
+  <ImageBase {...props} />
+</FlexIcon>;
 
 export const Socials = {
   GitHub: ({ to = portfolio.github }) => <IconLink
