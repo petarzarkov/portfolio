@@ -37,7 +37,7 @@ export const Projects: FC = () => {
             thickness='4px'
             speed='1.85s'
             emptyColor='primary.200'
-            color='blue.500'
+            color='primary.500'
             size='xs'
           />}
           <iframe src='https://wisdoms-app.herokuapp.com/' style={{ borderRadius: 15 }} onLoad={() => setFrameLoading(false)} />
