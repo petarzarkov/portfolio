@@ -1,4 +1,4 @@
-import React, { FC, useMemo } from "react";
+import React, { FC, useMemo, useState } from "react";
 import {
   Box,
   Flex,
@@ -6,6 +6,7 @@ import {
   HStack,
   IconButton,
   Button,
+  ButtonGroup,
   Menu,
   MenuButton,
   useDisclosure,
@@ -17,8 +18,13 @@ import {
 import { HamburgerIcon, CloseIcon, MoonIcon, SunIcon } from "@chakra-ui/icons";
 import { routes } from "@config";
 import { BasicStats, Card, NavLink } from "@components";
+import { useThemeProvider } from "@hooks";
+import { ColorTheme, themes } from "@theme";
+import { BsPaletteFill } from "react-icons/bs";
 
 export const NavBar: FC = () => {
+  const [paletteVisible, setPaletteVisible] = useState(false);
+  const { theme, setTheme } = useThemeProvider();
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const Links = useMemo(() => Object.entries(routes), undefined);
@@ -45,6 +51,9 @@ export const NavBar: FC = () => {
           </HStack>
         </HStack>
         <Flex alignItems={"center"}>
+          <Button onClick={() => setPaletteVisible(!paletteVisible)} margin={5}>
+            <BsPaletteFill />
+          </Button>
           <Button onClick={toggleColorMode} margin={5}>
             {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
           </Button>
@@ -83,6 +92,19 @@ export const NavBar: FC = () => {
           </Stack>
         </Box>
       ) : null}
+
+      {paletteVisible &&
+      <ButtonGroup variant='outline' spacing='6'>
+        {Object.keys(themes).map((tt, indx) =>
+          <Button
+            key={`${tt}-${indx}`}
+            colorScheme={tt}
+            bgColor={theme === tt ? tt : "transparent"}
+            onClick={() => setTheme(tt as ColorTheme)}
+          >
+            {tt}
+          </Button>)}
+      </ButtonGroup>}
     </Box>
   );
 };

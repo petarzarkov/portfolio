@@ -16,6 +16,7 @@ export default defineConfig(({ mode }) => {
         "@screens": path.resolve(__dirname, "./src/screens"),
         "@config": path.resolve(__dirname, "./src/config"),
         "@theme": path.resolve(__dirname, "./src/theme"),
+        "@store": path.resolve(__dirname, "./src/store"),
       }
     },
     plugins: [
