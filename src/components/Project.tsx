@@ -1,8 +1,9 @@
 import React, { FC, ReactElement } from "react";
 import {
-  Stack, Flex, Text, Container, Heading, HStack,
+  Stack, Flex, Text, Container, HStack,
   SimpleGrid, StackDivider, useColorModeValue, Image
 } from "@chakra-ui/react";
+import { Title } from "@components";
 
 export const Feature: FC<{
   content?: ReactElement;
@@ -33,12 +34,12 @@ export const Project: FC<{
   previewImg?: string;
 }> = ({ title, subTitle, description, features, preview, devStack, previewImg }) => {
   return (
-    <Container maxW={"5xl"} py={12} borderRadius={25} borderColor={"blue.400"} borderWidth={"thin"} mt={10} >
+    <Container maxW={"5xl"} py={12} borderRadius={25} borderColor={"primary.400"} borderWidth={"thin"} mt={10} >
       <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
         <Stack spacing={4}>
           <Text
             textTransform={"uppercase"}
-            color={"blue.400"}
+            color={"primary.400"}
             fontWeight={600}
             fontSize={"sm"}
             bg={useColorModeValue("primary.50", "primary.900")}
@@ -47,10 +48,7 @@ export const Project: FC<{
             rounded={"md"}>
             {subTitle}
           </Text>
-          <Heading>{title}</Heading>
-          <Text color={"primary.500"} fontSize={"lg"}>
-            {description}
-          </Text>
+          <Title title={title} subTitle={description} />
           <Stack
             spacing={4}
             divider={

@@ -31,9 +31,9 @@ export const BackTop: FC = () => {
         >
           <Button
             onClick={() => handleScrollUp()}
-            colorScheme="blue"
-            bgGradient="linear(to-r, blue.400, blue.500, blue.600)"
-            color="white"
+            colorScheme="primary"
+            bgGradient="linear(to-r, primary.400, primary.500, primary.600)"
+            color="primary"
             variant="ghost">
             <ArrowUpIcon />
           </Button>
