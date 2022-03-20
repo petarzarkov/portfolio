@@ -16,10 +16,10 @@ export const NavLink: FC<{ children: ReactNode; icon: IconType; to?: string }> =
       px={2}
       py={1}
       rounded={"md"}
-      background={match ? useColorModeValue("gray.200", "gray.500") : undefined}
+      background={match ? useColorModeValue("primary.300", "primary.500") : undefined}
       _hover={{
         textDecoration: "none",
-        bg: useColorModeValue("gray.200", "gray.700"),
+        bg: useColorModeValue("primary.200", "primary.700"),
       }}
       as={RLink}
       to={to}

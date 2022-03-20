@@ -36,7 +36,7 @@ export const Projects: FC = () => {
           {isFrameLoading && <Spinner
             thickness='4px'
             speed='1.85s'
-            emptyColor='gray.200'
+            emptyColor='primary.200'
             color='blue.500'
             size='xs'
           />}

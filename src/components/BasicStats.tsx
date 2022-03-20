@@ -23,7 +23,7 @@ const StatsCard: FC<{
       py={"5"}
       shadow={"xl"}
       border={"1px solid"}
-      borderColor={useColorModeValue("gray.800", "gray.500")}
+      borderColor={useColorModeValue("primary.800", "primary.500")}
       rounded={"lg"}>
       <VStack>
         <Box >
@@ -36,7 +36,7 @@ const StatsCard: FC<{
         </Box>
         <Box
           my={"auto"}
-          color={useColorModeValue("gray.800", "gray.200")}
+          color={useColorModeValue("primary.800", "primary.200")}
           alignContent={"center"}>
           {icon}
         </Box>
