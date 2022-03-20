@@ -41,35 +41,35 @@ export const Project: FC<{
             color={"blue.400"}
             fontWeight={600}
             fontSize={"sm"}
-            bg={useColorModeValue("blue.50", "blue.900")}
+            bg={useColorModeValue("primary.50", "primary.900")}
             p={2}
             alignSelf={"flex-start"}
             rounded={"md"}>
             {subTitle}
           </Text>
           <Heading>{title}</Heading>
-          <Text color={"gray.500"} fontSize={"lg"}>
+          <Text color={"primary.500"} fontSize={"lg"}>
             {description}
           </Text>
           <Stack
             spacing={4}
             divider={
               <StackDivider
-                borderColor={useColorModeValue("gray.300", "gray.700")}
+                borderColor={useColorModeValue("primary.300", "primary.700")}
               />
             }>
             {features}
           </Stack>
           {devStack?.length &&
           <>
-            <Text color={useColorModeValue("gray.700", "gray.300")} fontSize={"lg"} fontWeight={600}>
+            <Text color={useColorModeValue("primary.700", "primary.300")} fontSize={"lg"} fontWeight={600}>
               {"Tech Stack"}
             </Text>
             <HStack
               wrap={"wrap"}
               spacing={4}
               divider={<StackDivider
-                borderColor={useColorModeValue("gray.300", "gray.700")} />}>
+                borderColor={useColorModeValue("primary.300", "primary.700")} />}>
               {devStack}
             </HStack>
           </>}

@@ -25,7 +25,7 @@ export const Card: FC<
       <Box
         maxW={"270px"}
         w={"full"}
-        bg={useColorModeValue("white", "gray.900")}
+        bg={useColorModeValue("primary.50", "primary.900")}
         boxShadow={"2xl"}
         rounded={"md"}
         overflow={"hidden"}>
@@ -45,7 +45,8 @@ export const Card: FC<
             }
             title={name}
             css={{
-              border: useColorModeValue("2px solid gray", "2px solid white"),
+              border: "2px solid",
+              borderColor: useColorModeValue("primary.200", "primary.700")
             }}
           />
         </Flex>
@@ -55,7 +56,7 @@ export const Card: FC<
             <Heading fontSize={"2xl"} fontWeight={500} fontFamily={"body"}>
               {name}
             </Heading>
-            <Text color={"gray.500"}>{subName}</Text>
+            <Text color={"primary.500"}>{subName}</Text>
           </Stack>
         </Box>
       </Box>

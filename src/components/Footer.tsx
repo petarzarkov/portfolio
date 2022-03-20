@@ -17,8 +17,8 @@ export const Footer = () => {
         right: 0,
         position: "inherit"
       }}
-      bg={useColorModeValue("gray.100", "gray.900")}
-      color={useColorModeValue("gray.700", "gray.200")}>
+      bg={useColorModeValue("primary.200", "primary.900")}
+      color={useColorModeValue("primary.700", "primary.200")}>
       <Container
         as={Stack}
         maxW={"6xl"}

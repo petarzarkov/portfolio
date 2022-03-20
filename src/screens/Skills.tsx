@@ -39,7 +39,7 @@ const Skill: FC<{
         <Text fontWeight={500}>{"Level:"}</Text>
         {getLevel()}
       </HStack>
-      {text ? <Text color={"gray.600"}>{text}</Text> : null}
+      {text ? <Text color={"primary.600"}>{text}</Text> : null}
     </Stack>
   );
 };

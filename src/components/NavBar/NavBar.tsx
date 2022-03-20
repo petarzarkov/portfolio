@@ -27,7 +27,7 @@ export const NavBar: FC = () => {
   )), Links);
 
   return (
-    <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
+    <Box bg={useColorModeValue("primary.200", "primary.900")} px={4}>
       <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
         <IconButton
           size={"md"}
@@ -61,11 +61,12 @@ export const NavBar: FC = () => {
                   "images/avatar.jpg"
                 }
                 css={{
-                  border: useColorModeValue("thin solid black", "thin solid white"),
+                  border: "thin solid",
+                  borderColor: useColorModeValue("primary.800", "primary.100")
                 }}
               />
             </MenuButton>
-            <MenuList>
+            <MenuList bgColor={useColorModeValue("primary.200", "primary.600")}>
               <Box minW={305}>
                 <Card avatarSize={"2xl"} />
                 <BasicStats />

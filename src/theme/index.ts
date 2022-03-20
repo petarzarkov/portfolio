@@ -1,1 +1,1 @@
-export * from "./confetti";
+export * from "./custom";

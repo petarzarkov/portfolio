@@ -69,8 +69,8 @@ export const Contact = () => {
                 fontSize="3xl"
                 icon={<MdEmail />}
                 _hover={{
-                  bg: "blue.500",
-                  color: useColorModeValue("white", "gray.700"),
+                  bg: useColorModeValue("primary.700", "primary.50"),
+                  color: useColorModeValue("primary.50", "primary.700"),
                 }}
                 onClick={onCopy}
                 isRound
@@ -83,10 +83,10 @@ export const Contact = () => {
           </Stack>
 
           <Box
-            bg={useColorModeValue("white", "gray.700")}
+            bg={useColorModeValue("primary.50", "primary.700")}
             borderRadius="lg"
             p={6}
-            color={useColorModeValue("gray.700", "whiteAlpha.900")}
+            color={useColorModeValue("primary.700", "primary.50")}
             shadow="base">
             <Formik<FormValues>
               initialValues={{ name: undefined, email: undefined, message: undefined }}
@@ -143,10 +143,10 @@ export const Contact = () => {
                     isLoading={props.isSubmitting}
                     type='submit'
                     colorScheme="blue"
-                    bg="blue.400"
+                    bg={useColorModeValue("primary.300", "primary.500")}
                     color="white"
                     _hover={{
-                      bg: "blue.500",
+                      bg: useColorModeValue("primary.200", "primary.400"),
                     }}
                     isFullWidth>
                     Send Message
