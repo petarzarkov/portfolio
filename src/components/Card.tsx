@@ -21,7 +21,7 @@ export const Card: FC<
 }> =
 ({ name = portfolio.name, subName = portfolio.title, avatarSize = "xl" }) => {
   return (
-    <Center py={6}>
+    <Center>
       <Box
         maxW={"270px"}
         w={"full"}
