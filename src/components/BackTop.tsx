@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from "react";
-import { Box, Button } from "@chakra-ui/react";
+import { Box, Button, useColorModeValue } from "@chakra-ui/react";
 import { ArrowUpIcon } from "@chakra-ui/icons";
 
 export const BackTop: FC = () => {
@@ -31,9 +31,8 @@ export const BackTop: FC = () => {
         >
           <Button
             onClick={() => handleScrollUp()}
-            colorScheme="primary"
             bgGradient="linear(to-r, primary.400, primary.500, primary.600)"
-            color="primary"
+            color={useColorModeValue("primary.200", "primary.800")}
             variant="ghost">
             <ArrowUpIcon />
           </Button>

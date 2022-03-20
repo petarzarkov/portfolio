@@ -6,8 +6,8 @@ import { extendTheme } from "@chakra-ui/react";
 export const theme = extendTheme({
   fonts: {
     ...chakraTheme.fonts,
-    body: `papyrus, fantasy;`,
-    heading: `papyrus, fantasy;`
+    body: `'Courier New', monospace;`,
+    heading: `'Courier New', monospace;`
   },
   colors: {
     ...chakraTheme.colors,
