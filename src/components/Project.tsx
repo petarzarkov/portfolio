@@ -34,8 +34,8 @@ export const Project: FC<{
   previewImg?: string;
 }> = ({ title, subTitle, description, features, preview, devStack, previewImg }) => {
   return (
-    <Container maxW={"5xl"} py={12} borderRadius={25} borderColor={"primary.400"} borderWidth={"thin"} mt={10} >
-      <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
+    <Container maxW={"5xl"} py={12} borderRadius={25} borderColor={"primary.400"} borderWidth={"thin"} mt={2}>
+      <SimpleGrid columns={{ base: 1, md: 2 }} spacing={4}>
         <Stack spacing={4}>
           <Text
             textTransform={"uppercase"}
@@ -65,7 +65,7 @@ export const Project: FC<{
             </Text>
             <HStack
               wrap={"wrap"}
-              spacing={4}
+              spacing={3}
               divider={<StackDivider
                 borderColor={useColorModeValue("primary.300", "primary.700")} />}>
               {devStack}
