@@ -1,7 +1,8 @@
 import React, { FC, createElement } from "react";
 import { ReactElement } from "react";
-import { Box, SimpleGrid, Text, Stack, Flex, HStack, Container } from "@chakra-ui/react";
+import { SimpleGrid, Text, Stack, Flex, HStack, Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
 import { CiLibs, Libs, SecondaryLibs, Title } from "@components";
+import { useThemeProvider } from "@hooks";
 
 const Skill: FC<{
   title: string;
@@ -45,6 +46,7 @@ const Skill: FC<{
 };
 
 export const Skills: FC = () => {
+  const { theme } = useThemeProvider();
   const skills = Object.entries(Libs).map((lib, index) =>
     <Skill
       key={index}
@@ -66,35 +68,30 @@ export const Skills: FC = () => {
       icon={createElement(lib[1].icon)}
       level={lib[1].level as 1 | 2 | 3 | 4 | undefined}
     />);
+
   return (
-    <Box>
-      <Container maxW={"6xl"}>
-        <Title
-          title={"Primary"}
-          subTitle={"Programming languages and supersets."}
-        />
-        <SimpleGrid columns={{ base: 2, md: 3, lg: 5 }} spacing={10}>
-          {skills}
-        </SimpleGrid>
-      </Container>
-      <Container maxW={"6xl"} mt={10}>
-        <Title
-          title={"Secondary"}
-          subTitle={"Libraries, packages, tools."}
-        />
-        <SimpleGrid columns={{ base: 2, md: 3, lg: 5 }} spacing={10}>
-          {skillsSecondary}
-        </SimpleGrid>
-      </Container>
-      <Container maxW={"6xl"} mt={10}>
-        <Title
-          title={"CI/CD"}
-          subTitle={"Continuous Integration, Continuous Delivery, Continuous Deployment."}
-        />
-        <SimpleGrid columns={{ base: 2, md: 3, lg: 5 }} spacing={10}>
-          {skillsCI}
-        </SimpleGrid>
-      </Container>
-    </Box>
+    <Tabs isFitted variant='enclosed' colorScheme={theme}>
+      <TabList >
+        <Tab>Primary</Tab>
+        <Tab>Secondary</Tab>
+        <Tab>CI/CD</Tab>
+      </TabList>
+      <TabPanels>
+        {[
+          { title: "Primary", sub: "Programming languages and supersets.", skills: skills },
+          { title: "Secondary", sub: "Libraries, packages, tools.", skills: skillsSecondary },
+          { title: "CI/CD", sub: "Continuous Integration, Continuous Delivery, Continuous Deployment.", skills: skillsCI }
+        ].map((panel, indx) =>
+          <TabPanel key={`${panel.title}-${indx}`}>
+            <Title
+              title={panel.title}
+              subTitle={panel.sub}
+            />
+            <SimpleGrid columns={{ base: 2, md: 3, lg: 5 }} spacing={10}>
+              {panel.skills}
+            </SimpleGrid>
+          </TabPanel>)}
+      </TabPanels>
+    </Tabs>
   );
 };

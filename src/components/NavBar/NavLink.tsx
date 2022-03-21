@@ -32,7 +32,7 @@ export const NavLink: FC<{ children: ReactNode; icon: IconType; to?: string }> =
         role="group"
         cursor="pointer"
         _hover={{
-          bg: "cyan.400",
+          bg: "primary.400",
           color: "white",
         }}>
         {icon && (
