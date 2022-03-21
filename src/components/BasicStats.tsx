@@ -26,10 +26,10 @@ const StatsCard: FC<{
       rounded={"lg"}>
       <VStack>
         <Box >
-          <StatLabel isTruncated fontSize={"xs"}>
+          <StatLabel isTruncated fontSize={"xs"} color={useColorModeValue("primary.800", "primary.500")}>
             {title}
           </StatLabel>
-          <StatNumber fontSize={"md"} fontWeight={"medium"}>
+          <StatNumber fontSize={"md"} fontWeight={"medium"} color={useColorModeValue("primary.500", "primary.300")}>
             {stat}
           </StatNumber>
         </Box>

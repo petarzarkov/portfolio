@@ -18,7 +18,7 @@ const FlexIcon: FC = ({ children }) => <Flex
   align={"center"}
   justify={"center"}
   rounded={"full"}
-  bgColor={useColorModeValue("#41bebb2e", "#41bebb14")}
+  bgColor={useColorModeValue("blackAlpha.100", "whiteAlpha.100")}
   mb={1}>
   {children}
 </Flex>;

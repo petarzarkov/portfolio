@@ -39,15 +39,14 @@ export const Card: FC<
         />
         <Flex justify={"center"} mt={-12}>
           <Avatar
+            borderColor={useColorModeValue("primary.200", "primary.700")}
+            borderWidth={2}
+            borderStyle={"groove"}
             size={avatarSize}
             src={
               "images/avatar.jpg"
             }
             title={name}
-            css={{
-              border: "2px solid",
-              borderColor: useColorModeValue("primary.200", "primary.700")
-            }}
           />
         </Flex>
 
