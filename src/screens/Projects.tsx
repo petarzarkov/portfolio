@@ -5,7 +5,7 @@ import { useThemeProvider } from "@hooks";
 import { hobbies } from "./projects/hobbies";
 import { work } from "./projects/work";
 
-const Projects: FC = () => {
+export const Projects: FC = () => {
   const [isFrameLoading, setFrameLoading] = useState(true);
   const [isRLoading, setRLoading] = useState(true);
   const { theme } = useThemeProvider();
@@ -35,5 +35,3 @@ const Projects: FC = () => {
     </Box>
   );
 };
-
-export default Projects;

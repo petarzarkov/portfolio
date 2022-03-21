@@ -11,12 +11,13 @@ import { IconType } from "react-icons";
 export const NavLink: FC<{ children: ReactNode; icon: IconType; to?: string }> = ({ children, icon, to = "#" }) => {
   const resolved = useResolvedPath(to);
   const match = useMatch({ path: resolved.pathname, end: true });
+  const linkBgColor = useColorModeValue("primary.300", "primary.500");
   return (
     <Link
       px={2}
       py={1}
       rounded={"md"}
-      background={match ? useColorModeValue("primary.300", "primary.500") : undefined}
+      background={match ? linkBgColor : undefined}
       _hover={{
         textDecoration: "none",
         bg: useColorModeValue("primary.200", "primary.700"),

@@ -8,6 +8,9 @@ export default defineConfig(({ mode }) => {
   process.env = { ...process.env, ...loadEnv(mode, process.cwd()) };
 
   return {
+    build: {
+      emptyOutDir: true
+    },
     resolve: {
       alias: {
         "@components": path.resolve(__dirname, "./src/components"),

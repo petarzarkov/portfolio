@@ -45,7 +45,7 @@ const Skill: FC<{
   );
 };
 
-const Skills: FC = () => {
+export const Skills: FC = () => {
   const { theme } = useThemeProvider();
   const skills = Object.entries(Libs).map((lib, index) =>
     <Skill
@@ -95,5 +95,3 @@ const Skills: FC = () => {
     </Tabs>
   );
 };
-
-export default Skills;
