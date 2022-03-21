@@ -1,7 +1,7 @@
 import React, { FC, createElement } from "react";
 import { ReactElement } from "react";
-import { SimpleGrid, Text, Stack, Flex, HStack, Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
-import { CiLibs, Libs, SecondaryLibs, Title } from "@components";
+import { SimpleGrid, Text, Stack, Flex, HStack, TabList, TabPanel, TabPanels, Tabs} from "@chakra-ui/react";
+import { CiLibs, CustomTab, Libs, SecondaryLibs, Title } from "@components";
 import { useThemeProvider } from "@hooks";
 
 const Skill: FC<{
@@ -72,9 +72,9 @@ export const Skills: FC = () => {
   return (
     <Tabs isFitted variant='enclosed' colorScheme={theme}>
       <TabList >
-        <Tab>Primary</Tab>
-        <Tab>Secondary</Tab>
-        <Tab>CI/CD</Tab>
+        <CustomTab title={"Primary"} />
+        <CustomTab title={"Secondary"} />
+        <CustomTab title={"CI/CD"} />
       </TabList>
       <TabPanels>
         {[

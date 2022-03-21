@@ -1,10 +1,13 @@
 import React, { FC, useState } from "react";
-import { AspectRatio, Box, Text, Spinner, Code, VStack, Flex } from "@chakra-ui/react";
-import { ExternalLink, Feature, Libs, Project, SecondaryLibs, Socials, Title } from "@components";
+import { AspectRatio, Box, Text, Spinner, Code, VStack, Flex, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
+import { CiLibs, CustomTab, ExternalLink, Feature, Libs, Project, SecondaryLibs, Socials, Title } from "@components";
+import { useThemeProvider } from "@hooks";
 
 export const Projects: FC = () => {
   const [isFrameLoading, setFrameLoading] = useState(true);
-  const projects = [
+  const [isRLoading, setRLoading] = useState(true);
+  const { theme } = useThemeProvider();
+  const hobbyProjects: (Parameters<typeof Project>[0])[] = [
     {
       title: "💫 Wisdoms App",
       subTitle: "API",
@@ -45,7 +48,7 @@ export const Projects: FC = () => {
       </AspectRatio>
     },
     {
-      title: "🔥 Hot Utils 🔥",
+      title: "🔥 Hot Utils",
       subTitle: "npm package",
       description: "hot-utils npm package - various NodeJS utils with type definition inference",
       devStack: [
@@ -114,13 +117,84 @@ export const Projects: FC = () => {
     },
   ];
 
+  const workProjects: (Parameters<typeof Project>[0])[] = [
+    {
+      title: "🚀 Rocket Crash",
+      subTitle: "Game Engine",
+      description: "Jump on a rocket with other players and see how far you can go before the rocket explodes.",
+      devStack: [
+        <Libs.NodeJS.icon key={"NodeR"} />,
+        <Libs.Typescript.icon key={"TSR"} />,
+        <Libs.JavaScript.icon key={"JSR"} />,
+        <SecondaryLibs.Postgres.icon key={"PGR"} />,
+        <SecondaryLibs.Koa.icon key={"KoaR"} />,
+        <SecondaryLibs.html.icon key={"htmlR"} />,
+        <SecondaryLibs.css.icon key={"cssR"} />,
+        <SecondaryLibs.ESLint.icon key={"EslintR"} />,
+        <SecondaryLibs.MySQL.icon key={"MySQLR"} />,
+        <SecondaryLibs.Redis.icon key={"RedisR"} />,
+        <SecondaryLibs.CucumberJS.icon key={"CucuR"} />,
+        <SecondaryLibs.npm.icon key={"npmR"} />,
+        <SecondaryLibs.Jest.icon key={"jestR"} />,
+        <CiLibs.DataDog.icon key={"DDR"} />,
+        <CiLibs.OctopusDeploy.icon key={"OctopusDeployR"} />,
+        <CiLibs.Jira.icon key={"JiraR"} />,
+        <CiLibs.Bamboo.icon key={"BambooR"} />,
+        <CiLibs.BitBucket.icon key={"BitBucketR"} />,
+        <CiLibs.Confluence.icon key={"ConfluenceR"} />,
+      ],
+      features: [
+        <Feature
+          key={"SequelizeRocket"}
+          icon={<SecondaryLibs.Sequelize.icon />}
+          content={<Text fontWeight={600}>Sequelize: used for DB migrations, layer over PostgeSQL + MySQL, and Object-Relational Mapping</Text>}
+        />
+      ],
+      previewImg: "images/rocket.gif",
+      preview: <AspectRatio w={325} h={isRLoading ? 325 : 600}>
+        <>
+          {isRLoading && <Spinner
+            thickness='4px'
+            speed='1.85s'
+            emptyColor='primary.200'
+            color='primary.500'
+            size='xs'
+          />}
+          <iframe
+            style={{ borderRadius: 15 }}
+            onLoad={() => setRLoading(false)}
+            src="https://www.youtube.com/embed/qQLsUaXShnE"
+            title="How to play rocket"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        </>
+      </AspectRatio>
+    },
+  ];
+
   return (
     <Box>
       <Title
         title={"Projects"}
         subTitle={"Showcasing some of my projects."}
       />
-      {projects.map(prj => <Project key={prj.title} {...prj} />)}
+      <Tabs isFitted variant='enclosed' colorScheme={theme}>
+        <TabList>
+          <CustomTab title={"Hobby"} />
+          <CustomTab title={"Work"} />
+        </TabList>
+        <TabPanels>
+          <TabPanel>
+            {hobbyProjects.map(prj => <Project key={prj.title} {...prj} />)}
+          </TabPanel>
+          <TabPanel>
+            {workProjects.map(prj => <Project key={prj.title} {...prj} />)}
+          </TabPanel>
+        </TabPanels>
+      </Tabs>
+
     </Box>
   );
 };
