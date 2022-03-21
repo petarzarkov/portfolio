@@ -1,9 +1,7 @@
-import React, { FC, Suspense } from "react";
+import React, { FC } from "react";
 import {
   Box,
   Flex,
-  SkeletonCircle,
-  SkeletonText,
   useColorModeValue,
 } from "@chakra-ui/react";
 import { Outlet } from "react-router-dom";
@@ -22,13 +20,7 @@ export const Layout: FC = () => {
         minHeight={"84.6vh"}
       >
         <Box borderRadius="md" p={4}>
-          <Suspense fallback={
-            <Box boxShadow='lg' w={"100vh"} h={"50vh"}>
-              <SkeletonCircle size='10' />
-              <SkeletonText mt='4' noOfLines={10} spacing='4' />
-            </Box>}>
-            <Outlet />
-          </Suspense>
+          <Outlet />
         </Box>
       </Flex>
 
