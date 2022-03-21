@@ -145,13 +145,18 @@ export const Projects: FC = () => {
       ],
       features: [
         <Feature
+          key={"CIR"}
+          icon={<CiLibs.BitBucket.icon />}
+          content={<Text fontWeight={600}>Monorepo managed with Docker + Octo + BitBucket + Bamboo</Text>}
+        />,
+        <Feature
           key={"SequelizeRocket"}
           icon={<SecondaryLibs.Sequelize.icon />}
           content={<Text fontWeight={600}>Sequelize: used for DB migrations, layer over PostgeSQL + MySQL, and Object-Relational Mapping</Text>}
         />
       ],
       previewImg: "images/rocket.gif",
-      preview: <AspectRatio w={325} h={isRLoading ? 325 : 600}>
+      preview: <AspectRatio w={256} h={256}>
         <>
           {isRLoading && <Spinner
             thickness='4px'
