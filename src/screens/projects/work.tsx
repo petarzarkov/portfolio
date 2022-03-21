@@ -44,7 +44,7 @@ export const work = (isFrameLoading: boolean, setFrameLoading: (l: boolean) => v
       },
     ].map((feature, indx) => <Feature key={`${indx}-rocket-feature`} {...feature} />),
     previewImg: "images/rocket.gif",
-    preview: <AspectRatio w={{ base: 256, md: 400, lg: 400 }} h={{ base: 256, md: 600, lg: 600 }}>
+    preview: <AspectRatio w={{ base: isFrameLoading ? 400 : 256, md: 400, lg: 400 }} h={{ base: isFrameLoading ? 400 : 256, md: isFrameLoading ? 400 : 600, lg: isFrameLoading ? 400 : 600 }}>
       <>
         {isFrameLoading && <Spinner
           thickness='4px'
@@ -100,24 +100,20 @@ export const work = (isFrameLoading: boolean, setFrameLoading: (l: boolean) => v
       SecondaryLibs.Postgres.icon, SecondaryLibs.MySQL.icon, SecondaryLibs.html.icon, SecondaryLibs.css.icon, SecondaryLibs.Redis.icon,
       CiLibs.OctopusDeploy.icon, CiLibs.Jira.icon, CiLibs.Bamboo.icon, CiLibs.BitBucket.icon, CiLibs.Confluence.icon, CiLibs.AWS.icon, CiLibs.Jenkins.icon
     ].map((devIcon, indx) => React.createElement(devIcon, { key: `${indx}-cp-dev-stack` })),
-    features: [
-      {
-        icon: <RoleCard role={"Lead Dev"} />,
-        content: <UnorderedList>
-          {[
-            "Improve casino services to expand product feature set and accelerate development.",
-            "Develop pipeline improvements that reduce costs and time requirements for maintaining existing products and building new products and integrating new providers.",
-            "Create tools and systems that enhance ability to debug, test, and react to customer and client feedback.",
-            "Work across teams to provide client side support for larger infrastructure initiatives.",
-            "Maintain casino services and ensure their consistent success."]
-            .map((bullet, indx) => <ListItem key={`${indx}-cp-bullets`}>
-              <Text fontWeight={600}>
-                {bullet}
-              </Text>
-            </ListItem>)}
-        </UnorderedList>
-      }
-    ].map((feature, indx) => <Feature key={`${indx}-cp-feature`} {...feature} />),
-    previewImg: "images/casino.jpg",
+    features: <UnorderedList>
+      {[
+        "Improve casino services to expand product feature set and accelerate development.",
+        "Develop pipeline improvements that reduce costs and time requirements for maintaining existing products and building new products and integrating new providers.",
+        "Create tools and systems that enhance ability to debug, test, and react to customer and client feedback.",
+        "Work across teams to provide client side support for larger infrastructure initiatives.",
+        "Maintain casino services and ensure their consistent success."]
+        .map((bullet, indx) =>
+          <ListItem key={`${indx}-cp-bullets`}>
+            <Text fontWeight={600}>
+              {bullet}
+            </Text>
+          </ListItem>)}
+    </UnorderedList>,
+    previewImg: "images/slots.jpg",
   },
 ];
