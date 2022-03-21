@@ -5,7 +5,7 @@ import { IconLink as IconLinkBase } from "@components";
 import { Flex, Icon as IconBase, Image as ImageBase, useColorModeValue } from "@chakra-ui/react";
 import {
   SiTypescript, SiReact, SiCsharp, SiJavascript, SiDatadog, SiSequelize,
-  SiNextdotjs, SiNestjs, SiPostgresql, SiSocketdotio, SiDocker, SiKubernetes,
+  SiNextdotjs, SiNestjs, SiPostgresql, SiSocketdotio, SiDocker, SiKubernetes, SiDotnet,
   SiCucumber, SiPrisma, SiEslint, SiOctopusdeploy, SiBamboo, SiBitbucket, SiCplusplus, SiExpress, SiHtml5, SiCss3, SiConfluence, SiJira
 } from "react-icons/si";
 import { IoLogoNodejs } from "react-icons/io";
@@ -61,6 +61,7 @@ export const Libs = {
   Java: { icon: () => <Image w={10} h={10} src="https://img.icons8.com/color/48/000000/java-coffee-cup-logo--v1.png" />, level: 2 },
   React: { icon: () => <IconLink icon={<Icon as={SiReact} w={10} h={10} color={"blue.200"} />} to={"https://reactjs.org/"} />, level: 4 },
   ReactNative: { icon: () => <IconLink icon={<Icon as={SiReact} w={10} h={10} color={"blue.300"} />} to={"https://reactnative.dev/"} />, level: 3 },
+  Dotnet: { icon: () => <IconLink icon={<Icon as={SiDotnet} w={10} h={10} color={"purple.300"} />} to={"https://dotnet.microsoft.com/en-us/"} />, level: 2, title: ".NET" },
   Csharp: { icon: () => <Icon as={SiCsharp} w={10} h={10} color={"blue.700"} />, level: 1, title: "C#" },
   Cpp: { icon: () => <Icon as={SiCplusplus} w={10} h={10} color={"blue.700"} />, level: 1, title: "C++" },
   GO: { icon: () => <Image src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Go_Logo_Blue.svg/215px-Go_Logo_Blue.svg.png" />, level: 1 },

@@ -8,7 +8,7 @@ export const BackTop: FC = () => {
     const position = window.pageYOffset;
     setScrollPosition(position);
   };
-
+  const arrowColor = useColorModeValue("primary.200", "primary.800");
   useEffect(() => {
     window.addEventListener("scroll", handleScroll, { passive: true });
 
@@ -32,7 +32,7 @@ export const BackTop: FC = () => {
           <Button
             onClick={() => handleScrollUp()}
             bgGradient="linear(to-r, primary.400, primary.500, primary.600)"
-            color={useColorModeValue("primary.200", "primary.800")}
+            color={arrowColor}
             variant="ghost">
             <ArrowUpIcon />
           </Button>
