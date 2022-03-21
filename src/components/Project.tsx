@@ -1,7 +1,7 @@
 import React, { FC, ReactElement } from "react";
 import {
   Stack, Flex, Text, Container, HStack,
-  SimpleGrid, StackDivider, useColorModeValue, Image, VStack
+  SimpleGrid, StackDivider, useColorModeValue, Image, VStack, Box
 } from "@chakra-ui/react";
 import { Title } from "@components";
 
@@ -10,7 +10,7 @@ export const Feature: FC<{
   icon?: ReactElement;
 }> = ({ content, icon }) => {
   return (
-    <Stack direction={"row"} align={"center"}>
+    <Stack direction={"row"} align={"center"} p={2}>
       <Flex
         w={8}
         h={8}
@@ -19,7 +19,9 @@ export const Feature: FC<{
         rounded={"full"}>
         {icon}
       </Flex>
-      {content && content}
+      <Box p={15}>
+        {content && content}
+      </Box>
     </Stack>
   );
 };
@@ -65,7 +67,7 @@ export const Project: FC<{
             </Text>
             <HStack
               wrap={"wrap"}
-              spacing={3}
+              spacing={6}
               divider={<StackDivider
                 borderColor={useColorModeValue("primary.300", "primary.700")} />}>
               {devStack}
