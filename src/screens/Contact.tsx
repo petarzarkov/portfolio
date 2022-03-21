@@ -24,7 +24,7 @@ import emailjs from "@emailjs/browser";
 
 type FormValues = { name?: string; email?: string; message?: string };
 
-export const Contact = () => {
+const Contact = () => {
   const { hasCopied, onCopy } = useClipboard(portfolio.email);
   const [showModal, setShowModal] = useState<{ show: true; response: string } | { show: false; response?: string }>({ show: false });
   const sendEmail = (values: FormValues, actions: FormikHelpers<FormValues>) => {
@@ -160,3 +160,5 @@ export const Contact = () => {
     </Box>
   );
 };
+
+export default Contact;

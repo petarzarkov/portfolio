@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { Box, Heading, Text, Button } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
-export const NotFound: FC = () => {
+const NotFound: FC = () => {
   return (
     <Box textAlign="center" py={10} px={6}>
       <Heading
@@ -32,3 +32,5 @@ export const NotFound: FC = () => {
     </Box>
   );
 };
+
+export default NotFound;

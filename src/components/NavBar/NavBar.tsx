@@ -22,7 +22,7 @@ import {
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon, MoonIcon, SunIcon } from "@chakra-ui/icons";
 import { routes } from "@config";
-import { BasicStats, Card, NavLink } from "@components";
+import { NavLink, Profile } from "@components";
 import { useThemeProvider } from "@hooks";
 import { ColorTheme, themes } from "@theme";
 import { BsPaletteFill } from "react-icons/bs";
@@ -81,10 +81,7 @@ export const NavBar: FC = () => {
               />
             </MenuButton>
             <MenuList bgColor={useColorModeValue("primary.200", "primary.800")}>
-              <Box minW={"10vh"}>
-                <Card avatarSize={"2xl"} />
-                <BasicStats />
-              </Box>
+              <Profile />
             </MenuList>
           </Menu>
         </Flex>
