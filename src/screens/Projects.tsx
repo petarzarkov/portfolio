@@ -1,7 +1,21 @@
 import React, { FC, useState } from "react";
-import { AspectRatio, Box, Text, Spinner, Code, VStack, Flex, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
+import { Badge, AspectRatio, Box, Text, Spinner, Code, VStack, Flex, TabList, TabPanel, TabPanels, Tabs, useColorModeValue } from "@chakra-ui/react";
 import { CiLibs, CustomTab, ExternalLink, Feature, Libs, Project, SecondaryLibs, Socials, Title } from "@components";
 import { useThemeProvider } from "@hooks";
+import { CgProfile } from "react-icons/cg";
+
+const RoleCard: FC<{ role: string }> = ({ role }) => {
+  const { theme } = useThemeProvider();
+  return <VStack textAlign={"center"} color={useColorModeValue("primary.300", "primary.500")}>
+    <CgProfile size={35} />
+    <Text fontWeight='bold'>
+    Role
+      <Badge colorScheme={theme}>
+        {role}
+      </Badge>
+    </Text>
+  </VStack>;
+};
 
 export const Projects: FC = () => {
   const [isFrameLoading, setFrameLoading] = useState(true);
@@ -145,9 +159,14 @@ export const Projects: FC = () => {
       ],
       features: [
         <Feature
+          key={"RoleR"}
+          icon={<RoleCard role={"Lead Dev"} />}
+          content={<Text fontWeight={600}>Managed the project from start to finish including FE, BE, Automation with Cucumber, and CI/CD.</Text>}
+        />,
+        <Feature
           key={"CIR"}
           icon={<CiLibs.BitBucket.icon />}
-          content={<Text fontWeight={600}>Monorepo managed with Docker + Octo + BitBucket + Bamboo</Text>}
+          content={<Text fontWeight={600}>Monorepo distributed with Docker + Octo + BitBucket + Bamboo</Text>}
         />,
         <Feature
           key={"SequelizeRocket"}
@@ -156,7 +175,7 @@ export const Projects: FC = () => {
         />
       ],
       previewImg: "images/rocket.gif",
-      preview: <AspectRatio w={256} h={256}>
+      preview: <AspectRatio w={{ base: 256, md: 400, lg: 400 }} h={{ base: 256, md: 600, lg: 600 }}>
         <>
           {isRLoading && <Spinner
             thickness='4px'
@@ -176,6 +195,42 @@ export const Projects: FC = () => {
           />
         </>
       </AspectRatio>
+    },
+    {
+      title: "🎲 Over Under",
+      subTitle: "Game Engine",
+      description: "Roll a die within a configurable range and bet a target over or under the roll.",
+      devStack: [
+        <Libs.Python.icon key={"PythonOU"} />,
+        <SecondaryLibs.Postgres.icon key={"PGOU"} />,
+        <SecondaryLibs.html.icon key={"htmlOU"} />,
+        <SecondaryLibs.css.icon key={"cssOU"} />,
+        <SecondaryLibs.Redis.icon key={"RedisOU"} />,
+        <CiLibs.OctopusDeploy.icon key={"OctopusDeployOU"} />,
+        <CiLibs.Jira.icon key={"JiraOU"} />,
+        <CiLibs.Bamboo.icon key={"BambooOU"} />,
+        <CiLibs.BitBucket.icon key={"BitBucketOU"} />,
+        <CiLibs.Confluence.icon key={"ConfluenceOU"} />,
+        <CiLibs.AWS.icon key={"AWSOU"} />,
+      ],
+      features: [
+        <Feature
+          key={"RoleOU"}
+          icon={<RoleCard role={"Lead Dev"} />}
+          content={<Text fontWeight={600}>
+          Managed the project from start to finish including FE, BE, and CI/CD.
+          Pytest was used for complete unit test coverage.
+          AWS for billions of simulations to meet regulator standards.
+          Extra Stack: pyramid, venv
+          </Text>}
+        />,
+        <Feature
+          key={"CIOU"}
+          icon={<CiLibs.BitBucket.icon />}
+          content={<Text fontWeight={600}>Repo distributed with Docker + Octo + BitBucket + Bamboo</Text>}
+        />
+      ],
+      previewImg: "images/dice.jpg",
     },
   ];
 
