@@ -31,7 +31,7 @@ export const Projects: FC = () => {
           content={<Text fontWeight={600}>Sequelize: used for DB migrations, layer over PostgeSQL, and Object-Relational Mapping</Text>}
         />
       ],
-      preview: <AspectRatio w={400} minH={isFrameLoading ? 200 : 600}>
+      preview: <AspectRatio w={400} h={isFrameLoading ? 400 : 600}>
         <>
           {isFrameLoading && <Spinner
             thickness='4px'

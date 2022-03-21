@@ -3,7 +3,7 @@
 import { theme as chakraTheme } from "@chakra-ui/react";
 import { extendTheme } from "@chakra-ui/react";
 
-export const teal = extendTheme({
+const genTheme = (primaryColor: Record<string | number, string>) => extendTheme({
   fonts: {
     ...chakraTheme.fonts,
     body: `'Courier New', monospace;`,
@@ -11,47 +11,15 @@ export const teal = extendTheme({
   },
   colors: {
     ...chakraTheme.colors,
-    primary: {
-      "50": "#ECF8F8",
-      "100": "#CAEDEC",
-      "200": "#A8E1E0",
-      "300": "#85D5D4",
-      "400": "#63CAC7",
-      "500": "#41BEBB",
-      "600": "#349896",
-      "700": "#277270",
-      "800": "#1A4C4B",
-      "900": "#0D2625"
-    },
+    primary: primaryColor,
   },
 });
 
-export const gray = extendTheme({
-  fonts: {
-    ...chakraTheme.fonts,
-    body: `'Courier New', monospace;`,
-    heading: `'Courier New', monospace;`
-  },
-  colors: {
-    ...chakraTheme.colors,
-    primary: chakraTheme.colors.gray,
-  },
-});
+export type ColorTheme = Exclude<keyof typeof chakraTheme.colors, "transparent" | "black" | "white" | "blackAlpha" | "whiteAlpha" | "current">;
+export const themes = Object.entries(chakraTheme.colors).reduce((prev, curr) => {
+  if (curr?.[1] && curr?.[1]?.[50] && !curr?.[0].includes("Alpha")) {
+    prev[curr[0] as ColorTheme] = genTheme(curr[1] as Record<number, string>);
+  }
 
-export const orange = extendTheme({
-  fonts: {
-    ...chakraTheme.fonts,
-    body: `'Courier New', monospace;`,
-    heading: `'Courier New', monospace;`
-  },
-  colors: {
-    ...chakraTheme.colors,
-    primary: chakraTheme.colors.orange,
-  },
-});
-
-export const themes = {
-  orange,
-  teal,
-  gray
-};
+  return prev;
+}, {} as Record<ColorTheme, Record<number, string>>);

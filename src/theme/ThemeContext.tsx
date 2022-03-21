@@ -1,7 +1,7 @@
 import React from "react";
 import { Expand } from "@contracts";
+import { ColorTheme } from "@theme";
 
-export type ColorTheme = "teal" | "orange" | "gray";
 export type ContextSettings = {
   theme: ColorTheme;
 };
