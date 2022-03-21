@@ -1,11 +1,11 @@
 import React, { FC, useState, useMemo } from "react";
 import { Box, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
-import { CustomTab, Project, Title } from "@components";
+import { Project, CustomTab, Title } from "@components";
 import { useThemeProvider } from "@hooks";
 import { hobbies } from "./projects/hobbies";
 import { work } from "./projects/work";
 
-export const Projects: FC = () => {
+const Projects: FC = () => {
   const [isFrameLoading, setFrameLoading] = useState(true);
   const [isRLoading, setRLoading] = useState(true);
   const { theme } = useThemeProvider();
@@ -35,3 +35,5 @@ export const Projects: FC = () => {
     </Box>
   );
 };
+
+export default Projects;

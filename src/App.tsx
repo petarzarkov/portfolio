@@ -1,7 +1,11 @@
-import React from "react";
+import React, { lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 import { Layout } from "@components";
-import { Skills, Contact, Projects, NotFound } from "@screens";
+
+const Projects = lazy(() => import("./screens/Projects"));
+const Skills = lazy(() => import("./screens/Skills"));
+const Contact = lazy(() => import("./screens/Contact"));
+const NotFound = lazy(() => import("./screens/NotFound"));
 
 function App() {
   return (
