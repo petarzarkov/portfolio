@@ -1,7 +1,7 @@
 import React, { FC, ReactElement } from "react";
 import {
   Stack, Flex, Text, Container, HStack,
-  SimpleGrid, StackDivider, useColorModeValue, Image
+  SimpleGrid, StackDivider, useColorModeValue, Image, VStack
 } from "@chakra-ui/react";
 import { Title } from "@components";
 
@@ -74,7 +74,21 @@ export const Project: FC<{
         </Stack>
         <Flex>
           {preview ?
-            preview
+            preview && previewImg ?
+              <VStack
+                divider={<StackDivider borderColor={useColorModeValue("primary.300", "primary.700")} />}
+              >
+                <Image
+                  rounded={"md"}
+                  alt={"feature image"}
+                  src={
+                    previewImg || "images/img5.jpg"
+                  }
+                  objectFit={"cover"}
+                />
+                {preview}
+              </VStack>
+              : preview
             :
             <Image
               rounded={"md"}

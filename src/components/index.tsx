@@ -7,3 +7,4 @@ export * from "./Icons";
 export * from "./BackTop";
 export * from "./Project";
 export * from "./Layout";
+export * from "./CustomTab";
