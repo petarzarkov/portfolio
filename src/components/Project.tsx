@@ -30,7 +30,7 @@ export const Project: FC<{
   title: string;
   subTitle: string;
   description: string;
-  features: ReactElement[];
+  features: ReactElement[] | ReactElement;
   devStack: ReactElement[];
   preview?: ReactElement;
   previewImg?: string;
