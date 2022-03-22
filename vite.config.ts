@@ -9,7 +9,27 @@ export default defineConfig(({ mode }) => {
 
   return {
     build: {
-      emptyOutDir: true
+      emptyOutDir: true,
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            "react": ["react"],
+            "react-dom": ["react-dom"],
+            "react-router-dom": ["react-router-dom"],
+            "@emailjs/browser": ["@emailjs/browser"],
+            "formik": ["formik"],
+            "@chakra-ui/react": ["@chakra-ui/react"],
+            "@chakra-ui/icons": ["@chakra-ui/icons"],
+            "react-icons": ["react-icons"],
+            "react-icons/si": ["react-icons/si"],
+            "react-icons/bs": ["react-icons/bs"],
+            "react-icons/gr": ["react-icons/gr"],
+            "react-icons/fa": ["react-icons/fa"],
+            "react-icons/fi": ["react-icons/fi"],
+            "react-icons/md": ["react-icons/cg"],
+          }
+        }
+      }
     },
     resolve: {
       alias: {

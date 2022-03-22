@@ -13,15 +13,15 @@ const Skill: FC<{
   const getLevel = () => {
     switch (level) {
       case 1:
-        return <Text fontWeight={700} color="green.300">{"Beginner"}</Text>;
+        return <Text fontWeight={700} color="green.300">{"Noob"}</Text>;
       case 2:
-        return <Text fontWeight={700} color="blue.300">{"Intermediate"}</Text>;
+        return <Text fontWeight={700} color="blue.300">{"Beginner"}</Text>;
       case 3:
-        return <Text fontWeight={700} color="blue.500">{"Advanced"}</Text>;
+        return <Text fontWeight={700} color="blue.500">{"Intermediate"}</Text>;
       case 4:
-        return <Text fontWeight={700} color="purple.300">{"Pro"}</Text>;
+        return <Text fontWeight={700} color="purple.300">{"Advanced"}</Text>;
       default:
-        return <Text fontWeight={700} color="green.300">{"Beginner"}</Text>;
+        return <Text fontWeight={700} color="green.300">{"Noob"}</Text>;
     }
   };
   return (
@@ -45,29 +45,24 @@ const Skill: FC<{
   );
 };
 
+type LibEntry = [string, {
+  icon: (t: { to?: string }) => JSX.Element;
+  level: number;
+  title?: string;
+}];
+
+const parseLib = (lib: LibEntry, index: number) => <Skill
+  key={index}
+  title={lib[1]?.title || lib[0]}
+  icon={createElement(lib[1].icon)}
+  level={lib[1].level as 1 | 2 | 3 | 4 | undefined}
+/>;
+
 export const Skills: FC = () => {
   const { theme } = useThemeProvider();
-  const skills = Object.entries(Libs).map((lib, index) =>
-    <Skill
-      key={index}
-      title={(lib[1] as { title?: string })?.title || lib[0]}
-      icon={createElement(lib[1].icon)}
-      level={lib[1].level as 1 | 2 | 3 | 4 | undefined}
-    />);
-  const skillsSecondary = Object.entries(SecondaryLibs).map((lib, index) =>
-    <Skill
-      key={index}
-      title={lib[0]}
-      icon={createElement(lib[1].icon)}
-      level={lib[1].level as 1 | 2 | 3 | 4 | undefined}
-    />);
-  const skillsCI = Object.entries(CiLibs).map((lib, index) =>
-    <Skill
-      key={index}
-      title={lib[0]}
-      icon={createElement(lib[1].icon)}
-      level={lib[1].level as 1 | 2 | 3 | 4 | undefined}
-    />);
+  const skills = Object.entries(Libs).map(parseLib);
+  const skillsSecondary = Object.entries(SecondaryLibs).map(parseLib);
+  const skillsCI = Object.entries(CiLibs).map(parseLib);
 
   return (
     <Tabs isFitted variant='enclosed' colorScheme={theme}>
@@ -82,7 +77,7 @@ export const Skills: FC = () => {
           { title: "Secondary", sub: "Libraries, packages, tools.", skills: skillsSecondary },
           { title: "CI/CD", sub: "Continuous Integration, Continuous Delivery, Continuous Deployment.", skills: skillsCI }
         ].map((panel, indx) =>
-          <TabPanel key={`${panel.title}-${indx}`}>
+          <TabPanel key={`${panel.title}-${indx}`} minH="80vh">
             <Title
               title={panel.title}
               subTitle={panel.sub}
