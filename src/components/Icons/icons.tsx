@@ -68,24 +68,24 @@ export const Libs = {
 };
 
 export const SecondaryLibs = {
-  CucumberJS: { icon: () => <IconLink icon={<Icon as={SiCucumber} w={10} h={10} color={"green.500"} />} to={"https://cucumber.io/docs/installation/javascript/"}/>, level: 4 },
+  CucumberJS: { icon: () => <IconLink icon={<Icon as={SiCucumber} w={10} h={10} color={"green.500"} />} to={"https://cucumber.io/docs/installation/javascript/"} />, level: 4 },
   Sequelize: { icon: () => <IconLink icon={<Icon as={SiSequelize} w={10} h={10} color={"blue.400"} />} to={"https://sequelize.org/"} />, level: 4 },
   Prisma: { icon: () => <Icon as={SiPrisma} w={10} h={10} color={"blue.800"} />, level: 2 },
   NextJS: { icon: () => <Icon as={SiNextdotjs} w={10} h={10} color={"gray.600"} />, level: 1 },
   NestJS: { icon: () => <Icon as={SiNestjs} w={10} h={10} color={"red.600"} />, level: 1 },
   MySQL: { icon: () => <Icon as={GrMysql} w={10} h={10} color={"blue.500"} />, level: 3 },
-  Postgres: { icon: () => <IconLink icon={<Icon as={SiPostgresql} w={10} h={10} color={"blue.600"} />} to={"https://www.postgresql.org/"}/>, level: 4 },
+  Postgres: { icon: () => <IconLink icon={<Icon as={SiPostgresql} w={10} h={10} color={"blue.600"} />} to={"https://www.postgresql.org/"} />, level: 4 },
   Redis: { icon: () => <Image w={10} h={10} src="https://pbs.twimg.com/profile_images/1285653263824691205/mu4nJ7Gb_normal.png" />, level: 2 },
-  Koa: { icon: () => <IconLink icon={<Image w={10} src="images/koa.jpg" />} to={"https://koajs.com/"}/>, level: 4 },
+  Koa: { icon: () => <IconLink icon={<Image w={10} src="images/koa.jpg" />} to={"https://koajs.com/"} />, level: 4 },
   SocketIO: { icon: () => <Icon as={SiSocketdotio} w={10} h={10} color={"gray.800"} />, level: 4 },
   Jest: { icon: () => <IconLink icon={<Image w={10} h={10} src="https://jestjs.io/img/jest.png" />} to={"https://jestjs.io"} />, level: 4 },
   ESLint: { icon: () => <IconLink icon={<Icon as={SiEslint} w={10} h={10} color={"purple.800"} />} to={"https://eslint.org/"} />, level: 4 },
   Express: { icon: () => <Icon as={SiExpress} w={10} h={10} color={"gray.600"} />, level: 4 },
-  npm: { icon: ({ to }: { to?: string }) => <IconLink icon={<Icon as={FaNpm} w={10} h={10} color={"red.600"} />} to={to || "https://www.npmjs.com/"}/>, level: 4 },
-  html: { icon: () => <IconLink icon={<Icon as={SiHtml5} w={10} h={10} color={"orange.400"} />} to={"https://developer.mozilla.org/en-US/docs/Web/HTML"}/>, level: 4 },
-  css: { icon: () => <IconLink icon={<Icon as={SiCss3} w={10} h={10} color={"teal.400"} />} to={"https://developer.mozilla.org/en-US/docs/Web/CSS"}/>, level: 4 },
+  npm: { icon: ({ to }: { to?: string }) => <IconLink icon={<Icon as={FaNpm} w={10} h={10} color={"red.600"} />} to={to || "https://www.npmjs.com/"} />, level: 4 },
+  html: { icon: () => <IconLink icon={<Icon as={SiHtml5} w={10} h={10} color={"orange.400"} />} to={"https://developer.mozilla.org/en-US/docs/Web/HTML"} />, level: 4 },
+  css: { icon: () => <IconLink icon={<Icon as={SiCss3} w={10} h={10} color={"teal.400"} />} to={"https://developer.mozilla.org/en-US/docs/Web/CSS"} />, level: 4 },
   GooglePlay: {
-    icon: ({ to }: { to?: string }) => <IconLink icon={<Image w={10} h={10} src="https://www.gstatic.com/android/market_images/web/favicon_v2.ico" />} to={to || "https://play.google.com/"}/>,
+    icon: ({ to }: { to?: string }) => <IconLink icon={<Image w={10} h={10} src="https://www.gstatic.com/android/market_images/web/favicon_v2.ico" />} to={to || "https://play.google.com/"} />,
     level: 4
   },
 };
@@ -95,8 +95,8 @@ export const CiLibs = {
   Docker: { icon: () => <Icon as={SiDocker} w={10} h={10} color={"blue.400"} />, level: 4 },
   Kubernetes: { icon: () => <Icon as={SiKubernetes} w={10} h={10} color={"blue.600"} />, level: 3 },
   OctopusDeploy: { icon: () => <Icon as={SiOctopusdeploy} w={10} h={10} color={"blue.400"} />, level: 4 },
-  Jenkins: { icon: () => <Image  src="https://www.jenkins.io/images/logos/jenkins/jenkins.svg" />, level: 4 },
-  AWS: { icon: () => <Image  src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/512px-Amazon_Web_Services_Logo.svg.png?20170912170050" />, level: 2 },
+  Jenkins: { icon: () => <Image src="https://www.jenkins.io/images/logos/jenkins/jenkins.svg" />, level: 4 },
+  AWS: { icon: () => <Image src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/512px-Amazon_Web_Services_Logo.svg.png?20170912170050" />, level: 2 },
   Bamboo: { icon: () => <Icon as={SiBamboo} w={10} h={10} color={"blue.600"} />, level: 4 },
   BitBucket: { icon: () => <Icon as={SiBitbucket} w={10} h={10} color={"blue.800"} />, level: 4 },
   Confluence: { icon: () => <Icon as={SiConfluence} w={10} h={10} color={"blue.600"} />, level: 4 },

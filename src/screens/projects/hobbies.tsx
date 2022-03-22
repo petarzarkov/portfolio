@@ -38,7 +38,7 @@ export const hobbies = (isFrameLoading: boolean, setFrameLoading: (l: boolean) =
           color='primary.500'
           size='xs'
         />}
-        <iframe src='https://wisdoms-app.herokuapp.com/' style={{ borderRadius: 15 }} onLoad={() => setFrameLoading(false)} />
+        <iframe src='https://wisdoms-app.herokuapp.com/' style={{ borderRadius: 15 }} onLoad={() => setFrameLoading(false)} scrolling="no"/>
       </>
     </AspectRatio>
   },

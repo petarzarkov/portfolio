@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import { Layout } from "@components";
 import { Contact, NotFound, Projects, Skills } from "@screens";
 
-function App() {
+const App = () => {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
@@ -14,6 +14,6 @@ function App() {
       </Route>
     </Routes>
   );
-}
+};
 
 export default App;
