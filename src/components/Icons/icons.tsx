@@ -6,7 +6,7 @@ import { Flex, Icon as IconBase, Image as ImageBase, useColorModeValue } from "@
 import {
   SiTypescript, SiReact, SiCsharp, SiJavascript, SiDatadog, SiSequelize,
   SiNextdotjs, SiNestjs, SiPostgresql, SiSocketdotio, SiDocker, SiKubernetes, SiDotnet,
-  SiCucumber, SiPrisma, SiEslint, SiOctopusdeploy, SiBamboo, SiBitbucket, SiCplusplus, SiExpress, SiHtml5, SiCss3, SiConfluence, SiJira
+  SiCucumber, SiPrisma, SiEslint, SiOctopusdeploy, SiBamboo, SiBitbucket, SiCplusplus, SiExpress, SiHtml5, SiCss3, SiConfluence, SiJira, SiFastify, SiSwagger
 } from "react-icons/si";
 import { IoLogoNodejs } from "react-icons/io";
 import { GrMysql } from "react-icons/gr";
@@ -73,11 +73,13 @@ export const SecondaryLibs = {
   Prisma: { icon: () => <Icon as={SiPrisma} w={10} h={10} color={"blue.800"} />, level: 2 },
   NextJS: { icon: () => <Icon as={SiNextdotjs} w={10} h={10} color={"gray.600"} />, level: 1 },
   NestJS: { icon: () => <Icon as={SiNestjs} w={10} h={10} color={"red.600"} />, level: 1 },
+  Fastify: { icon: () => <IconLink icon={<Icon as={SiFastify} w={10} h={10} color={"gray.600"} />} to={"https://www.fastify.io/"} />, level: 3 },
   MySQL: { icon: () => <Icon as={GrMysql} w={10} h={10} color={"blue.500"} />, level: 3 },
   Postgres: { icon: () => <IconLink icon={<Icon as={SiPostgresql} w={10} h={10} color={"blue.600"} />} to={"https://www.postgresql.org/"} />, level: 4 },
   Redis: { icon: () => <Image w={10} h={10} src="https://pbs.twimg.com/profile_images/1285653263824691205/mu4nJ7Gb_normal.png" />, level: 2 },
   Koa: { icon: () => <IconLink icon={<Image w={10} src="images/koa.jpg" />} to={"https://koajs.com/"} />, level: 4 },
   SocketIO: { icon: () => <Icon as={SiSocketdotio} w={10} h={10} color={"gray.800"} />, level: 4 },
+  Swagger: { icon: () => <IconLink icon={<Icon as={SiSwagger} w={10} h={10} color={"green.400"} />} to={"https://swagger.io/"} />, level: 3 },
   Jest: { icon: () => <IconLink icon={<Image w={10} h={10} src="https://jestjs.io/img/jest.png" />} to={"https://jestjs.io"} />, level: 4 },
   ESLint: { icon: () => <IconLink icon={<Icon as={SiEslint} w={10} h={10} color={"purple.800"} />} to={"https://eslint.org/"} />, level: 4 },
   Express: { icon: () => <Icon as={SiExpress} w={10} h={10} color={"gray.600"} />, level: 4 },

@@ -1,8 +1,85 @@
-import React from "react";
-import { AspectRatio, Spinner, Code, Flex, VStack, Text } from "@chakra-ui/react";
+import React, { FC, useEffect, useState } from "react";
+import ReactJson from "react-json-view";
+import { AspectRatio, Spinner, Code, Flex, VStack, Text, Button, Container, useColorModeValue, Box } from "@chakra-ui/react";
 import { Project, Libs, SecondaryLibs, Feature, Socials, ExternalLink } from "@components";
 
+const Trivia: FC = () => {
+  const [questions, setQ] = useState<Record<string, unknown>[]>([]);
+  const [isLoading, setLoading] = useState(false);
+  const getQuestions = async () => {
+    try {
+      setLoading(true);
+      const raw = await fetch("https://trivia-art.herokuapp.com/api/questions", {
+        headers: {
+          Accept: "application/json"
+        }
+      });
+      const items = await raw.json() as { result?: Record<string, unknown>[] };
+      if (items?.result?.length) {
+        setQ(items.result);
+      }
+    } catch (error) {
+      //
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    void getQuestions();
+  }, []);
+
+  return (
+    <Container bgColor={useColorModeValue("primary.300", "primary.700")} borderRadius={10}>
+      <Button onClick={() => void getQuestions()} isLoading={isLoading} m={5}>New questions</Button>
+      <Box>
+        {isLoading ? <Spinner
+          thickness='4px'
+          speed='1.85s'
+          emptyColor='primary.200'
+          color='primary.500'
+          size='xl'
+        /> : questions.length >= 1 &&
+      <ReactJson src={questions} collapsed={1} theme={"monokai"} displayDataTypes={false} name={"trivia"} style={{ borderRadius: 10 }} />
+        }
+      </Box>
+    </Container>
+  );
+};
+
 export const hobbies = (isFrameLoading: boolean, setFrameLoading: (l: boolean) => void): (Parameters<typeof Project>[0])[] => [
+  {
+    title: "❔ Trivia Art",
+    subTitle: "API",
+    description: "Over 9k+ unique trivia questions",
+    devStack: [
+      Libs.NodeJS.icon, Libs.Typescript.icon, Libs.JavaScript.icon, SecondaryLibs.Postgres.icon,
+      SecondaryLibs.Fastify.icon, SecondaryLibs.ESLint.icon, SecondaryLibs.Redis.icon
+    ].map((devIcon, indx) => React.createElement(devIcon, { key: `${indx}-rocket-dev-stack` })),
+    features: [
+      <Feature
+        key={"TriviaRepo"}
+        icon={<Socials.GitHub to={"https://github.com/petarzarkov/trivia-art"} />}
+        content={<ExternalLink to={"https://github.com/petarzarkov/trivia-art"} text={"repo"} />}
+      />,
+      <Feature
+        key={"TrSQ"}
+        icon={<SecondaryLibs.Sequelize.icon />}
+        content={<Text fontWeight={600}>Sequelize: used for DB migrations, layer over PostgeSQL, and Object-Relational Mapping</Text>}
+      />,
+      <Feature
+        key={"TrFast"}
+        icon={<SecondaryLibs.Fastify.icon />}
+        content={<Text fontWeight={600}>Fastify: used for its low-overhead server, routes, validations, and auth</Text>}
+      />,
+      <Feature
+        key={"TrSwag"}
+        icon={<SecondaryLibs.Swagger.icon />}
+        content={<ExternalLink to={"https://trivia-art.herokuapp.com/documentation"} text={"Swagger Docs"} />}
+      />
+    ],
+    preview: <Trivia />
+  },
   {
     title: "💫 Wisdoms App",
     subTitle: "API",
