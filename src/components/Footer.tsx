@@ -1,6 +1,7 @@
 import React from 'react';
-import { Box, Container, Stack, Text, useColorModeValue } from '@chakra-ui/react';
+import { Box, Center, Container, Stack, Text, useColorModeValue } from '@chakra-ui/react';
 import { Socials } from '@components';
+import { version } from '../../package.json';
 
 export const Footer = () => (
   <Box
@@ -23,6 +24,7 @@ export const Footer = () => (
       align={{ base: 'center', md: 'center' }}
     >
       <Text>{`©️ Petar Zarkov ${new Date().getFullYear()}`}</Text>
+      <Center>{`v: ${version}`}</Center>
       <Stack direction={'row'} spacing={6}>
         <Socials.LinkedIn />
         <Socials.GitHub />
