@@ -1,9 +1,6 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef } from 'react';
 
-export function useInterval(
-  callback: () => Promise<void> | void,
-  delay = 2000,
-) {
+export function useInterval(callback: () => Promise<void> | void, delay = 2000) {
   const savedCallback = useRef<typeof callback | undefined>();
 
   // Remember the latest callback.

@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+if [[ "$CI" == "true" ]]; then
+    echo "In CI, not running lint staged"
+    exit 0
+fi
+
+pnpm exec lint-staged --concurrent false
