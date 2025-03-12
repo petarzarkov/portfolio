@@ -25,7 +25,7 @@
       "@screens": ["./src/screens"],
       "@config": ["./src/config"],
       "@theme": ["./src/theme"],
-      "@store": ["./src/store"],
+      "@store": ["./src/store"]
     }
   },
   "include": ["./src"],

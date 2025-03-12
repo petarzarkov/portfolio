@@ -1,24 +1,22 @@
-import React from "react";
-import { Expand } from "@contracts";
-import { ColorTheme } from "@theme";
+import React from 'react';
+import { Expand } from '@contracts';
+import { ColorTheme } from '@theme';
 
-export type ContextSettings = {
+export interface ContextSettings {
   theme: ColorTheme;
-};
+}
 
 export type ProviderBase = Expand<
-{
-  colors: Record<string, string>;
-  isLoading: boolean;
-} & ContextSettings
+  {
+    colors: Record<string, string>;
+    isLoading: boolean;
+  } & ContextSettings
 >;
 
 export type ContextState = Expand<
-ProviderBase & {
-  setTheme: (theme: ColorTheme) => void;
-}
+  ProviderBase & {
+    setTheme: (theme: ColorTheme) => void;
+  }
 >;
 
-export const Context = React.createContext<ContextState | undefined>(
-  undefined,
-);
+export const Context = React.createContext<ContextState | undefined>(undefined);
