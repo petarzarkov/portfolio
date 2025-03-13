@@ -8,7 +8,7 @@ import {
   SiBitbucket,
   SiConfluence,
   SiCplusplus,
-  SiCsharp,
+  SiSharp,
   SiCss3,
   SiCucumber,
   SiDatadog,
@@ -130,7 +130,7 @@ export const Libs = {
     level: 2,
     title: '.NET',
   },
-  Csharp: { icon: () => <Icon as={SiCsharp} w={10} h={10} color={'blue.700'} />, level: 1, title: 'C#' },
+  Csharp: { icon: () => <Icon as={SiSharp} w={10} h={10} color={'blue.700'} />, level: 1, title: 'C#' },
   Cpp: { icon: () => <Icon as={SiCplusplus} w={10} h={10} color={'blue.700'} />, level: 1, title: 'C++' },
   GO: {
     icon: () => (
@@ -158,7 +158,7 @@ export const SecondaryLibs = {
   },
   Prisma: { icon: () => <Icon as={SiPrisma} w={10} h={10} color={'blue.800'} />, level: 2 },
   NextJS: { icon: () => <Icon as={SiNextdotjs} w={10} h={10} color={'gray.600'} />, level: 1 },
-  NestJS: { icon: () => <Icon as={SiNestjs} w={10} h={10} color={'red.600'} />, level: 1 },
+  NestJS: { icon: () => <Icon as={SiNestjs} w={10} h={10} color={'red.600'} />, level: 3 },
   Fastify: {
     icon: () => (
       <IconLink icon={<Icon as={SiFastify} w={10} h={10} color={'gray.600'} />} to={'https://www.fastify.io/'} />

@@ -61,7 +61,7 @@ const Skill: FC<{
 type LibEntry = [
   string,
   {
-    icon: (t: { to?: string }) => JSX.Element;
+    icon: (t: { to?: string }) => ReactElement;
     level: number;
     title?: string;
   },
