@@ -8,6 +8,7 @@ import {
   Container,
   Flex,
   Spinner,
+  Stack,
   Text,
   VStack,
   useColorModeValue,
@@ -69,6 +70,60 @@ export const hobbies = (
   isFrameLoading: boolean,
   setFrameLoading: (l: boolean) => void,
 ): Parameters<typeof Project>[0][] => [
+  {
+    title: 'Wave Simulator',
+    subTitle: 'canvas',
+    description: 'simulate a string wave using the wave equation',
+    devStack: [Libs.NodeJS.icon, Libs.Typescript.icon, Libs.JavaScript.icon].map((devIcon, indx) =>
+      React.createElement(devIcon, { key: `${indx}-rocket-dev-stack` }),
+    ),
+    content: (
+      <Stack>
+        <Text
+          bg={useColorModeValue('primary.300', 'primary.700')}
+          color={useColorModeValue('primary.700', 'primary.300')}
+          borderRadius={'xl'}
+          p={'3'}
+        >
+          {`Using the TRUE wave equation (with damping and stress-strain coupling)`}
+        </Text>
+        <Text
+          bg={useColorModeValue('primary.300', 'primary.700')}
+          color={useColorModeValue('primary.700', 'primary.300')}
+          borderRadius={'xl'}
+          p={'3'}
+        >
+          {`
+          ∂²y/∂x² - (1/c²) ∂²y/∂t² - γ ∂y/∂t - l² ∂⁴y/∂x⁴ = 0  
+          y(0, t) = y(L, t) = 0  
+          y(x, 0) = f(x)
+          `}
+        </Text>
+      </Stack>
+    ),
+    features: [
+      <Feature
+        key={'WaveSimRepo'}
+        icon={<Socials.GitHub to={'https://github.com/petarzarkov/wave-sim'} />}
+        content={<ExternalLink to={'https://github.com/petarzarkov/wave-sim'} text={'repo'} />}
+      />,
+    ],
+    preview: (
+      <AspectRatio w={400} h={isFrameLoading ? 400 : 600}>
+        <>
+          {isFrameLoading && (
+            <Spinner thickness="4px" speed="1.85s" emptyColor="primary.200" color="primary.500" size="xs" />
+          )}
+          <iframe
+            src="https://petarzarkov.github.io/wave-sim/"
+            style={{ borderRadius: 15 }}
+            onLoad={() => setFrameLoading(false)}
+            scrolling="no"
+          />
+        </>
+      </AspectRatio>
+    ),
+  },
   {
     title: '❔ Trivia Art',
     subTitle: 'API',

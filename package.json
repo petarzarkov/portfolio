@@ -9,7 +9,7 @@
     "name": "Petar Zarkov",
     "email": "pzarko1@gmail.com"
   },
-  "version": "1.0.0",
+  "version": "1.0.1",
   "scripts": {
     "prepare": "husky",
     "start": "vite",

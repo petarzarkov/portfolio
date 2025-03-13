@@ -1,12 +1,13 @@
-import React, { FC, createElement, ReactElement } from 'react';
+import { FC, createElement, ReactElement } from 'react';
 import { Flex, HStack, SimpleGrid, Stack, TabList, TabPanel, TabPanels, Tabs, Text } from '@chakra-ui/react';
 import { CiLibs, CustomTab, Libs, SecondaryLibs, Title } from '@components';
 import { useThemeProvider } from '@hooks';
+import { SkillLevel } from '@contracts';
 
 const Skill: FC<{
   title: string;
   text?: string;
-  level?: 1 | 2 | 3 | 4;
+  level?: SkillLevel;
   icon: ReactElement;
 }> = ({ title, text, icon, level = 1 }) => {
   const getLevel = () => {
@@ -62,18 +63,13 @@ type LibEntry = [
   string,
   {
     icon: (t: { to?: string }) => ReactElement;
-    level: number;
+    level: SkillLevel;
     title?: string;
   },
 ];
 
 const parseLib = (lib: LibEntry, index: number) => (
-  <Skill
-    key={index}
-    title={lib[1]?.title || lib[0]}
-    icon={createElement(lib[1].icon)}
-    level={lib[1].level as 1 | 2 | 3 | 4 | undefined}
-  />
+  <Skill key={index} title={lib[1]?.title || lib[0]} icon={createElement(lib[1].icon)} level={lib[1].level} />
 );
 
 export const Skills: FC = () => {
