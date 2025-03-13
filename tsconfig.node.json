@@ -1,10 +1,10 @@
 {
   "compilerOptions": {
     "composite": true,
-    "module": "commonjs",
+    "module": "ES6",
     "moduleResolution": "node",
     "esModuleInterop": true,
     "downlevelIteration": true
   },
-  "include": ["vite.config.ts"]
+  "include": ["vite.config.mts"]
 }
