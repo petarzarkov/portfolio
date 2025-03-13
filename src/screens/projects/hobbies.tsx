@@ -161,6 +161,102 @@ export const hobbies = (
     ),
   },
   {
+    title: '🔥 @toplo ',
+    subTitle: 'npm packages',
+    description: '@toplo npm packages monorepo - various util packages with type definition inference',
+    devStack: [
+      <Libs.NodeJS.icon key={'NodeHot'} />,
+      <Libs.Typescript.icon key={'TSH'} />,
+      <Libs.JavaScript.icon key={'JSH'} />,
+      <SecondaryLibs.npm.icon key={'npmH'} to={'https://www.npmjs.com/search?q=keywords:@toplo'} />,
+      <SecondaryLibs.ESLint.icon key={'EslintH'} />,
+      <SecondaryLibs.Jest.icon key={'jesth'} />,
+    ],
+    features: [
+      <Feature
+        key={'@toplo-desc'}
+        icon={<Socials.GitHub to={'https://github.com/petarzarkov/toplo/blob/main/README.md'} />}
+        content={
+          <Code>
+            Various npm packages with different use cases e.g. utilities for http requests. Url manipulation and
+            building. Logger. Object utils. Promise utils.
+          </Code>
+        }
+      />,
+      <Feature
+        key={'@toplo/api'}
+        icon={<SecondaryLibs.npm.icon to={'https://www.npmjs.com/package/@toplo/api'} />}
+        content={
+          <div>
+            <Code>Various NodeJS API utils with TS support</Code>
+            <ExternalLink to={'https://www.npmjs.com/package/@toplo/api'} text={'npm @toplo/api'} />
+          </div>
+        }
+      />,
+      <Feature
+        key={'@toplo/common'}
+        icon={<SecondaryLibs.npm.icon to={'https://www.npmjs.com/package/@toplo/common'} />}
+        content={
+          <div>
+            <Code>Common @toplo stuff</Code>
+            <ExternalLink to={'https://www.npmjs.com/package/@toplo/common'} text={'npm @toplo/common'} />
+          </div>
+        }
+      />,
+      <Feature
+        key={'@toplo/components'}
+        icon={<SecondaryLibs.npm.icon to={'https://www.npmjs.com/package/@toplo/components'} />}
+        content={
+          <div>
+            <Code>@toplo React components using ChakraUI</Code>
+            <ExternalLink to={'https://www.npmjs.com/package/@toplo/components'} text={'npm @toplo/components'} />
+          </div>
+        }
+      />,
+      <Feature
+        key={'@toplo/db'}
+        icon={<SecondaryLibs.npm.icon to={'https://www.npmjs.com/package/@toplo/db'} />}
+        content={
+          <div>
+            <Code>toplo db utils</Code>
+            <ExternalLink to={'https://www.npmjs.com/package/@toplo/db'} text={'npm @toplo/db'} />
+          </div>
+        }
+      />,
+    ],
+    preview: (
+      <Flex
+        justify="center"
+        w={'full'}
+        minH={'320px'}
+        alignItems={'center'}
+        backgroundImage={'images/img5.jpg'}
+        rounded={'md'}
+        backgroundSize={'cover'}
+        backgroundRepeat="no-repeat"
+        backgroundPosition={'center'}
+      >
+        <VStack>
+          <a href="https://github.com/petarzarkov/toplo/actions/">
+            <img
+              src="https://github.com/petarzarkov/toplo/actions/workflows/build.yml/badge.svg?branch=main"
+              alt="Build status"
+            />
+          </a>
+          <a href="https://packagephobia.now.sh/result?p=@toplo/common">
+            <img src="https://badgen.net/packagephobia/install/@toplo/common" alt="Current version" />
+          </a>
+          <a href="https://www.npmjs.com/package/@toplo/common">
+            <img src="https://img.shields.io/npm/v/@toplo/common" alt="Install size" />
+          </a>
+          <a href="https://github.com/petarzarkov/toplo/blob/main/LICENSE">
+            <img src="https://img.shields.io/github/license/petarzarkov/toplo" alt="License" />
+          </a>
+        </VStack>
+      </Flex>
+    ),
+  },
+  {
     title: '❔ Trivia Art',
     subTitle: 'API',
     description: 'Over 9k+ unique trivia questions',
@@ -200,71 +296,6 @@ export const hobbies = (
       />,
     ],
     preview: <Trivia />,
-  },
-  {
-    title: '🔥 Hot Utils',
-    subTitle: 'npm package',
-    description: 'hot-utils npm package - various NodeJS utils with type definition inference',
-    devStack: [
-      <Libs.NodeJS.icon key={'NodeHot'} />,
-      <Libs.Typescript.icon key={'TSH'} />,
-      <Libs.JavaScript.icon key={'JSH'} />,
-      <SecondaryLibs.npm.icon key={'npmH'} to={'https://www.npmjs.com/package/hot-utils'} />,
-      <SecondaryLibs.ESLint.icon key={'EslintH'} />,
-      <SecondaryLibs.Jest.icon key={'jesth'} />,
-    ],
-    features: [
-      <Feature
-        key={'HotDescription'}
-        icon={<Socials.GitHub to={'https://github.com/petarzarkov/hotstuff/blob/main/README.md'} />}
-        content={
-          <Code>
-            Provides utilities for http requests. Url manipulation and building. Logger. Object utils. Promise utils.
-          </Code>
-        }
-      />,
-      <Feature
-        key={'HotRepo'}
-        icon={<Socials.GitHub to={'https://github.com/petarzarkov/hotstuff'} />}
-        content={<ExternalLink to={'https://github.com/petarzarkov/hotstuff'} text={'repo'} />}
-      />,
-      <Feature
-        key={'npmhot'}
-        icon={<SecondaryLibs.npm.icon to={'https://www.npmjs.com/package/hot-utils'} />}
-        content={<ExternalLink to={'https://www.npmjs.com/package/hot-utils'} text={'npm hot-utils'} />}
-      />,
-    ],
-    preview: (
-      <Flex
-        justify="center"
-        w={'full'}
-        minH={'320px'}
-        alignItems={'center'}
-        backgroundImage={'images/img5.jpg'}
-        rounded={'md'}
-        backgroundSize={'cover'}
-        backgroundRepeat="no-repeat"
-        backgroundPosition={'center'}
-      >
-        <VStack>
-          <a href="https://github.com/petarzarkov/hotstuff/actions/">
-            <img
-              src="https://github.com/petarzarkov/hotstuff/actions/workflows/build.yml/badge.svg?branch=main"
-              alt="Build status"
-            />
-          </a>
-          <a href="https://packagephobia.now.sh/result?p=hot-utils">
-            <img src="https://badgen.net/packagephobia/install/hot-utils" alt="Current version" />
-          </a>
-          <a href="https://www.npmjs.com/package/hot-utils">
-            <img src="https://img.shields.io/npm/v/hot-utils" alt="Install size" />
-          </a>
-          <a href="https://github.com/petarzarkov/hotstuff/blob/main/LICENSE">
-            <img src="https://img.shields.io/github/license/petarzarkov/hotstuff" alt="License" />
-          </a>
-        </VStack>
-      </Flex>
-    ),
   },
   {
     title: '🕹️ Impossible Quiz',
