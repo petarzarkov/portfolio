@@ -17,11 +17,12 @@ export const Project: FC<{
   title: string;
   subTitle: string;
   description: string;
+  content?: ReactElement;
   features: ReactElement[] | ReactElement;
   devStack: ReactElement[];
   preview?: ReactElement;
   previewImg?: string;
-}> = ({ title, subTitle, description, features, preview, devStack, previewImg }) => (
+}> = ({ title, subTitle, description, content, features, preview, devStack, previewImg }) => (
   <Container maxW={'5xl'} py={12} borderRadius={25} borderColor={'primary.400'} borderWidth={'thin'} mt={2}>
     <SimpleGrid columns={{ base: 1, md: 2 }} spacing={4}>
       <Stack spacing={4}>
@@ -39,6 +40,7 @@ export const Project: FC<{
         </Text>
         <Title title={title} subTitle={description} />
         <Stack spacing={4} divider={<StackDivider borderColor={useColorModeValue('primary.300', 'primary.700')} />}>
+          {content}
           {features}
         </Stack>
         {devStack?.length && (

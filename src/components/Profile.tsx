@@ -18,7 +18,7 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import { portfolio } from '@config';
-import { Libs } from './Icons';
+import { CiLibs, Libs } from './Icons';
 
 const Card: FC<{
     name?: string;
@@ -87,7 +87,7 @@ const Card: FC<{
 
 export const Profile: FC = () => {
   const stats = [
-    { stat: 'React Native', title: 'Expand on', icon: <Libs.ReactNative.icon /> },
+    { stat: 'AWS', title: 'Expand on', icon: <CiLibs.AWS.icon /> },
     { stat: 'Typescript', title: 'Expand on', icon: <Libs.Typescript.icon /> },
     { stat: 'NodeJS', title: 'Expand on', icon: <Libs.NodeJS.icon /> },
   ];
