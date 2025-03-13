@@ -125,6 +125,42 @@ export const hobbies = (
     ),
   },
   {
+    title: '💫 Wisdoms App',
+    subTitle: 'API',
+    description: 'NestJS + basic html, developed to spew jokes in english/bulgarian.',
+    devStack: [
+      <Libs.NodeJS.icon key={'NodeW'} />,
+      <Libs.Typescript.icon key={'TSW'} />,
+      <Libs.JavaScript.icon key={'JSW'} />,
+      <SecondaryLibs.NestJS.icon key={'nestjswisdom'} />,
+      <SecondaryLibs.html.icon key={'htmlW'} />,
+      <SecondaryLibs.css.icon key={'cssW'} />,
+      <SecondaryLibs.ESLint.icon key={'EslintW'} />,
+    ],
+    features: [
+      <Feature
+        key={'WisdomsRepo'}
+        icon={<Socials.GitHub to={'https://github.com/petarzarkov/wisdoms-nest'} />}
+        content={<ExternalLink to={'https://github.com/petarzarkov/wisdoms-nest'} text={'repo'} />}
+      />,
+    ],
+    preview: (
+      <AspectRatio w={400} h={isFrameLoading ? 400 : 600}>
+        <>
+          {isFrameLoading && (
+            <Spinner thickness="4px" speed="1.85s" emptyColor="primary.200" color="primary.500" size="xs" />
+          )}
+          <iframe
+            src="https://stale-lula-zarkov-dc6f9d78.koyeb.app/"
+            style={{ borderRadius: 15 }}
+            onLoad={() => setFrameLoading(false)}
+            scrolling="no"
+          />
+        </>
+      </AspectRatio>
+    ),
+  },
+  {
     title: '❔ Trivia Art',
     subTitle: 'API',
     description: 'Over 9k+ unique trivia questions',
@@ -164,52 +200,6 @@ export const hobbies = (
       />,
     ],
     preview: <Trivia />,
-  },
-  {
-    title: '💫 Wisdoms App',
-    subTitle: 'API',
-    description: 'NodeJS + Koa API + simple html, developed to spew jokes in english/bulgarian.',
-    devStack: [
-      <Libs.NodeJS.icon key={'NodeW'} />,
-      <Libs.Typescript.icon key={'TSW'} />,
-      <Libs.JavaScript.icon key={'JSW'} />,
-      <SecondaryLibs.Postgres.icon key={'PGW'} />,
-      <SecondaryLibs.Koa.icon key={'KoaW'} />,
-      <SecondaryLibs.html.icon key={'htmlW'} />,
-      <SecondaryLibs.css.icon key={'cssW'} />,
-      <SecondaryLibs.ESLint.icon key={'EslintW'} />,
-    ],
-    features: [
-      <Feature
-        key={'WisdomsRepo'}
-        icon={<Socials.GitHub to={'https://github.com/petarzarkov/wisdoms'} />}
-        content={<ExternalLink to={'https://github.com/petarzarkov/wisdoms'} text={'repo'} />}
-      />,
-      <Feature
-        key={'SequelizeWisdoms'}
-        icon={<SecondaryLibs.Sequelize.icon />}
-        content={
-          <Text fontWeight={600}>
-            Sequelize: used for DB migrations, layer over PostgeSQL, and Object-Relational Mapping
-          </Text>
-        }
-      />,
-    ],
-    preview: (
-      <AspectRatio w={400} h={isFrameLoading ? 400 : 600}>
-        <>
-          {isFrameLoading && (
-            <Spinner thickness="4px" speed="1.85s" emptyColor="primary.200" color="primary.500" size="xs" />
-          )}
-          <iframe
-            src="https://wisdoms-app.herokuapp.com/"
-            style={{ borderRadius: 15 }}
-            onLoad={() => setFrameLoading(false)}
-            scrolling="no"
-          />
-        </>
-      </AspectRatio>
-    ),
   },
   {
     title: '🔥 Hot Utils',
