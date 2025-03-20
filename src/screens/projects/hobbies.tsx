@@ -151,7 +151,7 @@ export const hobbies = (
             <Spinner thickness="4px" speed="1.85s" emptyColor="primary.200" color="primary.500" size="xs" />
           )}
           <iframe
-            src="https://stale-lula-zarkov-dc6f9d78.koyeb.app/"
+            src="https://wisdoms.petarzarkov.com/"
             style={{ borderRadius: 15 }}
             onLoad={() => setFrameLoading(false)}
             scrolling="no"
