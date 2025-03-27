@@ -104,7 +104,7 @@ export const Libs = {
         to={'https://www.typescriptlang.org/'}
       />
     ),
-    level: SkillLevel.Intermediate,
+    level: SkillLevel.Advanced,
   },
   Python: {
     icon: () => (
@@ -185,7 +185,7 @@ export const SecondaryLibs = {
     icon: () => (
       <Image w={10} h={10} src="https://pbs.twimg.com/profile_images/1285653263824691205/mu4nJ7Gb_normal.png" />
     ),
-    level: SkillLevel.Intermediate,
+    level: SkillLevel.Advanced,
   },
   Koa: {
     icon: () => <IconLink icon={<Image w={10} src="images/koa.jpg" />} to={'https://koajs.com/'} />,
@@ -196,7 +196,7 @@ export const SecondaryLibs = {
     icon: () => (
       <IconLink icon={<Icon as={SiSwagger} w={10} h={10} color={'green.400'} />} to={'https://swagger.io/'} />
     ),
-    level: SkillLevel.Intermediate,
+    level: SkillLevel.Advanced,
   },
   Jest: {
     icon: () => (
