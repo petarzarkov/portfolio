@@ -71,6 +71,46 @@ export const hobbies = (
   setFrameLoading: (l: boolean) => void,
 ): Parameters<typeof Project>[0][] => [
   {
+    title: 'Derp AI',
+    subTitle: 'Synthesize an answer by quering multiple AI APIs',
+    description:
+      'NestJS Backend, Postgres db with TypeORM, WebSocket integration with Socket.io, AI integration with Gemini, Huggingface, etc.',
+    devStack: [
+      <Libs.NodeJS.icon key={'NodeDerp'} />,
+      <Libs.Typescript.icon key={'TSderp'} />,
+      <Libs.JavaScript.icon key={'JSderp'} />,
+      <SecondaryLibs.NestJS.icon key={'nestderp'} />,
+      <SecondaryLibs.TypeORM.icon key={'typeormderp'} />,
+      <SecondaryLibs.ESLint.icon key={'EslintDerp'} />,
+      <SecondaryLibs.Postgres.icon key={'postgresderp'} />,
+      <SecondaryLibs.SocketIO.icon key={'socketderp'} />,
+      <SecondaryLibs.Swagger.icon key={'swaggerderp'} />,
+      <SecondaryLibs.Jest.icon key={'jestderp'} />,
+    ],
+    features: [
+      <Feature
+        key={'DerpAIRepo'}
+        icon={<Socials.GitHub to={'https://github.com/petarzarkov/derp.ai'} />}
+        content={<ExternalLink to={'https://github.com/petarzarkov/derp.ai'} text={'derp.ai.repo'} />}
+      />,
+    ],
+    preview: (
+      <AspectRatio w={400} h={isFrameLoading ? 400 : 600}>
+        <>
+          {isFrameLoading && (
+            <Spinner thickness="4px" speed="1.85s" emptyColor="primary.200" color="primary.500" size="xs" />
+          )}
+          <iframe
+            src="https://derp.ai.petarzarkov.com/"
+            style={{ borderRadius: 15 }}
+            onLoad={() => setFrameLoading(false)}
+            scrolling="no"
+          />
+        </>
+      </AspectRatio>
+    ),
+  },
+  {
     title: 'Wave Simulator',
     subTitle: 'canvas',
     description: 'simulate a string wave using the wave equation',
