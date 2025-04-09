@@ -31,6 +31,7 @@ import {
   SiSocketdotio,
   SiSwagger,
   SiTypescript,
+  SiTypeorm,
 } from 'react-icons/si';
 import { IoLogoNodejs } from 'react-icons/io';
 import { GrMysql } from 'react-icons/gr';
@@ -166,8 +167,14 @@ export const SecondaryLibs = {
     level: SkillLevel.Advanced,
   },
   Prisma: { icon: () => <Icon as={SiPrisma} w={10} h={10} color={'blue.800'} />, level: SkillLevel.Beginner },
-  NextJS: { icon: () => <Icon as={SiNextdotjs} w={10} h={10} color={'gray.600'} />, level: SkillLevel.Noob },
-  NestJS: { icon: () => <Icon as={SiNestjs} w={10} h={10} color={'red.600'} />, level: SkillLevel.Intermediate },
+  NextJS: {
+    icon: () => <Icon as={SiNextdotjs} w={10} h={10} color={'gray.600'} to={'https://nextjs.org/'} />,
+    level: SkillLevel.Noob,
+  },
+  NestJS: {
+    icon: () => <IconLink icon={<Icon as={SiNestjs} w={10} h={10} color={'red.600'} />} to={'https://nestjs.com/'} />,
+    level: SkillLevel.Advanced,
+  },
   Fastify: {
     icon: () => (
       <IconLink icon={<Icon as={SiFastify} w={10} h={10} color={'gray.600'} />} to={'https://www.fastify.io/'} />
@@ -178,6 +185,12 @@ export const SecondaryLibs = {
   Postgres: {
     icon: () => (
       <IconLink icon={<Icon as={SiPostgresql} w={10} h={10} color={'blue.600'} />} to={'https://www.postgresql.org/'} />
+    ),
+    level: SkillLevel.Advanced,
+  },
+  TypeORM: {
+    icon: () => (
+      <IconLink icon={<Icon as={SiTypeorm} w={10} h={10} color={'orange.600'} />} to={'https://typeorm.io/'} />
     ),
     level: SkillLevel.Advanced,
   },

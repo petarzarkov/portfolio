@@ -36,7 +36,7 @@ export default [
       'func-style': 'warn',
       'react/no-deprecated': 'warn',
       'max-lines': ['warn', 350],
-      'max-lines-per-function': ['warn', 150],
+      'max-lines-per-function': ['warn', 350],
     },
   },
 ];
