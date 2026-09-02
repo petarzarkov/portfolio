@@ -1,0 +1,119 @@
+/**
+ * Writes a per-route copy of `index.html` into `dist/`, with that route's own
+ * title, description and social card.
+ *
+ * The site is a client-rendered SPA, so every route otherwise serves the same
+ * `index.html` and every link preview shows the same card. Crawlers and link
+ * unfurlers do not run the bundle, so they never see the route they asked for.
+ *
+ * This is not prerendering - the markup is identical and React still renders
+ * everything. It replaces four meta tags, which is the part a crawler reads.
+ * A visitor is unaffected: the shell boots the same bundle, and the SPA
+ * fallback in `public/_redirects` still catches anything not written here.
+ */
+import { mkdir } from 'node:fs/promises';
+import { projects } from '../src/data/index';
+import { site } from '../src/config/site';
+
+const DIST = new URL('../dist/', import.meta.url).pathname;
+
+interface Shell {
+  path: string;
+  title: string;
+  description: string;
+  image: string;
+}
+
+const escape = (value: string): string =>
+  value
+    .replaceAll('&', '&amp;')
+    .replaceAll('"', '&quot;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;');
+
+const shells = (): Shell[] => [
+  {
+    path: 'projects',
+    title: `Projects — ${site.name}`,
+    description:
+      'Everything I have shipped, generated from GitHub: active work, lab experiments and what has been retired.',
+    image: 'default',
+  },
+  {
+    path: 'skills',
+    title: `Skills — ${site.name}`,
+    description:
+      'Measured, not declared: languages by volume of code written across every repository I own, and a year of activity.',
+    image: 'default',
+  },
+  {
+    path: 'about',
+    title: `About — ${site.name}`,
+    description: site.builds,
+    image: 'default',
+  },
+  ...projects.map((project) => ({
+    path: `projects/${project.slug}`,
+    title: `${project.title} — ${site.name}`,
+    description:
+      project.headline ?? project.description ?? `${project.tier} project`,
+    image: project.slug,
+  })),
+];
+
+/**
+ * Matches a meta tag's `content` however it is wrapped.
+ *
+ * oxfmt splits long tags across lines in the source and Vite copies that
+ * through, so `<meta name="description" content="…" />` is three lines in
+ * `dist/index.html`. A single-line pattern silently matched nothing and the
+ * shells shipped with the wrong description.
+ */
+const setMeta = (
+  html: string,
+  attr: string,
+  name: string,
+  value: string,
+): string => {
+  const pattern = new RegExp(
+    `(<meta\\s+${attr}="${name}"\\s+content=")[^"]*(")`,
+    's',
+  );
+  if (!pattern.test(html)) {
+    throw new Error(`shells: no <meta ${attr}="${name}"> to replace`);
+  }
+  return html.replace(pattern, `$1${escape(value)}$2`);
+};
+
+const apply = (html: string, shell: Shell): string => {
+  const url = `${site.url}/${shell.path}`;
+  const image = `${site.url}/og/${shell.image}.png`;
+
+  let out = html.replace(
+    /<title>[^<]*<\/title>/,
+    `<title>${escape(shell.title)}</title>`,
+  );
+  out = out.replace(/(<link rel="canonical" href=")[^"]*(")/, `$1${url}$2`);
+  out = setMeta(out, 'name', 'description', shell.description);
+  out = setMeta(out, 'property', 'og:title', shell.title);
+  out = setMeta(out, 'property', 'og:description', shell.description);
+  out = setMeta(out, 'property', 'og:url', url);
+  out = setMeta(out, 'property', 'og:image', image);
+  return out;
+};
+
+const index = Bun.file(`${DIST}index.html`);
+if (!(await index.exists())) {
+  throw new Error(`No built site at ${DIST}. Run \`vite build\` first.`);
+}
+
+const html = await index.text();
+const all = shells();
+
+for (const shell of all) {
+  const dir = `${DIST}${shell.path}/`;
+  await mkdir(dir, { recursive: true });
+  await Bun.write(`${dir}index.html`, apply(html, shell));
+}
+
+console.log(`shells: ${all.length} routes written`);

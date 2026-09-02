@@ -15,6 +15,7 @@ import type { Meta, Project } from '../../src/contracts/portfolio';
 import { fetchContributions, fetchRepos, OfflineError, token } from './github';
 import { probeAll } from './embeds';
 import { fetchNpm } from './npm';
+import { generateOg } from './og';
 import {
   aggregateLanguages,
   manualProject,
@@ -131,10 +132,18 @@ const run = async (): Promise<void> => {
     write('meta.json', meta),
   ]);
 
+  // After the snapshot: the cards are rendered from the projects just written,
+  // and a font-less machine skips them rather than failing the run.
+  const cards = await generateOg(projects);
+  if (cards === 0) {
+    console.warn('gen: no usable system font, skipping the social cards');
+  }
+
   const offline = embeds.size - live;
   console.log(
     `gen: ${projects.length} projects from ${repos.length} repos, ` +
-      `${live}/${embeds.size} embeds live${offline > 0 ? ` (${offline} offline)` : ''}`,
+      `${live}/${embeds.size} embeds live${offline > 0 ? ` (${offline} offline)` : ''}, ` +
+      `${cards} social cards`,
   );
 };
 

@@ -10,7 +10,12 @@ import {
   useMantineColorScheme,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { IconBrandGithub, IconMoon, IconSun } from '@tabler/icons-react';
+import {
+  IconBrandGithub,
+  IconMoon,
+  IconSearch,
+  IconSun,
+} from '@tabler/icons-react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { site } from '@config';
@@ -77,6 +82,23 @@ export const Header = () => {
         </nav>
 
         <Group gap="xs">
+          <Tooltip label="Search — press / or ⌘K" withArrow>
+            <ActionIcon
+              variant="default"
+              size="lg"
+              radius="md"
+              aria-label="Search projects and sections"
+              onClick={() => {
+                // Imported on demand so @mantine/spotlight stays out of the
+                // initial chunk; a no-op if it has already loaded.
+                void import('@mantine/spotlight').then((m) =>
+                  m.spotlight.open(),
+                );
+              }}
+            >
+              <IconSearch size={17} />
+            </ActionIcon>
+          </Tooltip>
           <Tooltip label="GitHub" withArrow>
             <ActionIcon
               component="a"

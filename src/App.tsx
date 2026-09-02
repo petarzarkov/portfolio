@@ -15,6 +15,15 @@ const Skills = lazy(() => import('./screens/Skills'));
 const About = lazy(() => import('./screens/About'));
 const NotFound = lazy(() => import('./screens/NotFound'));
 
+/**
+ * Split out of the initial chunk. @mantine/spotlight and its search index are
+ * dead weight on first paint - nobody presses Cmd-K before the page has
+ * painted - and the header's search button opens it either way once loaded.
+ */
+const Palette = lazy(() =>
+  import('./components/Palette').then((m) => ({ default: m.Palette })),
+);
+
 const Fallback = () => (
   <Center mih={320}>
     <Loader color="brand" type="dots" />
@@ -28,6 +37,9 @@ export const App = () => {
     <>
       <ScrollToTop />
       <ScrollProgress />
+      <Suspense fallback={null}>
+        <Palette />
+      </Suspense>
       <Header />
       <Box component="main" mih="70vh">
         <Container size="lg" pt="xl">

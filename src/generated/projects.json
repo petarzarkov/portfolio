@@ -86,8 +86,8 @@
       "url": "https://petarzarkov.github.io/dunx",
       "status": "live",
       "code": 200,
-      "ms": 280,
-      "checkedAt": "2026-09-02T11:22:39.952Z"
+      "ms": 334,
+      "checkedAt": "2026-09-02T12:41:27.934Z"
     },
     "image": "https://opengraph.githubassets.com/ca1a1403b8a29b2709c630fef2093a52f7992f2cc7681da82abf4f93fd14b7ef/petarzarkov/dunx",
     "retiredAt": null,
@@ -109,42 +109,42 @@
     "languages": [
       {
         "name": "TypeScript",
-        "bytes": 136641,
-        "share": 0.9405614141358517,
+        "bytes": 143583,
+        "share": 0.8985225189143862,
         "color": "#3178c6"
       },
       {
         "name": "CSS",
-        "bytes": 6771,
-        "share": 0.04660783611883587,
+        "bytes": 14293,
+        "share": 0.08944361353950901,
         "color": "#663399"
       },
       {
         "name": "HTML",
-        "bytes": 1295,
-        "share": 0.008914067017263692,
+        "bytes": 1354,
+        "share": 0.00847314438763697,
         "color": "#e34c26"
       },
       {
         "name": "JavaScript",
         "bytes": 569,
-        "share": 0.00391668272804868,
+        "share": 0.0035607231584678252,
         "color": "#f1e05a"
       }
     ],
     "license": "MIT",
     "createdAt": "2022-03-09T11:22:27Z",
-    "pushedAt": "2026-09-02T10:59:27Z",
+    "pushedAt": "2026-09-02T11:42:42Z",
     "release": null,
     "npm": null,
     "embed": {
       "url": "https://petarzarkov.com",
       "status": "live",
       "code": 200,
-      "ms": 82,
-      "checkedAt": "2026-09-02T11:22:39.953Z"
+      "ms": 91,
+      "checkedAt": "2026-09-02T12:41:27.934Z"
     },
-    "image": "https://opengraph.githubassets.com/271bdcf31b4d1bc239e5690a2c8f80bdd7414e42f35aac490de5c159dfa6c388/petarzarkov/portfolio",
+    "image": "https://opengraph.githubassets.com/79214379114f410f743c326d86b5d704504638930c3c83865fe102249b378a90/petarzarkov/portfolio",
     "retiredAt": null,
     "retiredNote": null,
     "source": "github"
@@ -245,8 +245,8 @@
       "url": "https://petarzarkov.github.io/petarzarkov/",
       "status": "live",
       "code": 200,
-      "ms": 223,
-      "checkedAt": "2026-09-02T11:22:39.953Z"
+      "ms": 484,
+      "checkedAt": "2026-09-02T12:41:27.935Z"
     },
     "image": "https://opengraph.githubassets.com/9b3e155bfbaaa4a5d854cd3086cf50cb7872ebaa7714f37259c1dd5a6c95acbf/petarzarkov/petarzarkov",
     "retiredAt": null,
@@ -306,8 +306,8 @@
       "url": "https://petarzarkov.github.io/arkv/",
       "status": "live",
       "code": 200,
-      "ms": 157,
-      "checkedAt": "2026-09-02T11:22:39.953Z"
+      "ms": 234,
+      "checkedAt": "2026-09-02T12:41:27.935Z"
     },
     "image": "https://opengraph.githubassets.com/9b3e155bfbaaa4a5d854cd3086cf50cb7872ebaa7714f37259c1dd5a6c95acbf/petarzarkov/arkv",
     "retiredAt": null,
@@ -547,8 +547,8 @@
       "url": "https://petarzarkov.github.io/iana-timezones/",
       "status": "live",
       "code": 200,
-      "ms": 151,
-      "checkedAt": "2026-09-02T11:22:39.953Z"
+      "ms": 219,
+      "checkedAt": "2026-09-02T12:41:27.935Z"
     },
     "image": "https://opengraph.githubassets.com/1f0eed03f809104b24a99bbe70c38c1cfe5d59408c1fa450d6cf5d57be4e19da/petarzarkov/iana-timezones",
     "retiredAt": null,
@@ -797,8 +797,8 @@
       "url": "https://petarzarkov.github.io/rust-beats/",
       "status": "live",
       "code": 200,
-      "ms": 146,
-      "checkedAt": "2026-09-02T11:22:39.953Z"
+      "ms": 219,
+      "checkedAt": "2026-09-02T12:41:27.935Z"
     },
     "image": "https://opengraph.githubassets.com/9dec69a98ace5f4ea8c6397317e9d0709709f72f0ce50b7aba25f1f50fd19948/petarzarkov/rust-beats",
     "retiredAt": null,
@@ -907,8 +907,8 @@
       "url": "https://petarzarkov.github.io/wave-sim/",
       "status": "live",
       "code": 200,
-      "ms": 144,
-      "checkedAt": "2026-09-02T11:22:39.953Z"
+      "ms": 229,
+      "checkedAt": "2026-09-02T12:41:27.935Z"
     },
     "image": "https://opengraph.githubassets.com/cd0554df0f783ad882ae4954a8eb138e617d162ce8cc299cb2eecef1c6f2527c/petarzarkov/wave-sim",
     "retiredAt": null,

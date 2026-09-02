@@ -149,3 +149,32 @@ describe('accessibility', () => {
     ).toBeGreaterThan(0);
   });
 });
+
+describe('budget', () => {
+  /**
+   * The entry chunk is what every visitor downloads before anything renders.
+   * Route chunks and the palette are deliberately excluded - they are split so
+   * that they do not count against first paint, and folding them back in here
+   * would make the split pointless.
+   *
+   * 150 KB is the figure docs/05-experience.md commits to. It has already been
+   * exceeded once, by @mantine/spotlight landing in the entry chunk, which is
+   * why this test exists rather than the number living only in a document.
+   */
+  test('the entry chunk stays under 150 KB gzipped', async () => {
+    const assets = new URL('../dist/assets/', import.meta.url).pathname;
+    const entry = [...new Bun.Glob('index-*.js').scanSync(assets)];
+    expect(entry).toHaveLength(1);
+
+    const name = entry[0];
+    if (name === undefined) throw new Error('no entry chunk');
+
+    const bytes = await Bun.file(`${assets}${name}`).bytes();
+    const gzipped = Bun.gzipSync(bytes).byteLength;
+
+    expect({
+      kb: Math.round((gzipped / 1024) * 10) / 10,
+      over: gzipped > 150 * 1024,
+    }).toEqual({ kb: Math.round((gzipped / 1024) * 10) / 10, over: false });
+  });
+});

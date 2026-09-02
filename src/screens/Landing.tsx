@@ -13,7 +13,7 @@ import { useRef } from 'react';
 import { useInView, useReducedMotion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { site } from '@config';
-import { activity, byTier, flagship, languages } from '@data';
+import { activity, byTier, currently, flagship, languages } from '@data';
 import { ProjectCard } from '../components/ProjectCard';
 import { RotatingWord } from '../components/RotatingWord';
 import { TextReveal } from '../components/TextReveal';
@@ -59,6 +59,7 @@ export const Landing = () => {
   const inView = useInView(title, { amount: 0.4 });
 
   const lead = flagship();
+  const latest = currently();
   const active = byTier('active').slice(0, 4);
   const top = languages.top[0];
 
@@ -90,6 +91,17 @@ export const Landing = () => {
         <p className={classes.builds}>
           Twenty years of building <RotatingWord words={BUILDS} />
         </p>
+        {latest && (
+          <Text size="sm" c="dimmed" mt="lg">
+            Currently in{' '}
+            <Anchor component={Link} to={`/projects/${latest.slug}`} fw={600}>
+              {latest.title}
+            </Anchor>
+            {latest.pushedAt !== null &&
+              ` · last push ${new Date(latest.pushedAt).toLocaleDateString()}`}
+          </Text>
+        )}
+
         <Group mt="xl">
           <Button
             component={Link}

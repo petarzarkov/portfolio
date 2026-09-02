@@ -33,6 +33,19 @@ export const flagship = (): Project | undefined =>
   byTier('flagship')[0] ?? projects[0];
 
 /**
+ * The most recently pushed project that is still live.
+ *
+ * Answers "is this person still active" before anyone has to go and check
+ * GitHub, and costs nothing to keep current - the nightly refresh moves it.
+ */
+export const currently = (): Project | undefined =>
+  projects
+    .filter(
+      (project) => project.tier !== 'archive' && project.pushedAt !== null,
+    )
+    .sort((a, b) => (b.pushedAt ?? '').localeCompare(a.pushedAt ?? ''))[0];
+
+/**
  * True only when a generator confirmed the URL answered. Anything else - never
  * probed, 404, no DNS - renders a still rather than an iframe.
  */
