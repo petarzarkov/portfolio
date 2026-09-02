@@ -4,6 +4,7 @@ import { Box, Container, Loader, Center } from '@mantine/core';
 import { Header } from './components/layout/Header';
 import { Footer } from './components/layout/Footer';
 import { ScrollToTop } from './components/ScrollToTop';
+import { ScrollProgress } from './components/ScrollProgress';
 import { Landing } from './screens/Landing';
 
 // Route-level splitting: the landing page is what most visitors load, and it
@@ -26,6 +27,7 @@ export const App = () => {
   return (
     <>
       <ScrollToTop />
+      <ScrollProgress />
       <Header />
       <Box component="main" mih="70vh">
         <Container size="lg" pt="xl">

@@ -1,3 +1,4 @@
+import type { MouseEvent } from 'react';
 import { Badge, Card, Group, Stack, Text, Title } from '@mantine/core';
 import { IconGitFork, IconStar } from '@tabler/icons-react';
 import { Link } from 'react-router-dom';
@@ -24,8 +25,28 @@ const since = (iso: string | null): string | null => {
 export const ProjectCard = ({ project }: { project: Project }) => {
   const pushed = since(project.pushedAt);
 
+  // Written straight to the element rather than through state: this fires on
+  // every pointermove, and a re-render per event would be the whole cost.
+  const track = (event: MouseEvent<HTMLDivElement>) => {
+    const box = event.currentTarget.getBoundingClientRect();
+    event.currentTarget.style.setProperty(
+      '--x',
+      `${event.clientX - box.left}px`,
+    );
+    event.currentTarget.style.setProperty(
+      '--y',
+      `${event.clientY - box.top}px`,
+    );
+  };
+
   return (
-    <Card className={classes.card} padding="lg" radius="md" pos="relative">
+    <Card
+      className={classes.card}
+      padding="lg"
+      radius="md"
+      pos="relative"
+      onMouseMove={track}
+    >
       <Stack gap="sm" className={classes.body}>
         <Group justify="space-between" wrap="nowrap" align="flex-start">
           <Title order={3} fz="h4">

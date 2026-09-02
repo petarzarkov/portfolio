@@ -1,12 +1,104 @@
 .hero {
+  position: relative;
+  /* The aurora is inset -30% on each side so its glow reaches the edges; without
+     clipping here it widens the document and the page scrolls sideways. The
+     global `overflow-x: hidden` hides that but does not fix it - `scrollWidth`
+     still exceeds `clientWidth`, which is what the browser suite measures. */
+  overflow: hidden;
   padding: clamp(2rem, 8vw, 5.5rem) 0 clamp(2rem, 5vw, 3.5rem);
-  max-width: 46rem;
+  max-width: 48rem;
+}
+
+/**
+ * Aurora: two soft radial washes drifting behind the hero.
+ *
+ * Deliberately CSS rather than canvas or WebGL - it is two composited layers
+ * animating `transform` only, so it costs no main-thread work and no
+ * JavaScript, and `prefers-reduced-motion` in global.css freezes it on its
+ * first frame rather than needing a code path of its own.
+ */
+.aurora {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  filter: blur(56px);
+  opacity: light-dark(0.55, 0.38);
+  /* Clipping alone left a hard rectangular edge where the blur met the hero
+     bounds. The mask fades the wash out before it reaches the clip, so there
+     is nothing to see an edge of. */
+  mask-image: radial-gradient(120% 100% at 30% 45%, #000 25%, transparent 72%);
+  -webkit-mask-image: radial-gradient(
+    120% 100% at 30% 45%,
+    #000 25%,
+    transparent 72%
+  );
+}
+
+.aurora::before,
+.aurora::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  will-change: transform;
+}
+
+.aurora::before {
+  width: 46%;
+  aspect-ratio: 1;
+  left: 6%;
+  top: 8%;
+  background: radial-gradient(
+    circle,
+    var(--mantine-color-brand-5) 0%,
+    transparent 68%
+  );
+  animation: drift-a 19s ease-in-out infinite alternate;
+}
+
+.aurora::after {
+  width: 38%;
+  aspect-ratio: 1;
+  left: 44%;
+  top: 22%;
+  background: radial-gradient(
+    circle,
+    light-dark(var(--mantine-color-brand-3), var(--mantine-color-brand-7)) 0%,
+    transparent 66%
+  );
+  animation: drift-b 24s ease-in-out infinite alternate;
+}
+
+@keyframes drift-a {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(14%, 8%, 0) scale(1.18);
+  }
+}
+
+@keyframes drift-b {
+  from {
+    transform: translate3d(0, 0, 0) scale(1.1);
+  }
+  to {
+    transform: translate3d(-16%, -10%, 0) scale(0.92);
+  }
 }
 
 .thesis {
-  font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+  font-size: clamp(1.05rem, 2.2vw, 1.4rem);
   line-height: 1.55;
   color: light-dark(var(--mantine-color-sand-9), var(--mantine-color-sand-2));
+  max-width: 34ch;
+}
+
+.builds {
+  font-size: clamp(1.15rem, 2.6vw, 1.65rem);
+  line-height: 1.4;
+  margin-top: var(--mantine-spacing-md);
+  color: light-dark(var(--mantine-color-sand-8), var(--mantine-color-sand-3));
 }
 
 .accent {

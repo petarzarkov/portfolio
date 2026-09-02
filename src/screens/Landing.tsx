@@ -13,10 +13,24 @@ import { Link } from 'react-router-dom';
 import { site } from '@config';
 import { activity, byTier, flagship, languages } from '@data';
 import { ProjectCard } from '../components/ProjectCard';
+import { RotatingWord } from '../components/RotatingWord';
+import { TextReveal } from '../components/TextReveal';
 import { Embed } from '../components/Embed';
 import { Reveal } from '../components/Reveal';
 import { TechChips } from '../components/TechChips';
 import classes from './Landing.module.css';
+
+/** What actually gets written, in the order it reads best out loud. */
+const BUILDS = [
+  'frameworks.',
+  'games.',
+  'smart contracts.',
+  'trading systems.',
+  'developer tooling.',
+  'mobile apps.',
+  'CI pipelines.',
+  'music, in Rust.',
+] as const;
 
 const Stat = ({ value, label }: { value: string; label: string }) => (
   <div className={classes.stat}>
@@ -43,16 +57,23 @@ export const Landing = () => {
   return (
     <Stack gap="xl">
       <section className={classes.hero}>
+        <div className={classes.aurora} aria-hidden />
+
         <Text size="sm" fw={600} tt="uppercase" c="dimmed" mb="xs">
           {`${site.role} · ${site.location}`}
         </Text>
         <Title order={1} mb="md">
-          {site.name}
+          <TextReveal text={site.name} />
         </Title>
         <p className={classes.thesis}>
           <span className={classes.accent}>Vibe Janitor</span> — I delete code
-          that you don&rsquo;t need. Two decades of shipping backends, and the
-          frameworks and tooling underneath them.
+          that you don&rsquo;t need.
+        </p>
+        {/* Breadth, without a comma-separated list of six nouns nobody reads.
+            Two decades of this is games, contracts, CLIs and pipelines as much
+            as it is services. */}
+        <p className={classes.builds}>
+          Twenty years of building <RotatingWord words={BUILDS} />
         </p>
         <Group mt="xl">
           <Button

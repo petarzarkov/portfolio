@@ -21,6 +21,38 @@
   box-shadow: var(--mantine-shadow-md);
 }
 
+/**
+ * A soft highlight following the pointer.
+ *
+ * `--x`/`--y` are written on pointermove; everything else is CSS, so the moving
+ * part is a compositor-only opacity and a gradient position rather than a React
+ * re-render per mouse event.
+ */
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 240ms ease;
+  pointer-events: none;
+  background: radial-gradient(
+    260px circle at var(--x, 50%) var(--y, 50%),
+    color-mix(in srgb, var(--mantine-color-brand-5) 16%, transparent),
+    transparent 62%
+  );
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card::before {
+    display: none;
+  }
+}
+
 /* The whole card is the link target, but only the title is the accessible name,
    so the tab order stays one stop per card. */
 .link::after {

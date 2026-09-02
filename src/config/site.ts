@@ -19,4 +19,7 @@ export const site = {
    */
   tagline: "Vibe Janitor — I delete code that you don't need.",
   experience: '20+ years',
+  /** Used by the hero and the social card. Breadth, not a specialism. */
+  builds:
+    'Frameworks, games, smart contracts, trading systems and the pipelines that ship them.',
 } as const;

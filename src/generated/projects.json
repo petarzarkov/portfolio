@@ -76,20 +76,20 @@
     ],
     "license": "MIT",
     "createdAt": "2026-07-27T05:07:34Z",
-    "pushedAt": "2026-09-02T11:09:16Z",
+    "pushedAt": "2026-09-02T11:12:49Z",
     "release": {
-      "tag": "v3.1.3",
-      "publishedAt": "2026-08-30T11:52:02Z"
+      "tag": "v3.2.0",
+      "publishedAt": "2026-09-02T11:12:50Z"
     },
     "npm": null,
     "embed": {
       "url": "https://petarzarkov.github.io/dunx",
       "status": "live",
       "code": 200,
-      "ms": 77,
-      "checkedAt": "2026-09-02T11:09:29.957Z"
+      "ms": 280,
+      "checkedAt": "2026-09-02T11:22:39.952Z"
     },
-    "image": "https://opengraph.githubassets.com/4a23f3ac6c59b8f36d7ec4145c171ca6e0b8b5a58e487484eedeb3920f96acef/petarzarkov/dunx",
+    "image": "https://opengraph.githubassets.com/ca1a1403b8a29b2709c630fef2093a52f7992f2cc7681da82abf4f93fd14b7ef/petarzarkov/dunx",
     "retiredAt": null,
     "retiredNote": null,
     "source": "github"
@@ -141,8 +141,8 @@
       "url": "https://petarzarkov.com",
       "status": "live",
       "code": 200,
-      "ms": 77,
-      "checkedAt": "2026-09-02T11:09:29.957Z"
+      "ms": 82,
+      "checkedAt": "2026-09-02T11:22:39.953Z"
     },
     "image": "https://opengraph.githubassets.com/271bdcf31b4d1bc239e5690a2c8f80bdd7414e42f35aac490de5c159dfa6c388/petarzarkov/portfolio",
     "retiredAt": null,
@@ -245,8 +245,8 @@
       "url": "https://petarzarkov.github.io/petarzarkov/",
       "status": "live",
       "code": 200,
-      "ms": 200,
-      "checkedAt": "2026-09-02T11:09:29.957Z"
+      "ms": 223,
+      "checkedAt": "2026-09-02T11:22:39.953Z"
     },
     "image": "https://opengraph.githubassets.com/9b3e155bfbaaa4a5d854cd3086cf50cb7872ebaa7714f37259c1dd5a6c95acbf/petarzarkov/petarzarkov",
     "retiredAt": null,
@@ -306,8 +306,8 @@
       "url": "https://petarzarkov.github.io/arkv/",
       "status": "live",
       "code": 200,
-      "ms": 201,
-      "checkedAt": "2026-09-02T11:09:29.957Z"
+      "ms": 157,
+      "checkedAt": "2026-09-02T11:22:39.953Z"
     },
     "image": "https://opengraph.githubassets.com/9b3e155bfbaaa4a5d854cd3086cf50cb7872ebaa7714f37259c1dd5a6c95acbf/petarzarkov/arkv",
     "retiredAt": null,
@@ -547,8 +547,8 @@
       "url": "https://petarzarkov.github.io/iana-timezones/",
       "status": "live",
       "code": 200,
-      "ms": 204,
-      "checkedAt": "2026-09-02T11:09:29.957Z"
+      "ms": 151,
+      "checkedAt": "2026-09-02T11:22:39.953Z"
     },
     "image": "https://opengraph.githubassets.com/1f0eed03f809104b24a99bbe70c38c1cfe5d59408c1fa450d6cf5d57be4e19da/petarzarkov/iana-timezones",
     "retiredAt": null,
@@ -718,6 +718,37 @@
     "source": "github"
   },
   {
+    "slug": "erc20-playground",
+    "title": "erc20-playground",
+    "headline": null,
+    "description": "ERC-20, ERC-721 and ERC-1155 implementations in Solidity, built with Foundry — Forge tests, deploy scripts and CI.",
+    "tier": "lab",
+    "pin": null,
+    "repo": "https://github.com/petarzarkov/erc20-playground",
+    "homepage": null,
+    "stars": 0,
+    "forks": 0,
+    "topics": [],
+    "languages": [
+      {
+        "name": "Solidity",
+        "bytes": 14403,
+        "share": 1,
+        "color": "#AA6746"
+      }
+    ],
+    "license": "MIT",
+    "createdAt": "2025-12-19T09:31:16Z",
+    "pushedAt": "2025-12-20T08:28:45Z",
+    "release": null,
+    "npm": null,
+    "embed": null,
+    "image": "https://opengraph.githubassets.com/095286a5764572e47c70e506a55cd199ae3c0c30ae7777b4fa8517718b6f43af/petarzarkov/erc20-playground",
+    "retiredAt": null,
+    "retiredNote": null,
+    "source": "github"
+  },
+  {
     "slug": "rust-beats",
     "title": "rust-beats",
     "headline": null,
@@ -766,8 +797,8 @@
       "url": "https://petarzarkov.github.io/rust-beats/",
       "status": "live",
       "code": 200,
-      "ms": 234,
-      "checkedAt": "2026-09-02T11:09:29.957Z"
+      "ms": 146,
+      "checkedAt": "2026-09-02T11:22:39.953Z"
     },
     "image": "https://opengraph.githubassets.com/9dec69a98ace5f4ea8c6397317e9d0709709f72f0ce50b7aba25f1f50fd19948/petarzarkov/rust-beats",
     "retiredAt": null,
@@ -876,8 +907,8 @@
       "url": "https://petarzarkov.github.io/wave-sim/",
       "status": "live",
       "code": 200,
-      "ms": 187,
-      "checkedAt": "2026-09-02T11:09:29.957Z"
+      "ms": 144,
+      "checkedAt": "2026-09-02T11:22:39.953Z"
     },
     "image": "https://opengraph.githubassets.com/cd0554df0f783ad882ae4954a8eb138e617d162ce8cc299cb2eecef1c6f2527c/petarzarkov/wave-sim",
     "retiredAt": null,
@@ -929,6 +960,80 @@
     "npm": null,
     "embed": null,
     "image": "https://opengraph.githubassets.com/aa9ce5a234513e4b81fb3a17f00717fb9687438a751b637b5d5314f2f982e5f9/petarzarkov/the-biscuit-machine",
+    "retiredAt": null,
+    "retiredNote": null,
+    "source": "github"
+  },
+  {
+    "slug": "foundry-quiz",
+    "title": "foundry-quiz",
+    "headline": null,
+    "description": "The same on-chain quiz rebuilt on Foundry instead of Hardhat — Forge tests, deploy scripts, solhint and a devcontainer.",
+    "tier": "lab",
+    "pin": null,
+    "repo": "https://github.com/petarzarkov/foundry-quiz",
+    "homepage": null,
+    "stars": 0,
+    "forks": 0,
+    "topics": [],
+    "languages": [
+      {
+        "name": "Solidity",
+        "bytes": 6177,
+        "share": 0.9578229182819041,
+        "color": "#AA6746"
+      },
+      {
+        "name": "Dockerfile",
+        "bytes": 272,
+        "share": 0.04217708171809583,
+        "color": "#384d54"
+      }
+    ],
+    "license": "MIT",
+    "createdAt": "2025-07-03T07:16:44Z",
+    "pushedAt": "2025-07-03T10:50:09Z",
+    "release": null,
+    "npm": null,
+    "embed": null,
+    "image": "https://opengraph.githubassets.com/cd4c3bf23862cda003472bcbbba14064e30aa05a2650b13a9047a1918f79eee2/petarzarkov/foundry-quiz",
+    "retiredAt": null,
+    "retiredNote": null,
+    "source": "github"
+  },
+  {
+    "slug": "web3-quiz",
+    "title": "web3-quiz",
+    "headline": null,
+    "description": "An on-chain quiz in Solidity: a factory that deploys quiz contracts, built on Hardhat with Ignition deployment modules and a TypeScript test suite.",
+    "tier": "lab",
+    "pin": null,
+    "repo": "https://github.com/petarzarkov/web3-quiz",
+    "homepage": null,
+    "stars": 0,
+    "forks": 0,
+    "topics": [],
+    "languages": [
+      {
+        "name": "TypeScript",
+        "bytes": 8343,
+        "share": 0.7972288580984234,
+        "color": "#3178c6"
+      },
+      {
+        "name": "Solidity",
+        "bytes": 2122,
+        "share": 0.2027711419015767,
+        "color": "#AA6746"
+      }
+    ],
+    "license": null,
+    "createdAt": "2025-07-02T11:57:07Z",
+    "pushedAt": "2025-07-03T06:50:32Z",
+    "release": null,
+    "npm": null,
+    "embed": null,
+    "image": "https://opengraph.githubassets.com/a152b9e44af94292683cb3efcfcb2f8d47e7a6af0cef1a09f41bc89407c5154e/petarzarkov/web3-quiz",
     "retiredAt": null,
     "retiredNote": null,
     "source": "github"
