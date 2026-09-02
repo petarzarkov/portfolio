@@ -1,0 +1,49 @@
+name: Refresh data
+
+# The site's project list, language totals and activity come from a committed
+# snapshot under src/generated (docs/03-data-pipeline.md). This is what keeps
+# that snapshot current without anyone touching the repo: tag a repo
+# `portfolio` on github.com and it appears here within a day.
+on:
+  schedule:
+    # Daily, off the hour - the hour is the busiest slot on shared runners.
+    - cron: '17 5 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-data
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    name: Regenerate and commit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
+
+      # A fine-grained PAT, not GITHUB_TOKEN: the default job token cannot read
+      # `viewer.contributionsCollection` and cannot see private repos, which are
+      # the denominator the language totals are measured against.
+      - name: Generate
+        run: bun run gen
+        env:
+          GH_DATA_TOKEN: ${{ secrets.GH_DATA_TOKEN }}
+
+      # Deliberately not `[skip ci]`: pushing to main triggers ci.yml, which
+      # deploys. A refresh that never reaches production did nothing.
+      - name: Commit when the snapshot moved
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/generated
+          if git diff --cached --quiet; then
+            echo "snapshot unchanged" >> $GITHUB_STEP_SUMMARY
+            exit 0
+          fi
+          git commit -m "chore(data): refresh generated snapshot"
+          git push
+          echo "snapshot updated" >> $GITHUB_STEP_SUMMARY

@@ -27,7 +27,7 @@ glyph in production today.
 topic, not because this repo was edited. Tagging `firecracker` with `portfolio` on
 github.com puts it on the site at the next nightly refresh.
 
-**Generate at build, commit the snapshot, never fetch at runtime.** The browser
+**Generate on a schedule, commit the snapshot, never fetch at runtime.** The browser
 never talks to the GitHub API — that would mean 60 requests/hour per visitor IP
 unauthenticated, a token in the client if authenticated, and a blank page whenever
 GitHub is slow. `bun run gen` writes JSON into `src/generated/`, that JSON is
@@ -36,6 +36,10 @@ committed, and the build imports it like any other module.
 Committing the snapshot buys four things: the build is deterministic and works
 offline, a data change is a reviewable diff, a normal `bun run build` needs no
 secret, and a GitHub outage cannot break a deploy.
+
+`gen` is deliberately **not** wired into `build`. Making every build hit the
+GitHub API would give away exactly those four properties for a snapshot that is
+already in the repo. It runs from `refresh-data.yml` and by hand.
 
 ## Project tiers
 

@@ -29,7 +29,7 @@
       "@theme": ["./src/theme"],
       "@store": ["./src/store"],
       "@data": ["./src/data"],
-      "@generated": ["./src/generated"]
+      "@data/*": ["./src/data/*"]
     }
   },
   "include": ["./src", "./scripts", "./browser", "./vite.config.mts"]
