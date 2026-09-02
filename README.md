@@ -1,31 +1,152 @@
-# Petar Zarkov's Portfolio
+<div align="center">
 
-## Showcasing
+# petarzarkov.com
 
-<p align="left">
-  <a href="https://vitejs.dev/" target="blank"><img title="ViteJS" alt="ViteJS" width="26" src="https://vitejs.dev/logo.svg" /></a>
-  <a href="https://chakra-ui.com/" target="blank"><img title="ChakraUI" alt="ChakraUI" width="26" src="https://chakra-ui.com/favicon.ico" /></a>
-  <a href="https://reactjs.org/" target="blank"><img title="React" alt="React" width="26" src="https://reactnative.dev/img/pwa/manifest-icon-512.png" /></a>
-  <a href="https://www.javascript.com/" target="blank"><img title="JavaScript" alt="JavaScript" width="26" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/javascript/javascript.png" /></a>
-  <a href="https://www.typescriptlang.org/" target="blank"><img title="Typescript" alt="TypeScript" width="26px" src="https://www.typescriptlang.org/favicon-32x32.png?v=8944a05a8b601855de116c8a56d3b3ae" /></a>
-</p>
+**A portfolio that maintains itself.**
 
-### Requirements
+Tag a repository `portfolio` on GitHub and it appears on the site — description,
+topics, language mix, stars and last push already filled in. No commit here.
 
-- NodeJS >= 22.x.
+[petarzarkov.com](https://petarzarkov.com) ·
+[CI](https://github.com/petarzarkov/portfolio/actions/workflows/ci.yml) ·
+[Plan](./docs/README.md)
 
-### Setup
+</div>
 
-```bash
-pnpm install
-pnpm start
+---
+
+## Why it works this way
+
+The previous version of this site was hand-written TSX, one block per project,
+with inline icon arrays and hand-keyed `React.createElement` calls. Adding a
+project meant editing a 300-line component, so nobody did — and three of its six
+showcased projects ended up embedding hosts that no longer resolve, rendering a
+broken-image glyph in production for months.
+
+So the site stopped storing project data. It renders a snapshot that a generator
+writes from the GitHub API:
+
+```
+GitHub topics  ──▶  scripts/gen  ──▶  src/generated/*.json  ──▶  the site
+   (opt in)          (nightly)          (committed)
 ```
 
-### Github actions
+Three properties fall out of that:
 
-- build on push to any branch
-- push to gh-pages branch on merge to main
+- **Nothing is claimed that is not measured.** The skills page is byte counts
+  across every repository, private ones included. Forks are excluded — leaving
+  them in put Zig second on the map, entirely from a fork of Bun.
+- **A dead link cannot ship.** Every external URL is probed at generation time,
+  and the UI renders an iframe _only_ where a generator saw a 2xx. There is no
+  code path that renders an unverified URL.
+- **A build needs no secrets and no network.** The snapshot is committed, so
+  `bun run build` works offline and a GitHub outage cannot break a deploy.
 
-### Demo
+## Tiers
 
-<a href="http://petarzarkov.com/" target="_blank">Preview</a>
+Projects opt in by topic, most specific first:
+
+| Topic                | Meaning                                           |
+| -------------------- | ------------------------------------------------- |
+| `portfolio-flagship` | owns the landing page                             |
+| `portfolio`          | active work                                       |
+| `portfolio-lab`      | experiments and one-offs                          |
+| `portfolio-archive`  | shipped, no longer running — one line, not a card |
+| _(none)_             | not on the site                                   |
+
+Every other topic on the repo becomes a tech chip, so the stack shown is the
+stack the repository declares. Repository **descriptions become site copy** —
+that is the forcing function, and it improves the repos too.
+
+The only hand-maintained data is [`src/data/overrides.ts`](./src/data/overrides.ts):
+copy that beats a repo description, media, explicit pins, and retirement notes.
+
+## Stack
+
+Bun · Vite · React · Mantine · TypeScript · oxlint + oxfmt · stagelint ·
+Cloudflare Pages
+
+## Getting started
+
+Requires [Bun](https://bun.sh) 1.4+.
+
+```bash
+bun install     # also installs the git hooks
+bun start       # vite dev server
+```
+
+## Commands
+
+| Command                   | Does                                                              |
+| ------------------------- | ----------------------------------------------------------------- |
+| `bun run ci`              | every gate CI runs, in one command                                |
+| `bun run build`           | typecheck, then build                                             |
+| `bun run test`            | generator and layout unit tests                                   |
+| `bun run test:browser`    | the built site in a real browser                                  |
+| `bun run shots`           | build, then write a screenshot contact sheet to `browser/.shots/` |
+| `bun run gen`             | regenerate `src/generated/` from GitHub                           |
+| `bun run lint` / `format` | oxlint / oxfmt, with `:check` variants                            |
+
+`.github/workflows/ci.yml` calls `bun run ci <phase>` one phase per job rather
+than restating the commands, so **`bun run ci` locally runs exactly what CI
+runs**. `scripts/ci.test.ts` fails if the two ever drift.
+
+## Testing
+
+Three layers, each answering what the one below cannot:
+
+- **Unit** — the generators, against captured fixtures. Offline and
+  deterministic.
+- **Layout** — the squarified treemap, checked for its invariants: every cell
+  placed, none overlapping, areas proportional, no slivers.
+- **Browser** — the built bundle in real Chrome via `Bun.WebView`. Every route ×
+  3 viewports × 2 colour schemes: correct heading, no horizontal overflow, zero
+  console errors, plus the assertions that map onto what actually broke here —
+  no offline embed rendered as an iframe, both schemes really painting
+  differently, one `<h1>` per route, every iframe titled.
+
+No browser download in CI: `Bun.WebView` drives the Chrome the runner already
+ships.
+
+## Refreshing the data
+
+`.github/workflows/refresh-data.yml` runs nightly, regenerates the snapshot and
+commits only when it moved. That push deploys. Run it by hand with
+`bun run gen` and a `GH_DATA_TOKEN` in the environment.
+
+`gen` is **offline-safe**: with no token, no network or a GitHub 5xx it warns
+and exits 0, leaving the committed snapshot alone. It hard-fails on exactly one
+thing — a schema violation — rather than writing a snapshot that renders as a
+blank page.
+
+## Secrets
+
+| Secret                  | Used by                                                                                  |
+| ----------------------- | ---------------------------------------------------------------------------------------- |
+| `CLOUDFLARE_API_TOKEN`  | deploy — scope _Account → Cloudflare Pages → Edit_                                       |
+| `CLOUDFLARE_ACCOUNT_ID` | deploy                                                                                   |
+| `GH_DATA_TOKEN`         | nightly refresh — all repos _Contents: read_ + _Metadata: read_, account _Profile: read_ |
+
+Private repositories are in scope deliberately: they are the denominator the
+language totals are measured against, and the default `GITHUB_TOKEN` can see
+neither them nor `viewer.contributionsCollection`.
+
+## Accessibility
+
+`prefers-reduced-motion` is a contract, not a fallback — every entrance is
+either a CSS animation that `global.css` neutralises or a `motion` component
+that checks it. The treemap is keyboard operable and has a table equivalent
+behind a toggle. `jsx-a11y` runs in the lint gate.
+
+## Docs
+
+[`docs/`](./docs/README.md) holds the overhaul plan the current site was built
+from: [tooling](./docs/01-tooling.md), [CI/CD](./docs/02-ci-cd.md),
+[data pipeline](./docs/03-data-pipeline.md),
+[Mantine migration](./docs/04-mantine-migration.md),
+[experience](./docs/05-experience.md), [testing](./docs/06-testing.md),
+[execution](./docs/07-execution.md).
+
+## License
+
+MIT — see [LICENSE](./LICENSE).

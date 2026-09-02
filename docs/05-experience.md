@@ -40,7 +40,6 @@ prerenderable.
 
 ```
 /                 Landing        ── the thesis, then dunx
-/work             Work           ── employment timeline, firecracker forward
 /projects         Projects       ── Active, then Lab, then Archive
 /projects/:slug   Detail         ── one project, deep
 /skills           Skills         ── the interactive map (below)

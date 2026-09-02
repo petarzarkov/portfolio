@@ -59,7 +59,7 @@ nightly job has produced at least one refresh commit on its own.
 
 - [ ] `BrowserRouter`, the new route set
 - [ ] Landing: thesis, dunx screen, activity strip
-- [ ] `/work` timeline; `/projects` with tiers and filters; `/projects/:slug`
+- [x] `/projects` with tiers and filters; `/projects/:slug`. `/work` was built from LinkedIn, then cut — see docs/05.
 - [ ] Offline-embed handling wired to `embeds.json`
 - [ ] Skills treemap, cross-filtering, opt-in walkthrough
 - [ ] Motion tokens, View Transitions, shared elements, reduced-motion contract
