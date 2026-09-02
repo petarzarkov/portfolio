@@ -34,3 +34,4 @@ yarn.lock
 coverage
 browser/.shots
 .wrangler
+.env
