@@ -1,0 +1,26 @@
+name: Setup
+description: Pinned Bun, the dependency cache and a frozen install.
+
+# One place for the toolchain, because every job needs it. The bun version is
+# pinned here and nowhere else.
+runs:
+  using: composite
+  steps:
+    - name: Setup Bun
+      uses: oven-sh/setup-bun@v2
+      with:
+        bun-version: 1.4.0
+
+    - name: Cache Bun dependencies
+      uses: actions/cache@v4
+      with:
+        path: ~/.bun/install/cache
+        key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-bun-
+
+    # `--ignore-scripts`: the `prepare` script installs git hooks, which a CI
+    # runner has no use for and which fail on a checkout with no hooks dir.
+    - name: Install dependencies
+      run: bun install --frozen-lockfile --ignore-scripts
+      shell: bash

@@ -1,0 +1,445 @@
+[
+  {
+    "name": "dunx",
+    "description": "fastest web DI framework. NestJS-style structure at Bun speed. Constructor DI with no reflect-metadata, no experimentalDecorators, no JavaScript router.",
+    "homepageUrl": "https://petarzarkov.github.io/dunx",
+    "url": "https://github.com/petarzarkov/dunx",
+    "isArchived": false,
+    "isFork": false,
+    "isPrivate": false,
+    "stargazerCount": 21,
+    "forkCount": 0,
+    "createdAt": "2026-07-27T05:07:34Z",
+    "pushedAt": "2026-09-02T10:13:02Z",
+    "licenseInfo": {
+      "spdxId": "MIT"
+    },
+    "repositoryTopics": {
+      "nodes": [
+        {
+          "topic": {
+            "name": "backend-framework"
+          }
+        },
+        {
+          "topic": {
+            "name": "bun"
+          }
+        },
+        {
+          "topic": {
+            "name": "dependency-injection"
+          }
+        },
+        {
+          "topic": {
+            "name": "nestjs"
+          }
+        },
+        {
+          "topic": {
+            "name": "oxc"
+          }
+        },
+        {
+          "topic": {
+            "name": "typescript"
+          }
+        }
+      ]
+    },
+    "languages": {
+      "totalSize": 3485492,
+      "edges": [
+        {
+          "size": 3410722,
+          "node": {
+            "name": "TypeScript",
+            "color": "#3178c6"
+          }
+        },
+        {
+          "size": 42089,
+          "node": {
+            "name": "CSS",
+            "color": "#663399"
+          }
+        },
+        {
+          "size": 9090,
+          "node": {
+            "name": "Python",
+            "color": "#3572A5"
+          }
+        },
+        {
+          "size": 7022,
+          "node": {
+            "name": "C#",
+            "color": "#7355dd"
+          }
+        },
+        {
+          "size": 4777,
+          "node": {
+            "name": "Go",
+            "color": "#00ADD8"
+          }
+        },
+        {
+          "size": 3059,
+          "node": {
+            "name": "Rust",
+            "color": "#dea584"
+          }
+        },
+        {
+          "size": 2869,
+          "node": {
+            "name": "HTML",
+            "color": "#e34c26"
+          }
+        },
+        {
+          "size": 2769,
+          "node": {
+            "name": "Java",
+            "color": "#b07219"
+          }
+        },
+        {
+          "size": 2401,
+          "node": {
+            "name": "JavaScript",
+            "color": "#f1e05a"
+          }
+        },
+        {
+          "size": 694,
+          "node": {
+            "name": "Shell",
+            "color": "#89e051"
+          }
+        }
+      ]
+    },
+    "latestRelease": {
+      "tagName": "v3.1.3",
+      "publishedAt": "2026-08-30T11:52:02Z"
+    },
+    "openGraphImageUrl": "https://opengraph.githubassets.com/1c9d6f9c543d36d4160af78d8727af9c3461fbdef76840e97e5b576ffdd4f933/petarzarkov/dunx"
+  },
+  {
+    "name": "petarzarkov",
+    "description": null,
+    "homepageUrl": null,
+    "url": "https://github.com/petarzarkov/petarzarkov",
+    "isArchived": false,
+    "isFork": false,
+    "isPrivate": false,
+    "stargazerCount": 1,
+    "forkCount": 0,
+    "createdAt": "2022-03-22T12:56:31Z",
+    "pushedAt": "2026-09-02T04:03:40Z",
+    "licenseInfo": null,
+    "repositoryTopics": {
+      "nodes": []
+    },
+    "languages": {
+      "totalSize": 103455,
+      "edges": [
+        {
+          "size": 95511,
+          "node": {
+            "name": "TypeScript",
+            "color": "#3178c6"
+          }
+        },
+        {
+          "size": 5021,
+          "node": {
+            "name": "HTML",
+            "color": "#e34c26"
+          }
+        },
+        {
+          "size": 2047,
+          "node": {
+            "name": "JavaScript",
+            "color": "#f1e05a"
+          }
+        },
+        {
+          "size": 876,
+          "node": {
+            "name": "Shell",
+            "color": "#89e051"
+          }
+        }
+      ]
+    },
+    "latestRelease": null,
+    "openGraphImageUrl": "https://opengraph.githubassets.com/878fc49d844836b8364902e7cd13cc8550a5ca27af8cc710242a4906b2b9a4f8/petarzarkov/petarzarkov"
+  },
+  {
+    "name": "arkv",
+    "description": "arkv bun monorepo npm packages",
+    "homepageUrl": "",
+    "url": "https://github.com/petarzarkov/arkv",
+    "isArchived": false,
+    "isFork": false,
+    "isPrivate": false,
+    "stargazerCount": 2,
+    "forkCount": 1,
+    "createdAt": "2026-02-18T07:19:32Z",
+    "pushedAt": "2026-08-31T16:46:28Z",
+    "licenseInfo": {
+      "spdxId": "MIT"
+    },
+    "repositoryTopics": {
+      "nodes": []
+    },
+    "languages": {
+      "totalSize": 834138,
+      "edges": [
+        {
+          "size": 818400,
+          "node": {
+            "name": "TypeScript",
+            "color": "#3178c6"
+          }
+        },
+        {
+          "size": 11358,
+          "node": {
+            "name": "Rust",
+            "color": "#dea584"
+          }
+        },
+        {
+          "size": 2054,
+          "node": {
+            "name": "HTML",
+            "color": "#e34c26"
+          }
+        },
+        {
+          "size": 1953,
+          "node": {
+            "name": "Shell",
+            "color": "#89e051"
+          }
+        },
+        {
+          "size": 373,
+          "node": {
+            "name": "CSS",
+            "color": "#663399"
+          }
+        }
+      ]
+    },
+    "latestRelease": null,
+    "openGraphImageUrl": "https://opengraph.githubassets.com/07f8a76922a0ba164f933e130b888d987e13b29cf8196cd80aaf29c2cb4e3bc3/petarzarkov/arkv"
+  },
+  {
+    "name": "rust-beats",
+    "description": "rust chill song generator app",
+    "homepageUrl": "https://petarzarkov.github.io/rust-beats/",
+    "url": "https://github.com/petarzarkov/rust-beats",
+    "isArchived": false,
+    "isFork": false,
+    "isPrivate": false,
+    "stargazerCount": 1,
+    "forkCount": 0,
+    "createdAt": "2025-11-15T11:07:22Z",
+    "pushedAt": "2025-12-11T02:16:37Z",
+    "licenseInfo": {
+      "spdxId": "NOASSERTION"
+    },
+    "repositoryTopics": {
+      "nodes": [
+        {
+          "topic": {
+            "name": "alternative"
+          }
+        },
+        {
+          "topic": {
+            "name": "beat"
+          }
+        },
+        {
+          "topic": {
+            "name": "chill"
+          }
+        },
+        {
+          "topic": {
+            "name": "jazz"
+          }
+        },
+        {
+          "topic": {
+            "name": "lofi"
+          }
+        },
+        {
+          "topic": {
+            "name": "music"
+          }
+        },
+        {
+          "topic": {
+            "name": "rust"
+          }
+        }
+      ]
+    },
+    "languages": {
+      "totalSize": 383672,
+      "edges": [
+        {
+          "size": 359127,
+          "node": {
+            "name": "Rust",
+            "color": "#dea584"
+          }
+        },
+        {
+          "size": 15629,
+          "node": {
+            "name": "Python",
+            "color": "#3572A5"
+          }
+        },
+        {
+          "size": 8916,
+          "node": {
+            "name": "Shell",
+            "color": "#89e051"
+          }
+        }
+      ]
+    },
+    "latestRelease": null,
+    "openGraphImageUrl": "https://opengraph.githubassets.com/b7a06eafdc9b7228e607672292a353831fcd057425e6dcab91ea50e811848662/petarzarkov/rust-beats"
+  },
+  {
+    "name": "wave-sim",
+    "description": "Wave Simulator using a linear second-order partial differential equation which describes the propagation of oscillations at a fixed speed in some quantity",
+    "homepageUrl": null,
+    "url": "https://github.com/petarzarkov/wave-sim",
+    "isArchived": false,
+    "isFork": false,
+    "isPrivate": false,
+    "stargazerCount": 0,
+    "forkCount": 0,
+    "createdAt": "2022-11-21T12:24:26Z",
+    "pushedAt": "2025-11-22T10:31:19Z",
+    "licenseInfo": {
+      "spdxId": "MIT"
+    },
+    "repositoryTopics": {
+      "nodes": []
+    },
+    "languages": {
+      "totalSize": 14581,
+      "edges": [
+        {
+          "size": 9415,
+          "node": {
+            "name": "TypeScript",
+            "color": "#3178c6"
+          }
+        },
+        {
+          "size": 3733,
+          "node": {
+            "name": "JavaScript",
+            "color": "#f1e05a"
+          }
+        },
+        {
+          "size": 990,
+          "node": {
+            "name": "CSS",
+            "color": "#663399"
+          }
+        },
+        {
+          "size": 443,
+          "node": {
+            "name": "HTML",
+            "color": "#e34c26"
+          }
+        }
+      ]
+    },
+    "latestRelease": null,
+    "openGraphImageUrl": "https://opengraph.githubassets.com/4a679fa1d1e651dc393f6e94265b43ea2699763704ecbb9bdd055ddc7077d73b/petarzarkov/wave-sim"
+  },
+  {
+    "name": "trivia-art",
+    "description": "Trivia Art",
+    "homepageUrl": null,
+    "url": "https://github.com/petarzarkov/trivia-art",
+    "isArchived": false,
+    "isFork": false,
+    "isPrivate": false,
+    "stargazerCount": 0,
+    "forkCount": 0,
+    "createdAt": "2022-03-23T05:26:04Z",
+    "pushedAt": "2025-11-22T10:30:28Z",
+    "licenseInfo": {
+      "spdxId": "MIT"
+    },
+    "repositoryTopics": {
+      "nodes": []
+    },
+    "languages": {
+      "totalSize": 73225,
+      "edges": [
+        {
+          "size": 70395,
+          "node": {
+            "name": "TypeScript",
+            "color": "#3178c6"
+          }
+        },
+        {
+          "size": 2830,
+          "node": {
+            "name": "JavaScript",
+            "color": "#f1e05a"
+          }
+        }
+      ]
+    },
+    "latestRelease": null,
+    "openGraphImageUrl": "https://opengraph.githubassets.com/25db932684b1e9f7fdfe8a89d7dfadd412ebf19eaaf20aef4e13cef0b47f2310/petarzarkov/trivia-art"
+  },
+  {
+    "name": "k8s",
+    "description": null,
+    "homepageUrl": null,
+    "url": "https://github.com/petarzarkov/k8s",
+    "isArchived": false,
+    "isFork": false,
+    "isPrivate": true,
+    "stargazerCount": 0,
+    "forkCount": 0,
+    "createdAt": "2025-11-22T09:55:20Z",
+    "pushedAt": "2025-11-22T10:16:54Z",
+    "licenseInfo": null,
+    "repositoryTopics": {
+      "nodes": []
+    },
+    "languages": {
+      "totalSize": 0,
+      "edges": []
+    },
+    "latestRelease": null,
+    "openGraphImageUrl": "https://avatars.githubusercontent.com/u/46219231?s=400&v=4"
+  }
+]

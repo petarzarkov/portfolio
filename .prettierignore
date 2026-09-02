@@ -1,7 +1,0 @@
-build
-dist
-node_modules
-coverage
-.vscode
-.idea
-.env*

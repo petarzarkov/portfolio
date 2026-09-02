@@ -1,108 +1,146 @@
-import { FC, createElement, ReactElement } from 'react';
-import { Flex, HStack, SimpleGrid, Stack, TabList, TabPanel, TabPanels, Tabs, Text } from '@chakra-ui/react';
-import { CiLibs, CustomTab, Libs, SecondaryLibs, Title } from '@components';
-import { useThemeProvider } from '@hooks';
-import { SkillLevel } from '@contracts';
+import { useMemo, useState } from 'react';
+import {
+  Badge,
+  Group,
+  SimpleGrid,
+  Stack,
+  Switch,
+  Table,
+  Text,
+  Title,
+} from '@mantine/core';
+import { languages, projects } from '@data';
+import { LanguageTreemap } from '../components/LanguageTreemap';
+import { ProjectCard } from '../components/ProjectCard';
+import { Walkthrough, type Step } from '../components/Walkthrough';
+import { Reveal } from '../components/Reveal';
 
-const Skill: FC<{
-  title: string;
-  text?: string;
-  level?: SkillLevel;
-  icon: ReactElement;
-}> = ({ title, text, icon, level = 1 }) => {
-  const getLevel = () => {
-    switch (level) {
-      case 1:
-        return (
-          <Text fontWeight={700} color="green.300">
-            {'Noob'}
-          </Text>
-        );
-      case 2:
-        return (
-          <Text fontWeight={700} color="blue.300">
-            {'Beginner'}
-          </Text>
-        );
-      case 3:
-        return (
-          <Text fontWeight={700} color="blue.500">
-            {'Intermediate'}
-          </Text>
-        );
-      case 4:
-        return (
-          <Text fontWeight={700} color="purple.300">
-            {'Advanced'}
-          </Text>
-        );
-      default:
-        return (
-          <Text fontWeight={700} color="green.300">
-            {'Noob'}
-          </Text>
-        );
-    }
-  };
+const STEPS: readonly Step[] = [
+  {
+    title: 'Area is volume, not skill',
+    body: 'Each rectangle is sized by how many bytes of that language exist across every repository I own. It measures what gets written, not how well.',
+  },
+  {
+    title: 'Private repositories are counted',
+    body: 'The totals include private work. Public-only would show about a third of the real picture — most of what I write is not public.',
+  },
+  {
+    title: 'Forks are not',
+    body: 'A fork is somebody else’s code. Leaving them in put Zig second on this map, entirely from a fork of Bun, for a language I have never written.',
+  },
+  {
+    title: 'The long tail is folded up',
+    body: 'Everything below the top eight is grouped into Other. Without that, Dockerfile and Shell get the same row as TypeScript.',
+  },
+  {
+    title: 'Click a language',
+    body: 'Selecting a rectangle filters the projects underneath to the ones that actually contain it — the link between a claim and its evidence.',
+  },
+];
+
+const Skills = () => {
+  const [selected, setSelected] = useState<string | null>(null);
+  const [asTable, setAsTable] = useState(false);
+
+  const matching = useMemo(() => {
+    if (selected === null) return [];
+    return projects.filter((project) =>
+      project.languages.some((lang) => lang.name === selected),
+    );
+  }, [selected]);
+
+  const megabytes = (languages.totalBytes / 1e6).toFixed(1);
+
   return (
-    <Stack>
-      <Flex w={12} h={12} align={'center'} justify={'center'} rounded={'full'} mb={1}>
-        {icon}
-      </Flex>
-      <Text fontWeight={600}>{title}</Text>
-      <HStack spacing={1} wrap={'wrap'}>
-        <Text fontWeight={500}>{'Level:'}</Text>
-        {getLevel()}
-      </HStack>
-      {text ? <Text color={'primary.600'}>{text}</Text> : null}
+    <Stack gap="xl">
+      <div>
+        <Title order={1} mb="xs">
+          Skills
+        </Title>
+        <Text c="dimmed" maw="62ch">
+          {`Measured, not declared. ${megabytes} MB of source across ${languages.repoCount} repositories I own, private ones included, read straight from the GitHub API.`}
+        </Text>
+      </div>
+
+      <Group justify="space-between" align="center">
+        <Walkthrough steps={STEPS} />
+        <Switch
+          checked={asTable}
+          onChange={(event) => setAsTable(event.currentTarget.checked)}
+          label="Table view"
+          size="sm"
+        />
+      </Group>
+
+      {asTable ? (
+        <Table striped highlightOnHover>
+          <Table.Thead>
+            <Table.Tr>
+              <Table.Th>Language</Table.Th>
+              <Table.Th>Share</Table.Th>
+              <Table.Th>Size</Table.Th>
+              <Table.Th>Repos</Table.Th>
+              <Table.Th>Note</Table.Th>
+            </Table.Tr>
+          </Table.Thead>
+          <Table.Tbody>
+            {languages.top.map((lang) => (
+              <Table.Tr key={lang.name}>
+                <Table.Td fw={500}>{lang.name}</Table.Td>
+                <Table.Td>{`${(lang.share * 100).toFixed(1)}%`}</Table.Td>
+                <Table.Td>{`${(lang.bytes / 1e6).toFixed(2)} MB`}</Table.Td>
+                <Table.Td>{lang.repos}</Table.Td>
+                <Table.Td>{lang.proficiency ?? ''}</Table.Td>
+              </Table.Tr>
+            ))}
+          </Table.Tbody>
+        </Table>
+      ) : (
+        <LanguageTreemap
+          languages={languages.top}
+          selected={selected}
+          onSelect={setSelected}
+        />
+      )}
+
+      {languages.top.some((lang) => lang.proficiency !== null) && (
+        <Group gap="xs">
+          <Text size="sm" c="dimmed">
+            Where volume misleads, I say so:
+          </Text>
+          {languages.top
+            .filter((lang) => lang.proficiency !== null)
+            .map((lang) => (
+              <Badge key={lang.name} variant="default">
+                {`${lang.name} · ${lang.proficiency ?? ''}`}
+              </Badge>
+            ))}
+        </Group>
+      )}
+
+      {selected !== null && (
+        <Reveal>
+          <section aria-live="polite">
+            <Title order={2} mb="xs">
+              {selected}
+            </Title>
+            <Text c="dimmed" mb="lg">
+              {matching.length === 0
+                ? 'No project on this site contains it — most of that volume is in repositories that are not featured here.'
+                : `${matching.length} featured ${matching.length === 1 ? 'project uses' : 'projects use'} it.`}
+            </Text>
+            {matching.length > 0 && (
+              <SimpleGrid cols={{ base: 1, sm: 2, lg: 3 }} spacing="lg">
+                {matching.map((project) => (
+                  <ProjectCard key={project.slug} project={project} />
+                ))}
+              </SimpleGrid>
+            )}
+          </section>
+        </Reveal>
+      )}
     </Stack>
   );
 };
 
-type LibEntry = [
-  string,
-  {
-    icon: (t: { to?: string }) => ReactElement;
-    level: SkillLevel;
-    title?: string;
-  },
-];
-
-const parseLib = (lib: LibEntry, index: number) => (
-  <Skill key={index} title={lib[1]?.title || lib[0]} icon={createElement(lib[1].icon)} level={lib[1].level} />
-);
-
-export const Skills: FC = () => {
-  const { theme } = useThemeProvider(),
-    skills = Object.entries(Libs).map(parseLib),
-    skillsSecondary = Object.entries(SecondaryLibs).map(parseLib),
-    skillsCI = Object.entries(CiLibs).map(parseLib);
-
-  return (
-    <Tabs isFitted variant="enclosed" colorScheme={theme}>
-      <TabList>
-        <CustomTab title={'Primary'} />
-        <CustomTab title={'Secondary'} />
-        <CustomTab title={'CI/CD'} />
-      </TabList>
-      <TabPanels>
-        {[
-          { title: 'Primary', sub: 'Programming languages and supersets.', skills },
-          { title: 'Secondary', sub: 'Libraries, packages, tools.', skills: skillsSecondary },
-          {
-            title: 'CI/CD',
-            sub: 'Continuous Integration, Continuous Delivery, Continuous Deployment.',
-            skills: skillsCI,
-          },
-        ].map((panel, indx) => (
-          <TabPanel key={`${panel.title}-${indx}`} minH="80vh">
-            <Title title={panel.title} subTitle={panel.sub} />
-            <SimpleGrid columns={{ base: 2, md: 3, lg: 5 }} spacing={10}>
-              {panel.skills}
-            </SimpleGrid>
-          </TabPanel>
-        ))}
-      </TabPanels>
-    </Tabs>
-  );
-};
+export default Skills;

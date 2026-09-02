@@ -1,0 +1,10 @@
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+
+# Vite fingerprints everything under /assets/, so the immutable year is safe
+# here and only here. index.html keeps Cloudflare's default short cache, which
+# is what makes a deploy visible immediately.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable

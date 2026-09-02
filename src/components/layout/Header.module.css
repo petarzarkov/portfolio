@@ -1,0 +1,67 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid
+    light-dark(var(--mantine-color-sand-2), var(--mantine-color-dark-5));
+  background: light-dark(
+    color-mix(in srgb, var(--mantine-color-sand-0) 88%, transparent),
+    color-mix(in srgb, var(--mantine-color-dark-8) 88%, transparent)
+  );
+  backdrop-filter: blur(10px);
+}
+
+.inner {
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--mantine-spacing-md);
+}
+
+.link {
+  display: block;
+  padding: 6px 10px;
+  border-radius: var(--mantine-radius-sm);
+  font-size: var(--mantine-font-size-sm);
+  font-weight: 500;
+  text-decoration: none;
+  color: light-dark(var(--mantine-color-sand-9), var(--mantine-color-sand-2));
+  transition:
+    background-color 120ms ease,
+    color 120ms ease;
+}
+
+.link:hover {
+  background: light-dark(
+    var(--mantine-color-sand-1),
+    var(--mantine-color-dark-6)
+  );
+}
+
+.active {
+  color: light-dark(var(--mantine-color-brand-8), var(--mantine-color-brand-4));
+  background: light-dark(
+    var(--mantine-color-brand-0),
+    color-mix(in srgb, var(--mantine-color-brand-9) 25%, transparent)
+  );
+}
+
+.wordmark {
+  font-weight: 680;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+  color: inherit;
+  font-size: 1rem;
+}
+
+.nav {
+  display: flex;
+  gap: 2px;
+}
+
+@media (max-width: 48em) {
+  .nav {
+    display: none;
+  }
+}

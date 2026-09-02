@@ -1,19 +1,31 @@
-import React from 'react';
+import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { HashRouter } from 'react-router-dom';
-import { ThemeProvider } from '@theme';
+import { BrowserRouter } from 'react-router-dom';
+import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 
-import App from './App';
-import './index.css';
+import '@mantine/core/styles.css';
+import '@mantine/charts/styles.css';
+import '@mantine/spotlight/styles.css';
+import './theme/global.css';
 
-const root = createRoot(document.getElementById('root')!);
+import { theme } from './theme/theme';
+import { App } from './App';
 
-root.render(
-  <React.StrictMode>
-    <HashRouter>
-      <ThemeProvider>
+const container = document.getElementById('root');
+if (!container) throw new Error('No #root to mount into');
+
+/**
+ * `BrowserRouter`, not `HashRouter`. Real paths mean linkable routes, real
+ * search indexing and real link previews; `public/_redirects` gives Cloudflare
+ * Pages the SPA fallback that needs.
+ */
+createRoot(container).render(
+  <StrictMode>
+    <ColorSchemeScript defaultColorScheme="auto" />
+    <MantineProvider theme={theme} defaultColorScheme="auto">
+      <BrowserRouter>
         <App />
-      </ThemeProvider>
-    </HashRouter>
-  </React.StrictMode>,
+      </BrowserRouter>
+    </MantineProvider>
+  </StrictMode>,
 );

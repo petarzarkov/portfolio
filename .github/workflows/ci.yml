@@ -1,0 +1,94 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    types: [opened, synchronize, reopened]
+  workflow_dispatch:
+
+# A PR run is superseded by its own next push. `main` is never cancelled: a run
+# there can reach the deploy step.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+permissions:
+  contents: read
+
+# Every gate is a phase of `scripts/ci.ts`, invoked as `bun run ci <phase>`, so
+# `bun run ci` locally runs exactly what these jobs run. When a gate changes it
+# changes in that one file, rather than drifting between here and the scripts.
+jobs:
+  static:
+    name: Lint, format, types
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
+      - run: bun run ci static
+
+  unit:
+    name: Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
+      - run: bun run ci unit
+
+  browser:
+    name: Site in a browser
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
+      # No browser download step: Bun.WebView drives the Chrome the runner image
+      # already ships. See docs/06-testing.md.
+      - run: bun run ci build
+      - run: bun run ci browser
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: failed-shots
+          path: browser/.shots/
+          retention-days: 7
+
+  deploy:
+    name: Deploy
+    needs: [static, unit, browser]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    environment:
+      name: ${{ github.ref == 'refs/heads/main' && 'production' || 'preview' }}
+      url: ${{ steps.deploy.outputs.deployment-url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
+
+      # No build secrets. The contact form and EmailJS are gone, and the
+      # project data is a committed snapshot rather than a build-time fetch -
+      # so a build needs nothing but the repository.
+      - name: Build
+        run: bun run ci build
+
+      # `--branch` is what separates a preview from production: Cloudflare treats
+      # the project's production branch as production and gives every other
+      # branch a `<hash>.<project>.pages.dev` preview URL, so one command covers
+      # both cases.
+      - name: Deploy to Cloudflare Pages
+        id: deploy
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: >-
+            pages deploy dist
+            --project-name=portfolio
+            --branch=${{ github.head_ref || github.ref_name }}
+
+      - name: Summarise
+        run: |
+          echo "Deployed ${{ github.head_ref || github.ref_name }} to" >> $GITHUB_STEP_SUMMARY
+          echo "${{ steps.deploy.outputs.deployment-url }}" >> $GITHUB_STEP_SUMMARY

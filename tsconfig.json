@@ -2,32 +2,33 @@
   "compilerOptions": {
     "incremental": true,
     "tsBuildInfoFile": "./cache/tsconfig.tsbuildinfo",
-    "target": "ES6",
+    "target": "ES2022",
     "useDefineForClassFields": true,
-    "lib": ["DOM", "DOM.Iterable", "ES6"],
+    "lib": ["DOM", "DOM.Iterable", "ES2023"],
+    "types": ["bun", "vite/client"],
     "allowJs": false,
     "skipLibCheck": true,
-    "esModuleInterop": false,
     "allowSyntheticDefaultImports": true,
     "strict": true,
+    "noUncheckedIndexedAccess": true,
     "forceConsistentCasingInFileNames": true,
-    "module": "es2022",
-    "moduleResolution": "Node",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "verbatimModuleSyntax": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "baseUrl": ".",
     "paths": {
       "@components": ["./src/components"],
+      "@components/*": ["./src/components/*"],
       "@contracts": ["./src/contracts"],
-      "@hooks": ["./src/hooks"],
-      "@screens": ["./src/screens"],
       "@config": ["./src/config"],
-      "@theme": ["./src/theme"],
-      "@store": ["./src/store"]
+      "@data": ["./src/data"],
+      "@data/*": ["./src/data/*"],
+      "@screens": ["./src/screens"],
+      "@theme": ["./src/theme"]
     }
   },
-  "include": ["./src"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": ["./src", "./scripts", "./browser", "./vite.config.mts"]
 }
