@@ -67,12 +67,11 @@ jobs:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup
 
+      # No build secrets. The contact form and EmailJS are gone, and the
+      # project data is a committed snapshot rather than a build-time fetch -
+      # so a build needs nothing but the repository.
       - name: Build
         run: bun run ci build
-        env:
-          VITE_SERVICE_ID: ${{ secrets.VITE_SERVICE_ID }}
-          VITE_USER_ID: ${{ secrets.VITE_USER_ID }}
-          VITE_TEMPLATE_ID: ${{ secrets.VITE_TEMPLATE_ID }}
 
       # `--branch` is what separates a preview from production: Cloudflare treats
       # the project's production branch as production and gives every other

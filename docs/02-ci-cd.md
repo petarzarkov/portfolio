@@ -180,18 +180,32 @@ attached once by hand (below) and CI never needs to change a record.
 
 ### Secrets to add
 
-| Secret                                                  | Where from                                                               |
-| ------------------------------------------------------- | ------------------------------------------------------------------------ |
-| `CLOUDFLARE_API_TOKEN`                                  | the token above                                                          |
-| `CLOUDFLARE_ACCOUNT_ID`                                 | dashboard sidebar / `wrangler whoami`                                    |
-| `GH_DATA_TOKEN`                                         | fine-grained PAT for the data pipeline — see [03](./03-data-pipeline.md) |
-| `VITE_SERVICE_ID` / `VITE_USER_ID` / `VITE_TEMPLATE_ID` | already exist, EmailJS                                                   |
+Three, all **repository-level** (Settings → Secrets and variables → Actions).
+Repository rather than environment scope, because the `deploy` job runs under
+`preview` on a PR and `production` on main, and an environment secret would only
+reach one of them.
 
-The three `VITE_*` values are baked into the client bundle at build time and are
-public by construction — EmailJS keys are designed for that. They are "secrets" in
-the sense of _not in git_, not in the sense of _confidential_. If the contact form
-moves to a Pages Function later (see the open decision in
-[07-execution.md](./07-execution.md)), they become genuinely server-side.
+| Secret                  | Used by            | Where from                                                                        |
+| ----------------------- | ------------------ | --------------------------------------------------------------------------------- |
+| `CLOUDFLARE_API_TOKEN`  | `ci.yml` deploy    | Cloudflare → My Profile → API Tokens, scope **Account → Cloudflare Pages → Edit** |
+| `CLOUDFLARE_ACCOUNT_ID` | `ci.yml` deploy    | Cloudflare dashboard sidebar, or `wrangler whoami`                                |
+| `GH_DATA_TOKEN`         | `refresh-data.yml` | GitHub → Settings → Developer settings → fine-grained PAT                         |
+
+`GH_DATA_TOKEN` needs **all repositories**, with _Contents: read_ and
+_Metadata: read_, plus account permission _Profile: read_. Private repos are in
+scope deliberately — they are the denominator the language totals are measured
+against, and the default `GITHUB_TOKEN` can see neither them nor
+`viewer.contributionsCollection`.
+
+The build itself takes **no** secrets: the contact form is gone, and project
+data is a committed snapshot rather than a build-time fetch.
+
+### Secrets to remove
+
+`VITE_SERVICE_ID`, `VITE_USER_ID` and `VITE_TEMPLATE_ID` are EmailJS keys set in
+March 2022, on the `github-pages` environment. Nothing reads them now that the
+contact form is deleted. Remove them along with the `github-pages` environment
+itself, once the domain has been cut over (phase 5).
 
 ### `wrangler.jsonc`
 
