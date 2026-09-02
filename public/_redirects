@@ -1,0 +1,4 @@
+# SPA fallback. Required once the app moves off HashRouter: without it any
+# direct link to a route other than / is a 404 from the edge, because no such
+# file exists in dist/.
+/*  /index.html  200
