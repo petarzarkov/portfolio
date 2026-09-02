@@ -7,6 +7,18 @@ is a Bun-runtime monorepo and this is a browser SPA.
 
 ## Target versions
 
+**Exact versions only — no `^`, no `~`.** A floating range is what let this repo
+drift onto React 19 with a Chakra that peers React 18, and onto a `react-icons`
+whose `SiCss3` had been renamed. `bun update --latest` is the way versions move,
+as a deliberate commit with a green CI run behind it, not silently on someone
+else's machine.
+
+One deliberate exception: `@chakra-ui/react` is held at `2.10.10`, the last v2.
+`bun update --latest` offers 3.37.0, which is a ground-up rewrite with a
+different API — and phase 2 deletes Chakra outright
+([04-mantine-migration.md](./04-mantine-migration.md)). Adopting a major to
+remove it days later is churn.
+
 Pinned exactly, the way dunx pins them. Floating ranges are what let this repo rot
 into an unsupported React/Chakra pairing in the first place.
 
