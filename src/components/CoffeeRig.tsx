@@ -139,7 +139,11 @@ export const CoffeeRig = () => {
       let running = false;
 
       const tick = () => {
-        const elapsed = clock.elapsedTime;
+        // `getElapsedTime()`, not the `elapsedTime` property: the property only
+        // advances when one of the getters is called. Reading it directly meant
+        // every frame saw 0 and the whole scene - steam, lights, cup - redrew
+        // an identical image sixty times a second.
+        const elapsed = clock.getElapsedTime();
 
         lights.forEach((light, index) => {
           const rig = RIG[index];

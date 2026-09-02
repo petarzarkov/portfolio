@@ -180,6 +180,42 @@ describe('metadata', () => {
   });
 });
 
+describe('the about backdrop', () => {
+  /**
+   * Regression test for a bug a screenshot cannot show.
+   *
+   * `THREE.Clock.elapsedTime` is a property that only advances when one of the
+   * getters is called. Reading it directly meant every frame computed the same
+   * positions, so the renderer redrew an identical image sixty times a second:
+   * a scene that looks correct in any still and is completely frozen in life.
+   *
+   * Two frames a beat apart have to differ.
+   */
+  test('the scene is actually animating', async () => {
+    await preview.view(900, 650);
+    await preview.scheme('dark');
+    await preview.open('/about');
+
+    // Past the dynamic import of three and the first render.
+    await Bun.sleep(2500);
+    const first = await preview.screenshot();
+    await Bun.sleep(1200);
+    const second = await preview.screenshot();
+
+    const a = new Uint8Array(await first.arrayBuffer());
+    const b = new Uint8Array(await second.arrayBuffer());
+
+    expect(a.byteLength).toBeGreaterThan(0);
+    expect(Bun.SHA1.hash(a, 'hex')).not.toBe(Bun.SHA1.hash(b, 'hex'));
+  }, 30_000);
+
+  test('it renders a canvas rather than the no-WebGL fallback', async () => {
+    await preview.open('/about');
+    await Bun.sleep(2500);
+    expect(await preview.count('canvas')).toBe(1);
+  }, 20_000);
+});
+
 describe('budget', () => {
   /**
    * The entry chunk is what every visitor downloads before anything renders.

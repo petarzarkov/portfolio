@@ -16,6 +16,8 @@ export interface Steam {
   readonly offset: number;
   readonly drift: number;
   readonly scale: number;
+  /** Radians per unit of rise, so each wisp tumbles at its own rate. */
+  readonly spin: number;
 }
 
 export interface CoffeeScene {
@@ -170,6 +172,7 @@ export const buildCoffee = (three: THREE): CoffeeScene => {
       offset: i / 7,
       drift: (i % 2 === 0 ? 1 : -1) * (0.35 + (i % 3) * 0.18),
       scale: 0.85 + (i % 4) * 0.22,
+      spin: (i % 2 === 0 ? 1 : -1) * (0.6 + (i % 3) * 0.35),
     });
   }
 
