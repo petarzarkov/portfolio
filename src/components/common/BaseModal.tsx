@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from 'react';
+import React, { type FC, type ReactElement } from 'react';
 import {
   Button,
   Modal,
@@ -10,12 +10,12 @@ import {
   ModalOverlay,
 } from '@chakra-ui/react';
 
-export const BaseModal: FC<{ content: ReactElement | string; title: string; isOpen: boolean; onClose: () => void }> = ({
-  content,
-  title,
-  isOpen,
-  onClose,
-}) => (
+export const BaseModal: FC<{
+  content: ReactElement | string;
+  title: string;
+  isOpen: boolean;
+  onClose: () => void;
+}> = ({ content, title, isOpen, onClose }) => (
   <>
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />

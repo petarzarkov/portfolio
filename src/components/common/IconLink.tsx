@@ -1,5 +1,10 @@
-import React, { ReactElement } from 'react';
-import { IconButton, IconButtonProps, Link, useColorModeValue } from '@chakra-ui/react';
+import React, { type ReactElement } from 'react';
+import {
+  IconButton,
+  type IconButtonProps,
+  Link,
+  useColorModeValue,
+} from '@chakra-ui/react';
 
 export const IconLink = ({
   to = '#',

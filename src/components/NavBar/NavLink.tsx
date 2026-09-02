@@ -1,9 +1,13 @@
-import React, { FC, ReactNode } from 'react';
+import React, { type FC, type ReactNode } from 'react';
 import { Flex, Icon, Link, useColorModeValue } from '@chakra-ui/react';
 import { Link as RLink, useMatch, useResolvedPath } from 'react-router-dom';
-import { IconType } from 'react-icons';
+import { type IconType } from 'react-icons';
 
-export const NavLink: FC<{ children: ReactNode; icon: IconType; to?: string }> = ({ children, icon, to = '#' }) => {
+export const NavLink: FC<{
+  children: ReactNode;
+  icon: IconType;
+  to?: string;
+}> = ({ children, icon, to = '#' }) => {
   const resolved = useResolvedPath(to),
     match = useMatch({ path: resolved.pathname, end: true }),
     linkBgColor = useColorModeValue('primary.300', 'primary.500');
@@ -25,7 +29,6 @@ export const NavLink: FC<{ children: ReactNode; icon: IconType; to?: string }> =
         p="2"
         mx="2"
         borderRadius="lg"
-        role="group"
         cursor="pointer"
         _hover={{
           bg: 'primary.400',

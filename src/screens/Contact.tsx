@@ -20,7 +20,7 @@ import { BsPerson } from 'react-icons/bs';
 import { MdEmail, MdOutlineEmail } from 'react-icons/md';
 import { email, portfolio } from '@config';
 import { BaseModal, Socials, Title } from '@components';
-import { Field, Form, Formik, FormikHelpers } from 'formik';
+import { Field, Form, Formik, type FormikHelpers } from 'formik';
 import emailjs from '@emailjs/browser';
 
 interface FormValues {
@@ -31,7 +31,9 @@ interface FormValues {
 
 export const Contact = () => {
   const { hasCopied, onCopy } = useClipboard(portfolio.email),
-    [showModal, setShowModal] = useState<{ show: true; response: string } | { show: false; response?: string }>({
+    [showModal, setShowModal] = useState<
+      { show: true; response: string } | { show: false; response?: string }
+    >({
       show: false,
     }),
     sendEmail = (values: FormValues, actions: FormikHelpers<FormValues>) =>
@@ -59,7 +61,10 @@ export const Contact = () => {
 
   return (
     <Box>
-      <Title title={'Get in Touch'} subTitle={'Email me or contact me on any of my social links.'} />
+      <Title
+        title={'Get in Touch'}
+        subTitle={'Email me or contact me on any of my social links.'}
+      />
       {showModal.show && (
         <BaseModal
           title="Email"
@@ -69,9 +74,20 @@ export const Contact = () => {
         />
       )}
       <VStack spacing={{ base: 2, md: 4, lg: 22 }}>
-        <Stack spacing={{ base: 2, md: 4, lg: 22 }} direction={{ base: 'column', md: 'row' }}>
-          <Stack align="center" justify="space-around" direction={{ base: 'row', md: 'column' }}>
-            <Tooltip label={hasCopied ? 'Email Copied!' : 'Copy Email'} closeOnClick={false} hasArrow>
+        <Stack
+          spacing={{ base: 2, md: 4, lg: 22 }}
+          direction={{ base: 'column', md: 'row' }}
+        >
+          <Stack
+            align="center"
+            justify="space-around"
+            direction={{ base: 'row', md: 'column' }}
+          >
+            <Tooltip
+              label={hasCopied ? 'Email Copied!' : 'Copy Email'}
+              closeOnClick={false}
+              hasArrow
+            >
               <IconButton
                 aria-label="email"
                 variant="ghost"
@@ -100,7 +116,11 @@ export const Contact = () => {
             shadow="base"
           >
             <Formik<FormValues>
-              initialValues={{ name: undefined, email: undefined, message: undefined }}
+              initialValues={{
+                name: undefined,
+                email: undefined,
+                message: undefined,
+              }}
               onSubmit={sendEmail}
             >
               {(props) => (
@@ -113,7 +133,12 @@ export const Contact = () => {
                           <InputLeftElement>
                             <BsPerson />
                           </InputLeftElement>
-                          <Input {...field} type="text" id="name" placeholder="Your Name" />
+                          <Input
+                            {...field}
+                            type="text"
+                            id="name"
+                            placeholder="Your Name"
+                          />
                         </InputGroup>
                       </FormControl>
                     )}
@@ -126,7 +151,12 @@ export const Contact = () => {
                           <InputLeftElement>
                             <MdOutlineEmail />
                           </InputLeftElement>
-                          <Input {...field} id="email" type="email" placeholder="Your Email" />
+                          <Input
+                            {...field}
+                            id="email"
+                            type="email"
+                            placeholder="Your Email"
+                          />
                         </InputGroup>
                       </FormControl>
                     )}
@@ -135,7 +165,13 @@ export const Contact = () => {
                     {({ field }: { field: Record<string, unknown> }) => (
                       <FormControl isRequired marginBottom={5}>
                         <FormLabel>Message</FormLabel>
-                        <Textarea {...field} id="message" placeholder="Your Message" rows={6} resize="none" />
+                        <Textarea
+                          {...field}
+                          id="message"
+                          placeholder="Your Message"
+                          rows={6}
+                          resize="none"
+                        />
                       </FormControl>
                     )}
                   </Field>

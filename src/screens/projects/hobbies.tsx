@@ -1,11 +1,7 @@
-import React, { FC, useEffect, useState } from 'react';
-import ReactJson from 'react-json-view';
+import React from 'react';
 import {
   AspectRatio,
-  Box,
-  Button,
   Code,
-  Container,
   Flex,
   Spinner,
   Stack,
@@ -13,58 +9,14 @@ import {
   VStack,
   useColorModeValue,
 } from '@chakra-ui/react';
-import { ExternalLink, Feature, Libs, Project, SecondaryLibs, Socials } from '@components';
-
-const Trivia: FC = () => {
-  const [questions, setQ] = useState<Record<string, unknown>[]>([]),
-    [isLoading, setLoading] = useState(false),
-    getQuestions = async () => {
-      try {
-        setLoading(true);
-        const raw = await fetch('https://trivia-art.herokuapp.com/api/questions', {
-            headers: {
-              Accept: 'application/json',
-            },
-          }),
-          items = (await raw.json()) as { result?: Record<string, unknown>[] };
-        if (items?.result?.length) {
-          setQ(items.result);
-        }
-      } catch (error) {
-        //
-      } finally {
-        setLoading(false);
-      }
-    };
-
-  useEffect(() => {
-    void getQuestions();
-  }, []);
-
-  return (
-    <Container bgColor={useColorModeValue('primary.300', 'primary.700')} borderRadius={10}>
-      <Button onClick={() => void getQuestions()} isLoading={isLoading} m={5}>
-        New questions
-      </Button>
-      <Box>
-        {isLoading ? (
-          <Spinner thickness="4px" speed="1.85s" emptyColor="primary.200" color="primary.500" size="xl" />
-        ) : (
-          questions.length >= 1 && (
-            <ReactJson
-              src={questions}
-              collapsed={1}
-              theme={'monokai'}
-              displayDataTypes={false}
-              name={'trivia'}
-              style={{ borderRadius: 10 }}
-            />
-          )
-        )}
-      </Box>
-    </Container>
-  );
-};
+import {
+  ExternalLink,
+  Feature,
+  Libs,
+  Project,
+  SecondaryLibs,
+  Socials,
+} from '@components';
 
 export const hobbies = (
   isFrameLoading: boolean,
@@ -91,17 +43,29 @@ export const hobbies = (
       <Feature
         key={'DerpAIRepo'}
         icon={<Socials.GitHub to={'https://github.com/petarzarkov/derp.ai'} />}
-        content={<ExternalLink to={'https://github.com/petarzarkov/derp.ai'} text={'derp.ai.repo'} />}
+        content={
+          <ExternalLink
+            to={'https://github.com/petarzarkov/derp.ai'}
+            text={'derp.ai.repo'}
+          />
+        }
       />,
     ],
     preview: (
       <AspectRatio w={400} h={isFrameLoading ? 400 : 600}>
         <>
           {isFrameLoading && (
-            <Spinner thickness="4px" speed="1.85s" emptyColor="primary.200" color="primary.500" size="xs" />
+            <Spinner
+              thickness="4px"
+              speed="1.85s"
+              emptyColor="primary.200"
+              color="primary.500"
+              size="xs"
+            />
           )}
           <iframe
             src="https://derp.ai.petarzarkov.com/"
+            title="Derp AI, live demo"
             style={{ borderRadius: 15 }}
             onLoad={() => setFrameLoading(false)}
             scrolling="no"
@@ -114,7 +78,11 @@ export const hobbies = (
     title: 'Wave Simulator',
     subTitle: 'canvas',
     description: 'simulate a string wave using the wave equation',
-    devStack: [Libs.NodeJS.icon, Libs.Typescript.icon, Libs.JavaScript.icon].map((devIcon, indx) =>
+    devStack: [
+      Libs.NodeJS.icon,
+      Libs.Typescript.icon,
+      Libs.JavaScript.icon,
+    ].map((devIcon, indx) =>
       React.createElement(devIcon, { key: `${indx}-rocket-dev-stack` }),
     ),
     content: (
@@ -145,17 +113,29 @@ export const hobbies = (
       <Feature
         key={'WaveSimRepo'}
         icon={<Socials.GitHub to={'https://github.com/petarzarkov/wave-sim'} />}
-        content={<ExternalLink to={'https://github.com/petarzarkov/wave-sim'} text={'repo'} />}
+        content={
+          <ExternalLink
+            to={'https://github.com/petarzarkov/wave-sim'}
+            text={'repo'}
+          />
+        }
       />,
     ],
     preview: (
       <AspectRatio w={400} h={isFrameLoading ? 400 : 600}>
         <>
           {isFrameLoading && (
-            <Spinner thickness="4px" speed="1.85s" emptyColor="primary.200" color="primary.500" size="xs" />
+            <Spinner
+              thickness="4px"
+              speed="1.85s"
+              emptyColor="primary.200"
+              color="primary.500"
+              size="xs"
+            />
           )}
           <iframe
             src="https://petarzarkov.github.io/wave-sim/"
+            title="Wave Simulator, live demo"
             style={{ borderRadius: 15 }}
             onLoad={() => setFrameLoading(false)}
             scrolling="no"
@@ -167,7 +147,8 @@ export const hobbies = (
   {
     title: '💫 Wisdoms App',
     subTitle: 'API',
-    description: 'NestJS + basic html, developed to spew jokes in english/bulgarian.',
+    description:
+      'NestJS + basic html, developed to spew jokes in english/bulgarian.',
     devStack: [
       <Libs.NodeJS.icon key={'NodeW'} />,
       <Libs.Typescript.icon key={'TSW'} />,
@@ -180,18 +161,32 @@ export const hobbies = (
     features: [
       <Feature
         key={'WisdomsRepo'}
-        icon={<Socials.GitHub to={'https://github.com/petarzarkov/wisdoms-nest'} />}
-        content={<ExternalLink to={'https://github.com/petarzarkov/wisdoms-nest'} text={'repo'} />}
+        icon={
+          <Socials.GitHub to={'https://github.com/petarzarkov/wisdoms-nest'} />
+        }
+        content={
+          <ExternalLink
+            to={'https://github.com/petarzarkov/wisdoms-nest'}
+            text={'repo'}
+          />
+        }
       />,
     ],
     preview: (
       <AspectRatio w={400} h={isFrameLoading ? 400 : 600}>
         <>
           {isFrameLoading && (
-            <Spinner thickness="4px" speed="1.85s" emptyColor="primary.200" color="primary.500" size="xs" />
+            <Spinner
+              thickness="4px"
+              speed="1.85s"
+              emptyColor="primary.200"
+              color="primary.500"
+              size="xs"
+            />
           )}
           <iframe
             src="https://wisdoms.petarzarkov.com/"
+            title="Wisdoms App, live demo"
             style={{ borderRadius: 15 }}
             onLoad={() => setFrameLoading(false)}
             scrolling="no"
@@ -203,63 +198,100 @@ export const hobbies = (
   {
     title: '🔥 @toplo ',
     subTitle: 'npm packages',
-    description: '@toplo npm packages monorepo - various util packages with type definition inference',
+    description:
+      '@toplo npm packages monorepo - various util packages with type definition inference',
     devStack: [
       <Libs.NodeJS.icon key={'NodeHot'} />,
       <Libs.Typescript.icon key={'TSH'} />,
       <Libs.JavaScript.icon key={'JSH'} />,
-      <SecondaryLibs.npm.icon key={'npmH'} to={'https://www.npmjs.com/search?q=keywords:@toplo'} />,
+      <SecondaryLibs.npm.icon
+        key={'npmH'}
+        to={'https://www.npmjs.com/search?q=keywords:@toplo'}
+      />,
       <SecondaryLibs.ESLint.icon key={'EslintH'} />,
       <SecondaryLibs.Jest.icon key={'jesth'} />,
     ],
     features: [
       <Feature
         key={'@toplo-desc'}
-        icon={<Socials.GitHub to={'https://github.com/petarzarkov/toplo/blob/main/README.md'} />}
+        icon={
+          <Socials.GitHub
+            to={'https://github.com/petarzarkov/toplo/blob/main/README.md'}
+          />
+        }
         content={
           <Code>
-            Various npm packages with different use cases e.g. utilities for http requests. Url manipulation and
-            building. Logger. Object utils. Promise utils.
+            Various npm packages with different use cases e.g. utilities for
+            http requests. Url manipulation and building. Logger. Object utils.
+            Promise utils.
           </Code>
         }
       />,
       <Feature
         key={'@toplo/api'}
-        icon={<SecondaryLibs.npm.icon to={'https://www.npmjs.com/package/@toplo/api'} />}
+        icon={
+          <SecondaryLibs.npm.icon
+            to={'https://www.npmjs.com/package/@toplo/api'}
+          />
+        }
         content={
           <div>
             <Code>Various NodeJS API utils with TS support</Code>
-            <ExternalLink to={'https://www.npmjs.com/package/@toplo/api'} text={'npm @toplo/api'} />
+            <ExternalLink
+              to={'https://www.npmjs.com/package/@toplo/api'}
+              text={'npm @toplo/api'}
+            />
           </div>
         }
       />,
       <Feature
         key={'@toplo/common'}
-        icon={<SecondaryLibs.npm.icon to={'https://www.npmjs.com/package/@toplo/common'} />}
+        icon={
+          <SecondaryLibs.npm.icon
+            to={'https://www.npmjs.com/package/@toplo/common'}
+          />
+        }
         content={
           <div>
             <Code>Common @toplo stuff</Code>
-            <ExternalLink to={'https://www.npmjs.com/package/@toplo/common'} text={'npm @toplo/common'} />
+            <ExternalLink
+              to={'https://www.npmjs.com/package/@toplo/common'}
+              text={'npm @toplo/common'}
+            />
           </div>
         }
       />,
       <Feature
         key={'@toplo/components'}
-        icon={<SecondaryLibs.npm.icon to={'https://www.npmjs.com/package/@toplo/components'} />}
+        icon={
+          <SecondaryLibs.npm.icon
+            to={'https://www.npmjs.com/package/@toplo/components'}
+          />
+        }
         content={
           <div>
             <Code>@toplo React components using ChakraUI</Code>
-            <ExternalLink to={'https://www.npmjs.com/package/@toplo/components'} text={'npm @toplo/components'} />
+            <ExternalLink
+              to={'https://www.npmjs.com/package/@toplo/components'}
+              text={'npm @toplo/components'}
+            />
           </div>
         }
       />,
       <Feature
         key={'@toplo/db'}
-        icon={<SecondaryLibs.npm.icon to={'https://www.npmjs.com/package/@toplo/db'} />}
+        icon={
+          <SecondaryLibs.npm.icon
+            to={'https://www.npmjs.com/package/@toplo/db'}
+          />
+        }
         content={
           <div>
             <Code>toplo db utils</Code>
-            <ExternalLink to={'https://www.npmjs.com/package/@toplo/db'} text={'npm @toplo/db'} />
+            <ExternalLink
+              to={'https://www.npmjs.com/package/@toplo/db'}
+              text={'npm @toplo/db'}
+            />
           </div>
         }
       />,
@@ -284,13 +316,22 @@ export const hobbies = (
             />
           </a>
           <a href="https://packagephobia.now.sh/result?p=@toplo/common">
-            <img src="https://badgen.net/packagephobia/install/@toplo/common" alt="Current version" />
+            <img
+              src="https://badgen.net/packagephobia/install/@toplo/common"
+              alt="Current version"
+            />
           </a>
           <a href="https://www.npmjs.com/package/@toplo/common">
-            <img src="https://img.shields.io/npm/v/@toplo/common" alt="Install size" />
+            <img
+              src="https://img.shields.io/npm/v/@toplo/common"
+              alt="Install size"
+            />
           </a>
           <a href="https://github.com/petarzarkov/toplo/blob/main/LICENSE">
-            <img src="https://img.shields.io/github/license/petarzarkov/toplo" alt="License" />
+            <img
+              src="https://img.shields.io/github/license/petarzarkov/toplo"
+              alt="License"
+            />
           </a>
         </VStack>
       </Flex>
@@ -308,34 +349,54 @@ export const hobbies = (
       SecondaryLibs.Fastify.icon,
       SecondaryLibs.ESLint.icon,
       SecondaryLibs.Redis.icon,
-    ].map((devIcon, indx) => React.createElement(devIcon, { key: `${indx}-rocket-dev-stack` })),
+    ].map((devIcon, indx) =>
+      React.createElement(devIcon, { key: `${indx}-rocket-dev-stack` }),
+    ),
     features: [
       <Feature
         key={'TriviaRepo'}
-        icon={<Socials.GitHub to={'https://github.com/petarzarkov/trivia-art'} />}
-        content={<ExternalLink to={'https://github.com/petarzarkov/trivia-art'} text={'repo'} />}
+        icon={
+          <Socials.GitHub to={'https://github.com/petarzarkov/trivia-art'} />
+        }
+        content={
+          <ExternalLink
+            to={'https://github.com/petarzarkov/trivia-art'}
+            text={'repo'}
+          />
+        }
       />,
       <Feature
         key={'TrSQ'}
         icon={<SecondaryLibs.Sequelize.icon />}
         content={
           <Text fontWeight={600}>
-            Sequelize: used for DB migrations, layer over PostgeSQL, and Object-Relational Mapping
+            Sequelize: used for DB migrations, layer over PostgeSQL, and
+            Object-Relational Mapping
           </Text>
         }
       />,
       <Feature
         key={'TrFast'}
         icon={<SecondaryLibs.Fastify.icon />}
-        content={<Text fontWeight={600}>Fastify: used for its low-overhead server, routes, validations, and auth</Text>}
+        content={
+          <Text fontWeight={600}>
+            Fastify: used for its low-overhead server, routes, validations, and
+            auth
+          </Text>
+        }
       />,
       <Feature
         key={'TrSwag'}
         icon={<SecondaryLibs.Swagger.icon />}
-        content={<ExternalLink to={'https://trivia-art.herokuapp.com/documentation'} text={'Swagger Docs'} />}
+        content={
+          <ExternalLink
+            to={'https://trivia-art.herokuapp.com/documentation'}
+            text={'Swagger Docs'}
+          />
+        }
       />,
     ],
-    preview: <Trivia />,
+    previewImg: 'images/img5.jpg',
   },
   {
     title: '🕹️ Impossible Quiz',
@@ -351,18 +412,35 @@ export const hobbies = (
     features: [
       <Feature
         key={'IQGplay'}
-        icon={<SecondaryLibs.GooglePlay.icon to={'https://play.google.com/store/apps/details?id=com.impossiblequiz'} />}
+        icon={
+          <SecondaryLibs.GooglePlay.icon
+            to={
+              'https://play.google.com/store/apps/details?id=com.impossiblequiz'
+            }
+          />
+        }
         content={
           <ExternalLink
-            to={'https://play.google.com/store/apps/details?id=com.impossiblequiz'}
+            to={
+              'https://play.google.com/store/apps/details?id=com.impossiblequiz'
+            }
             text={'Get it on Google Play'}
           />
         }
       />,
       <Feature
         key={'IQRepo'}
-        icon={<Socials.GitHub to={'https://github.com/petarzarkov/rn-impossible-quiz'} />}
-        content={<ExternalLink to={'https://github.com/petarzarkov/rn-impossible-quiz'} text={'repo'} />}
+        icon={
+          <Socials.GitHub
+            to={'https://github.com/petarzarkov/rn-impossible-quiz'}
+          />
+        }
+        content={
+          <ExternalLink
+            to={'https://github.com/petarzarkov/rn-impossible-quiz'}
+            text={'repo'}
+          />
+        }
       />,
     ],
     previewImg: 'images/impQuiz.jpg',

@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { type FC } from 'react';
 import { ExternalLinkIcon } from '@chakra-ui/icons';
 import { Link } from '@chakra-ui/react';
 

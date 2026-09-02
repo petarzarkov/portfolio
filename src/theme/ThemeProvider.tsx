@@ -1,7 +1,11 @@
 import React from 'react';
 import { getData, storeData } from '@store';
-import { Context, ContextSettings, ProviderBase } from './ThemeContext';
-import { ColorTheme, themes } from '@theme';
+import {
+  Context,
+  type ContextSettings,
+  type ProviderBase,
+} from './ThemeContext';
+import { type ColorTheme, themes } from '@theme';
 import { ChakraProvider } from '@chakra-ui/react';
 
 export class ThemeProvider extends React.Component<{
@@ -44,7 +48,9 @@ export class ThemeProvider extends React.Component<{
           setTheme: this.setTheme,
         }}
       >
-        <ChakraProvider theme={this.state.colors}>{this.props.children}</ChakraProvider>
+        <ChakraProvider theme={this.state.colors}>
+          {this.props.children}
+        </ChakraProvider>
       </Context.Provider>
     );
   }

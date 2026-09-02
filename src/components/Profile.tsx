@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from 'react';
+import React, { type FC, type ReactNode } from 'react';
 import {
   Avatar,
   Box,
@@ -12,7 +12,7 @@ import {
   StatLabel,
   StatNumber,
   Text,
-  ThemingProps,
+  type ThemingProps,
   VStack,
   chakra,
   useColorModeValue,
@@ -24,7 +24,11 @@ const Card: FC<{
     name?: string;
     subName?: string;
     avatarSize?: ThemingProps<'Avatar'>['size'];
-  }> = ({ name = portfolio.name, subName = portfolio.title, avatarSize = 'xl' }) => (
+  }> = ({
+    name = portfolio.name,
+    subName = portfolio.title,
+    avatarSize = 'xl',
+  }) => (
     <Center>
       <Box
         maxW={'270px'}
@@ -34,7 +38,12 @@ const Card: FC<{
         rounded={'md'}
         overflow={'hidden'}
       >
-        <Image h={'120px'} w={'full'} src={'images/dice.jpg'} objectFit={'cover'} />
+        <Image
+          h={'120px'}
+          w={'full'}
+          src={'images/dice.jpg'}
+          objectFit={'cover'}
+        />
         <Flex justify={'center'} mt={-12}>
           <Avatar
             borderColor={useColorModeValue('primary.200', 'primary.700')}
@@ -71,14 +80,26 @@ const Card: FC<{
     >
       <VStack>
         <Box>
-          <StatLabel isTruncated fontSize={'xs'} color={useColorModeValue('primary.800', 'primary.500')}>
+          <StatLabel
+            isTruncated
+            fontSize={'xs'}
+            color={useColorModeValue('primary.800', 'primary.500')}
+          >
             {title}
           </StatLabel>
-          <StatNumber fontSize={'md'} fontWeight={'medium'} color={useColorModeValue('primary.500', 'primary.300')}>
+          <StatNumber
+            fontSize={'md'}
+            fontWeight={'medium'}
+            color={useColorModeValue('primary.500', 'primary.300')}
+          >
             {stat}
           </StatNumber>
         </Box>
-        <Box my={'auto'} color={useColorModeValue('primary.800', 'primary.200')} alignContent={'center'}>
+        <Box
+          my={'auto'}
+          color={useColorModeValue('primary.800', 'primary.200')}
+          alignContent={'center'}
+        >
           {icon}
         </Box>
       </VStack>
@@ -95,12 +116,22 @@ export const Profile: FC = () => {
     <Box minW={'10vh'}>
       <Card avatarSize={'2xl'} />
       <Box w={'full'} mx={'auto'} pt={1} px={{ base: 2, sm: 12, md: 17 }}>
-        <chakra.h1 textAlign={'center'} fontSize={'xl'} pb={1} fontWeight={'bold'}>
+        <chakra.h1
+          textAlign={'center'}
+          fontSize={'xl'}
+          pb={1}
+          fontWeight={'bold'}
+        >
           Current Focuses
         </chakra.h1>
         <SimpleGrid columns={{ base: 1, md: 3 }} spacing={{ base: 5, lg: 8 }}>
           {stats.map(({ stat, title, icon }, index) => (
-            <StatsCard key={`${title}-${index}`} title={title} stat={stat} icon={icon} />
+            <StatsCard
+              key={`${title}-${index}`}
+              title={title}
+              stat={stat}
+              icon={icon}
+            />
           ))}
         </SimpleGrid>
       </Box>

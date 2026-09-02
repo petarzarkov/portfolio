@@ -1,4 +1,4 @@
-import React, { FC, useMemo, useState } from 'react';
+import React, { type FC, useMemo, useState } from 'react';
 import { Box, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react';
 import { CustomTab, Project, Title } from '@components';
 import { useThemeProvider } from '@hooks';
@@ -9,7 +9,10 @@ export const Projects: FC = () => {
   const [isFrameLoading, setFrameLoading] = useState(true),
     [isRLoading, setRLoading] = useState(true),
     { theme } = useThemeProvider(),
-    hobbyProjects = useMemo(() => hobbies(isFrameLoading, setFrameLoading), [isFrameLoading]),
+    hobbyProjects = useMemo(
+      () => hobbies(isFrameLoading, setFrameLoading),
+      [isFrameLoading],
+    ),
     workProjects = useMemo(() => work(isRLoading, setRLoading), [isRLoading]);
 
   return (

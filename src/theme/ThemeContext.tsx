@@ -1,6 +1,6 @@
 import React from 'react';
-import { Expand } from '@contracts';
-import { ColorTheme } from '@theme';
+import { type Expand } from '@contracts';
+import { type ColorTheme } from '@theme';
 
 export interface ContextSettings {
   theme: ColorTheme;

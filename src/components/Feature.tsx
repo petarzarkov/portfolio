@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from 'react';
+import React, { type FC, type ReactElement } from 'react';
 import { Box, Flex, Stack } from '@chakra-ui/react';
 
 export const Feature: FC<{

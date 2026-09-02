@@ -1,4 +1,4 @@
-import React, { FC, useMemo } from 'react';
+import React, { type FC, useMemo } from 'react';
 import {
   Avatar,
   Box,
@@ -24,13 +24,17 @@ import { CloseIcon, HamburgerIcon, MoonIcon, SunIcon } from '@chakra-ui/icons';
 import { routes } from '@config';
 import { NavLink, Profile } from '@components';
 import { useThemeProvider } from '@hooks';
-import { ColorTheme, themes } from '@theme';
+import { type ColorTheme, themes } from '@theme';
 import { BsPaletteFill } from 'react-icons/bs';
 
 const Links = Object.entries(routes);
 
 export const NavBar: FC = () => {
-  const { isOpen: isPalOpen, onOpen: palOnOpen, onClose: palOnClose } = useDisclosure(),
+  const {
+      isOpen: isPalOpen,
+      onOpen: palOnOpen,
+      onClose: palOnClose,
+    } = useDisclosure(),
     { theme, setTheme } = useThemeProvider(),
     { toggleColorMode } = useColorMode(),
     { isOpen, onOpen, onClose } = useDisclosure(),
@@ -41,7 +45,7 @@ export const NavBar: FC = () => {
             {info.name}
           </NavLink>
         )),
-      Links,
+      [],
     );
 
   return (
@@ -67,7 +71,13 @@ export const NavBar: FC = () => {
             {useColorModeValue(<MoonIcon />, <SunIcon />)}
           </Button>
           <Menu isLazy lazyBehavior="keepMounted">
-            <MenuButton as={Button} rounded={'full'} variant={'link'} cursor={'pointer'} minW={0}>
+            <MenuButton
+              as={Button}
+              rounded={'full'}
+              variant={'link'}
+              cursor={'pointer'}
+              minW={0}
+            >
               <Avatar
                 borderColor={useColorModeValue('primary.800', 'primary.100')}
                 borderWidth={1}
@@ -94,7 +104,10 @@ export const NavBar: FC = () => {
       <Drawer placement={'top'} onClose={palOnClose} isOpen={isPalOpen}>
         <DrawerOverlay />
         <DrawerContent>
-          <DrawerHeader borderBottomWidth="1px" backgroundColor={useColorModeValue(`${theme}.300`, `${theme}.500`)}>
+          <DrawerHeader
+            borderBottomWidth="1px"
+            backgroundColor={useColorModeValue(`${theme}.300`, `${theme}.500`)}
+          >
             Pick your theme
           </DrawerHeader>
           <DrawerCloseButton />
@@ -107,7 +120,11 @@ export const NavBar: FC = () => {
                   variant="outline"
                   key={`${tt}-${indx}`}
                   colorScheme={tt}
-                  bgColor={theme === tt ? useColorModeValue(`${tt}.300`, `${tt}.500`) : 'transparent'}
+                  bgColor={
+                    theme === tt
+                      ? useColorModeValue(`${tt}.300`, `${tt}.500`)
+                      : 'transparent'
+                  }
                   onClick={() => setTheme(tt as ColorTheme)}
                 >
                   {tt}

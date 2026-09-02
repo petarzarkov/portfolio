@@ -1,5 +1,15 @@
-import { FC, createElement, ReactElement } from 'react';
-import { Flex, HStack, SimpleGrid, Stack, TabList, TabPanel, TabPanels, Tabs, Text } from '@chakra-ui/react';
+import { type FC, createElement, type ReactElement } from 'react';
+import {
+  Flex,
+  HStack,
+  SimpleGrid,
+  Stack,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
+  Text,
+} from '@chakra-ui/react';
 import { CiLibs, CustomTab, Libs, SecondaryLibs, Title } from '@components';
 import { useThemeProvider } from '@hooks';
 import { SkillLevel } from '@contracts';
@@ -46,7 +56,14 @@ const Skill: FC<{
   };
   return (
     <Stack>
-      <Flex w={12} h={12} align={'center'} justify={'center'} rounded={'full'} mb={1}>
+      <Flex
+        w={12}
+        h={12}
+        align={'center'}
+        justify={'center'}
+        rounded={'full'}
+        mb={1}
+      >
         {icon}
       </Flex>
       <Text fontWeight={600}>{title}</Text>
@@ -69,7 +86,12 @@ type LibEntry = [
 ];
 
 const parseLib = (lib: LibEntry, index: number) => (
-  <Skill key={index} title={lib[1]?.title || lib[0]} icon={createElement(lib[1].icon)} level={lib[1].level} />
+  <Skill
+    key={index}
+    title={lib[1]?.title || lib[0]}
+    icon={createElement(lib[1].icon)}
+    level={lib[1].level}
+  />
 );
 
 export const Skills: FC = () => {
@@ -87,8 +109,16 @@ export const Skills: FC = () => {
       </TabList>
       <TabPanels>
         {[
-          { title: 'Primary', sub: 'Programming languages and supersets.', skills },
-          { title: 'Secondary', sub: 'Libraries, packages, tools.', skills: skillsSecondary },
+          {
+            title: 'Primary',
+            sub: 'Programming languages and supersets.',
+            skills,
+          },
+          {
+            title: 'Secondary',
+            sub: 'Libraries, packages, tools.',
+            skills: skillsSecondary,
+          },
           {
             title: 'CI/CD',
             sub: 'Continuous Integration, Continuous Delivery, Continuous Deployment.',

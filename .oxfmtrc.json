@@ -1,0 +1,16 @@
+{
+  "printWidth": 80,
+  "singleQuote": true,
+  "sortPackageJson": true,
+  "ignorePatterns": [
+    "dist",
+    "node_modules",
+    "coverage",
+    ".vscode",
+    ".idea",
+    ".env*",
+    "src/generated",
+    "public",
+    "bun.lock"
+  ]
+}

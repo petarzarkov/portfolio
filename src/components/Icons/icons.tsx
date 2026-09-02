@@ -1,15 +1,20 @@
-import React, { FC } from 'react';
+import React, { type FC } from 'react';
 import { portfolio } from '@config';
 import { BsGithub, BsLinkedin, BsTwitter } from 'react-icons/bs';
 import { IconLink as IconLinkBase } from '@components';
-import { Flex, Icon as IconBase, Image as ImageBase, useColorModeValue } from '@chakra-ui/react';
+import {
+  Flex,
+  Icon as IconBase,
+  Image as ImageBase,
+  useColorModeValue,
+} from '@chakra-ui/react';
 import {
   SiBamboo,
   SiBitbucket,
   SiConfluence,
   SiCplusplus,
   SiSharp,
-  SiCss3,
+  SiCss,
   SiCucumber,
   SiDatadog,
   SiDocker,
@@ -78,14 +83,29 @@ export const Socials = {
       }}
     />
   ),
-  LinkedIn: () => <IconLink to={portfolio.linkedin} icon={<BsLinkedin size="28px" />} label={'linkedin'} />,
-  Twitter: () => <IconLink to={portfolio.twitter} icon={<BsTwitter size="28px" />} label={'twitter'} />,
+  LinkedIn: () => (
+    <IconLink
+      to={portfolio.linkedin}
+      icon={<BsLinkedin size="28px" />}
+      label={'linkedin'}
+    />
+  ),
+  Twitter: () => (
+    <IconLink
+      to={portfolio.twitter}
+      icon={<BsTwitter size="28px" />}
+      label={'twitter'}
+    />
+  ),
 } as const;
 
 export const Libs = {
   NodeJS: {
     icon: () => (
-      <IconLink icon={<Icon as={IoLogoNodejs} w={10} h={10} color={'green.600'} />} to={'https://nodejs.org/en/'} />
+      <IconLink
+        icon={<Icon as={IoLogoNodejs} w={10} h={10} color={'green.600'} />}
+        to={'https://nodejs.org/en/'}
+      />
     ),
     level: SkillLevel.Advanced,
   },
@@ -121,12 +141,20 @@ export const Libs = {
     level: SkillLevel.Beginner,
   },
   React: {
-    icon: () => <IconLink icon={<Icon as={SiReact} w={10} h={10} color={'blue.200'} />} to={'https://reactjs.org/'} />,
+    icon: () => (
+      <IconLink
+        icon={<Icon as={SiReact} w={10} h={10} color={'blue.200'} />}
+        to={'https://reactjs.org/'}
+      />
+    ),
     level: SkillLevel.Advanced,
   },
   ReactNative: {
     icon: () => (
-      <IconLink icon={<Icon as={SiReact} w={10} h={10} color={'blue.300'} />} to={'https://reactnative.dev/'} />
+      <IconLink
+        icon={<Icon as={SiReact} w={10} h={10} color={'blue.300'} />}
+        to={'https://reactnative.dev/'}
+      />
     ),
     level: SkillLevel.Intermediate,
   },
@@ -140,8 +168,16 @@ export const Libs = {
     level: SkillLevel.Beginner,
     title: '.NET',
   },
-  Csharp: { icon: () => <Icon as={SiSharp} w={10} h={10} color={'blue.700'} />, level: SkillLevel.Noob, title: 'C#' },
-  Cpp: { icon: () => <Icon as={SiCplusplus} w={10} h={10} color={'blue.700'} />, level: SkillLevel.Noob, title: 'C++' },
+  Csharp: {
+    icon: () => <Icon as={SiSharp} w={10} h={10} color={'blue.700'} />,
+    level: SkillLevel.Noob,
+    title: 'C#',
+  },
+  Cpp: {
+    icon: () => <Icon as={SiCplusplus} w={10} h={10} color={'blue.700'} />,
+    level: SkillLevel.Noob,
+    title: 'C++',
+  },
   GO: {
     icon: () => (
       <Image src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Go_Logo_Blue.svg/215px-Go_Logo_Blue.svg.png" />
@@ -162,71 +198,129 @@ export const SecondaryLibs = {
   },
   Sequelize: {
     icon: () => (
-      <IconLink icon={<Icon as={SiSequelize} w={10} h={10} color={'blue.400'} />} to={'https://sequelize.org/'} />
+      <IconLink
+        icon={<Icon as={SiSequelize} w={10} h={10} color={'blue.400'} />}
+        to={'https://sequelize.org/'}
+      />
     ),
     level: SkillLevel.Advanced,
   },
-  Prisma: { icon: () => <Icon as={SiPrisma} w={10} h={10} color={'blue.800'} />, level: SkillLevel.Beginner },
+  Prisma: {
+    icon: () => <Icon as={SiPrisma} w={10} h={10} color={'blue.800'} />,
+    level: SkillLevel.Beginner,
+  },
   NextJS: {
-    icon: () => <Icon as={SiNextdotjs} w={10} h={10} color={'gray.600'} to={'https://nextjs.org/'} />,
+    icon: () => (
+      <Icon
+        as={SiNextdotjs}
+        w={10}
+        h={10}
+        color={'gray.600'}
+        to={'https://nextjs.org/'}
+      />
+    ),
     level: SkillLevel.Noob,
   },
   NestJS: {
-    icon: () => <IconLink icon={<Icon as={SiNestjs} w={10} h={10} color={'red.600'} />} to={'https://nestjs.com/'} />,
+    icon: () => (
+      <IconLink
+        icon={<Icon as={SiNestjs} w={10} h={10} color={'red.600'} />}
+        to={'https://nestjs.com/'}
+      />
+    ),
     level: SkillLevel.Advanced,
   },
   Fastify: {
     icon: () => (
-      <IconLink icon={<Icon as={SiFastify} w={10} h={10} color={'gray.600'} />} to={'https://www.fastify.io/'} />
+      <IconLink
+        icon={<Icon as={SiFastify} w={10} h={10} color={'gray.600'} />}
+        to={'https://www.fastify.io/'}
+      />
     ),
     level: SkillLevel.Intermediate,
   },
-  MySQL: { icon: () => <Icon as={GrMysql} w={10} h={10} color={'blue.500'} />, level: SkillLevel.Intermediate },
+  MySQL: {
+    icon: () => <Icon as={GrMysql} w={10} h={10} color={'blue.500'} />,
+    level: SkillLevel.Intermediate,
+  },
   Postgres: {
     icon: () => (
-      <IconLink icon={<Icon as={SiPostgresql} w={10} h={10} color={'blue.600'} />} to={'https://www.postgresql.org/'} />
+      <IconLink
+        icon={<Icon as={SiPostgresql} w={10} h={10} color={'blue.600'} />}
+        to={'https://www.postgresql.org/'}
+      />
     ),
     level: SkillLevel.Advanced,
   },
   TypeORM: {
     icon: () => (
-      <IconLink icon={<Icon as={SiTypeorm} w={10} h={10} color={'orange.600'} />} to={'https://typeorm.io/'} />
+      <IconLink
+        icon={<Icon as={SiTypeorm} w={10} h={10} color={'orange.600'} />}
+        to={'https://typeorm.io/'}
+      />
     ),
     level: SkillLevel.Advanced,
   },
   Redis: {
     icon: () => (
-      <Image w={10} h={10} src="https://pbs.twimg.com/profile_images/1285653263824691205/mu4nJ7Gb_normal.png" />
+      <Image
+        w={10}
+        h={10}
+        src="https://pbs.twimg.com/profile_images/1285653263824691205/mu4nJ7Gb_normal.png"
+      />
     ),
     level: SkillLevel.Advanced,
   },
   Koa: {
-    icon: () => <IconLink icon={<Image w={10} src="images/koa.jpg" />} to={'https://koajs.com/'} />,
+    icon: () => (
+      <IconLink
+        icon={<Image w={10} src="images/koa.jpg" />}
+        to={'https://koajs.com/'}
+      />
+    ),
     level: SkillLevel.Advanced,
   },
-  SocketIO: { icon: () => <Icon as={SiSocketdotio} w={10} h={10} color={'gray.800'} />, level: SkillLevel.Advanced },
+  SocketIO: {
+    icon: () => <Icon as={SiSocketdotio} w={10} h={10} color={'gray.800'} />,
+    level: SkillLevel.Advanced,
+  },
   Swagger: {
     icon: () => (
-      <IconLink icon={<Icon as={SiSwagger} w={10} h={10} color={'green.400'} />} to={'https://swagger.io/'} />
+      <IconLink
+        icon={<Icon as={SiSwagger} w={10} h={10} color={'green.400'} />}
+        to={'https://swagger.io/'}
+      />
     ),
     level: SkillLevel.Advanced,
   },
   Jest: {
     icon: () => (
-      <IconLink icon={<Image w={10} h={10} src="https://jestjs.io/img/jest.png" />} to={'https://jestjs.io'} />
+      <IconLink
+        icon={<Image w={10} h={10} src="https://jestjs.io/img/jest.png" />}
+        to={'https://jestjs.io'}
+      />
     ),
     level: SkillLevel.Advanced,
   },
   ESLint: {
     icon: () => (
-      <IconLink icon={<Icon as={SiEslint} w={10} h={10} color={'purple.800'} />} to={'https://eslint.org/'} />
+      <IconLink
+        icon={<Icon as={SiEslint} w={10} h={10} color={'purple.800'} />}
+        to={'https://eslint.org/'}
+      />
     ),
     level: SkillLevel.Advanced,
   },
-  Express: { icon: () => <Icon as={SiExpress} w={10} h={10} color={'gray.600'} />, level: SkillLevel.Advanced },
+  Express: {
+    icon: () => <Icon as={SiExpress} w={10} h={10} color={'gray.600'} />,
+    level: SkillLevel.Advanced,
+  },
   npm: {
     icon: ({ to }: { to?: string }) => (
-      <IconLink icon={<Icon as={FaNpm} w={10} h={10} color={'red.600'} />} to={to || 'https://www.npmjs.com/'} />
+      <IconLink
+        icon={<Icon as={FaNpm} w={10} h={10} color={'red.600'} />}
+        to={to || 'https://www.npmjs.com/'}
+      />
     ),
     level: SkillLevel.Advanced,
   },
@@ -242,7 +336,7 @@ export const SecondaryLibs = {
   css: {
     icon: () => (
       <IconLink
-        icon={<Icon as={SiCss3} w={10} h={10} color={'teal.400'} />}
+        icon={<Icon as={SiCss} w={10} h={10} color={'teal.400'} />}
         to={'https://developer.mozilla.org/en-US/docs/Web/CSS'}
       />
     ),
@@ -251,7 +345,13 @@ export const SecondaryLibs = {
   GooglePlay: {
     icon: ({ to }: { to?: string }) => (
       <IconLink
-        icon={<Image w={10} h={10} src="https://www.gstatic.com/android/market_images/web/favicon_v2.ico" />}
+        icon={
+          <Image
+            w={10}
+            h={10}
+            src="https://www.gstatic.com/android/market_images/web/favicon_v2.ico"
+          />
+        }
         to={to || 'https://play.google.com/'}
       />
     ),
@@ -260,8 +360,14 @@ export const SecondaryLibs = {
 } as const;
 
 export const CiLibs = {
-  DataDog: { icon: () => <Icon as={SiDatadog} w={10} h={10} color={'purple.600'} />, level: SkillLevel.Intermediate },
-  Docker: { icon: () => <Icon as={SiDocker} w={10} h={10} color={'blue.400'} />, level: SkillLevel.Advanced },
+  DataDog: {
+    icon: () => <Icon as={SiDatadog} w={10} h={10} color={'purple.600'} />,
+    level: SkillLevel.Intermediate,
+  },
+  Docker: {
+    icon: () => <Icon as={SiDocker} w={10} h={10} color={'blue.400'} />,
+    level: SkillLevel.Advanced,
+  },
   Kubernetes: {
     icon: () => <Icon as={SiKubernetes} w={10} h={10} color={'blue.600'} />,
     level: SkillLevel.Intermediate,
@@ -270,13 +376,28 @@ export const CiLibs = {
     icon: () => <Icon as={SiOctopusdeploy} w={10} h={10} color={'blue.400'} />,
     level: SkillLevel.Advanced,
   },
-  Jenkins: { icon: () => <Icon as={FaJenkins} w={10} h={10} color={'red.400'} />, level: SkillLevel.Advanced },
+  Jenkins: {
+    icon: () => <Icon as={FaJenkins} w={10} h={10} color={'red.400'} />,
+    level: SkillLevel.Advanced,
+  },
   AWS: {
     icon: () => <Icon as={FaAws} w={10} h={10} color={'orange.400'} />,
     level: SkillLevel.Intermediate,
   },
-  Bamboo: { icon: () => <Icon as={SiBamboo} w={10} h={10} color={'blue.600'} />, level: SkillLevel.Advanced },
-  BitBucket: { icon: () => <Icon as={SiBitbucket} w={10} h={10} color={'blue.800'} />, level: SkillLevel.Advanced },
-  Confluence: { icon: () => <Icon as={SiConfluence} w={10} h={10} color={'blue.600'} />, level: SkillLevel.Advanced },
-  Jira: { icon: () => <Icon as={SiJira} w={10} h={10} color={'blue.600'} />, level: SkillLevel.Advanced },
+  Bamboo: {
+    icon: () => <Icon as={SiBamboo} w={10} h={10} color={'blue.600'} />,
+    level: SkillLevel.Advanced,
+  },
+  BitBucket: {
+    icon: () => <Icon as={SiBitbucket} w={10} h={10} color={'blue.800'} />,
+    level: SkillLevel.Advanced,
+  },
+  Confluence: {
+    icon: () => <Icon as={SiConfluence} w={10} h={10} color={'blue.600'} />,
+    level: SkillLevel.Advanced,
+  },
+  Jira: {
+    icon: () => <Icon as={SiJira} w={10} h={10} color={'blue.600'} />,
+    level: SkillLevel.Advanced,
+  },
 } as const;

@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from 'react';
+import React, { type FC, type ReactElement } from 'react';
 import {
   Container,
   Flex,
@@ -22,8 +22,24 @@ export const Project: FC<{
   devStack: ReactElement[];
   preview?: ReactElement;
   previewImg?: string;
-}> = ({ title, subTitle, description, content, features, preview, devStack, previewImg }) => (
-  <Container maxW={'5xl'} py={12} borderRadius={25} borderColor={'primary.400'} borderWidth={'thin'} mt={2}>
+}> = ({
+  title,
+  subTitle,
+  description,
+  content,
+  features,
+  preview,
+  devStack,
+  previewImg,
+}) => (
+  <Container
+    maxW={'5xl'}
+    py={12}
+    borderRadius={25}
+    borderColor={'primary.400'}
+    borderWidth={'thin'}
+    mt={2}
+  >
     <SimpleGrid columns={{ base: 1, md: 2 }} spacing={4}>
       <Stack spacing={4}>
         <Text
@@ -39,19 +55,34 @@ export const Project: FC<{
           {subTitle}
         </Text>
         <Title title={title} subTitle={description} />
-        <Stack spacing={4} divider={<StackDivider borderColor={useColorModeValue('primary.300', 'primary.700')} />}>
+        <Stack
+          spacing={4}
+          divider={
+            <StackDivider
+              borderColor={useColorModeValue('primary.300', 'primary.700')}
+            />
+          }
+        >
           {content}
           {features}
         </Stack>
         {devStack?.length && (
           <>
-            <Text color={useColorModeValue('primary.700', 'primary.300')} fontSize={'lg'} fontWeight={600}>
+            <Text
+              color={useColorModeValue('primary.700', 'primary.300')}
+              fontSize={'lg'}
+              fontWeight={600}
+            >
               {'Tech Stack'}
             </Text>
             <HStack
               wrap={'wrap'}
               spacing={6}
-              divider={<StackDivider borderColor={useColorModeValue('primary.300', 'primary.700')} />}
+              divider={
+                <StackDivider
+                  borderColor={useColorModeValue('primary.300', 'primary.700')}
+                />
+              }
             >
               {devStack}
             </HStack>
@@ -61,15 +92,31 @@ export const Project: FC<{
       <Flex>
         {preview ? (
           preview && previewImg ? (
-            <VStack divider={<StackDivider borderColor={useColorModeValue('primary.300', 'primary.700')} />}>
-              <Image rounded={'md'} alt={'feature image'} src={previewImg || 'images/img5.jpg'} objectFit={'cover'} />
+            <VStack
+              divider={
+                <StackDivider
+                  borderColor={useColorModeValue('primary.300', 'primary.700')}
+                />
+              }
+            >
+              <Image
+                rounded={'md'}
+                alt={'feature image'}
+                src={previewImg || 'images/img5.jpg'}
+                objectFit={'cover'}
+              />
               {preview}
             </VStack>
           ) : (
             preview
           )
         ) : (
-          <Image rounded={'md'} alt={'feature image'} src={previewImg || 'images/img5.jpg'} objectFit={'cover'} />
+          <Image
+            rounded={'md'}
+            alt={'feature image'}
+            src={previewImg || 'images/img5.jpg'}
+            objectFit={'cover'}
+          />
         )}
       </Flex>
     </SimpleGrid>

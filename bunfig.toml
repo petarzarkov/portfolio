@@ -1,0 +1,14 @@
+# Bun configuration
+# https://bun.sh/docs/runtime/bunfig
+
+[test]
+coverageDir = "coverage"
+coverageReporter = ["text", "lcov"]
+coverageSkipTestFiles = true
+# Generated from the GitHub/npm APIs by scripts/gen (docs/03-data-pipeline.md).
+# Counting a JSON snapshot's module against a coverage figure is noise.
+coveragePathIgnorePatterns = [
+  "**/src/generated/**",
+  "**/*.fixture.ts",
+  "**/dist/**",
+]

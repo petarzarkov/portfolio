@@ -16,6 +16,7 @@ dist-ssr
 cache
 .vscode/*
 !.vscode/extensions.json
+!.vscode/settings.json
 .idea
 .DS_Store
 *.suo
@@ -24,3 +25,12 @@ cache
 *.sln
 *.sw?
 .eslintcache
+
+# A stray `pnpm install` would silently re-introduce a second lockfile.
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
+
+coverage
+browser/.shots
+.wrangler
