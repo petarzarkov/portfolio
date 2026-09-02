@@ -148,22 +148,27 @@ export const aggregateLanguages = (
   limit = 8,
   threshold = 0.005,
 ): Languages => {
+  // Forks are somebody else's code. The `bun` fork alone is 26 MB of Zig, which
+  // read as 13% of everything written on this account and made Zig the second
+  // language on a skills map its owner has never written a line of.
+  const owned = repos.filter((repo) => !repo.isFork);
+
   const totals = new Map<
     string,
-    { bytes: number; color: string | null; repos: number }
+    { bytes: number; color: string | null; repos: Set<string> }
   >();
 
-  for (const repo of repos) {
+  for (const repo of owned) {
     for (const edge of repo.languages?.edges ?? []) {
       const found = totals.get(edge.node.name);
       if (found) {
         found.bytes += edge.size;
-        found.repos += 1;
+        found.repos.add(repo.name);
       } else {
         totals.set(edge.node.name, {
           bytes: edge.size,
           color: edge.node.color,
-          repos: 1,
+          repos: new Set([repo.name]),
         });
       }
     }
@@ -171,7 +176,7 @@ export const aggregateLanguages = (
 
   const totalBytes = [...totals.values()].reduce((sum, l) => sum + l.bytes, 0);
   if (totalBytes === 0) {
-    return { top: [], totalBytes: 0, repoCount: repos.length };
+    return { top: [], totalBytes: 0, repoCount: owned.length };
   }
 
   const ranked = [...totals.entries()]
@@ -180,7 +185,7 @@ export const aggregateLanguages = (
       bytes: value.bytes,
       share: value.bytes / totalBytes,
       color: value.color,
-      repos: value.repos,
+      repos: value.repos.size,
       proficiency: proficiency[name] ?? null,
     }))
     .sort((a, b) => b.bytes - a.bytes);
@@ -191,17 +196,27 @@ export const aggregateLanguages = (
   const tailShare = tailBytes / totalBytes;
 
   if (tail.length > 0 && tailShare > threshold) {
+    // Distinct repos, not the sum of the tail's counts: one repo with four tail
+    // languages is one repo, and summing read as 354 of a possible 155.
+    const tailNames = tail.map((l) => l.name);
+    const tailRepos = new Set<string>();
+    for (const [name, value] of totals) {
+      if (tailNames.includes(name)) {
+        for (const repo of value.repos) tailRepos.add(repo);
+      }
+    }
+
     top.push({
       name: 'Other',
       bytes: tailBytes,
       share: tailShare,
       color: '#64748b',
-      repos: tail.reduce((sum, l) => sum + l.repos, 0),
+      repos: tailRepos.size,
       proficiency: null,
     });
   }
 
-  return { top, totalBytes, repoCount: repos.length };
+  return { top, totalBytes, repoCount: owned.length };
 };
 
 /**

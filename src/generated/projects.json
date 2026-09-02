@@ -1,1 +1,906 @@
-[]
+[
+  {
+    "slug": "dunx",
+    "title": "dunx",
+    "headline": "NestJS-shaped dependency injection at Bun speed",
+    "description": "fastest web DI framework. NestJS-style structure at Bun speed. Constructor DI with no reflect-metadata, no experimentalDecorators, no JavaScript router.",
+    "tier": "flagship",
+    "pin": 1,
+    "repo": "https://github.com/petarzarkov/dunx",
+    "homepage": "https://petarzarkov.github.io/dunx",
+    "stars": 21,
+    "forks": 0,
+    "topics": [
+      "backend-framework",
+      "bun",
+      "dependency-injection",
+      "nestjs",
+      "oxc",
+      "typescript"
+    ],
+    "languages": [
+      {
+        "name": "TypeScript",
+        "bytes": 3410722,
+        "share": 0.9785482221735123,
+        "color": "#3178c6"
+      },
+      {
+        "name": "CSS",
+        "bytes": 42089,
+        "share": 0.012075483174254883,
+        "color": "#663399"
+      },
+      {
+        "name": "Python",
+        "bytes": 9090,
+        "share": 0.002607953195703792,
+        "color": "#3572A5"
+      },
+      {
+        "name": "C#",
+        "bytes": 7022,
+        "share": 0.0020146366710926318,
+        "color": "#7355dd"
+      },
+      {
+        "name": "Go",
+        "bytes": 4777,
+        "share": 0.0013705382195684282,
+        "color": "#00ADD8"
+      },
+      {
+        "name": "Rust",
+        "bytes": 3059,
+        "share": 0.0008776379346158304,
+        "color": "#dea584"
+      },
+      {
+        "name": "HTML",
+        "bytes": 2869,
+        "share": 0.0008231262616583254,
+        "color": "#e34c26"
+      },
+      {
+        "name": "Java",
+        "bytes": 2769,
+        "share": 0.0007944359074701649,
+        "color": "#b07219"
+      },
+      {
+        "name": "JavaScript",
+        "bytes": 2401,
+        "share": 0.0006888554040577341,
+        "color": "#f1e05a"
+      },
+      {
+        "name": "Shell",
+        "bytes": 694,
+        "share": 0.00019911105806583404,
+        "color": "#89e051"
+      }
+    ],
+    "license": "MIT",
+    "createdAt": "2026-07-27T05:07:34Z",
+    "pushedAt": "2026-09-02T10:13:02Z",
+    "release": {
+      "tag": "v3.1.3",
+      "publishedAt": "2026-08-30T11:52:02Z"
+    },
+    "npm": null,
+    "embed": {
+      "url": "https://petarzarkov.github.io/dunx",
+      "status": "live",
+      "code": 200,
+      "ms": 143,
+      "checkedAt": "2026-09-02T10:20:10.018Z"
+    },
+    "image": "https://opengraph.githubassets.com/fc34d368040336c4de573bf5298db88d98e53bf1d86907b630404ac943a0a9f9/petarzarkov/dunx",
+    "retiredAt": null,
+    "retiredNote": null,
+    "source": "github"
+  },
+  {
+    "slug": "beacon",
+    "title": "beacon",
+    "headline": null,
+    "description": "agent driven",
+    "tier": "active",
+    "pin": null,
+    "repo": "https://github.com/petarzarkov/beacon",
+    "homepage": null,
+    "stars": 0,
+    "forks": 0,
+    "topics": [],
+    "languages": [
+      {
+        "name": "TypeScript",
+        "bytes": 543351,
+        "share": 0.9931384286380128,
+        "color": "#3178c6"
+      },
+      {
+        "name": "Dockerfile",
+        "bytes": 2935,
+        "share": 0.005364600944974,
+        "color": "#384d54"
+      },
+      {
+        "name": "JavaScript",
+        "bytes": 526,
+        "share": 0.0009614242238692756,
+        "color": "#f1e05a"
+      },
+      {
+        "name": "HTML",
+        "bytes": 293,
+        "share": 0.000535546193143912,
+        "color": "#e34c26"
+      }
+    ],
+    "license": null,
+    "createdAt": "2026-08-31T18:38:52Z",
+    "pushedAt": "2026-09-02T09:48:25Z",
+    "release": null,
+    "npm": null,
+    "embed": null,
+    "image": "https://opengraph.githubassets.com/ea93efef5733dc5b891a9a321b81d692a319d0f5485c383ae6c63f612c2bdb6c/petarzarkov/beacon",
+    "retiredAt": null,
+    "retiredNote": null,
+    "source": "github"
+  },
+  {
+    "slug": "petarzarkov",
+    "title": "petarzarkov",
+    "headline": null,
+    "description": null,
+    "tier": "active",
+    "pin": null,
+    "repo": "https://github.com/petarzarkov/petarzarkov",
+    "homepage": null,
+    "stars": 1,
+    "forks": 0,
+    "topics": [],
+    "languages": [
+      {
+        "name": "TypeScript",
+        "bytes": 95511,
+        "share": 0.9232129911555749,
+        "color": "#3178c6"
+      },
+      {
+        "name": "HTML",
+        "bytes": 5021,
+        "share": 0.048533178676719343,
+        "color": "#e34c26"
+      },
+      {
+        "name": "JavaScript",
+        "bytes": 2047,
+        "share": 0.019786380551930792,
+        "color": "#f1e05a"
+      },
+      {
+        "name": "Shell",
+        "bytes": 876,
+        "share": 0.008467449615774975,
+        "color": "#89e051"
+      }
+    ],
+    "license": null,
+    "createdAt": "2022-03-22T12:56:31Z",
+    "pushedAt": "2026-09-02T04:03:40Z",
+    "release": null,
+    "npm": null,
+    "embed": null,
+    "image": "https://opengraph.githubassets.com/fb797aea53c4b1b336b317dd453c025ca984aeb0db6ad8bb545d5148012b3c2c/petarzarkov/petarzarkov",
+    "retiredAt": null,
+    "retiredNote": null,
+    "source": "github"
+  },
+  {
+    "slug": "arkv",
+    "title": "arkv",
+    "headline": null,
+    "description": "arkv bun monorepo npm packages",
+    "tier": "active",
+    "pin": null,
+    "repo": "https://github.com/petarzarkov/arkv",
+    "homepage": null,
+    "stars": 2,
+    "forks": 1,
+    "topics": [],
+    "languages": [
+      {
+        "name": "TypeScript",
+        "bytes": 818400,
+        "share": 0.9811326183437273,
+        "color": "#3178c6"
+      },
+      {
+        "name": "Rust",
+        "bytes": 11358,
+        "share": 0.013616451953993225,
+        "color": "#dea584"
+      },
+      {
+        "name": "HTML",
+        "bytes": 2054,
+        "share": 0.002462422285041564,
+        "color": "#e34c26"
+      },
+      {
+        "name": "Shell",
+        "bytes": 1953,
+        "share": 0.002341339202865713,
+        "color": "#89e051"
+      },
+      {
+        "name": "CSS",
+        "bytes": 373,
+        "share": 0.0004471682143722022,
+        "color": "#663399"
+      }
+    ],
+    "license": "MIT",
+    "createdAt": "2026-02-18T07:19:32Z",
+    "pushedAt": "2026-08-31T16:46:28Z",
+    "release": null,
+    "npm": null,
+    "embed": null,
+    "image": "https://opengraph.githubassets.com/96f2f3b9383542748221fe5afbb82bfbf44a573db4044246f2fc5c693ce46666/petarzarkov/arkv",
+    "retiredAt": null,
+    "retiredNote": null,
+    "source": "github"
+  },
+  {
+    "slug": "firecracker",
+    "title": "firecracker",
+    "headline": null,
+    "description": "firecrack",
+    "tier": "active",
+    "pin": null,
+    "repo": "https://github.com/petarzarkov/firecracker",
+    "homepage": null,
+    "stars": 2,
+    "forks": 0,
+    "topics": [],
+    "languages": [
+      {
+        "name": "TypeScript",
+        "bytes": 1221251,
+        "share": 0.992482736706431,
+        "color": "#3178c6"
+      },
+      {
+        "name": "Dockerfile",
+        "bytes": 6203,
+        "share": 0.005041036130811759,
+        "color": "#384d54"
+      },
+      {
+        "name": "HTML",
+        "bytes": 2682,
+        "share": 0.002179600016578613,
+        "color": "#e34c26"
+      },
+      {
+        "name": "CSS",
+        "bytes": 365,
+        "share": 0.0002966271461786703,
+        "color": "#663399"
+      }
+    ],
+    "license": "MIT",
+    "createdAt": "2026-02-21T07:45:16Z",
+    "pushedAt": "2026-08-30T05:46:01Z",
+    "release": null,
+    "npm": null,
+    "embed": null,
+    "image": "https://opengraph.githubassets.com/2a3d7fe99cb8952c211d30ddc3bc2ee5da048c4fccf19c1b17e89d3e5e0a1ba7/petarzarkov/firecracker",
+    "retiredAt": null,
+    "retiredNote": null,
+    "source": "github"
+  },
+  {
+    "slug": "nestjs-template",
+    "title": "nestjs-template",
+    "headline": null,
+    "description": "nestjs-template with bun, oxfmt, oxlint, drizzle, bullmq, redis, betterauth, child processes for queues, context logger",
+    "tier": "active",
+    "pin": null,
+    "repo": "https://github.com/petarzarkov/nestjs-template",
+    "homepage": null,
+    "stars": 5,
+    "forks": 1,
+    "topics": [],
+    "languages": [
+      {
+        "name": "TypeScript",
+        "bytes": 354935,
+        "share": 0.9181292600592367,
+        "color": "#3178c6"
+      },
+      {
+        "name": "HTML",
+        "bytes": 26098,
+        "share": 0.06750908597074382,
+        "color": "#e34c26"
+      },
+      {
+        "name": "Shell",
+        "bytes": 3162,
+        "share": 0.00817931373436631,
+        "color": "#89e051"
+      },
+      {
+        "name": "Dockerfile",
+        "bytes": 1864,
+        "share": 0.004821708033162176,
+        "color": "#384d54"
+      },
+      {
+        "name": "JavaScript",
+        "bytes": 526,
+        "share": 0.0013606322024910433,
+        "color": "#f1e05a"
+      }
+    ],
+    "license": "MIT",
+    "createdAt": "2025-12-21T10:48:06Z",
+    "pushedAt": "2026-07-25T11:31:14Z",
+    "release": null,
+    "npm": null,
+    "embed": null,
+    "image": "https://opengraph.githubassets.com/b276c3dd1896144adaaa16b989a6ed3687d7c10b40cc24092e02aae3b6c6e0fd/petarzarkov/nestjs-template",
+    "retiredAt": null,
+    "retiredNote": null,
+    "source": "github"
+  },
+  {
+    "slug": "gemini-code-review-action",
+    "title": "gemini-code-review-action",
+    "headline": null,
+    "description": "An AI code review GitHub Action using Google Gemini.",
+    "tier": "active",
+    "pin": null,
+    "repo": "https://github.com/petarzarkov/gemini-code-review-action",
+    "homepage": null,
+    "stars": 7,
+    "forks": 1,
+    "topics": [
+      "ai",
+      "code",
+      "codereview",
+      "gemini",
+      "review"
+    ],
+    "languages": [
+      {
+        "name": "TypeScript",
+        "bytes": 87755,
+        "share": 1,
+        "color": "#3178c6"
+      }
+    ],
+    "license": "MIT",
+    "createdAt": "2025-08-08T06:38:26Z",
+    "pushedAt": "2025-12-06T10:02:02Z",
+    "release": {
+      "tag": "v1.1.3",
+      "publishedAt": "2025-08-11T14:40:21Z"
+    },
+    "npm": null,
+    "embed": null,
+    "image": "https://opengraph.githubassets.com/a083b636cd1298c87d3da785d85c37f37517187e2156e8b28a7e619a47ff985e/petarzarkov/gemini-code-review-action",
+    "retiredAt": null,
+    "retiredNote": null,
+    "source": "github"
+  },
+  {
+    "slug": "iana-timezones",
+    "title": "iana-timezones",
+    "headline": null,
+    "description": "Auto generated timezones from iana db https://www.iana.org/time-zones with rich metadata, no dependencies, full TypeScript support, and Node/browser compatibility.",
+    "tier": "lab",
+    "pin": null,
+    "repo": "https://github.com/petarzarkov/iana-timezones",
+    "homepage": "https://petarzarkov.github.io/iana-timezones/",
+    "stars": 1,
+    "forks": 0,
+    "topics": [
+      "date",
+      "datetime",
+      "gmt",
+      "i18n",
+      "iana",
+      "javascript-library",
+      "json",
+      "localization",
+      "time",
+      "timezones",
+      "typescript",
+      "utc",
+      "zone"
+    ],
+    "languages": [
+      {
+        "name": "TypeScript",
+        "bytes": 196981,
+        "share": 0.9930229627202379,
+        "color": "#3178c6"
+      },
+      {
+        "name": "JavaScript",
+        "bytes": 1384,
+        "share": 0.006977037279762055,
+        "color": "#f1e05a"
+      }
+    ],
+    "license": "MIT",
+    "createdAt": "2025-05-08T10:54:19Z",
+    "pushedAt": "2026-07-26T10:26:24Z",
+    "release": {
+      "tag": "iana-db-timezones@0.2.8",
+      "publishedAt": "2026-04-08T14:34:09Z"
+    },
+    "npm": null,
+    "embed": {
+      "url": "https://petarzarkov.github.io/iana-timezones/",
+      "status": "live",
+      "code": 200,
+      "ms": 157,
+      "checkedAt": "2026-09-02T10:20:10.018Z"
+    },
+    "image": "https://opengraph.githubassets.com/1f0eed03f809104b24a99bbe70c38c1cfe5d59408c1fa450d6cf5d57be4e19da/petarzarkov/iana-timezones",
+    "retiredAt": null,
+    "retiredNote": null,
+    "source": "github"
+  },
+  {
+    "slug": "the-anchor",
+    "title": "the-anchor",
+    "headline": null,
+    "description": "A tiny, floating, frameless window that stays pinned on top of all other windows. It has one text input.",
+    "tier": "lab",
+    "pin": null,
+    "repo": "https://github.com/petarzarkov/the-anchor",
+    "homepage": null,
+    "stars": 0,
+    "forks": 0,
+    "topics": [],
+    "languages": [
+      {
+        "name": "TypeScript",
+        "bytes": 9536,
+        "share": 0.6913651852388893,
+        "color": "#3178c6"
+      },
+      {
+        "name": "Rust",
+        "bytes": 3045,
+        "share": 0.22076415573116798,
+        "color": "#dea584"
+      },
+      {
+        "name": "Shell",
+        "bytes": 853,
+        "share": 0.06184296382222867,
+        "color": "#89e051"
+      },
+      {
+        "name": "HTML",
+        "bytes": 359,
+        "share": 0.026027695207714058,
+        "color": "#e34c26"
+      }
+    ],
+    "license": "MIT",
+    "createdAt": "2026-03-13T14:47:49Z",
+    "pushedAt": "2026-03-16T07:43:53Z",
+    "release": {
+      "tag": "v0.1.0",
+      "publishedAt": "2026-03-16T07:51:32Z"
+    },
+    "npm": null,
+    "embed": null,
+    "image": "https://opengraph.githubassets.com/7bdfa660a295a702b0848c7cc8b547405d4f38bc09f30e48c8145c6fdfae33ff/petarzarkov/the-anchor",
+    "retiredAt": null,
+    "retiredNote": null,
+    "source": "github"
+  },
+  {
+    "slug": "sas-mock-program",
+    "title": "sas-mock-program",
+    "headline": null,
+    "description": "Modern SAS (Slot Accounting System) Test Program",
+    "tier": "lab",
+    "pin": null,
+    "repo": "https://github.com/petarzarkov/sas-mock-program",
+    "homepage": null,
+    "stars": 0,
+    "forks": 0,
+    "topics": [],
+    "languages": [
+      {
+        "name": "Rust",
+        "bytes": 26862,
+        "share": 0.516934801016088,
+        "color": "#dea584"
+      },
+      {
+        "name": "TypeScript",
+        "bytes": 24737,
+        "share": 0.47604110538064814,
+        "color": "#3178c6"
+      },
+      {
+        "name": "HTML",
+        "bytes": 365,
+        "share": 0.007024093603263798,
+        "color": "#e34c26"
+      }
+    ],
+    "license": "MIT",
+    "createdAt": "2026-03-10T14:51:06Z",
+    "pushedAt": "2026-03-10T15:57:33Z",
+    "release": null,
+    "npm": null,
+    "embed": null,
+    "image": "https://opengraph.githubassets.com/3e6e79696cd623b0f5399a7da5d195962f3d26b50cd35311801c2158f7e67b32/petarzarkov/sas-mock-program",
+    "retiredAt": null,
+    "retiredNote": null,
+    "source": "github"
+  },
+  {
+    "slug": "module-cost",
+    "title": "module-cost",
+    "headline": null,
+    "description": "Analyze the cost of your node_modules - zero dependencies",
+    "tier": "lab",
+    "pin": null,
+    "repo": "https://github.com/petarzarkov/module-cost",
+    "homepage": null,
+    "stars": 1,
+    "forks": 0,
+    "topics": [],
+    "languages": [
+      {
+        "name": "TypeScript",
+        "bytes": 24137,
+        "share": 0.8862818535653962,
+        "color": "#3178c6"
+      },
+      {
+        "name": "JavaScript",
+        "bytes": 2241,
+        "share": 0.08228684732319894,
+        "color": "#f1e05a"
+      },
+      {
+        "name": "Shell",
+        "bytes": 856,
+        "share": 0.03143129911140486,
+        "color": "#89e051"
+      }
+    ],
+    "license": "MIT",
+    "createdAt": "2026-02-17T12:48:20Z",
+    "pushedAt": "2026-02-17T15:31:16Z",
+    "release": null,
+    "npm": null,
+    "embed": null,
+    "image": "https://opengraph.githubassets.com/3e6e79696cd623b0f5399a7da5d195962f3d26b50cd35311801c2158f7e67b32/petarzarkov/module-cost",
+    "retiredAt": null,
+    "retiredNote": null,
+    "source": "github"
+  },
+  {
+    "slug": "rust-beats",
+    "title": "rust-beats",
+    "headline": null,
+    "description": "rust chill song generator app",
+    "tier": "lab",
+    "pin": null,
+    "repo": "https://github.com/petarzarkov/rust-beats",
+    "homepage": "https://petarzarkov.github.io/rust-beats/",
+    "stars": 1,
+    "forks": 0,
+    "topics": [
+      "alternative",
+      "beat",
+      "chill",
+      "jazz",
+      "lofi",
+      "music",
+      "rust"
+    ],
+    "languages": [
+      {
+        "name": "Rust",
+        "bytes": 359127,
+        "share": 0.9360260847807502,
+        "color": "#dea584"
+      },
+      {
+        "name": "Python",
+        "bytes": 15629,
+        "share": 0.04073531558205968,
+        "color": "#3572A5"
+      },
+      {
+        "name": "Shell",
+        "bytes": 8916,
+        "share": 0.0232385996371901,
+        "color": "#89e051"
+      }
+    ],
+    "license": "NOASSERTION",
+    "createdAt": "2025-11-15T11:07:22Z",
+    "pushedAt": "2025-12-11T02:16:37Z",
+    "release": null,
+    "npm": null,
+    "embed": {
+      "url": "https://petarzarkov.github.io/rust-beats/",
+      "status": "live",
+      "code": 200,
+      "ms": 151,
+      "checkedAt": "2026-09-02T10:20:10.018Z"
+    },
+    "image": "https://opengraph.githubassets.com/ea33594f279edc2e49ea51b9cb04d920be3b30694179b2165533baef5299e0d3/petarzarkov/rust-beats",
+    "retiredAt": null,
+    "retiredNote": null,
+    "source": "github"
+  },
+  {
+    "slug": "wave-sim",
+    "title": "wave-sim",
+    "headline": null,
+    "description": "Wave Simulator using a linear second-order partial differential equation which describes the propagation of oscillations at a fixed speed in some quantity",
+    "tier": "lab",
+    "pin": null,
+    "repo": "https://github.com/petarzarkov/wave-sim",
+    "homepage": null,
+    "stars": 0,
+    "forks": 0,
+    "topics": [],
+    "languages": [
+      {
+        "name": "TypeScript",
+        "bytes": 9415,
+        "share": 0.6457033125300048,
+        "color": "#3178c6"
+      },
+      {
+        "name": "JavaScript",
+        "bytes": 3733,
+        "share": 0.25601810575406353,
+        "color": "#f1e05a"
+      },
+      {
+        "name": "CSS",
+        "bytes": 990,
+        "share": 0.06789657773815239,
+        "color": "#663399"
+      },
+      {
+        "name": "HTML",
+        "bytes": 443,
+        "share": 0.030382003977779303,
+        "color": "#e34c26"
+      }
+    ],
+    "license": "MIT",
+    "createdAt": "2022-11-21T12:24:26Z",
+    "pushedAt": "2025-11-22T10:31:19Z",
+    "release": null,
+    "npm": null,
+    "embed": null,
+    "image": "https://opengraph.githubassets.com/2abe3d4693a9715daf2c4706424f1d0d2a2f90821efee2d05330d4b1a29159dc/petarzarkov/wave-sim",
+    "retiredAt": null,
+    "retiredNote": null,
+    "source": "github"
+  },
+  {
+    "slug": "wisdoms",
+    "title": "wisdoms",
+    "headline": null,
+    "description": "App for wisdoms",
+    "tier": "archive",
+    "pin": null,
+    "repo": "https://github.com/petarzarkov/wisdoms",
+    "homepage": null,
+    "stars": 0,
+    "forks": 0,
+    "topics": [],
+    "languages": [
+      {
+        "name": "TypeScript",
+        "bytes": 4890,
+        "share": 0.45106539987086064,
+        "color": "#3178c6"
+      },
+      {
+        "name": "JavaScript",
+        "bytes": 2073,
+        "share": 0.19121852227654276,
+        "color": "#f1e05a"
+      },
+      {
+        "name": "CSS",
+        "bytes": 1895,
+        "share": 0.1747993727515912,
+        "color": "#663399"
+      },
+      {
+        "name": "HTML",
+        "bytes": 1107,
+        "share": 0.10211235125910893,
+        "color": "#e34c26"
+      },
+      {
+        "name": "Shell",
+        "bytes": 876,
+        "share": 0.0808043538418965,
+        "color": "#89e051"
+      }
+    ],
+    "license": null,
+    "createdAt": "2021-01-31T09:22:07Z",
+    "pushedAt": "2026-02-22T12:00:29Z",
+    "release": null,
+    "npm": null,
+    "embed": null,
+    "image": "https://opengraph.githubassets.com/0cc919afa3dc8a9ef4b96cf67d328bdb34481c9215403752acf66b6be3465abc/petarzarkov/wisdoms",
+    "retiredAt": null,
+    "retiredNote": "wisdoms.petarzarkov.com currently resolves to nothing - the DNS record is missing from the zone rather than the origin being down.",
+    "source": "github"
+  },
+  {
+    "slug": "trivia-art",
+    "title": "trivia-art",
+    "headline": null,
+    "description": "Trivia Art",
+    "tier": "archive",
+    "pin": null,
+    "repo": "https://github.com/petarzarkov/trivia-art",
+    "homepage": null,
+    "stars": 0,
+    "forks": 0,
+    "topics": [],
+    "languages": [
+      {
+        "name": "TypeScript",
+        "bytes": 70395,
+        "share": 0.9613519972686924,
+        "color": "#3178c6"
+      },
+      {
+        "name": "JavaScript",
+        "bytes": 2830,
+        "share": 0.03864800273130761,
+        "color": "#f1e05a"
+      }
+    ],
+    "license": "MIT",
+    "createdAt": "2022-03-23T05:26:04Z",
+    "pushedAt": "2025-11-22T10:30:28Z",
+    "release": null,
+    "npm": null,
+    "embed": null,
+    "image": "https://opengraph.githubassets.com/8a4ac4a2efcb8659257483a3dd711fe2787b10abf9b1b741e82e5c37df0e8f81/petarzarkov/trivia-art",
+    "retiredAt": "2022-11",
+    "retiredNote": "The API ran on a Heroku free dyno; those were withdrawn in November 2022.",
+    "source": "github"
+  },
+  {
+    "slug": "rn-impossible-quiz",
+    "title": "rn-impossible-quiz",
+    "headline": null,
+    "description": "React Native Impossible Quiz app",
+    "tier": "archive",
+    "pin": null,
+    "repo": "https://github.com/petarzarkov/rn-impossible-quiz",
+    "homepage": null,
+    "stars": 0,
+    "forks": 0,
+    "topics": [],
+    "languages": [
+      {
+        "name": "TypeScript",
+        "bytes": 56949,
+        "share": 0.7815364769171653,
+        "color": "#3178c6"
+      },
+      {
+        "name": "Java",
+        "bytes": 6547,
+        "share": 0.08984739529011362,
+        "color": "#b07219"
+      },
+      {
+        "name": "Objective-C",
+        "bytes": 4658,
+        "share": 0.06392380743261789,
+        "color": "#438eff"
+      },
+      {
+        "name": "JavaScript",
+        "bytes": 3088,
+        "share": 0.042377998572761706,
+        "color": "#f1e05a"
+      },
+      {
+        "name": "Ruby",
+        "bytes": 1005,
+        "share": 0.013792062359334688,
+        "color": "#701516"
+      },
+      {
+        "name": "Starlark",
+        "bytes": 621,
+        "share": 0.008522259428006806,
+        "color": "#76d275"
+      }
+    ],
+    "license": "MIT",
+    "createdAt": "2022-03-01T12:42:52Z",
+    "pushedAt": "2025-11-22T10:23:48Z",
+    "release": null,
+    "npm": null,
+    "embed": null,
+    "image": "https://opengraph.githubassets.com/f5a7e5298ed557e87da47a7ee718d0d55407208ce5bdf7388c1aa69a486c4454/petarzarkov/rn-impossible-quiz",
+    "retiredAt": "2022",
+    "retiredNote": "Android app, no longer published or maintained.",
+    "source": "github"
+  },
+  {
+    "slug": "toplo",
+    "title": "toplo",
+    "headline": null,
+    "description": "npm packages monorepo",
+    "tier": "archive",
+    "pin": null,
+    "repo": "https://github.com/petarzarkov/toplo",
+    "homepage": null,
+    "stars": 0,
+    "forks": 0,
+    "topics": [],
+    "languages": [
+      {
+        "name": "TypeScript",
+        "bytes": 102106,
+        "share": 0.9654500756429653,
+        "color": "#3178c6"
+      },
+      {
+        "name": "JavaScript",
+        "bytes": 3378,
+        "share": 0.03194024205748865,
+        "color": "#f1e05a"
+      },
+      {
+        "name": "Shell",
+        "bytes": 170,
+        "share": 0.0016074130105900152,
+        "color": "#89e051"
+      },
+      {
+        "name": "HTML",
+        "bytes": 106,
+        "share": 0.0010022692889561271,
+        "color": "#e34c26"
+      }
+    ],
+    "license": "MIT",
+    "createdAt": "2022-10-18T07:01:23Z",
+    "pushedAt": "2023-06-16T13:22:18Z",
+    "release": null,
+    "npm": null,
+    "embed": null,
+    "image": "https://opengraph.githubassets.com/adb2d9b32f0f9826a8be861801c998beafcae273673289a628b542d379ca4040/petarzarkov/toplo",
+    "retiredAt": "2024",
+    "retiredNote": "Superseded by the @arkv packages; no longer maintained.",
+    "source": "github"
+  }
+]

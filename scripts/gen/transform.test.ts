@@ -187,8 +187,12 @@ describe('sortProjects', () => {
 });
 
 describe('aggregateLanguages', () => {
+  // Unique names: repo counts are distinct-repo counts now, so two stubs
+  // sharing a name would dedupe to one and the counts would read low.
+  let n = 0;
   const repo = (langs: [string, number][]): RawRepo => ({
     ...byName('dunx'),
+    name: `stub-${n++}`,
     languages: {
       totalSize: langs.reduce((sum, [, size]) => sum + size, 0),
       edges: langs.map(([name, size]) => ({
@@ -226,8 +230,8 @@ describe('aggregateLanguages', () => {
 
     expect(result.top).toHaveLength(9);
     expect(result.top.at(-1)?.name).toBe('Other');
-    // Other carries the repo count of everything it swallowed.
-    expect(result.top.at(-1)?.repos).toBe(4);
+    // One repo, however many of its languages landed in the tail.
+    expect(result.top.at(-1)?.repos).toBe(1);
   });
 
   test('a tail below the threshold is dropped rather than shown as Other', () => {
@@ -263,6 +267,39 @@ describe('aggregateLanguages', () => {
     expect(
       result.top.find((l) => l.name === 'TypeScript')?.proficiency,
     ).toBeNull();
+  });
+
+  test("a fork contributes nothing: it is somebody else's code", () => {
+    // The live case: the `bun` fork is 26 MB of Zig, which read as 13% of
+    // everything on the account and put Zig second on a skills map whose owner
+    // has never written a line of it.
+    const result = aggregateLanguages([
+      repo([['TypeScript', 100]]),
+      { ...repo([['Zig', 26_000_000]]), isFork: true },
+    ]);
+
+    expect(result.top.map((l) => l.name)).toEqual(['TypeScript']);
+    expect(result.totalBytes).toBe(100);
+    // The fork is not in the denominator either.
+    expect(result.repoCount).toBe(1);
+  });
+
+  test("Other counts distinct repos, not the sum of its languages' counts", () => {
+    // One repo with four tail languages is one repo. Summing read as 354 of a
+    // possible 155.
+    const langs: [string, number][] = [
+      ...Array.from({ length: 8 }, (_, i): [string, number] => [
+        `Big${i}`,
+        10_000,
+      ]),
+      ['TailA', 500],
+      ['TailB', 500],
+      ['TailC', 500],
+    ];
+    const result = aggregateLanguages([repo(langs)], {}, 8);
+
+    expect(result.top.at(-1)?.name).toBe('Other');
+    expect(result.top.at(-1)?.repos).toBe(1);
   });
 
   test('no languages at all is empty, not a division by zero', () => {

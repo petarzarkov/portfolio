@@ -1,6 +1,9 @@
 {
-  "generatedAt": null,
-  "projects": 0,
-  "repos": 0,
-  "embeds": { "checked": 0, "live": 0 }
+  "generatedAt": "2026-09-02T10:20:10.454Z",
+  "projects": 17,
+  "repos": 155,
+  "embeds": {
+    "checked": 3,
+    "live": 3
+  }
 }
