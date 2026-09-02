@@ -116,10 +116,15 @@ host. Both are attached to the Pages project either way.
 `x.com`, or drop? Recommendation: drop unless it is active — a dead social link on
 a portfolio is a small credibility cost.
 
-**4. `derp.ai` and `wisdoms`.** Both subdomains fail to connect. The site stops
-depending on them in phase 1 regardless. Separately: revive them, or let them go to
-Archive permanently? Recommendation: Archive. Two more dead links are worse than
-two fewer projects.
+**4. `derp.ai` and `wisdoms`.** Diagnosed on 2026-09-02: both have **no DNS
+record at all** in the Cloudflare zone — `dig` returns nothing, and curl fails at
+name resolution rather than at connect. So this is not a dead host, it is a
+missing record; whatever removed them took the record, not the deployment.
+
+Recommendation: check the Cloudflare DNS tab for the zone before assuming either
+service is gone. If the origins still run, this is two records to re-add. The
+site stops depending on them either way in phase 1, since `embeds.ts`
+health-checks before rendering.
 
 **5. GitHub client ownership.** Copy into the portfolio now, extract to `@arkv/*`
 in phase 5 only if a third consumer appears.

@@ -10,17 +10,17 @@ is a Bun-runtime monorepo and this is a browser SPA.
 Pinned exactly, the way dunx pins them. Floating ranges are what let this repo rot
 into an unsupported React/Chakra pairing in the first place.
 
-| Package                | Version    | Note                                              |
-| ---------------------- | ---------- | ------------------------------------------------- |
-| `bun`                  | `1.4.0`    | pinned in the CI setup action, one place only     |
-| `oxlint`               | `1.81.0`   |                                                   |
-| `oxlint-tsgolint`      | `7.0.2001` | required for `typeAware`                          |
-| `oxfmt`                | `0.66.0`   |                                                   |
-| `@stagelint/stagelint` | `0.1.4`    |                                                   |
-| `typescript`           | `7.0.2`    | native `tsgo`; what makes type-aware linting fast |
-| `@types/bun`           | `1.4.0`    |                                                   |
-| `vite`                 | `8.x`      | current is 8.2.2; upgrade from 6.2.1              |
-| `@vitejs/plugin-react` | `6.1.1`    |                                                   |
+| Package                | Version    | Note                                                 |
+| ---------------------- | ---------- | ---------------------------------------------------- |
+| `bun`                  | `1.4.0`    | pinned in the CI setup action, one place only        |
+| `oxlint`               | `1.81.0`   |                                                      |
+| `oxlint-tsgolint`      | `7.0.2001` | required for `typeAware`                             |
+| `oxfmt`                | `0.66.0`   |                                                      |
+| `@stagelint/stagelint` | `0.1.4`    |                                                      |
+| `typescript`           | `7.0.2`    | the native compiler; still exposes `tsc`, not `tsgo` |
+| `@types/bun`           | `1.4.0`    |                                                      |
+| `vite`                 | `8.x`      | current is 8.2.2; upgrade from 6.2.1                 |
+| `@vitejs/plugin-react` | `6.1.1`    |                                                      |
 
 ## Step 1 — unblock Bun
 
@@ -78,7 +78,12 @@ the separate `bunfig.toml` that suite needs.
 
 The current [tsconfig.json](../tsconfig.json) targets ES6 with
 `moduleResolution: "Node"`, which is wrong for a Vite build and blocks
-`exports`-map packages like Mantine. Modernise:
+`exports`-map packages like Mantine.
+
+**TypeScript 7 removes options this repo sets**, and errors rather than warning
+on them: `baseUrl`, `esModuleInterop: false`, `moduleResolution: node10`, and
+`downlevelIteration` (in `tsconfig.node.json`). `paths` resolve relative to the
+tsconfig itself now, so dropping `baseUrl` needs no other change. Modernise:
 
 ```jsonc
 {
@@ -97,7 +102,6 @@ The current [tsconfig.json](../tsconfig.json) targets ES6 with
     "skipLibCheck": true,
     "incremental": true,
     "tsBuildInfoFile": "./cache/tsconfig.tsbuildinfo",
-    "baseUrl": ".",
     "paths": {
       "@components": ["./src/components"],
       "@components/*": ["./src/components/*"],
@@ -110,14 +114,21 @@ The current [tsconfig.json](../tsconfig.json) targets ES6 with
       "@generated": ["./src/generated"], // new — generated snapshots, doc 03
     },
   },
-  "include": ["./src", "./scripts", "./browser"],
-  "references": [{ "path": "./tsconfig.node.json" }],
+  "include": ["./src", "./scripts", "./browser", "./vite.config.mts"],
 }
 ```
 
 Every `paths` entry must be mirrored in `vite.config.mts` `resolve.alias` — they
 are two separate resolvers and they drift. `@store` is dropped along with the
 Chakra theme store (doc 04).
+
+`tsconfig.node.json` is deleted: `vite.config.mts` folds into the main
+`include`, and a project reference for one file is not worth a second config.
+
+`verbatimModuleSyntax` required an inline `type` modifier on **34 imports across
+21 files**. Mechanical, and worth automating rather than hand-editing: parse
+`tsc`'s `TS1484` output for file/line/column and insert at the column, applying
+each file's fixes right-to-left so earlier columns keep their offsets.
 
 ## Step 4 — stagelint replaces husky + lint-staged
 
@@ -289,7 +300,7 @@ prompted.
     "build": "bun run typecheck && bun run gen && vite build",
     "preview": "vite preview",
 
-    "typecheck": "tsgo --noEmit",
+    "typecheck": "tsc --noEmit",
     "lint": "oxlint --fix .",
     "lint:check": "oxlint --max-warnings 0 .",
     "format": "oxfmt --write .",
@@ -315,7 +326,7 @@ routing every gate through one script. See [02-ci-cd.md](./02-ci-cd.md).
 | ------ | ----------------------------------------------------------------------------------------------- |
 | delete | `.husky/`, `lint-staged.config.mjs`                                                             |
 | delete | `eslint.config.mjs`, `prettier.config.mjs`, `.prettierignore`                                   |
-| delete | `pnpm-lock.yaml`                                                                                |
+| delete | `pnpm-lock.yaml`, `tsconfig.node.json`                                                          |
 | add    | `bun.lock`, `bunfig.toml`                                                                       |
 | add    | `.stagelint.yml`, `.oxlintrc.json`, `.oxfmtrc.json`, `mcp.json`                                 |
 | add    | `scripts/install-hooks.ts`, `scripts/ci.ts`                                                     |
