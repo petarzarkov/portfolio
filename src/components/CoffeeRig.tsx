@@ -123,9 +123,14 @@ export const CoffeeRig = () => {
         const vFov = (camera.fov * Math.PI) / 180;
         const byHeight = coffee.height / 2 / Math.tan(vFov / 2);
         const byWidth = 4.8 / 2 / Math.tan(vFov / 2) / camera.aspect;
-        const distance = Math.max(byHeight, byWidth) * 1.2;
+        // The camera sits well above the aim point, so its true distance to the
+        // subject is longer than this; less padding is needed than at eye level.
+        const distance = Math.max(byHeight, byWidth) * 1.02;
 
-        camera.position.set(0, 3.5, -distance);
+        // High enough to see over the rim. At a near-level angle the rim occludes
+        // the foam entirely, which is the whole reason there is a cup and not
+        // just a cylinder.
+        camera.position.set(0, 6.1, -distance);
         camera.lookAt(AIM);
         camera.updateProjectionMatrix();
         renderer.render(scene, camera);

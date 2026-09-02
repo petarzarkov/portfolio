@@ -65,8 +65,8 @@ const wispTexture = (three: THREE): THREE_NS.CanvasTexture => {
 };
 
 const CERAMIC = 0xf2efe9;
-const CREMA = 0xd9b98a;
-const COFFEE = 0x2a1409;
+const CREMA = 0xe6c79a;
+const COFFEE = 0x1d0d05;
 
 export const buildCoffee = (three: THREE): CoffeeScene => {
   const group = new three.Group();
@@ -108,21 +108,21 @@ export const buildCoffee = (three: THREE): CoffeeScene => {
     }),
   );
   surface.rotation.x = -Math.PI / 2;
-  surface.position.y = 1.44;
+  surface.position.y = 1.38;
   group.add(surface);
 
   // Foam, slightly domed rather than a flat disc: a sphere squashed on Y and
   // clipped by the cup rim reads as crema without needing a texture.
   const foam = new three.Mesh(
-    new three.SphereGeometry(1.1, 64, 32, 0, Math.PI * 2, 0, Math.PI / 2),
+    new three.SphereGeometry(1.04, 64, 32, 0, Math.PI * 2, 0, Math.PI / 2),
     new three.MeshStandardMaterial({
       color: CREMA,
       roughness: 0.92,
       metalness: 0,
     }),
   );
-  foam.scale.y = 0.17;
-  foam.position.y = 1.45;
+  foam.scale.y = 0.2;
+  foam.position.y = 1.4;
   group.add(foam);
 
   // One off-centre ring, which is all latte art needs to read at this size.
@@ -131,7 +131,7 @@ export const buildCoffee = (three: THREE): CoffeeScene => {
     new three.MeshStandardMaterial({ color: 0xfff6e6, roughness: 0.95 }),
   );
   art.rotation.x = -Math.PI / 2;
-  art.position.set(0.1, 1.475, 0.05);
+  art.position.set(0.12, 1.605, 0.06);
   group.add(art);
 
   const handle = new three.Mesh(
@@ -151,7 +151,7 @@ export const buildCoffee = (three: THREE): CoffeeScene => {
 
   const texture = wispTexture(three);
   const steam: Steam[] = [];
-  for (let i = 0; i < 7; i++) {
+  for (let i = 0; i < 11; i++) {
     const mesh = new three.Mesh(
       new three.PlaneGeometry(1, 1),
       new three.MeshBasicMaterial({
@@ -169,7 +169,7 @@ export const buildCoffee = (three: THREE): CoffeeScene => {
     group.add(mesh);
     steam.push({
       mesh,
-      offset: i / 7,
+      offset: i / 11,
       drift: (i % 2 === 0 ? 1 : -1) * (0.35 + (i % 3) * 0.18),
       scale: 0.85 + (i % 4) * 0.22,
       spin: (i % 2 === 0 ? 1 : -1) * (0.6 + (i % 3) * 0.35),

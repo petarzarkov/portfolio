@@ -6,16 +6,9 @@ import {
   Group,
   Stack,
   Tooltip,
-  useComputedColorScheme,
-  useMantineColorScheme,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import {
-  IconBrandGithub,
-  IconMoon,
-  IconSearch,
-  IconSun,
-} from '@tabler/icons-react';
+import { IconBrandGithub, IconSearch } from '@tabler/icons-react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { site } from '@config';
@@ -26,30 +19,6 @@ const ROUTES = [
   ['/skills', 'Skills'],
   ['/about', 'About'],
 ] as const;
-
-const ColorSchemeToggle = () => {
-  const { setColorScheme } = useMantineColorScheme();
-  // `getInitialValueInEffect: false` so the first paint already matches the
-  // system preference - otherwise the icon flips visibly on hydration.
-  const computed = useComputedColorScheme('light', {
-    getInitialValueInEffect: false,
-  });
-  const next = computed === 'dark' ? 'light' : 'dark';
-
-  return (
-    <Tooltip label={`Switch to ${next} mode`} withArrow>
-      <ActionIcon
-        variant="default"
-        size="lg"
-        radius="md"
-        aria-label={`Switch to ${next} mode`}
-        onClick={() => setColorScheme(next)}
-      >
-        {computed === 'dark' ? <IconSun size={17} /> : <IconMoon size={17} />}
-      </ActionIcon>
-    </Tooltip>
-  );
-};
 
 export const Header = () => {
   const [opened, { toggle, close }] = useDisclosure(false);
@@ -113,7 +82,6 @@ export const Header = () => {
               <IconBrandGithub size={17} />
             </ActionIcon>
           </Tooltip>
-          <ColorSchemeToggle />
           <Burger
             opened={opened}
             onClick={toggle}

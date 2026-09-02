@@ -21,8 +21,8 @@ if (!container) throw new Error('No #root to mount into');
  */
 createRoot(container).render(
   <StrictMode>
-    <ColorSchemeScript defaultColorScheme="auto" />
-    <MantineProvider theme={theme} defaultColorScheme="auto">
+    <ColorSchemeScript forceColorScheme="dark" />
+    <MantineProvider theme={theme} forceColorScheme="dark">
       <BrowserRouter>
         <App />
       </BrowserRouter>

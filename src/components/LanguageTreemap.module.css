@@ -38,7 +38,7 @@
 }
 
 .rect {
-  stroke: light-dark(var(--mantine-color-white), var(--mantine-color-dark-8));
+  stroke: var(--mantine-color-dark-8);
   stroke-width: 2;
   transition: filter 200ms ease;
 }
@@ -86,7 +86,7 @@
 }
 
 .selected .rect {
-  stroke: light-dark(var(--mantine-color-dark-9), var(--mantine-color-white));
+  stroke: var(--mantine-color-white);
   stroke-width: 3;
 }
 

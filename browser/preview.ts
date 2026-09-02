@@ -21,7 +21,8 @@ export const VIEWPORTS = [
   ['desktop', 1440, 900],
 ] as const;
 
-export const SCHEMES = ['light', 'dark'] as const;
+// Dark only: the light palette is gone, so there is one scheme to check.
+export const SCHEMES = ['dark'] as const;
 export type Scheme = (typeof SCHEMES)[number];
 
 export interface ConsoleLine {

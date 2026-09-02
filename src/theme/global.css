@@ -1,11 +1,15 @@
 /**
  * Global rules only. Everything component-scoped lives in a CSS module next to
  * its component, and everything colour-related goes through Mantine's CSS
- * variables so `light-dark()` handles the scheme with no hook and no re-render.
+ * variables.
+ *
+ * Dark only. The site was designed dark-first and the light palette was never
+ * more than a second thing to keep working - two palettes to check on every
+ * change, for a mode nobody asked for.
  */
 
 :root {
-  color-scheme: light dark;
+  color-scheme: dark;
 }
 
 html,
@@ -15,10 +19,7 @@ body {
 }
 
 body {
-  background: light-dark(
-    var(--mantine-color-sand-0),
-    var(--mantine-color-dark-8)
-  );
+  background: var(--mantine-color-dark-8);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }

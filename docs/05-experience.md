@@ -219,7 +219,7 @@ half.
 - The treemap and walkthrough fully keyboard driven; the treemap has a table
   equivalent behind a toggle for screen readers.
 - Semantic landmarks, one `<h1>` per route, heading levels in order.
-- 4.5:1 contrast minimum in both schemes — verify the brand ramp before adopting it.
+- 4.5:1 contrast minimum — verify the brand ramp before adopting it.
 - Every iframe titled, every image with real alt text.
 - `prefers-reduced-motion` honoured everywhere.
 

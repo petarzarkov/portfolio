@@ -100,10 +100,10 @@ Three layers, each answering what the one below cannot:
 - **Layout** — the squarified treemap, checked for its invariants: every cell
   placed, none overlapping, areas proportional, no slivers.
 - **Browser** — the built bundle in real Chrome via `Bun.WebView`. Every route ×
-  3 viewports × 2 colour schemes: correct heading, no horizontal overflow, zero
+  3 viewports: correct heading, no horizontal overflow, zero
   console errors, plus the assertions that map onto what actually broke here —
-  no offline embed rendered as an iframe, both schemes really painting
-  differently, one `<h1>` per route, every iframe titled.
+  no offline embed rendered as an iframe, the WebGL backdrop actually animating
+  rather than redrawing one frame, one `<h1>` per route, every iframe titled.
 
 No browser download in CI: `Bun.WebView` drives the Chrome the runner already
 ships.

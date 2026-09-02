@@ -75,22 +75,18 @@ for (const scheme of SCHEMES) {
 }
 
 describe('colour scheme', () => {
-  test('the two schemes actually paint differently', async () => {
-    // `defaultColorScheme="auto"`, so the page follows prefers-color-scheme
-    // with nothing stored. A site painting identically under both would mean
-    // the dark palette never applied - and that half the screenshots above are
-    // of a light site.
+  test('the page is dark regardless of the system preference', async () => {
+    // `forceColorScheme="dark"`, so a light-preferring visitor still gets the
+    // dark palette rather than a half-converted page.
     await preview.view(1440, 900);
-
-    await preview.scheme('light');
-    await preview.open('/');
-    const light = await preview.background();
-
     await preview.scheme('dark');
     await preview.open('/');
-    const dark = await preview.background();
+    const background = await preview.background();
 
-    expect(light).not.toBe(dark);
+    // Dark ground: every channel well below mid.
+    const channels = background.match(/\d+/g)?.slice(0, 3).map(Number) ?? [];
+    expect(channels).toHaveLength(3);
+    expect(Math.max(...channels)).toBeLessThan(90);
   });
 });
 
@@ -102,7 +98,7 @@ describe('embeds', () => {
     const { projects } = await import('../src/data/index');
 
     await preview.view(1440, 900);
-    await preview.scheme('light');
+    await preview.scheme('dark');
 
     for (const project of projects) {
       if (project.embed?.status === 'live') continue;
