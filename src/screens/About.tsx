@@ -8,8 +8,7 @@ import {
 } from '@tabler/icons-react';
 import { site } from '@config';
 import { activity, meta } from '@data';
-import { LightRig } from '../components/LightRig';
-import classes from './About.module.css';
+import { CoffeeRig } from '../components/CoffeeRig';
 
 const LINKS = [
   [site.github, 'github.com/petarzarkov', IconBrandGithub],
@@ -21,9 +20,7 @@ const LINKS = [
 
 const About = () => (
   <Stack gap="xl" maw="72ch">
-    <div className={classes.backdrop}>
-      <LightRig />
-    </div>
+    <CoffeeRig />
 
     <div>
       <Title order={1} mb="xs">

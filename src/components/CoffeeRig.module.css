@@ -1,7 +1,14 @@
 /**
- * The rig fills whatever the caller positions it in - a fixed full-bleed
- * backdrop on /about - rather than carrying a box of its own.
+ * Fixed, full-bleed, and inert. Portalled to `document.body` by CoffeeRig, so
+ * nothing in the page tree can become its containing block.
  */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
 .stage {
   position: absolute;
   inset: 0;
@@ -31,14 +38,14 @@
       120% 90% at 50% 0%,
       transparent 0%,
       light-dark(
-          color-mix(in srgb, var(--mantine-color-sand-0) 74%, transparent),
-          color-mix(in srgb, var(--mantine-color-dark-8) 62%, transparent)
+          color-mix(in srgb, var(--mantine-color-sand-0) 70%, transparent),
+          color-mix(in srgb, var(--mantine-color-dark-8) 46%, transparent)
         )
         58%
     ),
     light-dark(
-      color-mix(in srgb, var(--mantine-color-sand-0) 80%, transparent),
-      color-mix(in srgb, var(--mantine-color-dark-8) 72%, transparent)
+      color-mix(in srgb, var(--mantine-color-sand-0) 76%, transparent),
+      color-mix(in srgb, var(--mantine-color-dark-8) 56%, transparent)
     );
 }
 
