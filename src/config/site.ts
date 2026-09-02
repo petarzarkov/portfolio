@@ -4,19 +4,19 @@
  */
 export const site = {
   name: 'Petar Zarkov',
-  role: 'Lead Software Engineer',
-  location: 'Bulgaria',
+  role: 'Software Engineering Manager',
+  location: 'Sofia, Bulgaria',
   email: 'pzarko1@gmail.com',
   github: 'https://github.com/petarzarkov',
   linkedin: 'https://www.linkedin.com/in/%E2%98%95-petar-zarkov-7989a670/',
   youtube: 'https://www.youtube.com/@RustBeats',
+  profile: 'https://petarzarkov.github.io/petarzarkov/',
   url: 'https://petarzarkov.com',
 
   /**
-   * The landing page's opening claim. This is the one sentence a visitor with
-   * thirty seconds actually reads, so it says what gets built rather than
-   * restating the job title.
+   * The one line a visitor with thirty seconds actually reads. His own, and
+   * better than anything written to order.
    */
-  thesis:
-    'I build backend frameworks and the tooling around them — and the things that run on top.',
+  tagline: "Vibe Janitor — I delete code that you don't need.",
+  experience: '20+ years',
 } as const;

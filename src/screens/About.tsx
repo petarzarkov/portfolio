@@ -4,6 +4,7 @@ import {
   IconBrandLinkedin,
   IconBrandYoutube,
   IconMail,
+  IconWorld,
 } from '@tabler/icons-react';
 import { site } from '@config';
 import { activity, meta } from '@data';
@@ -11,29 +12,39 @@ import { activity, meta } from '@data';
 const LINKS = [
   [site.github, 'github.com/petarzarkov', IconBrandGithub],
   [site.linkedin, 'LinkedIn', IconBrandLinkedin],
+  [site.profile, 'Auto-generated GitHub profile page', IconWorld],
   [site.youtube, 'YouTube — RustBeats', IconBrandYoutube],
   [`mailto:${site.email}`, site.email, IconMail],
 ] as const;
 
 const About = () => (
-  <Stack gap="xl" maw="62ch">
+  <Stack gap="xl" maw="64ch">
     <div>
       <Title order={1} mb="xs">
         About
       </Title>
-      <Text c="dimmed">{`${site.role} · ${site.location}`}</Text>
+      <Text c="dimmed">
+        {`${site.role} · ${site.location} · ${site.experience}`}
+      </Text>
     </div>
 
-    <Text>
-      I work on backend frameworks and the tooling around them. Most of what I
-      build is infrastructure other people write code against — dependency
-      injection, logging, queues, test harnesses, release pipelines — and the
-      applications that prove it works.
+    <Text fz="lg" fw={500}>
+      {site.tagline}
     </Text>
 
     <Text>
-      Before that, five years of online casino platform work: game engines,
-      provider integrations, and the services around them.
+      I have spent over two decades in software engineering, evolving alongside
+      the industry — from game development in Unity and early Android apps, to
+      complex microservice architectures in .NET and Node.
+    </Text>
+
+    <Text>
+      Today I focus on end-to-end project ownership: scalable, high-performance
+      applications with a strong preference for the TypeScript ecosystem, and
+      increasingly Go and Rust where efficiency matters most. I am comfortable
+      across the whole stack, from designing database schemas to configuring
+      Kubernetes clusters and CI/CD pipelines. I prefer a hands-on approach to
+      infrastructure, and shipping reliable code that scales.
     </Text>
 
     <div>

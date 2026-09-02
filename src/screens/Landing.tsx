@@ -50,8 +50,9 @@ export const Landing = () => {
           {site.name}
         </Title>
         <p className={classes.thesis}>
-          I build <span className={classes.accent}>backend frameworks</span> and
-          the tooling around them — and the things that run on top.
+          <span className={classes.accent}>Vibe Janitor</span> — I delete code
+          that you don&rsquo;t need. Two decades of shipping backends, and the
+          frameworks and tooling underneath them.
         </p>
         <Group mt="xl">
           <Button

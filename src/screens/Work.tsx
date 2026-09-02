@@ -1,82 +1,131 @@
-import { Alert, Stack, Text, Timeline, Title } from '@mantine/core';
-import { IconBriefcase, IconInfoCircle } from '@tabler/icons-react';
+import { List, Stack, Text, Timeline, Title } from '@mantine/core';
+import { IconBriefcase } from '@tabler/icons-react';
+import type { Role } from '@data';
 import { roles } from '@data';
 import { TechChips } from '../components/TechChips';
 
-const range = (from: string, to: string | null): string =>
-  `${from} — ${to ?? 'present'}`;
+const MONTHS = [
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'Jun',
+  'Jul',
+  'Aug',
+  'Sep',
+  'Oct',
+  'Nov',
+  'Dec',
+];
 
-const Work = () => (
-  <Stack gap="xl">
-    <div>
-      <Title order={1} mb="xs">
-        Work
-      </Title>
-      <Text c="dimmed" maw="60ch">
-        What I have owned, rather than what I have pushed.
+/** `2023-09` -> `Sep 2023`. */
+const label = (value: string): string => {
+  const [year, month] = value.split('-');
+  const index = Number(month) - 1;
+  return `${MONTHS[index] ?? month} ${year}`;
+};
+
+const range = (role: Role): string =>
+  `${label(role.from)} — ${role.to === null ? 'Present' : label(role.to)}`;
+
+/**
+ * Consecutive roles at one employer become a single timeline entry, the way
+ * LinkedIn shows them. Three separate "DraftKings" bullets read as three jobs
+ * rather than as one tenure with three titles.
+ */
+const groupByEmployer = (all: readonly Role[]): Role[][] =>
+  all.reduce<Role[][]>((groups, role) => {
+    const last = groups.at(-1);
+    if (last && last[0]?.employer === role.employer) last.push(role);
+    else groups.push([role]);
+    return groups;
+  }, []);
+
+const Position = ({ role, lead }: { role: Role; lead: boolean }) => (
+  <div>
+    <Text fw={600} size={lead ? 'md' : 'sm'}>
+      {role.title}
+    </Text>
+    <Text size="xs" c="dimmed" mb={role.summary === undefined ? 0 : 'xs'}>
+      {range(role)}
+      {role.employment !== undefined && ` · ${role.employment}`}
+      {role.location !== undefined && ` · ${role.location}`}
+    </Text>
+
+    {role.summary !== undefined && (
+      <Text size="sm" mb="sm" maw="68ch">
+        {role.summary}
       </Text>
-    </div>
+    )}
 
-    {roles.length === 0 ? (
-      // Deliberately empty rather than guessed. Employers, titles and dates are
-      // the one part of this site that cannot be generated from the repos, and
-      // inventing them would be worse than saying nothing.
-      <Alert
-        variant="light"
-        color="sand"
-        icon={<IconInfoCircle size={18} />}
-        title="Not filled in yet"
-      >
-        Employment history lives in <code>src/data/overrides.ts</code>. It is
-        the only part of this site that is not generated, because no repository
-        knows who paid for the work.
-      </Alert>
-    ) : (
+    {role.achievements !== undefined && (
+      <List size="sm" spacing={6} mb="sm" maw="68ch">
+        {role.achievements.map((item) => (
+          <List.Item key={item}>{item}</List.Item>
+        ))}
+      </List>
+    )}
+
+    {role.stack !== undefined && <TechChips topics={role.stack} />}
+  </div>
+);
+
+const Work = () => {
+  const groups = groupByEmployer(roles);
+
+  return (
+    <Stack gap="xl">
+      <div>
+        <Title order={1} mb="xs">
+          Work
+        </Title>
+        <Text c="dimmed" maw="62ch">
+          What I have owned, rather than what I have pushed.
+        </Text>
+      </div>
+
       <Timeline
-        active={roles.length}
+        active={groups.length}
         bulletSize={22}
         lineWidth={2}
         color="brand"
       >
-        {roles.map((role) => (
-          <Timeline.Item
-            key={`${role.employer}-${role.from}`}
-            bullet={<IconBriefcase size={12} />}
-            title={
-              <Text fw={600}>
-                {role.title}
-                <Text span c="dimmed" fw={400}>
-                  {` · ${role.employer}`}
-                </Text>
-              </Text>
-            }
-          >
-            <Text size="xs" c="dimmed" mb="xs">
-              {range(role.from, role.to)}
-            </Text>
-            <Text size="sm" mb="sm" maw="65ch">
-              {role.summary}
-            </Text>
+        {groups.map((group) => {
+          const first = group[0];
+          if (!first) return null;
+          const last = group.at(-1);
 
-            {role.shipped !== undefined && role.shipped.length > 0 && (
-              <Stack gap={4} mb="sm">
-                {role.shipped.map((item) => (
-                  <Text key={item.name} size="sm">
-                    <Text span fw={600}>
-                      {item.name}
+          return (
+            <Timeline.Item
+              key={`${first.employer}-${first.from}`}
+              bullet={<IconBriefcase size={12} />}
+              title={
+                <Text fw={700} fz="lg">
+                  {first.employer}
+                  {group.length > 1 && last && (
+                    <Text span c="dimmed" fw={400} fz="sm">
+                      {`  ${label(last.from)} — ${first.to === null ? 'Present' : label(first.to)}`}
                     </Text>
-                    {` — ${item.what}`}
-                  </Text>
+                  )}
+                </Text>
+              }
+            >
+              <Stack gap="lg" mt="xs">
+                {group.map((role, index) => (
+                  <Position
+                    key={`${role.title}-${role.from}`}
+                    role={role}
+                    lead={index === 0}
+                  />
                 ))}
               </Stack>
-            )}
-
-            <TechChips topics={role.stack} />
-          </Timeline.Item>
-        ))}
+            </Timeline.Item>
+          );
+        })}
       </Timeline>
-    )}
-  </Stack>
-);
+    </Stack>
+  );
+};
 
 export default Work;
