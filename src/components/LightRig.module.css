@@ -1,0 +1,42 @@
+.stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: var(--mantine-radius-md);
+  overflow: hidden;
+  background: #0a0a0c;
+  border: 1px solid
+    light-dark(var(--mantine-color-sand-2), var(--mantine-color-dark-4));
+}
+
+.canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Shown when WebGL is unavailable, or under reduced motion before the single
+   frame lands. Never a blank box. */
+.fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--mantine-spacing-lg);
+  text-align: center;
+  color: var(--mantine-color-dark-1);
+  font-size: var(--mantine-font-size-sm);
+  background:
+    radial-gradient(
+      60% 80% at 25% 40%,
+      rgba(255, 176, 27, 0.22),
+      transparent 70%
+    ),
+    radial-gradient(
+      50% 70% at 70% 55%,
+      rgba(226, 84, 60, 0.18),
+      transparent 70%
+    ),
+    #0a0a0c;
+}

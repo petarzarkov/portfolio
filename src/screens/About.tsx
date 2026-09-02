@@ -8,6 +8,7 @@ import {
 } from '@tabler/icons-react';
 import { site } from '@config';
 import { activity, meta } from '@data';
+import { LightRig } from '../components/LightRig';
 
 const LINKS = [
   [site.github, 'github.com/petarzarkov', IconBrandGithub],
@@ -18,7 +19,7 @@ const LINKS = [
 ] as const;
 
 const About = () => (
-  <Stack gap="xl" maw="64ch">
+  <Stack gap="xl" maw="72ch">
     <div>
       <Title order={1} mb="xs">
         About
@@ -56,6 +57,24 @@ const About = () => (
       Kubernetes clusters and CI/CD pipelines. I prefer a hands-on approach to
       infrastructure, and shipping reliable code that scales.
     </Text>
+
+    <div>
+      <LightRig />
+      <Text size="xs" c="dimmed" mt="xs">
+        A three-point area-light rig around a torus knot — after
+        three.js&rsquo;s{' '}
+        <Anchor
+          href="https://threejs.org/examples/#webgl_lights_rectarealight"
+          target="_blank"
+          rel="noreferrer"
+          inherit
+        >
+          rectarealight
+        </Anchor>{' '}
+        example, retuned. It renders only while on screen, and holds a single
+        frame if you prefer reduced motion.
+      </Text>
+    </div>
 
     <div>
       <Title order={3} mb="sm">
