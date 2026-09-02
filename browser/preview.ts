@@ -77,12 +77,12 @@ export const startPreview = async (dist: string): Promise<Preview> => {
       );
       if (await exact.exists()) return new Response(exact);
 
-      // A directory index, the way Cloudflare Pages resolves `/projects/dunx`
-      // to `projects/dunx/index.html`. Without this the suite could not see
-      // that the SPA catch-all was shadowing every per-route shell.
-      const index = Bun.file(`${dist}${pathname}/index.html`);
-      if (await index.exists()) {
-        return new Response(index, {
+      // `<route>.html`, which is what `_redirects` maps a clean URL to. Without
+      // this the suite could not see that the SPA catch-all was shadowing every
+      // per-route shell.
+      const shell = Bun.file(`${dist}${pathname}.html`);
+      if (await shell.exists()) {
+        return new Response(shell, {
           headers: { 'Content-Type': 'text/html' },
         });
       }
