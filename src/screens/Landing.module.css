@@ -1,10 +1,9 @@
 .hero {
   position: relative;
-  /* The aurora is inset -30% on each side so its glow reaches the edges; without
-     clipping here it widens the document and the page scrolls sideways. The
-     global `overflow-x: hidden` hides that but does not fix it - `scrollWidth`
-     still exceeds `clientWidth`, which is what the browser suite measures. */
-  overflow: hidden;
+  /* Deliberately not clipped. `overflow: hidden` was here for an earlier aurora
+     inset -30% on each side; that one is now `inset: 0` and clips itself with a
+     mask. Leaving the rule in cut the spark in half every time its lap passed
+     the left edge of the heading, which starts at the hero's own edge. */
   padding: clamp(2rem, 8vw, 5.5rem) 0 clamp(2rem, 5vw, 3.5rem);
   max-width: 48rem;
 }
