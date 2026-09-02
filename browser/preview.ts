@@ -8,7 +8,6 @@
  */
 export const ROUTES = [
   ['landing', '/'],
-  ['work', '/work'],
   ['projects', '/projects'],
   ['project-detail', '/projects/dunx'],
   ['skills', '/skills'],
@@ -54,6 +53,16 @@ const HEADING = `
 
 const OVERFLOWS = `
   document.documentElement.scrollWidth > document.documentElement.clientWidth + 1`;
+
+/**
+ * Entrance animations still running.
+ *
+ * Without waiting on this the screenshots caught the treemap mid-sweep - two of
+ * nine cells painted - which makes the contact sheet useless as a visual record
+ * and would make any assertion about visible content flaky.
+ */
+const ANIMATING = `
+  document.getAnimations().filter((a) => a.playState === 'running').length`;
 
 export const startPreview = async (dist: string): Promise<Preview> => {
   const server = Bun.serve({
@@ -113,6 +122,16 @@ export const startPreview = async (dist: string): Promise<Preview> => {
     throw new Error(`page never settled within 10s: ${last}`);
   };
 
+  /** Lets entrance animations finish, so a screenshot is of the final frame. */
+  const rest = async (): Promise<void> => {
+    for (let i = 0; i < 40; i++) {
+      if ((await view.evaluate<number>(ANIMATING)) === 0) return;
+      await Bun.sleep(50);
+    }
+    // Not fatal: a deliberately looping animation would never reach zero, and
+    // that is a design choice rather than a test failure.
+  };
+
   // `cdp()` needs a completed navigation before it accepts a command, and the
   // constructor's is still in flight here.
   await settle();
@@ -122,6 +141,7 @@ export const startPreview = async (dist: string): Promise<Preview> => {
       logged = [];
       await view.navigate(`${base}${path}`);
       await settle();
+      await rest();
     },
 
     async scheme(scheme) {

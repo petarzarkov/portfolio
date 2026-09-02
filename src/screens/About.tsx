@@ -39,6 +39,16 @@ const About = () => (
     </Text>
 
     <Text>
+      Most recently Software Engineering Manager at Pateplay, and before that
+      Technical Team Lead at LimeChain and Lead Software Engineer at Pwrteams
+      and DraftKings. The full history is on{' '}
+      <Anchor href={site.linkedin} target="_blank" rel="noreferrer">
+        LinkedIn
+      </Anchor>
+      .
+    </Text>
+
+    <Text>
       Today I focus on end-to-end project ownership: scalable, high-performance
       applications with a strong preference for the TypeScript ecosystem, and
       increasingly Go and Rust where efficiency matters most. I am comfortable

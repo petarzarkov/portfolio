@@ -21,68 +21,62 @@
     "languages": [
       {
         "name": "TypeScript",
-        "bytes": 3410722,
-        "share": 0.9785482221735123,
+        "bytes": 3517011,
+        "share": 0.9793722624932228,
         "color": "#3178c6"
       },
       {
         "name": "CSS",
         "bytes": 42089,
-        "share": 0.012075483174254883,
+        "share": 0.011720406662383841,
         "color": "#663399"
       },
       {
         "name": "Python",
         "bytes": 9090,
-        "share": 0.002607953195703792,
+        "share": 0.0025312669952022885,
         "color": "#3572A5"
       },
       {
         "name": "C#",
         "bytes": 7022,
-        "share": 0.0020146366710926318,
+        "share": 0.001955396792113363,
         "color": "#7355dd"
       },
       {
         "name": "Go",
         "bytes": 4777,
-        "share": 0.0013705382195684282,
+        "share": 0.0013302378917581222,
         "color": "#00ADD8"
       },
       {
         "name": "Rust",
         "bytes": 3059,
-        "share": 0.0008776379346158304,
+        "share": 0.0008518312143370517,
         "color": "#dea584"
       },
       {
         "name": "HTML",
         "bytes": 2869,
-        "share": 0.0008231262616583254,
+        "share": 0.0007989224432602162,
         "color": "#e34c26"
       },
       {
         "name": "Java",
         "bytes": 2769,
-        "share": 0.0007944359074701649,
+        "share": 0.0007710757216408291,
         "color": "#b07219"
       },
       {
         "name": "JavaScript",
         "bytes": 2401,
-        "share": 0.0006888554040577341,
+        "share": 0.0006685997860814845,
         "color": "#f1e05a"
-      },
-      {
-        "name": "Shell",
-        "bytes": 694,
-        "share": 0.00019911105806583404,
-        "color": "#89e051"
       }
     ],
     "license": "MIT",
     "createdAt": "2026-07-27T05:07:34Z",
-    "pushedAt": "2026-09-02T10:13:02Z",
+    "pushedAt": "2026-09-02T11:09:16Z",
     "release": {
       "tag": "v3.1.3",
       "publishedAt": "2026-08-30T11:52:02Z"
@@ -92,10 +86,65 @@
       "url": "https://petarzarkov.github.io/dunx",
       "status": "live",
       "code": 200,
-      "ms": 16,
-      "checkedAt": "2026-09-02T10:26:17.745Z"
+      "ms": 77,
+      "checkedAt": "2026-09-02T11:09:29.957Z"
     },
-    "image": "https://opengraph.githubassets.com/fc34d368040336c4de573bf5298db88d98e53bf1d86907b630404ac943a0a9f9/petarzarkov/dunx",
+    "image": "https://opengraph.githubassets.com/4a23f3ac6c59b8f36d7ec4145c171ca6e0b8b5a58e487484eedeb3920f96acef/petarzarkov/dunx",
+    "retiredAt": null,
+    "retiredNote": null,
+    "source": "github"
+  },
+  {
+    "slug": "portfolio",
+    "title": "portfolio",
+    "headline": null,
+    "description": "The site at petarzarkov.com. Projects, language stats and activity are generated from the GitHub API into a committed snapshot — tagging a repo puts it on the site, with no commit here.",
+    "tier": "active",
+    "pin": null,
+    "repo": "https://github.com/petarzarkov/portfolio",
+    "homepage": "https://petarzarkov.com",
+    "stars": 3,
+    "forks": 1,
+    "topics": [],
+    "languages": [
+      {
+        "name": "TypeScript",
+        "bytes": 136641,
+        "share": 0.9405614141358517,
+        "color": "#3178c6"
+      },
+      {
+        "name": "CSS",
+        "bytes": 6771,
+        "share": 0.04660783611883587,
+        "color": "#663399"
+      },
+      {
+        "name": "HTML",
+        "bytes": 1295,
+        "share": 0.008914067017263692,
+        "color": "#e34c26"
+      },
+      {
+        "name": "JavaScript",
+        "bytes": 569,
+        "share": 0.00391668272804868,
+        "color": "#f1e05a"
+      }
+    ],
+    "license": "MIT",
+    "createdAt": "2022-03-09T11:22:27Z",
+    "pushedAt": "2026-09-02T10:59:27Z",
+    "release": null,
+    "npm": null,
+    "embed": {
+      "url": "https://petarzarkov.com",
+      "status": "live",
+      "code": 200,
+      "ms": 77,
+      "checkedAt": "2026-09-02T11:09:29.957Z"
+    },
+    "image": "https://opengraph.githubassets.com/271bdcf31b4d1bc239e5690a2c8f80bdd7414e42f35aac490de5c159dfa6c388/petarzarkov/portfolio",
     "retiredAt": null,
     "retiredNote": null,
     "source": "github"
@@ -196,8 +245,8 @@
       "url": "https://petarzarkov.github.io/petarzarkov/",
       "status": "live",
       "code": 200,
-      "ms": 167,
-      "checkedAt": "2026-09-02T10:26:17.745Z"
+      "ms": 200,
+      "checkedAt": "2026-09-02T11:09:29.957Z"
     },
     "image": "https://opengraph.githubassets.com/9b3e155bfbaaa4a5d854cd3086cf50cb7872ebaa7714f37259c1dd5a6c95acbf/petarzarkov/petarzarkov",
     "retiredAt": null,
@@ -257,8 +306,8 @@
       "url": "https://petarzarkov.github.io/arkv/",
       "status": "live",
       "code": 200,
-      "ms": 164,
-      "checkedAt": "2026-09-02T10:26:17.745Z"
+      "ms": 201,
+      "checkedAt": "2026-09-02T11:09:29.957Z"
     },
     "image": "https://opengraph.githubassets.com/9b3e155bfbaaa4a5d854cd3086cf50cb7872ebaa7714f37259c1dd5a6c95acbf/petarzarkov/arkv",
     "retiredAt": null,
@@ -310,6 +359,43 @@
     "npm": null,
     "embed": null,
     "image": "https://opengraph.githubassets.com/e659d36d862e6c7b7305c08e0e8e55d1e05a166df5b53d53bd4d85bb81be7f28/petarzarkov/firecracker",
+    "retiredAt": null,
+    "retiredNote": null,
+    "source": "github"
+  },
+  {
+    "slug": "dunx-template",
+    "title": "dunx-template",
+    "headline": null,
+    "description": "A production-shaped starter for dunx: validated config, structured logging with request context, health endpoints, and zod-validated REST controllers.",
+    "tier": "active",
+    "pin": null,
+    "repo": "https://github.com/petarzarkov/dunx-template",
+    "homepage": null,
+    "stars": 0,
+    "forks": 0,
+    "topics": [],
+    "languages": [
+      {
+        "name": "TypeScript",
+        "bytes": 279909,
+        "share": 0.993268418699389,
+        "color": "#3178c6"
+      },
+      {
+        "name": "Dockerfile",
+        "bytes": 1897,
+        "share": 0.006731581300611059,
+        "color": "#384d54"
+      }
+    ],
+    "license": "MIT",
+    "createdAt": "2026-08-02T09:38:57Z",
+    "pushedAt": "2026-08-06T12:16:10Z",
+    "release": null,
+    "npm": null,
+    "embed": null,
+    "image": "https://opengraph.githubassets.com/9c564b6deec46d34c9c5454862534ee17ec4e3caf0f2a2af1c5cc540132eecdd/petarzarkov/dunx-template",
     "retiredAt": null,
     "retiredNote": null,
     "source": "github"
@@ -461,10 +547,34 @@
       "url": "https://petarzarkov.github.io/iana-timezones/",
       "status": "live",
       "code": 200,
-      "ms": 15,
-      "checkedAt": "2026-09-02T10:26:17.745Z"
+      "ms": 204,
+      "checkedAt": "2026-09-02T11:09:29.957Z"
     },
     "image": "https://opengraph.githubassets.com/1f0eed03f809104b24a99bbe70c38c1cfe5d59408c1fa450d6cf5d57be4e19da/petarzarkov/iana-timezones",
+    "retiredAt": null,
+    "retiredNote": null,
+    "source": "github"
+  },
+  {
+    "slug": "nothing",
+    "title": "nothing",
+    "headline": null,
+    "description": "Nothing. An empty repository that has somehow collected more stars than most of the full ones.",
+    "tier": "lab",
+    "pin": null,
+    "repo": "https://github.com/petarzarkov/nothing",
+    "homepage": null,
+    "stars": 7,
+    "forks": 0,
+    "topics": [],
+    "languages": [],
+    "license": null,
+    "createdAt": "2026-04-06T19:44:41Z",
+    "pushedAt": "2026-04-06T19:44:41Z",
+    "release": null,
+    "npm": null,
+    "embed": null,
+    "image": "https://opengraph.githubassets.com/740fd6be093828509ab937dfb78802f35c53c4660b288a2fd68329ab92f50899/petarzarkov/nothing",
     "retiredAt": null,
     "retiredNote": null,
     "source": "github"
@@ -656,10 +766,65 @@
       "url": "https://petarzarkov.github.io/rust-beats/",
       "status": "live",
       "code": 200,
-      "ms": 12,
-      "checkedAt": "2026-09-02T10:26:17.745Z"
+      "ms": 234,
+      "checkedAt": "2026-09-02T11:09:29.957Z"
     },
     "image": "https://opengraph.githubassets.com/9dec69a98ace5f4ea8c6397317e9d0709709f72f0ce50b7aba25f1f50fd19948/petarzarkov/rust-beats",
+    "retiredAt": null,
+    "retiredNote": null,
+    "source": "github"
+  },
+  {
+    "slug": "goofy",
+    "title": "goofy",
+    "headline": null,
+    "description": "A web racing game in Rust — Bevy engine compiled to WebAssembly.",
+    "tier": "lab",
+    "pin": null,
+    "repo": "https://github.com/petarzarkov/goofy",
+    "homepage": null,
+    "stars": 0,
+    "forks": 0,
+    "topics": [],
+    "languages": [
+      {
+        "name": "Rust",
+        "bytes": 2542,
+        "share": 0.6076978245278508,
+        "color": "#dea584"
+      },
+      {
+        "name": "CSS",
+        "bytes": 619,
+        "share": 0.147979918718623,
+        "color": "#663399"
+      },
+      {
+        "name": "HTML",
+        "bytes": 460,
+        "share": 0.10996892182644036,
+        "color": "#e34c26"
+      },
+      {
+        "name": "JavaScript",
+        "bytes": 387,
+        "share": 0.09251733205833135,
+        "color": "#f1e05a"
+      },
+      {
+        "name": "Shell",
+        "bytes": 175,
+        "share": 0.04183600286875448,
+        "color": "#89e051"
+      }
+    ],
+    "license": null,
+    "createdAt": "2025-11-23T07:01:34Z",
+    "pushedAt": "2025-11-23T07:27:31Z",
+    "release": null,
+    "npm": null,
+    "embed": null,
+    "image": "https://opengraph.githubassets.com/fa80e3241e7ac4371921ca1abd8020c7b4d11933583136474400e689c2ceeca9/petarzarkov/goofy",
     "retiredAt": null,
     "retiredNote": null,
     "source": "github"
@@ -711,10 +876,59 @@
       "url": "https://petarzarkov.github.io/wave-sim/",
       "status": "live",
       "code": 200,
-      "ms": 154,
-      "checkedAt": "2026-09-02T10:26:17.745Z"
+      "ms": 187,
+      "checkedAt": "2026-09-02T11:09:29.957Z"
     },
     "image": "https://opengraph.githubassets.com/cd0554df0f783ad882ae4954a8eb138e617d162ce8cc299cb2eecef1c6f2527c/petarzarkov/wave-sim",
+    "retiredAt": null,
+    "retiredNote": null,
+    "source": "github"
+  },
+  {
+    "slug": "the-biscuit-machine",
+    "title": "the-biscuit-machine",
+    "headline": null,
+    "description": "A biscuit factory simulated as a state machine, in the browser.",
+    "tier": "lab",
+    "pin": null,
+    "repo": "https://github.com/petarzarkov/the-biscuit-machine",
+    "homepage": null,
+    "stars": 0,
+    "forks": 0,
+    "topics": [],
+    "languages": [
+      {
+        "name": "TypeScript",
+        "bytes": 58712,
+        "share": 0.9175613796552424,
+        "color": "#3178c6"
+      },
+      {
+        "name": "JavaScript",
+        "bytes": 3801,
+        "share": 0.05940269117164424,
+        "color": "#f1e05a"
+      },
+      {
+        "name": "CSS",
+        "bytes": 1003,
+        "share": 0.015675058996358637,
+        "color": "#663399"
+      },
+      {
+        "name": "HTML",
+        "bytes": 471,
+        "share": 0.007360870176754654,
+        "color": "#e34c26"
+      }
+    ],
+    "license": "MIT",
+    "createdAt": "2022-09-21T09:02:15Z",
+    "pushedAt": "2025-11-22T10:30:22Z",
+    "release": null,
+    "npm": null,
+    "embed": null,
+    "image": "https://opengraph.githubassets.com/aa9ce5a234513e4b81fb3a17f00717fb9687438a751b637b5d5314f2f982e5f9/petarzarkov/the-biscuit-machine",
     "retiredAt": null,
     "retiredNote": null,
     "source": "github"

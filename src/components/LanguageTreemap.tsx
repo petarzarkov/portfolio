@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+import { useReducedMotion } from 'motion/react';
 import type { LanguageTotal } from '@contracts';
 import { squarify } from './treemap';
 import classes from './LanguageTreemap.module.css';
@@ -23,6 +24,8 @@ export const LanguageTreemap = ({
   selected: string | null;
   onSelect: (name: string | null) => void;
 }) => {
+  const reduced = useReducedMotion();
+
   const cells = useMemo(
     () =>
       squarify(
@@ -49,7 +52,7 @@ export const LanguageTreemap = ({
         role="group"
         aria-label="Languages by volume of code written"
       >
-        {cells.map((cell) => {
+        {cells.map((cell, index) => {
           const lang = byName.get(cell.name);
           if (!lang) return null;
 
@@ -57,12 +60,23 @@ export const LanguageTreemap = ({
           const dimmed = selected !== null && !isSelected;
           // Below roughly this size a label collides with the cell border.
           const showLabel = cell.width > 64 && cell.height > 34;
-          const showSub = cell.width > 90 && cell.height > 56;
+          // 90 was too tight: "2.1% · 121 repos" overflowed the Other cell.
+          const showSub = cell.width > 125 && cell.height > 56;
 
           return (
             <g
               key={cell.name}
-              className={`${classes.cell} ${dimmed ? classes.dimmed : ''}`}
+              className={[
+                classes.cell,
+                dimmed ? classes.dimmed : '',
+                isSelected ? classes.selected : '',
+                reduced ? '' : classes.enter,
+              ]
+                .filter(Boolean)
+                .join(' ')}
+              style={
+                reduced ? undefined : { animationDelay: `${index * 28}ms` }
+              }
               role="button"
               tabIndex={0}
               aria-pressed={isSelected}

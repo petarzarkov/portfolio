@@ -1,7 +1,9 @@
 import { useMemo, useState } from 'react';
 import {
   Badge,
+  Divider,
   Group,
+  Paper,
   SimpleGrid,
   Stack,
   Switch,
@@ -9,7 +11,9 @@ import {
   Text,
   Title,
 } from '@mantine/core';
-import { languages, projects } from '@data';
+import { activity, languages, projects } from '@data';
+import { ActivityHeatmap } from '../components/ActivityHeatmap';
+import { CountUp } from '../components/CountUp';
 import { LanguageTreemap } from '../components/LanguageTreemap';
 import { ProjectCard } from '../components/ProjectCard';
 import { Walkthrough, type Step } from '../components/Walkthrough';
@@ -37,6 +41,17 @@ const STEPS: readonly Step[] = [
     body: 'Selecting a rectangle filters the projects underneath to the ones that actually contain it — the link between a claim and its evidence.',
   },
 ];
+
+const Stat = ({ value, label }: { value: number; label: string }) => (
+  <div>
+    <Text fz="clamp(1.4rem, 3vw, 1.9rem)" fw={680} lh={1.1} ff="monospace">
+      <CountUp value={value} />
+    </Text>
+    <Text size="xs" c="dimmed" tt="uppercase" fw={600}>
+      {label}
+    </Text>
+  </div>
+);
 
 const Skills = () => {
   const [selected, setSelected] = useState<string | null>(null);
@@ -117,6 +132,30 @@ const Skills = () => {
             ))}
         </Group>
       )}
+
+      <Divider />
+
+      <section aria-labelledby="activity-heading">
+        <Title order={2} id="activity-heading" mb="xs">
+          Activity
+        </Title>
+        <Text c="dimmed" mb="lg" maw="62ch">
+          Every contribution over the last year, public and private. Darker is
+          busier — the scale is quantiled over active days rather than fixed, so
+          it keeps its contrast instead of saturating.
+        </Text>
+
+        <SimpleGrid cols={{ base: 2, sm: 4 }} spacing="lg" mb="xl">
+          <Stat value={activity.totalContributions} label="contributions" />
+          <Stat value={activity.commits} label="public commits" />
+          <Stat value={activity.restricted} label="private commits" />
+          <Stat value={activity.longestStreak} label="longest streak" />
+        </SimpleGrid>
+
+        <Paper withBorder p="md" radius="md">
+          <ActivityHeatmap days={activity.days} />
+        </Paper>
+      </section>
 
       {selected !== null && (
         <Reveal>

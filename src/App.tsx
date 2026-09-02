@@ -11,7 +11,6 @@ import { Landing } from './screens/Landing';
 const Projects = lazy(() => import('./screens/Projects'));
 const ProjectDetail = lazy(() => import('./screens/ProjectDetail'));
 const Skills = lazy(() => import('./screens/Skills'));
-const Work = lazy(() => import('./screens/Work'));
 const About = lazy(() => import('./screens/About'));
 const NotFound = lazy(() => import('./screens/NotFound'));
 
@@ -35,7 +34,6 @@ export const App = () => {
           <Suspense key={pathname} fallback={<Fallback />}>
             <Routes>
               <Route path="/" element={<Landing />} />
-              <Route path="/work" element={<Work />} />
               <Route path="/projects" element={<Projects />} />
               <Route path="/projects/:slug" element={<ProjectDetail />} />
               <Route path="/skills" element={<Skills />} />

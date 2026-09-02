@@ -2,8 +2,8 @@
   "top": [
     {
       "name": "TypeScript",
-      "bytes": 61020130,
-      "share": 0.532710493485642,
+      "bytes": 61199378,
+      "share": 0.5334174898041701,
       "color": "#3178c6",
       "repos": 100,
       "proficiency": null
@@ -11,7 +11,7 @@
     {
       "name": "Python",
       "bytes": 17672734,
-      "share": 0.15428434600812033,
+      "share": 0.1540366212260656,
       "color": "#3572A5",
       "repos": 10,
       "proficiency": null
@@ -19,15 +19,15 @@
     {
       "name": "Gherkin",
       "bytes": 9612544,
-      "share": 0.08391825874334334,
+      "share": 0.0837835164127344,
       "color": "#5B2063",
       "repos": 10,
       "proficiency": null
     },
     {
       "name": "JavaScript",
-      "bytes": 8100523,
-      "share": 0.07071819750010026,
+      "bytes": 8099668,
+      "share": 0.0705971974552938,
       "color": "#f1e05a",
       "repos": 99,
       "proficiency": null
@@ -35,7 +35,7 @@
     {
       "name": "C#",
       "bytes": 7259178,
-      "share": 0.06337319003876452,
+      "share": 0.06327143564762466,
       "color": "#7355dd",
       "repos": 18,
       "proficiency": null
@@ -43,15 +43,15 @@
     {
       "name": "PLpgSQL",
       "bytes": 4016153,
-      "share": 0.03506132888513744,
+      "share": 0.03500503308921681,
       "color": "#336790",
       "repos": 3,
       "proficiency": null
     },
     {
       "name": "HTML",
-      "bytes": 2717702,
-      "share": 0.02372575039690863,
+      "bytes": 2718561,
+      "share": 0.023695142530689033,
       "color": "#e34c26",
       "repos": 57,
       "proficiency": null
@@ -59,20 +59,20 @@
     {
       "name": "HCL",
       "bytes": 1730441,
-      "share": 0.015106884876479086,
+      "share": 0.015082628690674242,
       "color": "#844FBA",
       "repos": 8,
       "proficiency": null
     },
     {
       "name": "Other",
-      "bytes": 2417109,
-      "share": 0.021101550065504394,
+      "bytes": 2422073,
+      "share": 0.021110935143531292,
       "color": "#64748b",
       "repos": 121,
       "proficiency": null
     }
   ],
-  "totalBytes": 114546514,
+  "totalBytes": 114730730,
   "repoCount": 151
 }

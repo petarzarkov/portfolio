@@ -17,7 +17,6 @@ import { site } from '@config';
 import classes from './Header.module.css';
 
 const ROUTES = [
-  ['/work', 'Work'],
   ['/projects', 'Projects'],
   ['/skills', 'Skills'],
   ['/about', 'About'],

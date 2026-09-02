@@ -39,7 +39,6 @@ afterAll(async () => {
  */
 const HEADINGS: Record<string, RegExp> = {
   landing: /Petar Zarkov/i,
-  work: /^Work$/i,
   projects: /^Projects$/i,
   'project-detail': /^dunx$/i,
   skills: /^Skills$/i,
