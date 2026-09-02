@@ -30,6 +30,8 @@ export interface ConsoleLine {
 }
 
 export interface Preview {
+  /** Where the built site is being served, for asserting on raw HTML. */
+  readonly origin: string;
   /** Navigate to a path and wait for it to have rendered a heading. */
   open(path: string): Promise<void>;
   scheme(scheme: Scheme): Promise<void>;
@@ -69,10 +71,21 @@ export const startPreview = async (dist: string): Promise<Preview> => {
     port: 0,
     async fetch(request) {
       const { pathname } = new URL(request.url);
-      const file = Bun.file(
+
+      const exact = Bun.file(
         `${dist}${pathname === '/' ? '/index.html' : pathname}`,
       );
-      if (await file.exists()) return new Response(file);
+      if (await exact.exists()) return new Response(exact);
+
+      // A directory index, the way Cloudflare Pages resolves `/projects/dunx`
+      // to `projects/dunx/index.html`. Without this the suite could not see
+      // that the SPA catch-all was shadowing every per-route shell.
+      const index = Bun.file(`${dist}${pathname}/index.html`);
+      if (await index.exists()) {
+        return new Response(index, {
+          headers: { 'Content-Type': 'text/html' },
+        });
+      }
       // The SPA fallback `public/_redirects` gives us on Cloudflare Pages. A
       // deep link must work on a cold load, which is the whole point of the
       // `project-detail` and `not-found` cases below.
@@ -137,6 +150,8 @@ export const startPreview = async (dist: string): Promise<Preview> => {
   await settle();
 
   return {
+    origin: base,
+
     async open(path) {
       logged = [];
       await view.navigate(`${base}${path}`);

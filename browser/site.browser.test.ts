@@ -150,6 +150,36 @@ describe('accessibility', () => {
   });
 });
 
+describe('metadata', () => {
+  /**
+   * Regression test for a live bug: `/* /index.html 200` matched an
+   * extensionless path before Cloudflare looked for a directory index, so
+   * `/projects/dunx` served the landing page's title and card while
+   * `/projects/dunx/` served the right one. Every real link uses the first form.
+   */
+  test('a project route serves its own title and card, with no trailing slash', async () => {
+    const html = await fetch(`${preview.origin}/projects/dunx`).then((r) =>
+      r.text(),
+    );
+
+    expect(html).toContain('<title>dunx — Petar Zarkov</title>');
+    expect(html).toContain('/og/dunx.png');
+  });
+
+  test('each route has a distinct title', async () => {
+    const titles = await Promise.all(
+      ['/', '/projects', '/skills', '/about'].map(async (path) => {
+        const html = await fetch(`${preview.origin}${path}`).then((r) =>
+          r.text(),
+        );
+        return /<title>([^<]*)<\/title>/.exec(html)?.[1] ?? '';
+      }),
+    );
+
+    expect(new Set(titles).size).toBe(titles.length);
+  });
+});
+
 describe('budget', () => {
   /**
    * The entry chunk is what every visitor downloads before anything renders.
