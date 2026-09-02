@@ -147,39 +147,6 @@
         "prefer-rest-params": "error",
         "prefer-spread": "error"
       }
-    },
-    {
-      "files": [
-        "src/components/Footer.tsx",
-        "src/components/Icons/icons.tsx",
-        "src/components/Icons/index.tsx",
-        "src/components/index.tsx",
-        "src/components/Layout.tsx",
-        "src/components/NavBar/index.tsx",
-        "src/components/NavBar/NavBar.tsx",
-        "src/components/Profile.tsx",
-        "src/components/Project.tsx",
-        "src/store/store.ts",
-        "src/theme/index.ts",
-        "src/theme/ThemeProvider.tsx"
-      ],
-      "rules": {
-        "import/no-cycle": "off"
-      }
-    },
-    {
-      "files": [
-        "src/components/common/Title.tsx",
-        "src/components/NavBar/NavBar.tsx",
-        "src/components/Project.tsx",
-        "src/screens/Contact.tsx",
-        "src/screens/projects/hobbies.tsx",
-        "src/theme/ThemeProvider.tsx"
-      ],
-      "rules": {
-        "react-hooks/rules-of-hooks": "off",
-        "react/no-did-mount-set-state": "off"
-      }
     }
   ]
 }

@@ -36,9 +36,26 @@ jobs:
       - uses: ./.github/actions/setup
       - run: bun run ci unit
 
+  browser:
+    name: Site in a browser
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
+      # No browser download step: Bun.WebView drives the Chrome the runner image
+      # already ships. See docs/06-testing.md.
+      - run: bun run ci build
+      - run: bun run ci browser
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: failed-shots
+          path: browser/.shots/
+          retention-days: 7
+
   deploy:
     name: Deploy
-    needs: [static, unit]
+    needs: [static, unit, browser]
     runs-on: ubuntu-latest
     permissions:
       contents: read

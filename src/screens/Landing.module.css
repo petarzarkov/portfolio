@@ -1,0 +1,43 @@
+.hero {
+  padding: clamp(2rem, 8vw, 5.5rem) 0 clamp(2rem, 5vw, 3.5rem);
+  max-width: 46rem;
+}
+
+.thesis {
+  font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+  line-height: 1.55;
+  color: light-dark(var(--mantine-color-sand-9), var(--mantine-color-sand-2));
+}
+
+.accent {
+  color: light-dark(var(--mantine-color-brand-8), var(--mantine-color-brand-4));
+}
+
+.flagship {
+  border: 1px solid
+    light-dark(var(--mantine-color-sand-2), var(--mantine-color-dark-4));
+  border-radius: var(--mantine-radius-lg);
+  padding: clamp(1.25rem, 4vw, 2.25rem);
+  background: light-dark(
+    var(--mantine-color-white),
+    var(--mantine-color-dark-7)
+  );
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: var(--mantine-spacing-lg);
+}
+
+.stat {
+  border-left: 2px solid var(--mantine-color-brand-5);
+  padding-left: var(--mantine-spacing-sm);
+}
+
+.statValue {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 680;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}

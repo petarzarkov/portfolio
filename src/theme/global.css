@@ -1,0 +1,66 @@
+/**
+ * Global rules only. Everything component-scoped lives in a CSS module next to
+ * its component, and everything colour-related goes through Mantine's CSS
+ * variables so `light-dark()` handles the scheme with no hook and no re-render.
+ */
+
+:root {
+  color-scheme: light dark;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: light-dark(
+    var(--mantine-color-sand-0),
+    var(--mantine-color-dark-8)
+  );
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* The page must never scroll sideways; wide content scrolls inside its own
+   container. The browser suite asserts this on every route and viewport. */
+html {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: var(--mantine-color-brand-4);
+  color: var(--mantine-color-black);
+}
+
+/* Visible focus, always. Mantine's default ring only shows for :focus-visible,
+   which is right; this makes it unmistakable. */
+:focus-visible {
+  outline: 2px solid var(--mantine-color-brand-6);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/**
+ * Reduced motion is a contract, not a fallback.
+ *
+ * Everything animated is either a CSS transition or a `motion` component; this
+ * neutralises the first, and `useReducedMotion` handles the second. Both are
+ * asserted by the browser suite.
+ */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

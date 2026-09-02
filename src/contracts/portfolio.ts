@@ -126,7 +126,7 @@ export interface Activity {
 }
 
 export interface Meta {
-  readonly generatedAt: string;
+  readonly generatedAt: string | null;
   readonly projects: number;
   readonly repos: number;
   /** Embeds probed, and how many answered. */

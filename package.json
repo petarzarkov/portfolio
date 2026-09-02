@@ -40,14 +40,17 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/icons": "2.2.4",
-    "@chakra-ui/react": "2.10.10",
-    "@emailjs/browser": "4.4.1",
-    "formik": "2.4.9",
+    "@mantine/charts": "9.6.0",
+    "@mantine/core": "9.6.0",
+    "@mantine/hooks": "9.6.0",
+    "@mantine/nprogress": "9.6.0",
+    "@mantine/spotlight": "9.6.0",
+    "@tabler/icons-react": "3.46.0",
+    "motion": "13.1.1",
     "react": "19.2.8",
     "react-dom": "19.2.8",
-    "react-icons": "5.7.0",
-    "react-router-dom": "7.18.3"
+    "react-router-dom": "7.18.3",
+    "recharts": "3.10.1"
   },
   "devDependencies": {
     "@stagelint/stagelint": "0.1.4",
@@ -59,6 +62,9 @@
     "oxfmt": "0.66.0",
     "oxlint": "1.81.0",
     "oxlint-tsgolint": "7.0.2001",
+    "postcss": "8.5.26",
+    "postcss-preset-mantine": "1.18.0",
+    "postcss-simple-vars": "7.0.1",
     "typescript": "7.0.2",
     "vite": "8.2.2",
     "wrangler": "4.128.0"

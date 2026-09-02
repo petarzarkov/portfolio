@@ -52,9 +52,14 @@ export const PHASES: readonly Phase[] = Object.freeze([
     concurrent: false,
     steps: [{ name: 'build', run: ['bun', 'run', 'build'] }],
   },
-  // A `browser` phase driving Bun.WebView over the built dist/ lands with the
-  // suite it runs, in phase 2 - see docs/06-testing.md. Declaring it before
-  // `browser/` exists would only give CI a step that cannot pass.
+  {
+    name: 'browser',
+    summary: 'The built site in a real browser',
+    // Needs dist/. `bun run ci` runs `build` first because the phase list is
+    // ordered; the workflow's browser job runs `ci build` before `ci browser`.
+    concurrent: false,
+    steps: [{ name: 'browser', run: ['bun', 'run', 'test:browser'] }],
+  },
 ]);
 
 interface Result {

@@ -1,34 +1,17 @@
-import React, { type FC } from 'react';
-import { Box, Button, Heading, Text } from '@chakra-ui/react';
+import { Button, Stack, Text, Title } from '@mantine/core';
 import { Link } from 'react-router-dom';
 
-export const NotFound: FC = () => (
-  <Box textAlign="center" py={10} px={6}>
-    <Heading
-      display="inline-block"
-      as="h2"
-      size="2xl"
-      bgGradient="linear(to-r, blue.400, blue.600)"
-      backgroundClip="text"
-    >
-      404
-    </Heading>
-    <Text fontSize="18px" mt={3} mb={2}>
-      Page Not Found
+const NotFound = () => (
+  <Stack align="flex-start" gap="md" py="xl">
+    <Title order={1}>Not found</Title>
+    <Text c="dimmed" maw="50ch">
+      That page does not exist. It may have been a project that has since been
+      retired, or a link that never worked.
     </Text>
-    <Text color={'primary.500'} mb={6}>
-      The page you are looking for does not seem to exist
-    </Text>
-
-    <Button
-      as={Link}
-      to="/"
-      colorScheme="blue"
-      bgGradient="linear(to-r, blue.400, blue.500, blue.600)"
-      color="white"
-      variant="solid"
-    >
-      Go to Home
+    <Button component={Link} to="/" variant="light">
+      Back to the start
     </Button>
-  </Box>
+  </Stack>
 );
+
+export default NotFound;

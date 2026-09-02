@@ -1,0 +1,64 @@
+.wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  font-family: var(--mantine-font-family);
+}
+
+.cell {
+  cursor: pointer;
+  transition:
+    opacity 200ms ease,
+    transform 240ms cubic-bezier(0.22, 1, 0.36, 1);
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+.cell:hover .rect,
+.cell:focus-visible .rect {
+  filter: brightness(1.12);
+}
+
+.cell:focus-visible {
+  outline: none;
+}
+
+.cell:focus-visible .rect {
+  stroke: var(--mantine-color-brand-4);
+  stroke-width: 3;
+}
+
+.dimmed {
+  opacity: 0.25;
+}
+
+.rect {
+  stroke: light-dark(var(--mantine-color-white), var(--mantine-color-dark-8));
+  stroke-width: 2;
+  transition: filter 200ms ease;
+}
+
+.label {
+  font-weight: 640;
+  pointer-events: none;
+  fill: #fff;
+  paint-order: stroke;
+  stroke: rgba(0, 0, 0, 0.35);
+  stroke-width: 3px;
+  stroke-linejoin: round;
+}
+
+.sub {
+  font-weight: 500;
+  pointer-events: none;
+  fill: rgba(255, 255, 255, 0.9);
+  paint-order: stroke;
+  stroke: rgba(0, 0, 0, 0.3);
+  stroke-width: 2.5px;
+  stroke-linejoin: round;
+}
