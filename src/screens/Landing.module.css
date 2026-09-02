@@ -133,3 +133,67 @@
   line-height: 1.1;
   font-variant-numeric: tabular-nums;
 }
+
+/**
+ * A spark that laps the headline, ported from the dunx landing page.
+ *
+ * `offset-path: border-box` is what makes the lap responsive: it traces the box
+ * of the containing block, so the heading wrapping to two lines on a phone needs
+ * no breakpoint and no measurement in JavaScript. `offset-distance` is the only
+ * property the lap animates, and the browser composites it.
+ *
+ * Guarded by `@supports` because the fallback for an unresolved offset-path is
+ * not "no animation" - it is a dot parked in the top-left corner.
+ */
+.heroTitle {
+  position: relative;
+}
+
+.spark {
+  display: none;
+}
+
+@supports (offset-path: border-box) {
+  .heroTitle[data-spark='true'] .spark {
+    --size: clamp(2.2rem, 4.5vw, 3.2rem);
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+    pointer-events: none;
+    offset-path: border-box;
+    offset-rotate: 0deg;
+    background: radial-gradient(
+      circle at 50% 50%,
+      light-dark(var(--mantine-color-brand-4), var(--mantine-color-white)) 0%,
+      color-mix(in srgb, var(--mantine-color-brand-5) 70%, transparent) 22%,
+      color-mix(in srgb, var(--mantine-color-brand-7) 30%, transparent) 46%,
+      transparent 70%
+    );
+    filter: blur(1px);
+    animation: spark-lap 9s linear infinite;
+  }
+}
+
+@keyframes spark-lap {
+  0% {
+    offset-distance: 0%;
+    opacity: 0;
+  }
+  4% {
+    opacity: 1;
+  }
+  72% {
+    offset-distance: 100%;
+    opacity: 1;
+  }
+  80%,
+  100% {
+    offset-distance: 100%;
+    opacity: 0;
+  }
+}

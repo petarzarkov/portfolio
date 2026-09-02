@@ -9,6 +9,8 @@ import {
   Title,
 } from '@mantine/core';
 import { IconArrowRight, IconBrandGithub, IconStar } from '@tabler/icons-react';
+import { useRef } from 'react';
+import { useInView, useReducedMotion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { site } from '@config';
 import { activity, byTier, flagship, languages } from '@data';
@@ -50,6 +52,12 @@ const Stat = ({ value, label }: { value: string; label: string }) => (
  * properly is worth eight shown as thumbnails.
  */
 export const Landing = () => {
+  // Gated on being in view so the lap is not running against a heading nobody
+  // is looking at, and off entirely under reduced motion.
+  const reduced = useReducedMotion();
+  const title = useRef<HTMLHeadingElement>(null);
+  const inView = useInView(title, { amount: 0.4 });
+
   const lead = flagship();
   const active = byTier('active').slice(0, 4);
   const top = languages.top[0];
@@ -62,7 +70,14 @@ export const Landing = () => {
         <Text size="sm" fw={600} tt="uppercase" c="dimmed" mb="xs">
           {`${site.role} · ${site.location}`}
         </Text>
-        <Title order={1} mb="md">
+        <Title
+          order={1}
+          mb="md"
+          ref={title}
+          className={classes.heroTitle}
+          data-spark={reduced !== true && inView}
+        >
+          <span className={classes.spark} aria-hidden />
           <TextReveal text={site.name} />
         </Title>
         <p className={classes.thesis}>
