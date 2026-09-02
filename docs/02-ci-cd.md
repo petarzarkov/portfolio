@@ -148,14 +148,25 @@ stops checking something.
 
 ## Cloudflare Pages
 
-### Project setup — one-time, in the dashboard
+### Project setup — done
 
-1. Workers & Pages → Create → Pages → **Connect to Git is not used.** Choose
-   _Direct Upload_, name the project `portfolio`. Direct upload keeps the build in
-   GitHub Actions where the tests are, rather than splitting it across two CI
-   systems with two different Bun versions.
-2. Production branch: `main`.
-3. Settings → Builds & deployments → nothing to configure; Actions pushes `dist`.
+The Pages project `portfolio` exists (Direct Upload, production branch `main`).
+Its assigned subdomain is **`portfolio-6cm.pages.dev`** — Cloudflare suffixed it
+because `portfolio.pages.dev` was taken. The project _name_ is still
+`portfolio`, which is what `--project-name` and `wrangler.jsonc` use; only the
+preview hostname carries the suffix.
+
+Verified against a real deploy of the built site:
+
+| Check                                                  | Result                                                                    |
+| ------------------------------------------------------ | ------------------------------------------------------------------------- |
+| `/`, `/skills`, `/projects`, `/projects/dunx`, `/nope` | all `200`                                                                 |
+| Deep link on a cold load                               | serves the app, not a 404 — `_redirects` works                            |
+| `_headers` applied                                     | `x-content-type-options`, `referrer-policy`, `permissions-policy` present |
+
+**Local deploys need Node 22+.** Wrangler 4 refuses to start on anything older,
+and it is not run through Bun. In CI `cloudflare/wrangler-action` brings its own
+Node, so this only affects running `bunx wrangler` by hand.
 
 ### API token scopes
 
