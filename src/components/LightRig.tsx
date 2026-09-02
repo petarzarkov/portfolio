@@ -62,7 +62,11 @@ export const LightRig = () => {
       // filled the frame with a slab every few seconds.
       const camera = new THREE.PerspectiveCamera(38, 16 / 10, 1, 1000);
       camera.position.set(0, 7.8, -22);
-      camera.lookAt(0, 5.4, 0);
+      // Aimed to one side of the subject, pushing it into the right third of
+      // the frame, clear of the copy column. Positive x, because the camera
+      // looks down +Z and that mirrors world x on screen - aiming negative
+      // moved the knot the other way, straight under the text.
+      camera.lookAt(5.5, 5.4, 0);
 
       // Required before any RectAreaLight is lit; without it they render black.
       RectAreaLightUniformsLib.init();
@@ -135,9 +139,11 @@ export const LightRig = () => {
       knot.position.set(0, 5.5, 0);
       scene.add(knot);
 
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      // Capped harder than the boxed version was: this now covers the whole
+      // viewport, and it sits behind a scrim, so the extra pixels buy nothing.
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
       renderer.domElement.className = classes.canvas ?? '';
-      node.append(renderer.domElement);
+      node.prepend(renderer.domElement);
 
       const resize = () => {
         const { clientWidth, clientHeight } = node;
@@ -252,11 +258,8 @@ export const LightRig = () => {
 
   return (
     <div className={classes.stage} ref={host} aria-hidden>
-      {failed && (
-        <div className={classes.fallback}>
-          Your browser could not start WebGL, so this one is a still.
-        </div>
-      )}
+      {failed && <div className={classes.fallback} />}
+      <div className={classes.scrim} />
     </div>
   );
 };

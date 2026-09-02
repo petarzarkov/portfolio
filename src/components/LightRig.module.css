@@ -1,12 +1,11 @@
+/**
+ * The rig fills whatever the caller positions it in - a fixed full-bleed
+ * backdrop on /about - rather than carrying a box of its own.
+ */
 .stage {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 10;
-  border-radius: var(--mantine-radius-md);
+  position: absolute;
+  inset: 0;
   overflow: hidden;
-  background: #0a0a0c;
-  border: 1px solid
-    light-dark(var(--mantine-color-sand-2), var(--mantine-color-dark-4));
 }
 
 .canvas {
@@ -15,28 +14,47 @@
   height: 100%;
 }
 
-/* Shown when WebGL is unavailable, or under reduced motion before the single
-   frame lands. Never a blank box. */
+/**
+ * Sits over the scene and keeps the page readable.
+ *
+ * A WebGL scene behind body copy is a contrast problem before it is anything
+ * else. In light mode the wash is nearly opaque and the rig reads as a faint
+ * coloured haze; in dark mode it is thinner and the knot shows through. Either
+ * way the text above it is on a solid-enough ground.
+ */
+.scrim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      120% 90% at 50% 0%,
+      transparent 0%,
+      light-dark(
+          color-mix(in srgb, var(--mantine-color-sand-0) 74%, transparent),
+          color-mix(in srgb, var(--mantine-color-dark-8) 62%, transparent)
+        )
+        58%
+    ),
+    light-dark(
+      color-mix(in srgb, var(--mantine-color-sand-0) 80%, transparent),
+      color-mix(in srgb, var(--mantine-color-dark-8) 72%, transparent)
+    );
+}
+
+/* Shown when WebGL is unavailable. Never a blank area. */
 .fallback {
   position: absolute;
   inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--mantine-spacing-lg);
-  text-align: center;
-  color: var(--mantine-color-dark-1);
-  font-size: var(--mantine-font-size-sm);
   background:
     radial-gradient(
       60% 80% at 25% 40%,
-      rgba(255, 176, 27, 0.22),
+      rgba(255, 176, 27, 0.16),
       transparent 70%
     ),
     radial-gradient(
       50% 70% at 70% 55%,
-      rgba(226, 84, 60, 0.18),
+      rgba(107, 91, 210, 0.14),
       transparent 70%
-    ),
-    #0a0a0c;
+    );
 }

@@ -1,0 +1,16 @@
+/**
+ * The rig as a full-bleed backdrop for this route only.
+ *
+ * `fixed` rather than `absolute`, so it stays put while the page scrolls
+ * instead of sliding away with the content. `z-index: -1` and
+ * `pointer-events: none` keep it behind and inert - it must never eat a click
+ * or a scroll gesture.
+ *
+ * It unmounts with the route, which is what disposes the WebGL context.
+ */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
