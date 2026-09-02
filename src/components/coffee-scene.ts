@@ -65,8 +65,7 @@ const wispTexture = (three: THREE): THREE_NS.CanvasTexture => {
 };
 
 const CERAMIC = 0xf2efe9;
-const CREMA = 0xe6c79a;
-const COFFEE = 0x1d0d05;
+const COFFEE = 0x2e1708;
 
 export const buildCoffee = (three: THREE): CoffeeScene => {
   const group = new three.Group();
@@ -98,41 +97,22 @@ export const buildCoffee = (three: THREE): CoffeeScene => {
   base.position.y = 0.09;
   group.add(base);
 
-  // The dark ring of coffee the foam does not quite reach.
+  // Just the coffee. Low roughness so the rig's panels catch on it as
+  // highlights - a matte disc reads as dark card, a glossy one reads as liquid.
   const surface = new three.Mesh(
     new three.CircleGeometry(1.17, 64),
     new three.MeshStandardMaterial({
       color: COFFEE,
-      roughness: 0.18,
-      metalness: 0,
+      roughness: 0.11,
+      // Barely metallic. At 0.2 the red panel overhead tinted the whole surface
+      // and the coffee read as red wine rather than coffee; near zero it keeps
+      // its own brown and takes the panels as highlights instead.
+      metalness: 0.02,
     }),
   );
   surface.rotation.x = -Math.PI / 2;
   surface.position.y = 1.38;
   group.add(surface);
-
-  // Foam, slightly domed rather than a flat disc: a sphere squashed on Y and
-  // clipped by the cup rim reads as crema without needing a texture.
-  const foam = new three.Mesh(
-    new three.SphereGeometry(1.04, 64, 32, 0, Math.PI * 2, 0, Math.PI / 2),
-    new three.MeshStandardMaterial({
-      color: CREMA,
-      roughness: 0.92,
-      metalness: 0,
-    }),
-  );
-  foam.scale.y = 0.2;
-  foam.position.y = 1.4;
-  group.add(foam);
-
-  // One off-centre ring, which is all latte art needs to read at this size.
-  const art = new three.Mesh(
-    new three.TorusGeometry(0.52, 0.055, 12, 64),
-    new three.MeshStandardMaterial({ color: 0xfff6e6, roughness: 0.95 }),
-  );
-  art.rotation.x = -Math.PI / 2;
-  art.position.set(0.12, 1.605, 0.06);
-  group.add(art);
 
   const handle = new three.Mesh(
     new three.TorusGeometry(0.46, 0.1, 16, 64, Math.PI * 1.25),

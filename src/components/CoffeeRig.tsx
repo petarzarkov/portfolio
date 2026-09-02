@@ -113,25 +113,51 @@ export const CoffeeRig = () => {
        * one, so a distance that frames the cup on a desktop puts most of it off
        * the sides of a phone - which is why it was barely visible there.
        */
+      let framed = { w: 0, h: 0 };
+
       const frame = () => {
         const { clientWidth: w, clientHeight: h } = node;
         if (w === 0 || h === 0) return;
+        if (w === framed.w && h === framed.h) return;
 
         renderer.setSize(w, h, false);
         camera.aspect = w / h;
 
-        const vFov = (camera.fov * Math.PI) / 180;
-        const byHeight = coffee.height / 2 / Math.tan(vFov / 2);
-        const byWidth = 4.8 / 2 / Math.tan(vFov / 2) / camera.aspect;
-        // The camera sits well above the aim point, so its true distance to the
-        // subject is longer than this; less padding is needed than at eye level.
-        const distance = Math.max(byHeight, byWidth) * 1.02;
+        /**
+         * The camera distance is deliberately *not* recomputed for a small
+         * height-only change.
+         *
+         * A phone's URL bar hides as you scroll down and returns as you scroll
+         * up, and each of those resizes the viewport. Re-deriving the distance
+         * every time moved the cup mid-gesture and left it somewhere else,
+         * which is the bug this guard exists for. `100lvh` on the backdrop
+         * should already hold the element still, but that is one CSS unit's
+         * support away from being wrong and this does not depend on it.
+         *
+         * A real change - a rotation, a resized window - moves the width, or
+         * moves the height by far more than browser chrome ever does.
+         */
+        const widthChanged = w !== framed.w;
+        const heightJump =
+          Math.abs(h - framed.h) / Math.max(framed.h, 1) > 0.25;
 
-        // High enough to see over the rim. At a near-level angle the rim occludes
-        // the foam entirely, which is the whole reason there is a cup and not
-        // just a cylinder.
-        camera.position.set(0, 6.1, -distance);
-        camera.lookAt(AIM);
+        if (framed.h === 0 || widthChanged || heightJump) {
+          const vFov = (camera.fov * Math.PI) / 180;
+          const byHeight = coffee.height / 2 / Math.tan(vFov / 2);
+          const byWidth = 4.8 / 2 / Math.tan(vFov / 2) / camera.aspect;
+          // The camera sits well above the aim point, so its true distance to
+          // the subject is longer than this; less padding is needed than at
+          // eye level.
+          const distance = Math.max(byHeight, byWidth) * 1.02;
+
+          // High enough to see over the rim. At a near-level angle the rim
+          // occludes the coffee, which is the whole reason there is a cup and
+          // not just a cylinder.
+          camera.position.set(0, 6.1, -distance);
+          camera.lookAt(AIM);
+        }
+
+        framed = { w, h };
         camera.updateProjectionMatrix();
         renderer.render(scene, camera);
       };

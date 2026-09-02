@@ -4,7 +4,23 @@
  */
 .backdrop {
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  /**
+   * `lvh`, not `inset: 0` and not `dvh`.
+   *
+   * A fixed element inset to 0 sizes to the *visual* viewport, which on a phone
+   * shrinks and grows as the URL bar hides and reappears during a scroll. Every
+   * one of those changes fired the ResizeObserver, which re-derived the camera
+   * distance from the new aspect - so the cup jumped as you scrolled and jumped
+   * back on the way up.
+   *
+   * `lvh` is the largest viewport height and does not move with the browser
+   * chrome, so the canvas keeps one size for the life of the page.
+   */
+  height: 100vh;
+  height: 100lvh;
   z-index: -1;
   pointer-events: none;
 }
