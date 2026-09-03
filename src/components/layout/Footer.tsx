@@ -1,4 +1,4 @@
-import { ActionIcon, Container, Group, Text, Tooltip } from '@mantine/core';
+import { ActionIcon, Container, Group, Text } from '@mantine/core';
 import {
   IconBrandGithub,
   IconBrandLinkedin,
@@ -7,6 +7,7 @@ import {
 } from '@tabler/icons-react';
 import { site } from '@config';
 import { meta } from '@data';
+import { Hint } from '../Hint';
 import { formatDay } from '@lib';
 import classes from './Footer.module.css';
 
@@ -41,7 +42,7 @@ export const Footer = () => (
 
       <Group gap="xs">
         {LINKS.map(([href, label, Icon]) => (
-          <Tooltip key={label} label={label} withArrow>
+          <Hint key={label} label={label}>
             <ActionIcon
               component="a"
               href={href}
@@ -54,7 +55,7 @@ export const Footer = () => (
             >
               <Icon size={18} />
             </ActionIcon>
-          </Tooltip>
+          </Hint>
         ))}
       </Group>
     </Container>

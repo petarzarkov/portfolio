@@ -1,9 +1,10 @@
-import { ActionIcon, Burger, Container, Group, Tooltip } from '@mantine/core';
+import { ActionIcon, Burger, Container, Group } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { IconBrandGithub, IconSearch } from '@tabler/icons-react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 import { useEffect, useRef, useState, type ComponentType } from 'react';
 import { site } from '@config';
+import { Hint } from '../Hint';
 import { ROUTES } from './routes';
 import { ThemePicker } from './ThemePicker';
 import classes from './Header.module.css';
@@ -139,7 +140,7 @@ export const Header = () => {
 
         <Group gap="xs">
           <ThemePicker />
-          <Tooltip label="Search — press / or ⌘K" withArrow>
+          <Hint label="Search — press / or ⌘K">
             <ActionIcon
               variant="default"
               size="lg"
@@ -155,8 +156,8 @@ export const Header = () => {
             >
               <IconSearch size={17} />
             </ActionIcon>
-          </Tooltip>
-          <Tooltip label="GitHub" withArrow>
+          </Hint>
+          <Hint label="GitHub" align="end">
             <ActionIcon
               component="a"
               href={site.github}
@@ -169,7 +170,7 @@ export const Header = () => {
             >
               <IconBrandGithub size={17} />
             </ActionIcon>
-          </Tooltip>
+          </Hint>
           <Burger
             opened={opened}
             onClick={openMenu}

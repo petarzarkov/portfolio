@@ -1,0 +1,62 @@
+/**
+ * A tooltip in CSS, replacing `@mantine/core`'s.
+ *
+ * Mantine's Tooltip and Popover share `@floating-ui`, so deferring or dropping
+ * either alone saves about 6 KB - the library stays for whichever is left.
+ * Removing both takes 24 KB gzipped off the entry chunk, which on slow 3G is
+ * roughly half a second of blank screen. That is worth thirty lines of CSS for
+ * a hint that only ever appears below a header button in a known position, and
+ * never needed collision detection or a positioning engine.
+ *
+ * The label is duplicated in `aria-label` on the control itself, so this is
+ * decoration: a sighted pointer user gets the name a screen reader already had.
+ */
+.hint {
+  position: relative;
+  display: inline-flex;
+}
+
+.hint::after {
+  content: attr(data-hint);
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  translate: -50% 0;
+  z-index: 300;
+
+  padding: 5px 9px;
+  border-radius: var(--mantine-radius-sm);
+  border: 1px solid var(--border-card);
+  background: var(--surface-raised);
+  color: var(--ink);
+  font-size: var(--mantine-font-size-xs);
+  font-weight: 500;
+  line-height: 1.35;
+  white-space: nowrap;
+  box-shadow: var(--mantine-shadow-md);
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 120ms ease;
+}
+
+/* `:focus-visible`, not `:focus`: a hint that fires on a mouse click is noise,
+   and the keyboard user is the one who benefits from it. */
+.hint:hover::after,
+.hint:focus-within::after {
+  opacity: 1;
+}
+
+/* Room is tight at the right edge of a phone header, so the last few anchor
+   their hint to that edge instead of centring it off screen. */
+.end::after {
+  left: auto;
+  right: 0;
+  translate: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hint::after {
+    transition: none;
+  }
+}
