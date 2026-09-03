@@ -40,17 +40,14 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@mantine/charts": "9.6.0",
     "@mantine/core": "9.6.0",
     "@mantine/hooks": "9.6.0",
-    "@mantine/nprogress": "9.6.0",
     "@mantine/spotlight": "9.6.0",
     "@tabler/icons-react": "3.46.0",
     "motion": "13.1.1",
     "react": "19.2.8",
     "react-dom": "19.2.8",
     "react-router-dom": "7.18.3",
-    "recharts": "3.10.1",
     "three": "0.185.1"
   },
   "devDependencies": {

@@ -12,6 +12,27 @@
   color-scheme: dark;
 }
 
+/**
+ * Dimmed text, raised to clear WCAG AA.
+ *
+ * Mantine's dark `dimmed` is `dark-2`, `#828282`, which is 4.29:1 on this
+ * background - under the 4.5:1 AA needs for body text, on the one token that
+ * carries every card description, every stat label, the footer and all four
+ * page intros. It was the site's most widespread contrast failure by some way.
+ *
+ * `sand-4` is the warm neutral the rest of the palette is built from, and it
+ * clears AA on all three surfaces it lands on: 6.1:1 on the page, 5.7:1 on a
+ * card, 5.0:1 on the retirement note.
+ *
+ * The selector has to be this one, not a bare `:root`. Mantine declares the
+ * token under `:root[data-mantine-color-scheme='dark']`, which outranks a plain
+ * `:root` on specificity no matter what order the stylesheets load in - the
+ * override silently did nothing until it matched.
+ */
+:root[data-mantine-color-scheme='dark'] {
+  --mantine-color-dimmed: var(--mantine-color-sand-4);
+}
+
 html,
 body {
   margin: 0;

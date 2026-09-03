@@ -103,7 +103,9 @@ Three layers, each answering what the one below cannot:
   3 viewports: correct heading, no horizontal overflow, zero
   console errors, plus the assertions that map onto what actually broke here —
   no offline embed rendered as an iframe, the WebGL backdrop actually animating
-  rather than redrawing one frame, one `<h1>` per route, every iframe titled.
+  rather than redrawing one frame, the cup never overlapping the copy it sits
+  beside, one `<h1>` per route, every iframe titled, and the entry chunk inside
+  its budget.
 
 No browser download in CI: `Bun.WebView` drives the Chrome the runner already
 ships.
@@ -118,6 +120,16 @@ commits only when it moved. That push deploys. Run it by hand with
 and exits 0, leaving the committed snapshot alone. It hard-fails on exactly one
 thing — a schema violation — rather than writing a snapshot that renders as a
 blank page.
+
+## Headers
+
+`public/_headers` carries a CSP with no `unsafe-inline` in `script-src`, which is
+possible because the site loads nothing from anywhere else: no webfont, no CDN,
+no analytics, and no inline script since Mantine's SSR-only `ColorSchemeScript`
+was dropped. `frame-src` is **generated** — `scripts/shells.ts` fills it with the
+origins of exactly those embeds a generator saw answer, so a project going live
+becomes framable at the next refresh and one going dark stops being. `robots.txt`
+and a generated `sitemap.xml` cover the crawler side of the per-route shells.
 
 ## Secrets
 
@@ -135,8 +147,17 @@ neither them nor `viewer.contributionsCollection`.
 
 `prefers-reduced-motion` is a contract, not a fallback — every entrance is
 either a CSS animation that `global.css` neutralises or a `motion` component
-that checks it. The treemap is keyboard operable and has a table equivalent
-behind a toggle. `jsx-a11y` runs in the lint gate.
+that checks it. `jsx-a11y` runs in the lint gate.
+
+Every text colour clears WCAG AA on the surface it lands on. Mantine's own
+`dimmed` is 4.29:1 on this background — under the 4.5:1 threshold, on the token
+that carries every card description, stat label and page intro — so `global.css`
+overrides it to the warm neutral the palette is already built from.
+
+The treemap is keyboard operable and has a table equivalent behind a toggle,
+which is also the **default below 48em**: area is the message a treemap carries,
+and no setting shows all nine cells and letters them on a 390px screen. Headings
+run h1 → h2 → h3 with no level skipped.
 
 ## Docs
 

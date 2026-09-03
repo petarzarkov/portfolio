@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import {
   Badge,
   Divider,
@@ -19,7 +19,17 @@ import { ProjectCard } from '../components/ProjectCard';
 import { Walkthrough, type Step } from '../components/Walkthrough';
 import { Reveal } from '../components/Reveal';
 
-const STEPS: readonly Step[] = [
+/**
+ * `select` is what makes the tour more than a caption track: while that step is
+ * showing, the page selects that language, so the reader watches the map do the
+ * thing the step is describing. Walkthrough stays generic - it reports which
+ * step it is on and nothing else - and this screen decides what that means.
+ */
+interface SkillStep extends Step {
+  readonly select?: string;
+}
+
+const STEPS: readonly SkillStep[] = [
   {
     title: 'Area is volume, not skill',
     body: 'Each rectangle is sized by how many bytes of that language exist across every repository I own. It measures what gets written, not how well.',
@@ -35,10 +45,12 @@ const STEPS: readonly Step[] = [
   {
     title: 'The long tail is folded up',
     body: 'Everything below the top eight is grouped into Other. Without that, Dockerfile and Shell get the same row as TypeScript.',
+    select: 'Other',
   },
   {
     title: 'Click a language',
     body: 'Selecting a rectangle filters the projects underneath to the ones that actually contain it — the link between a claim and its evidence.',
+    select: 'TypeScript',
   },
 ];
 
@@ -55,7 +67,41 @@ const Stat = ({ value, label }: { value: number; label: string }) => (
 
 const Skills = () => {
   const [selected, setSelected] = useState<string | null>(null);
-  const [asTable, setAsTable] = useState(false);
+
+  /**
+   * The table is the better default on a phone, and the map is one tap away.
+   *
+   * Area is the whole message of a treemap, so a reader who can only see part
+   * of it has lost the comparison it exists to make - and at 390px there is no
+   * setting that shows all nine cells *and* letters them. The table already
+   * existed for anyone who cannot use the map at all; a screen this narrow is
+   * simply another case of that.
+   *
+   * A lazy initialiser, so this is a starting point rather than a rule: once
+   * the reader has touched the switch it is theirs, and rotating the phone does
+   * not overrule them.
+   */
+  const [asTable, setAsTable] = useState(
+    () => !window.matchMedia('(min-width: 48em)').matches,
+  );
+
+  // The tour borrows the selection to demonstrate it, and hands back whatever
+  // the reader had chosen before it started rather than clearing their state.
+  const restore = useRef<string | null>(null);
+  const touring = useRef(false);
+
+  const onStep = (index: number | null) => {
+    if (index === null) {
+      touring.current = false;
+      setSelected(restore.current);
+      return;
+    }
+    if (!touring.current) {
+      touring.current = true;
+      restore.current = selected;
+    }
+    setSelected(STEPS[index]?.select ?? null);
+  };
 
   const matching = useMemo(() => {
     if (selected === null) return [];
@@ -78,7 +124,7 @@ const Skills = () => {
       </div>
 
       <Group justify="space-between" align="center">
-        <Walkthrough steps={STEPS} />
+        <Walkthrough steps={STEPS} onStep={onStep} />
         <Switch
           checked={asTable}
           onChange={(event) => setAsTable(event.currentTarget.checked)}

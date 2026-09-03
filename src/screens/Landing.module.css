@@ -132,10 +132,17 @@
 /**
  * A spark that laps the headline, ported from the dunx landing page.
  *
- * `offset-path: border-box` is what makes the lap responsive: it traces the box
- * of the containing block, so the heading wrapping to two lines on a phone needs
- * no breakpoint and no measurement in JavaScript. `offset-distance` is the only
- * property the lap animates, and the browser composites it.
+ * The path is responsive by construction: it traces the box of the containing
+ * block, so the heading wrapping to two lines on a phone needs no breakpoint and
+ * no measurement in JavaScript. `offset-distance` is the only property the lap
+ * animates, and the browser composites it.
+ *
+ * `inset()`, not `border-box`. Tracing the border box puts the spark's *centre*
+ * on the edge, so half of it - up to 1.6rem - hangs outside the heading, and on
+ * a 390px viewport that pushed the document 2px wider than the screen for the
+ * few frames of the lap that passed the right edge. Insetting the path by half
+ * the spark means its outer edge lands exactly on the border box instead: same
+ * lap, nothing outside the heading, and nothing to clip.
  *
  * Guarded by `@supports` because the fallback for an unresolved offset-path is
  * not "no animation" - it is a dot parked in the top-left corner.
@@ -148,7 +155,7 @@
   display: none;
 }
 
-@supports (offset-path: border-box) {
+@supports (offset-path: inset(1px)) {
   .heroTitle[data-spark='true'] .spark {
     --size: clamp(2.2rem, 4.5vw, 3.2rem);
     display: block;
@@ -160,7 +167,7 @@
     height: var(--size);
     border-radius: 50%;
     pointer-events: none;
-    offset-path: border-box;
+    offset-path: inset(calc(var(--size) / 2) round calc(var(--size) / 2));
     offset-rotate: 0deg;
     background: radial-gradient(
       circle at 50% 50%,

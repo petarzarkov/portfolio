@@ -33,21 +33,3 @@ export const Reveal = ({
     </motion.div>
   );
 };
-
-/** Staggers its children's `Reveal` delays without each caller doing the maths. */
-export const RevealGroup = ({
-  children,
-  step = 0.06,
-}: {
-  children: ReactNode[];
-  step?: number;
-}) => (
-  <>
-    {children.map((child, index) => (
-      // eslint-disable-next-line react/no-array-index-key
-      <Reveal key={index} delay={index * step}>
-        {child}
-      </Reveal>
-    ))}
-  </>
-);

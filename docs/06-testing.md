@@ -106,7 +106,8 @@ and six routes in **719 ms**, so the whole matrix is seconds, not minutes.
 
 ### The matrix
 
-Every route × 3 viewports (360 / 768 / 1440) × 2 colour schemes. Per case:
+Every route × 3 viewports (390 / 820 / 1440). One colour scheme: the site is
+dark only, so `SCHEMES` is a single entry and the matrix halved with it. Per case:
 
 ```ts
 expect(await preview.heading()).toMatch(expected); // right route, not a fallback
@@ -129,9 +130,10 @@ Beyond dunx's set, the checks that map onto what actually broke here:
 - **No offline embed is ever rendered as an `<iframe>`.** Given an `embeds.json`
   fixture marking a URL offline, the detail route must contain a still and no
   frame. This is the regression test for the three dead embeds.
-- **Colour scheme actually applies.** dunx asserts the page paints differently
-  under each scheme — a site painting identically means the dark palette never
-  loaded and half the screenshots are of a light site.
+- **The page is dark whatever the visitor prefers.** With `forceColorScheme`
+  there is no second palette to compare against, so the assertion is absolute:
+  under `prefers-color-scheme: light` the body must still paint a dark ground.
+  A light-preferring visitor getting a half-converted page is the failure mode.
 - **Reduced motion is honoured.** With `prefers-reduced-motion: reduce`, assert no
   element carries a running animation.
 - **Per-route metadata.** After prerendering (phase 4), assert `<title>`,

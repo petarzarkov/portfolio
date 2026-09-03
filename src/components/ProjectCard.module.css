@@ -49,8 +49,20 @@
   }
 }
 
-/* The whole card is the link target, but only the title is the accessible name,
-   so the tab order stays one stop per card. */
+/**
+ * The whole card is the link target, but only the title is the accessible name,
+ * so the tab order stays one stop per card.
+ *
+ * The colour and decoration are not optional. Mantine resets no bare `<a>`, and
+ * a `<Link>` with neither left every card title painted in the browser's own
+ * link blue and underlined - turning purple once visited, which is exactly as
+ * broken as it sounds.
+ */
+.link {
+  color: inherit;
+  text-decoration: none;
+}
+
 .link::after {
   content: '';
   position: absolute;

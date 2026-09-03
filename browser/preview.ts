@@ -42,6 +42,12 @@ export interface Preview {
   overflows(): Promise<boolean>;
   /** Selectors present in the DOM, for asserting on structure. */
   count(selector: string): Promise<number>;
+  /**
+   * True when the first match of each selector shares screen space with the
+   * other. The question "is decoration sitting on top of the text" is a layout
+   * one, and a screenshot cannot be asserted on.
+   */
+  overlaps(a: string, b: string): Promise<boolean>;
   background(): Promise<string>;
   screenshot(): Promise<Blob>;
   logged(): readonly ConsoleLine[];
@@ -58,14 +64,37 @@ const OVERFLOWS = `
   document.documentElement.scrollWidth > document.documentElement.clientWidth + 1`;
 
 /**
- * Entrance animations still running.
+ * Whether every entrance has finished.
  *
- * Without waiting on this the screenshots caught the treemap mid-sweep - two of
- * nine cells painted - which makes the contact sheet useless as a visual record
- * and would make any assertion about visible content flaky.
+ * Two separate signals, because there are two animation systems on the page and
+ * checking only the first was not enough:
+ *
+ *   1. CSS animations, via `getAnimations()`. This caught the treemap mid-sweep
+ *      and the heatmap's diagonal fade.
+ *   2. `motion`'s `whileInView` wrappers, which do *not* register until an
+ *      intersection callback fires. Between navigation and that callback,
+ *      `getAnimations()` legitimately reports nothing running while every
+ *      Reveal on screen is still sitting at `opacity: 0` - so `rest()` returned
+ *      immediately and the contact sheet caught half-faded project cards. An
+ *      element that is on screen and still transparent has not started, which
+ *      is the opposite of settled.
+ *
+ * Wrappers below the fold are ignored: they are meant to stay at zero until
+ * scrolled to, and waiting on those would never return.
  */
-const ANIMATING = `
-  document.getAnimations().filter((a) => a.playState === 'running').length`;
+const SETTLED = `
+  (() => {
+    const running = document
+      .getAnimations()
+      .filter((a) => a.playState === 'running').length;
+    if (running > 0) return false;
+
+    return ![...document.querySelectorAll('[style*="opacity"]')].some((el) => {
+      const box = el.getBoundingClientRect();
+      const onScreen = box.width > 0 && box.bottom > 0 && box.top < innerHeight;
+      return onScreen && Number(getComputedStyle(el).opacity) < 1;
+    });
+  })()`;
 
 export const startPreview = async (dist: string): Promise<Preview> => {
   const server = Bun.serve({
@@ -136,14 +165,25 @@ export const startPreview = async (dist: string): Promise<Preview> => {
     throw new Error(`page never settled within 10s: ${last}`);
   };
 
-  /** Lets entrance animations finish, so a screenshot is of the final frame. */
+  /**
+   * Lets entrance animations finish, so a screenshot is of the final frame.
+   *
+   * Settled has to hold across consecutive polls, not just once. A single true
+   * reading is ambiguous - it is also what the moment before an intersection
+   * callback fires looks like - and requiring the state to persist is what
+   * distinguishes "finished" from "not started yet".
+   */
   const rest = async (): Promise<void> => {
-    for (let i = 0; i < 40; i++) {
-      if ((await view.evaluate<number>(ANIMATING)) === 0) return;
+    let consecutive = 0;
+    for (let i = 0; i < 60; i++) {
+      consecutive = (await view.evaluate<boolean>(SETTLED))
+        ? consecutive + 1
+        : 0;
+      if (consecutive >= 3) return;
       await Bun.sleep(50);
     }
-    // Not fatal: a deliberately looping animation would never reach zero, and
-    // that is a design choice rather than a test failure.
+    // Not fatal: a deliberately looping animation would never settle, and that
+    // is a design choice rather than a test failure.
   };
 
   // `cdp()` needs a completed navigation before it accepts a command, and the
@@ -191,6 +231,21 @@ export const startPreview = async (dist: string): Promise<Preview> => {
       view.evaluate<number>(
         `document.querySelectorAll(${JSON.stringify(selector)}).length`,
       ),
+    overlaps: (a, b) =>
+      view.evaluate<boolean>(`
+        (() => {
+          const one = document.querySelector(${JSON.stringify(a)});
+          const two = document.querySelector(${JSON.stringify(b)});
+          if (!one || !two) return false;
+          const x = one.getBoundingClientRect();
+          const y = two.getBoundingClientRect();
+          return (
+            x.left < y.right &&
+            x.right > y.left &&
+            x.top < y.bottom &&
+            x.bottom > y.top
+          );
+        })()`),
     background: () =>
       view.evaluate<string>('getComputedStyle(document.body).backgroundColor'),
     screenshot: () => view.screenshot(),

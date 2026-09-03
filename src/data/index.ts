@@ -45,11 +45,4 @@ export const currently = (): Project | undefined =>
     )
     .sort((a, b) => (b.pushedAt ?? '').localeCompare(a.pushedAt ?? ''))[0];
 
-/**
- * True only when a generator confirmed the URL answered. Anything else - never
- * probed, 404, no DNS - renders a still rather than an iframe.
- */
-export const isEmbeddable = (project: Project): boolean =>
-  project.embed?.status === 'live';
-
 export * from './overrides';

@@ -2,6 +2,24 @@
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: geolocation=(), microphone=(), camera=()
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-src %FRAME_SRC%; frame-ancestors 'none'; base-uri 'self'; form-action 'none'; object-src 'none'; upgrade-insecure-requests
+
+# The policy above is strict because this site earned the right to be: no
+# webfont, no CDN, no analytics, no third-party anything. Two notes on why it
+# is not stricter still:
+#
+#   style-src 'unsafe-inline'  Mantine writes component styles into a <style>
+#                              tag and the app sets `style` attributes directly.
+#                              Removing it means nonces, which a static host
+#                              cannot mint per request.
+#   frame-src %FRAME_SRC%      Substituted at build time by scripts/shells.ts
+#                              with the origins of exactly those embeds a
+#                              generator saw answer. A project going live adds
+#                              its origin at the next refresh; nothing else can
+#                              ever be framed.
+#
+# `script-src 'self'` with no 'unsafe-inline' is only possible because
+# `ColorSchemeScript` is gone - it was the one inline script on the page.
 
 # Vite fingerprints everything under /assets/, so the immutable year is safe
 # here and only here. index.html keeps Cloudflare's default short cache, which

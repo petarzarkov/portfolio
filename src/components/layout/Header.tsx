@@ -1,18 +1,19 @@
-import {
-  ActionIcon,
-  Burger,
-  Container,
-  Drawer,
-  Group,
-  Stack,
-  Tooltip,
-} from '@mantine/core';
+import { ActionIcon, Burger, Container, Group, Tooltip } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { IconBrandGithub, IconSearch } from '@tabler/icons-react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react';
 import { site } from '@config';
 import classes from './Header.module.css';
+
+/**
+ * Split out of the entry chunk: it is `hiddenFrom="sm"` and only ever opens
+ * after a tap, so nobody should be waiting on `ModalBase` and a focus trap
+ * before the page first paints.
+ */
+const NavDrawer = lazy(() =>
+  import('./NavDrawer').then((m) => ({ default: m.NavDrawer })),
+);
 
 const ROUTES = [
   ['/projects', 'Projects'],
@@ -22,7 +23,17 @@ const ROUTES = [
 
 export const Header = () => {
   const [opened, { toggle, close }] = useDisclosure(false);
+  // Latches on the first tap, so the drawer stays mounted afterwards and its
+  // close animation has something to run on. Set from the event rather than an
+  // effect watching `opened`: the tap is what causes it, and deriving it in an
+  // effect is a second render for no reason.
+  const [requested, setRequested] = useState(false);
   const { pathname } = useLocation();
+
+  const openMenu = () => {
+    setRequested(true);
+    toggle();
+  };
 
   // A drawer left open across a route change hides the page behind it.
   useEffect(close, [pathname, close]);
@@ -84,7 +95,7 @@ export const Header = () => {
           </Tooltip>
           <Burger
             opened={opened}
-            onClick={toggle}
+            onClick={openMenu}
             size="sm"
             hiddenFrom="sm"
             aria-label="Toggle navigation"
@@ -92,16 +103,13 @@ export const Header = () => {
         </Group>
       </Container>
 
-      <Drawer
-        opened={opened}
-        onClose={close}
-        size="xs"
-        position="right"
-        title="Navigate"
-        hiddenFrom="sm"
-      >
-        <Stack gap={4}>{links}</Stack>
-      </Drawer>
+      {requested && (
+        <Suspense fallback={null}>
+          <NavDrawer opened={opened} onClose={close}>
+            {links}
+          </NavDrawer>
+        </Suspense>
+      )}
     </header>
   );
 };

@@ -1,6 +1,7 @@
 import { Anchor, Text, ThemeIcon } from '@mantine/core';
 import { IconPlugConnectedX } from '@tabler/icons-react';
 import type { Project } from '@contracts';
+import { formatDay } from '@lib';
 import classes from './Embed.module.css';
 
 /**
@@ -61,7 +62,7 @@ export const Embed = ({
       )}
       {checked !== undefined && (
         <Text size="xs" c="dimmed">
-          {`Checked ${new Date(checked).toLocaleDateString()}`}
+          {`Checked ${formatDay(checked) ?? ''}`}
         </Text>
       )}
     </div>

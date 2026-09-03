@@ -1,9 +1,5 @@
 import { useMemo } from 'react';
-import {
-  Spotlight,
-  spotlight,
-  type SpotlightActionData,
-} from '@mantine/spotlight';
+import { Spotlight, type SpotlightActionData } from '@mantine/spotlight';
 import {
   IconBrandGithub,
   IconBrandLinkedin,
@@ -93,5 +89,3 @@ export const Palette = () => {
     />
   );
 };
-
-export { spotlight };

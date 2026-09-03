@@ -1,13 +1,15 @@
-import { Anchor, Group, Stack, Text, Title } from '@mantine/core';
+import { Anchor, Button, Group, Stack, Text, Title } from '@mantine/core';
 import {
   IconBrandGithub,
   IconBrandLinkedin,
   IconBrandYoutube,
+  IconDownload,
   IconMail,
   IconWorld,
 } from '@tabler/icons-react';
 import { site } from '@config';
 import { activity, meta } from '@data';
+import { formatMinute } from '@lib';
 import { CoffeeRig } from '../components/CoffeeRig';
 
 const LINKS = [
@@ -35,6 +37,32 @@ const About = () => (
       {site.tagline}
     </Text>
 
+    {/* The one thing someone deciding whether to get in touch actually wants,
+        and the only place on the site that offered it was a LinkedIn link. */}
+    <Group>
+      {site.cv !== null && (
+        <Button
+          component="a"
+          href={site.cv}
+          download
+          color="brand"
+          leftSection={<IconDownload size={16} />}
+        >
+          Download CV
+        </Button>
+      )}
+      <Button
+        component="a"
+        href={site.linkedin}
+        target="_blank"
+        rel="noreferrer"
+        variant="default"
+        leftSection={<IconBrandLinkedin size={16} />}
+      >
+        Full work history
+      </Button>
+    </Group>
+
     <Text>
       I have spent over two decades in software engineering, evolving alongside
       the industry — from game development in Unity and early Android apps, to
@@ -61,7 +89,7 @@ const About = () => (
     </Text>
 
     <div>
-      <Title order={3} mb="sm">
+      <Title order={2} fz="h3" mb="sm">
         Elsewhere
       </Title>
       <Stack gap="xs">
@@ -81,7 +109,7 @@ const About = () => (
     </div>
 
     <div>
-      <Title order={3} mb="sm">
+      <Title order={2} fz="h3" mb="sm">
         This site
       </Title>
       <Text size="sm" c="dimmed">
@@ -96,7 +124,7 @@ const About = () => (
       </Text>
       {meta.generatedAt !== null && (
         <Text size="xs" c="dimmed" mt="xs">
-          {`Last refreshed ${new Date(meta.generatedAt).toLocaleString()}`}
+          {`Last refreshed ${formatMinute(meta.generatedAt) ?? ''}`}
         </Text>
       )}
     </div>

@@ -1,11 +1,22 @@
 .wrap {
   width: 100%;
   overflow-x: auto;
+  padding-bottom: 4px;
 }
 
+/**
+ * `min-width`, so a narrow viewport scrolls the map rather than shrinking it.
+ *
+ * With `width: 100%` alone the whole 900x420 viewBox scaled to fit a phone and
+ * every label went with it - "JavaScript · 99 repos" rendered at about 5px.
+ * Same treatment as the activity heatmap; the number is mirrored by
+ * `MIN_RENDERED_WIDTH` in LanguageTreemap.tsx, which sizes the labels against
+ * it.
+ */
 .svg {
   display: block;
   width: 100%;
+  min-width: 640px;
   height: auto;
   font-family: var(--mantine-font-family);
 }

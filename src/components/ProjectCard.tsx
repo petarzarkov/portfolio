@@ -3,6 +3,7 @@ import { Badge, Card, Group, Stack, Text, Title } from '@mantine/core';
 import { IconGitFork, IconStar } from '@tabler/icons-react';
 import { Link } from 'react-router-dom';
 import type { Project } from '@contracts';
+import { formatSince } from '@lib';
 import { TechChips } from './TechChips';
 import classes from './ProjectCard.module.css';
 
@@ -13,17 +14,8 @@ const TIER_LABEL: Record<Project['tier'], string> = {
   archive: 'Archived',
 };
 
-const since = (iso: string | null): string | null => {
-  if (iso === null) return null;
-  const days = Math.floor((Date.now() - Date.parse(iso)) / 86_400_000);
-  if (days < 1) return 'today';
-  if (days < 30) return `${days}d ago`;
-  if (days < 365) return `${Math.floor(days / 30)}mo ago`;
-  return `${Math.floor(days / 365)}y ago`;
-};
-
 export const ProjectCard = ({ project }: { project: Project }) => {
-  const pushed = since(project.pushedAt);
+  const pushed = formatSince(project.pushedAt);
 
   // Written straight to the element rather than through state: this fires on
   // every pointermove, and a re-render per event would be the whole cost.

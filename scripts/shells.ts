@@ -137,4 +137,59 @@ for (const shell of all) {
  * resolve before it, so it only ever catches a route with no shell.
  */
 
-console.log(`shells: ${all.length} routes written`);
+/**
+ * The sitemap, from the same route list the shells were written from.
+ *
+ * Hand-maintaining it would guarantee it goes stale the first time a repo is
+ * tagged `portfolio`, which is the one thing this pipeline exists to prevent.
+ */
+const sitemap = [
+  '<?xml version="1.0" encoding="UTF-8"?>',
+  '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+  ...['', ...all.map((shell) => shell.path)].map(
+    (path) => `  <url><loc>${site.url}/${path}</loc></url>`,
+  ),
+  '</urlset>',
+].join('\n');
+
+await Bun.write(`${DIST}sitemap.xml`, `${sitemap}\n`);
+
+/**
+ * Fills the CSP's `frame-src` with the origins of exactly those embeds a
+ * generator saw answer.
+ *
+ * Written here rather than kept as a literal in `public/_headers` for the same
+ * reason the sitemap is: a project going live must not need a hand edit, and a
+ * project going dark must stop being framable. `'none'` is the correct value
+ * when nothing is live, and is what a fresh snapshot with no embeds produces.
+ */
+const origins = [
+  ...new Set(
+    projects
+      .filter((project) => project.embed?.status === 'live')
+      .map((project) => new URL(project.embed?.url ?? '').origin),
+  ),
+].sort();
+
+const headers = Bun.file(`${DIST}_headers`);
+if (!(await headers.exists())) {
+  throw new Error(`shells: no _headers in ${DIST} to write a frame-src into`);
+}
+
+const policy = await headers.text();
+if (!policy.includes('%FRAME_SRC%')) {
+  throw new Error('shells: no %FRAME_SRC% placeholder in _headers');
+}
+
+await Bun.write(
+  `${DIST}_headers`,
+  policy.replaceAll(
+    '%FRAME_SRC%',
+    origins.length === 0 ? "'none'" : origins.join(' '),
+  ),
+);
+
+console.log(
+  `shells: ${all.length} routes written, sitemap with ${all.length + 1} urls, ` +
+    `frame-src ${origins.length === 0 ? "'none'" : origins.join(' ')}`,
+);

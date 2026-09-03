@@ -1,0 +1,7 @@
+# Everything here is meant to be found. The per-route shells in scripts/shells.ts
+# exist precisely so a crawler that does not run the bundle still sees the route
+# it asked for.
+User-agent: *
+Allow: /
+
+Sitemap: https://petarzarkov.com/sitemap.xml

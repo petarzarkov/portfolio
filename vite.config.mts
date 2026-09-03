@@ -13,6 +13,7 @@ export default defineConfig({
       '@contracts': src('contracts'),
       '@config': src('config'),
       '@data': src('data'),
+      '@lib': src('lib'),
       '@screens': src('screens'),
       '@theme': src('theme'),
     },

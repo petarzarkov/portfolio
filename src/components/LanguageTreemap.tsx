@@ -8,6 +8,34 @@ const WIDTH = 900;
 const HEIGHT = 420;
 
 /**
+ * The narrowest the map is ever painted, in real pixels.
+ *
+ * `width: 100%` on its own let a 900-unit viewBox scale down to whatever a
+ * phone had - about 360px - so every label rendered at roughly a third of its
+ * nominal size and the small cells became illegible smudges. The stylesheet
+ * holds the svg to this width and lets `.wrap` scroll instead, which is what
+ * ActivityHeatmap already does; the two must agree, so this is the number.
+ *
+ * Chosen against the treemap's own purpose rather than pushed as high as
+ * legibility allows. Area *is* the message here, so a reader who can only see
+ * half the map has lost the comparison the chart exists to make; at 520 most of
+ * it is on a 390px screen at once, labels still land at 13px or better, and the
+ * cells too small to letter drop their labels rather than shrinking them.
+ */
+const MIN_RENDERED_WIDTH = 520;
+
+/**
+ * Worst-case units-per-pixel. `cell.width` is in viewBox units, so comparing it
+ * against a pixel threshold was measuring the wrong space entirely: a cell 64
+ * units wide is 64px on a desktop and 45px on a phone, and the guard below is
+ * about whether a *rendered* label fits.
+ */
+const SCALE = MIN_RENDERED_WIDTH / WIDTH;
+
+/** Rendered pixels -> viewBox units, at the tightest layout the map is shown at. */
+const px = (pixels: number): number => pixels / SCALE;
+
+/**
  * Languages as area, with the selected one driving the rest of the page.
  *
  * Every cell is a real `<button>` inside a `<foreignObject>`-free SVG - a
@@ -59,9 +87,9 @@ export const LanguageTreemap = ({
           const isSelected = selected === cell.name;
           const dimmed = selected !== null && !isSelected;
           // Below roughly this size a label collides with the cell border.
-          const showLabel = cell.width > 64 && cell.height > 34;
+          const showLabel = cell.width > px(46) && cell.height > px(24);
           // 90 was too tight: "2.1% · 121 repos" overflowed the Other cell.
-          const showSub = cell.width > 125 && cell.height > 56;
+          const showSub = cell.width > px(89) && cell.height > px(40);
 
           return (
             <g
@@ -104,7 +132,7 @@ export const LanguageTreemap = ({
                   className={classes.label}
                   x={cell.x + 12}
                   y={cell.y + 26}
-                  fontSize={Math.min(20, Math.max(13, cell.width / 11))}
+                  fontSize={Math.min(22, Math.max(px(13), cell.width / 11))}
                 >
                   {lang.name}
                 </text>
@@ -114,7 +142,7 @@ export const LanguageTreemap = ({
                   className={classes.sub}
                   x={cell.x + 12}
                   y={cell.y + 46}
-                  fontSize={12}
+                  fontSize={px(11)}
                 >
                   {`${(lang.share * 100).toFixed(1)}% · ${lang.repos} repos`}
                 </text>

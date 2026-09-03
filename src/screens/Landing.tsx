@@ -13,6 +13,7 @@ import { useRef } from 'react';
 import { useInView, useReducedMotion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { site } from '@config';
+import { formatDay } from '@lib';
 import { activity, byTier, currently, flagship, languages } from '@data';
 import { ProjectCard } from '../components/ProjectCard';
 import { RotatingWord } from '../components/RotatingWord';
@@ -98,7 +99,7 @@ export const Landing = () => {
               {latest.title}
             </Anchor>
             {latest.pushedAt !== null &&
-              ` · last push ${new Date(latest.pushedAt).toLocaleDateString()}`}
+              ` · last push ${formatDay(latest.pushedAt) ?? ''}`}
           </Text>
         )}
 

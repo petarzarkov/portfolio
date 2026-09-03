@@ -25,9 +25,43 @@
   pointer-events: none;
 }
 
-.stage {
+/**
+ * Narrow: the cup gets a band of its own at the top of the page.
+ *
+ * In the flow, not behind the text. Full-bleed it sat directly under body copy
+ * - near-white ceramic behind 16px type - and no scrim opacity fixes that
+ * without erasing the scene along with the problem. Given its own strip it
+ * overlaps nothing, so it needs no scrim and no fading at all.
+ *
+ * Sized in the container rather than bled to `100vw`: a viewport unit includes
+ * the scrollbar, so at tablet width - where a classic scrollbar appears and the
+ * band still applies - a full-bleed strip is wider than the page and scrolls it
+ * sideways. The browser suite asserts against exactly that.
+ */
+.band {
+  position: relative;
+  width: 100%;
+  height: clamp(220px, 56vw, 320px);
+  pointer-events: none;
+}
+
+.band .stage {
   position: absolute;
   inset: 0;
+  overflow: hidden;
+}
+
+/**
+ * Wide: About's text column is capped at 72ch and sits left inside a centred
+ * container, so the right of the viewport is empty by construction. The cup
+ * takes that, and the two never meet.
+ *
+ * The breakpoint is duplicated as `WIDE` in CoffeeRig.tsx, which picks which of
+ * these two layouts to render. The two must agree.
+ */
+.backdrop .stage {
+  position: absolute;
+  inset: 0 0 0 48%;
   overflow: hidden;
 }
 
@@ -38,24 +72,18 @@
 }
 
 /**
- * Sits over the scene and keeps the page readable.
+ * Settles the scene back into the page.
  *
- * A WebGL scene behind body copy is a contrast problem before it is anything
- * else. In light mode the wash is nearly opaque and the rig reads as a faint
- * coloured haze; in dark mode it is thinner and the knot shows through. Either
- * way the text above it is on a solid-enough ground.
+ * Much lighter than it used to be: the wash was carrying the whole readability
+ * problem on its own, and losing, because it dimmed the scene just as much as
+ * it dimmed the ceramic under a paragraph. Now that `.stage` keeps out of the
+ * text column, this only has to take the edge off the brightest highlights.
  */
 .scrim {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background:
-    radial-gradient(
-      120% 90% at 50% 0%,
-      transparent 0%,
-      color-mix(in srgb, var(--mantine-color-dark-8) 30%, transparent) 58%
-    ),
-    color-mix(in srgb, var(--mantine-color-dark-8) 44%, transparent);
+  background: color-mix(in srgb, var(--mantine-color-dark-8) 22%, transparent);
 }
 
 /* Shown when WebGL is unavailable. Never a blank area. */

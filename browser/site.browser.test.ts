@@ -188,7 +188,8 @@ describe('the about backdrop', () => {
    * Two frames a beat apart have to differ.
    */
   test('the scene is actually animating', async () => {
-    await preview.view(900, 650);
+    // Wide: the rig only renders at 62em and up. See the narrow case below.
+    await preview.view(1440, 900);
     await preview.scheme('dark');
     await preview.open('/about');
 
@@ -206,9 +207,28 @@ describe('the about backdrop', () => {
   }, 30_000);
 
   test('it renders a canvas rather than the no-WebGL fallback', async () => {
+    await preview.view(1440, 900);
     await preview.open('/about');
     await Bun.sleep(2500);
     expect(await preview.count('canvas')).toBe(1);
+  }, 20_000);
+
+  /**
+   * Narrow gets the scene too, in a band of its own rather than behind the
+   * text.
+   *
+   * The regression this guards is the reason the band exists: full-bleed, the
+   * ceramic sat directly under body copy at 16px, and dimming it far enough to
+   * fix that made it invisible. A canvas that is back to overlapping the
+   * heading means the layout has collapsed to the version that was unreadable.
+   */
+  test('a narrow viewport renders the scene, clear of the copy', async () => {
+    await preview.view(390, 844);
+    await preview.open('/about');
+    await Bun.sleep(2500);
+
+    expect(await preview.count('canvas')).toBe(1);
+    expect(await preview.overlaps('canvas', 'h1')).toBe(false);
   }, 20_000);
 });
 

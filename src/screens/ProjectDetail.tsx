@@ -16,6 +16,7 @@ import {
 } from '@tabler/icons-react';
 import { Link, useParams } from 'react-router-dom';
 import { bySlug } from '@data';
+import { formatDay } from '@lib';
 import { Embed } from '../components/Embed';
 import { TechChips } from '../components/TechChips';
 import NotFound from './NotFound';
@@ -140,10 +141,7 @@ const ProjectDetail = () => {
           />
         )}
         {project.pushedAt !== null && (
-          <Meta
-            label="Last push"
-            value={new Date(project.pushedAt).toLocaleDateString()}
-          />
+          <Meta label="Last push" value={formatDay(project.pushedAt) ?? ''} />
         )}
         {project.release !== null && (
           <Meta label="Release" value={project.release.tag} />
@@ -158,7 +156,7 @@ const ProjectDetail = () => {
 
       {project.topics.length > 0 && (
         <div>
-          <Title order={3} mb="sm">
+          <Title order={2} fz="h3" mb="sm">
             Stack
           </Title>
           <TechChips topics={project.topics} />
@@ -167,7 +165,7 @@ const ProjectDetail = () => {
 
       {project.languages.length > 0 && (
         <div>
-          <Title order={3} mb="sm">
+          <Title order={2} fz="h3" mb="sm">
             Languages
           </Title>
           <Progress.Root size="xl" radius="sm" mb="sm">

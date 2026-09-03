@@ -23,7 +23,6 @@ export interface Steam {
 export interface CoffeeScene {
   readonly group: THREE_NS.Group;
   readonly steam: readonly Steam[];
-  readonly lights: readonly THREE_NS.RectAreaLight[];
   /** Roughly how tall the whole arrangement is, for framing the camera. */
   readonly height: number;
 }
@@ -97,16 +96,18 @@ export const buildCoffee = (three: THREE): CoffeeScene => {
   base.position.y = 0.09;
   group.add(base);
 
-  // Just the coffee. Low roughness so the rig's panels catch on it as
-  // highlights - a matte disc reads as dark card, a glossy one reads as liquid.
+  // Just the coffee. Glossy enough that the rig catches on it as highlights -
+  // a matte disc reads as dark card - but no longer a near-mirror. At 0.11 a
+  // point light returns a hard specular dot, and the surface took the colour of
+  // whatever was overhead; 0.24 spreads that into a sheen the brown survives.
   const surface = new three.Mesh(
     new three.CircleGeometry(1.17, 64),
     new three.MeshStandardMaterial({
       color: COFFEE,
-      roughness: 0.11,
-      // Barely metallic. At 0.2 the red panel overhead tinted the whole surface
-      // and the coffee read as red wine rather than coffee; near zero it keeps
-      // its own brown and takes the panels as highlights instead.
+      roughness: 0.24,
+      // Barely metallic. At 0.2 the panel overhead tinted the whole surface and
+      // the coffee read as red wine rather than coffee; near zero it keeps its
+      // own brown and takes the rig as highlights instead.
       metalness: 0.02,
     }),
   );
@@ -156,7 +157,7 @@ export const buildCoffee = (three: THREE): CoffeeScene => {
     });
   }
 
-  return { group, steam, lights: [], height: 4.7 };
+  return { group, steam, height: 4.7 };
 };
 
 /**

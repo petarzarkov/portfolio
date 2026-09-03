@@ -1,8 +1,32 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
 import { createPortal } from 'react-dom';
 import { useReducedMotion } from 'motion/react';
 import { advanceSteam, buildCoffee } from './coffee-scene';
 import classes from './CoffeeRig.module.css';
+
+/**
+ * The width at which there is room beside the text for a cup.
+ *
+ * Must match the breakpoint in CoffeeRig.module.css. Above it the scene is a
+ * fixed backdrop in the empty half of the viewport; below it there is no empty
+ * half, so it becomes a block in the flow instead - see the note on the
+ * component.
+ */
+const WIDE = '(min-width: 62em)';
+
+const subscribe = (onChange: () => void): (() => void) => {
+  const query = window.matchMedia(WIDE);
+  query.addEventListener('change', onChange);
+  return () => query.removeEventListener('change', onChange);
+};
+
+/** Tracks the breakpoint, and re-renders when a rotation crosses it. */
+const useWideViewport = (): boolean =>
+  useSyncExternalStore(
+    subscribe,
+    () => window.matchMedia(WIDE).matches,
+    () => false,
+  );
 
 /**
  * A cup of coffee under a three-point area-light rig, as a page backdrop.
@@ -22,9 +46,22 @@ import classes from './CoffeeRig.module.css';
  * than the viewport, so a backdrop nested in page content is one CSS property
  * on any ancestor away from scrolling off with the text - which is what it did
  * on mobile.
+ *
+ * Two layouts, because a phone has no empty column to put a cup in.
+ *
+ * Wide: a fixed backdrop in the right half of the viewport, which About's 72ch
+ * text column never reaches. Narrow: a block at the top of the page, in the
+ * flow, with the copy starting underneath it.
+ *
+ * The narrow case is deliberately *not* the backdrop scaled down. Behind a full
+ * -width text column the ceramic sat directly under body copy, and fading it
+ * far enough that dimmed text still clears 4.5:1 on it means about 14% opacity
+ * - invisible, and still charging for `three`. Given its own band it is fully
+ * visible, at full strength, and overlaps nothing.
  */
 export const CoffeeRig = () => {
   const reduced = useReducedMotion();
+  const wide = useWideViewport();
   const host = useRef<HTMLDivElement>(null);
   const [failed, setFailed] = useState(false);
 
@@ -36,10 +73,7 @@ export const CoffeeRig = () => {
     let cleanup: (() => void) | undefined;
 
     const build = async () => {
-      const [THREE, { RectAreaLightUniformsLib }] = await Promise.all([
-        import('three'),
-        import('three/examples/jsm/lights/RectAreaLightUniformsLib.js'),
-      ]);
+      const THREE = await import('three');
       if (disposed) return;
 
       let renderer: InstanceType<typeof THREE.WebGLRenderer>;
@@ -54,13 +88,11 @@ export const CoffeeRig = () => {
       // a second renderer: ACES rolls the highlights off instead of clipping
       // the foam to flat white where the key light lands.
       renderer.toneMapping = THREE.ACESFilmicToneMapping;
-      renderer.toneMappingExposure = 1.6;
+      renderer.toneMappingExposure = 1.15;
       renderer.setClearAlpha(0);
 
       const scene = new THREE.Scene();
       const camera = new THREE.PerspectiveCamera(38, 1, 0.1, 200);
-
-      RectAreaLightUniformsLib.init();
 
       const coffee = buildCoffee(THREE);
       scene.add(coffee.group);
@@ -69,38 +101,58 @@ export const CoffeeRig = () => {
 
       /**
        * Key left, fill right, top light above - each keeping to its own side
-       * and breathing within it. A panel that orbits swings between the lens
-       * and the subject; a RectAreaLight also emits from one face only, so it
-       * cannot simply be parked behind the cup either.
+       * and breathing within it.
+       *
+       * `PointLight`, not `RectAreaLight`. The area light gave slightly softer
+       * panels across the ceramic, and cost 101 KB gzipped to do it:
+       * `RectAreaLightUniformsLib` is two 64x64 LTC lookup tables written out as
+       * float literals, and it is the single largest thing this route ever
+       * downloaded - on a page whose text is the point. Raising the coffee's
+       * roughness in `coffee-scene.ts` spreads the specular enough that the
+       * difference is a matter of taste rather than of quality.
+       *
+       * Intensity is in candela and falls off with the square of distance, so
+       * these are tuned against the ~6-unit working distance of the rig.
        */
       const RIG = [
         {
           color: 0xffb01b,
+          intensity: 165,
           home: [-4.6, 3.4, -3.2],
           sway: [0.9, 0.7, 0.8],
           rate: 0.24,
         },
         {
           color: 0x6b5bd2,
+          intensity: 140,
           home: [4.6, 3.1, -3.2],
           sway: [0.9, 0.8, 0.8],
           rate: 0.19,
         },
         {
-          color: 0xe2543c,
+          // Warm cream rather than the red-orange this used to be. Sitting
+          // above and slightly camera-side, it reflects off a glossy liquid
+          // straight into the lens, and a saturated red panel is why the coffee
+          // read as red wine in every screenshot.
+          color: 0xffd8a8,
+          intensity: 120,
           home: [0, 6.2, -1.6],
           sway: [1.4, 0.5, 0.8],
           rate: 0.15,
         },
       ] as const;
 
-      const lights = RIG.map(({ color, home }) => {
-        const light = new THREE.RectAreaLight(color, 42, 2.6, 5);
+      const lights = RIG.map(({ color, intensity, home }) => {
+        const light = new THREE.PointLight(color, intensity);
         light.position.set(home[0], home[1], home[2]);
-        light.lookAt(AIM);
         scene.add(light);
         return light;
       });
+
+      // Keeps the side facing away from all three panels off pure black. A
+      // hemisphere light is two colours and no shadow map - the cheapest fill
+      // there is.
+      scene.add(new THREE.HemisphereLight(0xe8ecff, 0x241a10, 0.5));
 
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
       renderer.domElement.className = classes.canvas ?? '';
@@ -148,12 +200,15 @@ export const CoffeeRig = () => {
           // The camera sits well above the aim point, so its true distance to
           // the subject is longer than this; less padding is needed than at
           // eye level.
-          const distance = Math.max(byHeight, byWidth) * 1.02;
+          // 1.02 framed the cup edge-to-edge and clipped the saucer off the
+          // bottom and right of the stage, which is narrower than the viewport
+          // now that the scene keeps to its own column.
+          const distance = Math.max(byHeight, byWidth) * 1.24;
 
           // High enough to see over the rim. At a near-level angle the rim
           // occludes the coffee, which is the whole reason there is a cup and
           // not just a cylinder.
-          camera.position.set(0, 6.1, -distance);
+          camera.position.set(0, 5.2, -distance);
           camera.lookAt(AIM);
         }
 
@@ -187,7 +242,6 @@ export const CoffeeRig = () => {
             y + Math.sin(t * 1.3) * sy,
             z + Math.cos(t * 0.8) * sz,
           );
-          light.lookAt(AIM);
         });
 
         coffee.group.rotation.y = Math.sin(elapsed * 0.12) * 0.22;
@@ -206,9 +260,10 @@ export const CoffeeRig = () => {
         renderer.setAnimationLoop(null);
       };
 
-      // No IntersectionObserver here: the backdrop covers the viewport for as
-      // long as the route is mounted, so "on screen" and "mounted" are the same
-      // question. Tab visibility is the one that still matters.
+      // No IntersectionObserver here. Wide, the backdrop covers the viewport for
+      // as long as the route is mounted; narrow, the band sits at the top of a
+      // page people arrive at the top of. Tab visibility is the one that still
+      // matters, and it is the one that actually saves a phone any battery.
       const onVisibility = () => (document.hidden ? stop() : start());
       document.addEventListener('visibilitychange', onVisibility);
       start();
@@ -243,13 +298,27 @@ export const CoffeeRig = () => {
       disposed = true;
       cleanup?.();
     };
-  }, [reduced]);
+  }, [reduced, wide]);
+
+  const stage = (
+    <div className={classes.stage} ref={host}>
+      {failed && <div className={classes.fallback} />}
+    </div>
+  );
+
+  // In the flow, above the copy. No scrim: nothing is written over it, so there
+  // is no contrast to protect and no reason to dim the scene.
+  if (!wide) {
+    return (
+      <div className={classes.band} aria-hidden>
+        {stage}
+      </div>
+    );
+  }
 
   return createPortal(
     <div className={classes.backdrop} aria-hidden>
-      <div className={classes.stage} ref={host}>
-        {failed && <div className={classes.fallback} />}
-      </div>
+      {stage}
       <div className={classes.scrim} />
     </div>,
     document.body,

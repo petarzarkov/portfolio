@@ -7,6 +7,7 @@ import {
 } from '@tabler/icons-react';
 import { site } from '@config';
 import { meta } from '@data';
+import { formatDay } from '@lib';
 import classes from './Footer.module.css';
 
 /**
@@ -34,7 +35,7 @@ export const Footer = () => (
         <Text size="xs" c="dimmed">
           {meta.generatedAt === null
             ? 'Project data not yet generated'
-            : `Project data refreshed ${new Date(meta.generatedAt).toLocaleDateString()}`}
+            : `Project data refreshed ${formatDay(meta.generatedAt) ?? ''}`}
         </Text>
       </div>
 
