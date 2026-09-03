@@ -1,48 +1,51 @@
-.row {
+.list {
   display: flex;
-  gap: 4px;
-  /* A fieldset brings a border, padding and margin nobody asked for. */
+  flex-direction: column;
+  gap: 2px;
+  min-width: 148px;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 7px 9px;
   border: 0;
-  margin: 0;
-  padding: 0;
-  min-inline-size: 0;
+  border-radius: var(--mantine-radius-sm);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: var(--mantine-font-size-sm);
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 120ms ease;
+}
+
+.option:hover {
+  background: var(--surface-sunken);
+}
+
+.option[aria-pressed='true'] {
+  color: var(--accent-text);
+  background: var(--accent-wash);
+  font-weight: 600;
 }
 
 /**
- * A swatch per theme, showing the two colours that actually distinguish them:
- * the ground it paints and the accent it paints on top.
- *
- * A row rather than a menu behind a popover, because a row costs nothing. Every
- * component here is already in the entry chunk, where `Menu` would have brought
- * a popover and a positioning engine with it - for a control with a handful of
- * options that fit on screen anyway. Worth revisiting past about five themes,
- * when the row stops fitting a phone header.
+ * The two colours that actually distinguish one theme from another: the ground
+ * it paints, and the accent it paints on top.
  */
 .swatch {
-  width: 22px;
-  height: 22px;
-  padding: 0;
+  flex: none;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   border: 1px solid var(--border-card);
-  cursor: pointer;
   position: relative;
   overflow: hidden;
-  transition:
-    transform 140ms cubic-bezier(0.22, 1, 0.36, 1),
-    border-color 140ms ease;
 }
 
-.swatch:hover {
-  transform: scale(1.12);
-}
-
-.swatch[aria-pressed='true'] {
-  border-color: var(--mantine-color-brand-5);
-  box-shadow: 0 0 0 2px
-    color-mix(in srgb, var(--mantine-color-brand-5) 35%, transparent);
-}
-
-/* The accent, as a wedge across the lower half of the ground. */
 .swatch::after {
   content: '';
   position: absolute;

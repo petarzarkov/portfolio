@@ -131,3 +131,87 @@
 
   --scrim: color-mix(in srgb, var(--mantine-color-sand-0) 26%, transparent);
 }
+
+/**
+ * Violet: the same near-black construction as Dark, shifted onto a purple
+ * ground so the surfaces belong to the accent rather than merely tolerating it.
+ */
+:root:root[data-theme='violet'] {
+  color-scheme: dark;
+
+  --surface: #14121c;
+  --surface-raised: #1b1826;
+  --surface-sunken: #221e30;
+
+  --border: #2e2942;
+  --border-card: #3a3450;
+
+  --ink: #ccc6de;
+  --ink-soft: #a9a1c4;
+
+  /* 5.9:1 on the page, 5.4:1 on a card. */
+  --mantine-color-dimmed: #948cb0;
+
+  --accent-text: var(--mantine-color-brand-3);
+  --accent-wash: color-mix(
+    in srgb,
+    var(--mantine-color-brand-9) 30%,
+    transparent
+  );
+
+  --mantine-color-anchor: var(--accent-text);
+  --mantine-color-brand-light-color: var(--mantine-color-brand-1);
+
+  --heat-empty: #2b2640;
+  --cell-edge: #14121c;
+  --cell-edge-selected: var(--mantine-color-white);
+
+  --aurora-opacity: 0.42;
+  --aurora-near: var(--mantine-color-brand-5);
+  --aurora-far: var(--mantine-color-brand-7);
+  --spark-core: var(--mantine-color-white);
+
+  --scrim: color-mix(in srgb, #14121c 24%, transparent);
+}
+
+/**
+ * Ocean: deep water rather than a tinted black, so the aqua reads as lit from
+ * within the page instead of printed on top of it.
+ */
+:root:root[data-theme='ocean'] {
+  color-scheme: dark;
+
+  --surface: #0f191d;
+  --surface-raised: #142127;
+  --surface-sunken: #1a2a31;
+
+  --border: #22363e;
+  --border-card: #2b434d;
+
+  --ink: #c4d7dd;
+  --ink-soft: #9fb9c2;
+
+  /* 6.8:1 on the page, 6.2:1 on a card. */
+  --mantine-color-dimmed: #8aa4ae;
+
+  --accent-text: var(--mantine-color-brand-3);
+  --accent-wash: color-mix(
+    in srgb,
+    var(--mantine-color-brand-9) 30%,
+    transparent
+  );
+
+  --mantine-color-anchor: var(--accent-text);
+  --mantine-color-brand-light-color: var(--mantine-color-brand-1);
+
+  --heat-empty: #1f333a;
+  --cell-edge: #0f191d;
+  --cell-edge-selected: var(--mantine-color-white);
+
+  --aurora-opacity: 0.4;
+  --aurora-near: var(--mantine-color-brand-5);
+  --aurora-far: var(--mantine-color-brand-8);
+  --spark-core: var(--mantine-color-white);
+
+  --scrim: color-mix(in srgb, #0f191d 24%, transparent);
+}

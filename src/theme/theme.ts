@@ -1,19 +1,24 @@
-import { createTheme, type MantineColorsTuple } from '@mantine/core';
+import {
+  createTheme,
+  type MantineColorShade,
+  type MantineColorsTuple,
+} from '@mantine/core';
 
 /**
- * One designed palette, light and dark.
+ * Amber, the default. The other ramps live in `themes.ts`.
  *
  * What this replaces: a `themes.ts` that generated a theme per Chakra colour -
  * roughly twenty of them - behind a palette switcher in the navbar. Nothing can
  * be designed against twenty palettes, and it was the clearest reason the old
- * site read as a demo rather than a portfolio.
+ * site read as a demo rather than a portfolio. The handful that exist now are
+ * each drawn and contrast-checked; that is the difference.
  *
  * Amber rather than the usual portfolio indigo: it is distinctive, and it is
  * already the personal mark (the coffee in the old title). `autoContrast` is
  * what makes a warm accent safe - Mantine picks black or white text per shade
  * instead of assuming white, which a mid-amber fails badly.
  */
-const brand: MantineColorsTuple = [
+export const AMBER: MantineColorsTuple = [
   '#fff8e2',
   '#ffefcc',
   '#ffdd9b',
@@ -40,42 +45,58 @@ const sand: MantineColorsTuple = [
   '#5d5946',
 ];
 
-export const theme = createTheme({
-  primaryColor: 'brand',
-  primaryShade: { light: 7, dark: 5 },
-  autoContrast: true,
-  colors: { brand, sand },
+/**
+ * The Mantine theme for one palette.
+ *
+ * A function rather than a constant because the brand ramp is per theme now:
+ * handing Mantine the tuple lets it derive every colour it owns - filled
+ * buttons, light variants, focus rings, outline hovers - for that palette. The
+ * alternative was overriding two dozen `--mantine-color-brand-*` variables per
+ * theme in CSS and keeping them in step by hand.
+ */
+export const buildTheme = (
+  brand: MantineColorsTuple,
+  primaryShade: { light: MantineColorShade; dark: MantineColorShade } = {
+    light: 7,
+    dark: 5,
+  },
+) =>
+  createTheme({
+    primaryColor: 'brand',
+    primaryShade,
+    autoContrast: true,
+    colors: { brand, sand },
 
-  // A system stack rather than a webfont: no third-party origin, no CSP
-  // exception, nothing on the critical path. The old site set 'Courier New' as
-  // both body *and* heading font for every page.
-  fontFamily:
-    'ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-  fontFamilyMonospace:
-    'ui-monospace, "SF Mono", "JetBrains Mono", "Fira Code", Menlo, Consolas, monospace',
-  headings: {
+    // A system stack rather than a webfont: no third-party origin, no CSP
+    // exception, nothing on the critical path. The old site set 'Courier New' as
+    // both body *and* heading font for every page.
     fontFamily:
-      'ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif',
-    fontWeight: '650',
-    sizes: {
-      h1: { fontSize: 'clamp(2.1rem, 5.5vw, 3.6rem)', lineHeight: '1.08' },
-      h2: { fontSize: 'clamp(1.6rem, 3.2vw, 2.2rem)', lineHeight: '1.18' },
-      h3: { fontSize: 'clamp(1.2rem, 2vw, 1.45rem)', lineHeight: '1.3' },
+      'ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+    fontFamilyMonospace:
+      'ui-monospace, "SF Mono", "JetBrains Mono", "Fira Code", Menlo, Consolas, monospace',
+    headings: {
+      fontFamily:
+        'ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif',
+      fontWeight: '650',
+      sizes: {
+        h1: { fontSize: 'clamp(2.1rem, 5.5vw, 3.6rem)', lineHeight: '1.08' },
+        h2: { fontSize: 'clamp(1.6rem, 3.2vw, 2.2rem)', lineHeight: '1.18' },
+        h3: { fontSize: 'clamp(1.2rem, 2vw, 1.45rem)', lineHeight: '1.3' },
+      },
     },
-  },
 
-  defaultRadius: 'md',
-  cursorType: 'pointer',
+    defaultRadius: 'md',
+    cursorType: 'pointer',
 
-  other: {
-    /**
-     * Three durations and two easings, used by everything. A motion system is
-     * what makes a site feel like one object rather than a pile of effects.
-     */
-    fast: 0.12,
-    base: 0.24,
-    slow: 0.4,
-    ease: [0.22, 1, 0.36, 1] as const,
-    spring: { type: 'spring', stiffness: 320, damping: 30 } as const,
-  },
-});
+    other: {
+      /**
+       * Three durations and two easings, used by everything. A motion system is
+       * what makes a site feel like one object rather than a pile of effects.
+       */
+      fast: 0.12,
+      base: 0.24,
+      slow: 0.4,
+      ease: [0.22, 1, 0.36, 1] as const,
+      spring: { type: 'spring', stiffness: 320, damping: 30 } as const,
+    },
+  });

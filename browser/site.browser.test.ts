@@ -75,6 +75,12 @@ for (const scheme of SCHEMES) {
 }
 
 describe('themes', () => {
+  /** Opens the picker and chooses one. Two clicks, since it is a popover now. */
+  const pick = async (id: string): Promise<void> => {
+    await preview.click('button[aria-label="Theme"]');
+    await preview.click(`button[data-theme-option="${id}"]`);
+  };
+
   /**
    * The ground each theme paints, as the brightest channel of the body
    * background. Absolute values would pin the test to a palette; the question
@@ -108,7 +114,7 @@ describe('themes', () => {
     await preview.open('/');
 
     for (const entry of THEMES) {
-      await preview.click(`button[aria-label="${entry.label}"]`);
+      await pick(entry.id);
       expect({
         id: entry.id,
         theme: await preview.attr('html', 'data-theme'),
@@ -125,7 +131,7 @@ describe('themes', () => {
   test('the choice survives a reload, with no flash of the other theme', async () => {
     await preview.scheme('dark');
     await preview.open('/');
-    await preview.click('button[aria-label="Light"]');
+    await pick('light');
 
     await preview.open('/projects');
     expect({
@@ -135,7 +141,7 @@ describe('themes', () => {
 
     // Back to the default, so the shared preview does not leak a stored
     // preference into every test that runs after this one.
-    await preview.click('button[aria-label="Dark"]');
+    await pick('dark');
     expect(await preview.attr('html', 'data-theme')).toBe('dark');
   }, 30_000);
 });

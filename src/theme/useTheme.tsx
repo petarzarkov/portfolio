@@ -7,7 +7,7 @@ import {
   type ReactNode,
 } from 'react';
 import { MantineProvider } from '@mantine/core';
-import { theme as mantineTheme } from './theme';
+import { buildTheme } from './theme';
 import { byId, THEME_KEY, type ThemeDef } from './themes';
 
 interface ThemeState {
@@ -51,9 +51,16 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
 
   const value = useMemo(() => ({ current, setTheme }), [current, setTheme]);
 
+  // Rebuilt only when the palette changes: Mantine regenerates its whole
+  // variable block from this, which is not work to repeat on every render.
+  const mantine = useMemo(
+    () => buildTheme(current.brand, current.primaryShade),
+    [current.brand, current.primaryShade],
+  );
+
   return (
     <ThemeContext.Provider value={value}>
-      <MantineProvider theme={mantineTheme} forceColorScheme={current.base}>
+      <MantineProvider theme={mantine} forceColorScheme={current.base}>
         {children}
       </MantineProvider>
     </ThemeContext.Provider>

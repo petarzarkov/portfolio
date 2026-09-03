@@ -123,11 +123,14 @@ blank page.
 
 ## Themes
 
-Themes are data. `src/theme/themes.ts` lists them, `themes.css` answers the same
-set of semantic questions once per theme — `--surface`, `--ink`, `--accent-text`
-and so on — and `public/theme-init.js` stamps the saved choice onto `<html>`
-before first paint. Adding one is a block and a list entry; no component
-changes.
+Four: **Dark** and **Light** on amber, **Violet**, and **Ocean** on aqua. One
+button in the header opens the picker, at every width.
+
+Themes are data. `src/theme/themes.ts` lists them — each with a brand ramp
+Mantine derives its own colours from — `themes.css` answers the same set of
+semantic questions once per theme (`--surface`, `--ink`, `--accent-text`), and
+`public/theme-init.js` stamps the saved choice onto `<html>` before first paint.
+Adding one is a block and a list entry; no component changes.
 
 This replaced 29 `light-dark()` pairs across eleven files. That function takes
 exactly two values, so every one of them would have needed rewriting the moment
@@ -140,6 +143,13 @@ the token blocks are `:root:root[...]` because `MantineProvider` injects its own
 no inline ones. `themes.test.ts` checks the list, the stylesheet and that script
 still agree — they cannot import each other, since the last must run before the
 bundle exists.
+
+Every text colour in every theme was measured rather than assumed, and three
+palettes needed a correction the defaults did not give: light's accent had to
+become bronze, and Ocean fills its buttons from shade 9 because `autoContrast`
+sets the contrast variable to black on that ramp and then renders the label
+white regardless — 2.4:1, until it was measured. Worst figure across all four
+themes and every route is now 4.7:1.
 
 ## Headers
 
@@ -169,8 +179,8 @@ neither them nor `viewer.contributionsCollection`.
 either a CSS animation that `global.css` neutralises or a `motion` component
 that checks it. `jsx-a11y` runs in the lint gate.
 
-Every text colour clears WCAG AA on the surface it lands on, in **both**
-themes, and three of Mantine's own defaults had to be overridden to get there:
+Every text colour clears WCAG AA on the surface it lands on, in **every**
+theme, and three of Mantine's own defaults had to be overridden to get there:
 `dimmed` (4.29:1 dark, 3.05:1 light), `anchor` (2.25:1 light — every inline
 link), and the `light` variant's text (3.71:1 light — every badge and tier
 pill). The light accent is bronze rather than amber for the same reason: the

@@ -13,8 +13,13 @@
  */
 (function () {
   var FALLBACK = 'dark';
-  var KNOWN = ['dark', 'light'];
-  var BASE = { dark: 'dark', light: 'light' };
+  var KNOWN = ['dark', 'light', 'violet', 'ocean'];
+  var BASE = {
+    dark: 'dark',
+    light: 'light',
+    violet: 'dark',
+    ocean: 'dark',
+  };
 
   var chosen = null;
   try {

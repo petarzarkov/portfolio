@@ -63,11 +63,7 @@ export const Header = () => {
         </nav>
 
         <Group gap="xs">
-          {/* Hidden on a phone, where it lives in the drawer instead: the
-              header has a wordmark, two icon buttons and a burger already. */}
-          <Group gap="xs" visibleFrom="sm">
-            <ThemePicker />
-          </Group>
+          <ThemePicker />
           <Tooltip label="Search — press / or ⌘K" withArrow>
             <ActionIcon
               variant="default"
