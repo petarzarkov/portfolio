@@ -137,12 +137,19 @@
  * no measurement in JavaScript. `offset-distance` is the only property the lap
  * animates, and the browser composites it.
  *
- * `inset()`, not `border-box`. Tracing the border box puts the spark's *centre*
- * on the edge, so half of it - up to 1.6rem - hangs outside the heading, and on
- * a 390px viewport that pushed the document 2px wider than the screen for the
- * few frames of the lap that passed the right edge. Insetting the path by half
- * the spark means its outer edge lands exactly on the border box instead: same
- * lap, nothing outside the heading, and nothing to clip.
+ * The path is inset horizontally and only horizontally. Tracing the border box
+ * puts the spark's *centre* on the edge, so half of it - up to 1.6rem - hangs
+ * past the heading's right edge, and on a 390px viewport that is wider than the
+ * container's 16px gutter: the document ended up 2px wider than the screen for
+ * the few frames of each lap that passed that edge.
+ *
+ * Insetting the left and right sides by half the spark puts its outer edge
+ * exactly on the border box, which fixes that. Insetting the *top and bottom*
+ * as well does not: the heading is about 62px tall on a desktop, so taking
+ * 25.6px off each end leaves a 10px-high path and the lap degenerates into a
+ * line straight through the middle of the words. Vertically the spark is free
+ * to hang over the heading exactly as it always did - the page scrolls that
+ * way, so nothing overflows.
  *
  * Guarded by `@supports` because the fallback for an unresolved offset-path is
  * not "no animation" - it is a dot parked in the top-left corner.
@@ -167,7 +174,7 @@
     height: var(--size);
     border-radius: 50%;
     pointer-events: none;
-    offset-path: inset(calc(var(--size) / 2) round calc(var(--size) / 2));
+    offset-path: inset(0 calc(var(--size) / 2));
     offset-rotate: 0deg;
     background: radial-gradient(
       circle at 50% 50%,
