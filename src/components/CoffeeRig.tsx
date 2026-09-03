@@ -1,7 +1,13 @@
 import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
 import { createPortal } from 'react-dom';
 import { useReducedMotion } from 'motion/react';
-import { advanceSteam, buildCoffee } from './coffee-scene';
+import {
+  advanceSteam,
+  buildCoffee,
+  readScenePalette,
+  type ScenePalette,
+} from './coffee-scene';
+import { useTheme } from '../theme/useTheme';
 import classes from './CoffeeRig.module.css';
 
 /**
@@ -62,8 +68,13 @@ const useWideViewport = (): boolean =>
 export const CoffeeRig = () => {
   const reduced = useReducedMotion();
   const wide = useWideViewport();
+  const { current } = useTheme();
   const host = useRef<HTMLDivElement>(null);
   const [failed, setFailed] = useState(false);
+
+  // Set once the scene is standing; the theme effect below is a no-op until
+  // then, and the build applies whatever palette is current when it finishes.
+  const repaint = useRef<((palette: ScenePalette) => void) | null>(null);
 
   useEffect(() => {
     const node = host.current;
@@ -94,7 +105,7 @@ export const CoffeeRig = () => {
       const scene = new THREE.Scene();
       const camera = new THREE.PerspectiveCamera(38, 1, 0.1, 200);
 
-      const coffee = buildCoffee(THREE);
+      const coffee = buildCoffee(THREE, readScenePalette());
       scene.add(coffee.group);
 
       const AIM = new THREE.Vector3(0, 1.55, 0);
@@ -113,28 +124,28 @@ export const CoffeeRig = () => {
        *
        * Intensity is in candela and falls off with the square of distance, so
        * these are tuned against the ~6-unit working distance of the rig.
+       *
+       * Colour is not here any more: key, fill and top are `--scene-*` tokens
+       * in `themes.css`, applied by `repaint` below, so the rig relights with
+       * the page rather than staying amber under a violet theme.
        */
       const RIG = [
         {
-          color: 0xffb01b,
           intensity: 165,
           home: [-4.6, 3.4, -3.2],
           sway: [0.9, 0.7, 0.8],
           rate: 0.24,
         },
         {
-          color: 0x6b5bd2,
           intensity: 140,
           home: [4.6, 3.1, -3.2],
           sway: [0.9, 0.8, 0.8],
           rate: 0.19,
         },
         {
-          // Warm cream rather than the red-orange this used to be. Sitting
-          // above and slightly camera-side, it reflects off a glossy liquid
-          // straight into the lens, and a saturated red panel is why the coffee
-          // read as red wine in every screenshot.
-          color: 0xffd8a8,
+          // Sits above and slightly camera-side, so it reflects off a glossy
+          // liquid straight into the lens: whatever a theme puts here lands on
+          // the coffee. A saturated red is why it once read as red wine.
           intensity: 120,
           home: [0, 6.2, -1.6],
           sway: [1.4, 0.5, 0.8],
@@ -142,8 +153,8 @@ export const CoffeeRig = () => {
         },
       ] as const;
 
-      const lights = RIG.map(({ color, intensity, home }) => {
-        const light = new THREE.PointLight(color, intensity);
+      const lights = RIG.map(({ intensity, home }) => {
+        const light = new THREE.PointLight(0xffffff, intensity);
         light.position.set(home[0], home[1], home[2]);
         scene.add(light);
         return light;
@@ -152,7 +163,23 @@ export const CoffeeRig = () => {
       // Keeps the side facing away from all three panels off pure black. A
       // hemisphere light is two colours and no shadow map - the cheapest fill
       // there is.
-      scene.add(new THREE.HemisphereLight(0xe8ecff, 0x241a10, 0.5));
+      const ambient = new THREE.HemisphereLight(0xffffff, 0x000000, 0.5);
+      scene.add(ambient);
+
+      /**
+       * Recolours everything the theme owns: three lights, the ambient fill,
+       * the cup and the steam. Renders once afterwards, so the frame updates
+       * even under reduced motion, where no loop is running to pick it up.
+       */
+      repaint.current = (palette) => {
+        lights[0]?.color.set(palette.key);
+        lights[1]?.color.set(palette.fill);
+        lights[2]?.color.set(palette.top);
+        ambient.color.set(palette.sky);
+        ambient.groundColor.set(palette.ground);
+        coffee.paint(palette);
+        renderer.render(scene, camera);
+      };
 
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
       renderer.domElement.className = classes.canvas ?? '';
@@ -266,10 +293,15 @@ export const CoffeeRig = () => {
       // matters, and it is the one that actually saves a phone any battery.
       const onVisibility = () => (document.hidden ? stop() : start());
       document.addEventListener('visibilitychange', onVisibility);
+
+      // Whatever the theme is now - which may have changed while `three` was
+      // being fetched.
+      repaint.current(readScenePalette());
       start();
 
       cleanup = () => {
         stop();
+        repaint.current = null;
         observer.disconnect();
         document.removeEventListener('visibilitychange', onVisibility);
 
@@ -299,6 +331,12 @@ export const CoffeeRig = () => {
       cleanup?.();
     };
   }, [reduced, wide]);
+
+  // Recolour on a theme change rather than rebuilding: no new WebGL context,
+  // and no gap where the canvas is blank.
+  useEffect(() => {
+    repaint.current?.(readScenePalette());
+  }, [current.id]);
 
   const stage = (
     <div className={classes.stage} ref={host}>

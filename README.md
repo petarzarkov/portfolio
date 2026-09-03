@@ -126,6 +126,13 @@ blank page.
 Four: **Dark** and **Light** on amber, **Violet**, and **Ocean** on aqua. One
 button in the header opens the picker, at every width.
 
+The cup on the About page is themed too — its three lights, the ambient fill,
+the ceramic, the coffee and the steam are all `--scene-*` tokens the WebGL scene
+reads out of CSS. Steam is why: it was hardcoded white, which is invisible on a
+cream page, so on light grounds it is a warm grey and reads as shadow instead.
+A theme change recolours the materials in place rather than rebuilding, because
+a WebGL context is a limited per-browser resource and the picker is one click.
+
 Themes are data. `src/theme/themes.ts` lists them — each with a brand ramp
 Mantine derives its own colours from — `themes.css` answers the same set of
 semantic questions once per theme (`--surface`, `--ink`, `--accent-text`), and

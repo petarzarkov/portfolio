@@ -70,6 +70,19 @@
   --spark-core: var(--mantine-color-white);
 
   --scrim: color-mix(in srgb, var(--mantine-color-dark-8) 22%, transparent);
+  /**
+   * The cup on the About page. Read by CoffeeRig through `getComputedStyle`,
+   * so the scene is themed from here like everything else - literal hex rather
+   * than `var()`, because that is read as a string and not resolved for us.
+   */
+  --scene-key: #ffb01b;
+  --scene-fill: #6b5bd2;
+  --scene-top: #ffd8a8;
+  --scene-sky: #e8ecff;
+  --scene-ground: #241a10;
+  --scene-steam: #ffffff;
+  --scene-ceramic: #f2efe9;
+  --scene-coffee: #2e1708;
 }
 
 :root:root[data-theme='light'] {
@@ -130,6 +143,21 @@
   --spark-core: var(--mantine-color-brand-4);
 
   --scrim: color-mix(in srgb, var(--mantine-color-sand-0) 26%, transparent);
+  /**
+   * Steam is the one thing that cannot simply be white here. Against a cream
+   * page white wisps are invisible - which is exactly what shipped - so on a
+   * light ground the steam is a warm grey and reads as shadow rather than
+   * vapour. The lights deepen for the same reason: an amber key at full
+   * brightness has nothing to model against a bright background.
+   */
+  --scene-key: #e39500;
+  --scene-fill: #5546b8;
+  --scene-top: #ffcf92;
+  --scene-sky: #ffffff;
+  --scene-ground: #6b5f52;
+  --scene-steam: #7d7264;
+  --scene-ceramic: #ffffff;
+  --scene-coffee: #3a1d0b;
 }
 
 /**
@@ -172,6 +200,14 @@
   --spark-core: var(--mantine-color-white);
 
   --scrim: color-mix(in srgb, #14121c 24%, transparent);
+  --scene-key: #a68fe9;
+  --scene-fill: #5b8ce0;
+  --scene-top: #d8ccff;
+  --scene-sky: #efe9ff;
+  --scene-ground: #1a1226;
+  --scene-steam: #cfc2f5;
+  --scene-ceramic: #efeaf8;
+  --scene-coffee: #2a1428;
 }
 
 /**
@@ -214,4 +250,12 @@
   --spark-core: var(--mantine-color-white);
 
   --scrim: color-mix(in srgb, #0f191d 24%, transparent);
+  --scene-key: #5fd4c4;
+  --scene-fill: #3d8ecb;
+  --scene-top: #b8f0e6;
+  --scene-sky: #e6fbf7;
+  --scene-ground: #0c1a1c;
+  --scene-steam: #a8ded6;
+  --scene-ceramic: #e8f4f1;
+  --scene-coffee: #1e2523;
 }

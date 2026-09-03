@@ -20,11 +20,58 @@ export interface Steam {
   readonly spin: number;
 }
 
+/**
+ * Every colour in the scene, one theme's worth.
+ *
+ * Read out of CSS rather than declared here, so the cup is themed from the same
+ * file as the page around it - see the `--scene-*` tokens in `themes.css`.
+ */
+export interface ScenePalette {
+  readonly key: string;
+  readonly fill: string;
+  readonly top: string;
+  readonly sky: string;
+  readonly ground: string;
+  readonly steam: string;
+  readonly ceramic: string;
+  readonly coffee: string;
+}
+
+const TOKENS = [
+  'key',
+  'fill',
+  'top',
+  'sky',
+  'ground',
+  'steam',
+  'ceramic',
+  'coffee',
+] as const;
+
+/** The palette for whichever theme is currently stamped on `<html>`. */
+export const readScenePalette = (): ScenePalette => {
+  const style = getComputedStyle(document.documentElement);
+  const read = (name: string): string =>
+    style.getPropertyValue(`--scene-${name}`).trim() || '#ffffff';
+
+  return Object.fromEntries(
+    TOKENS.map((token) => [token, read(token)]),
+  ) as unknown as ScenePalette;
+};
+
 export interface CoffeeScene {
   readonly group: THREE_NS.Group;
   readonly steam: readonly Steam[];
   /** Roughly how tall the whole arrangement is, for framing the camera. */
   readonly height: number;
+  /**
+   * Recolours the cup in place.
+   *
+   * In place, rather than rebuilding: a WebGL context is a limited per-browser
+   * resource, and tearing one down and standing another up on every click of
+   * the theme picker is a good way to run out of them.
+   */
+  paint(palette: ScenePalette): void;
 }
 
 /**
@@ -63,14 +110,14 @@ const wispTexture = (three: THREE): THREE_NS.CanvasTexture => {
   return texture;
 };
 
-const CERAMIC = 0xf2efe9;
-const COFFEE = 0x2e1708;
-
-export const buildCoffee = (three: THREE): CoffeeScene => {
+export const buildCoffee = (
+  three: THREE,
+  palette: ScenePalette,
+): CoffeeScene => {
   const group = new three.Group();
 
   const ceramic = new three.MeshStandardMaterial({
-    color: CERAMIC,
+    color: palette.ceramic,
     roughness: 0.34,
     metalness: 0.02,
   });
@@ -80,7 +127,7 @@ export const buildCoffee = (three: THREE): CoffeeScene => {
   const body = new three.Mesh(
     new three.CylinderGeometry(1.2, 0.92, 1.55, 64, 1, true),
     new three.MeshStandardMaterial({
-      color: CERAMIC,
+      color: palette.ceramic,
       roughness: 0.34,
       metalness: 0.02,
       side: three.DoubleSide,
@@ -103,7 +150,7 @@ export const buildCoffee = (three: THREE): CoffeeScene => {
   const surface = new three.Mesh(
     new three.CircleGeometry(1.17, 64),
     new three.MeshStandardMaterial({
-      color: COFFEE,
+      color: palette.coffee,
       roughness: 0.24,
       // Barely metallic. At 0.2 the panel overhead tinted the whole surface and
       // the coffee read as red wine rather than coffee; near zero it keeps its
@@ -137,6 +184,7 @@ export const buildCoffee = (three: THREE): CoffeeScene => {
       new three.PlaneGeometry(1, 1),
       new three.MeshBasicMaterial({
         map: texture,
+        color: palette.steam,
         transparent: true,
         opacity: 0,
         depthWrite: false,
@@ -157,7 +205,16 @@ export const buildCoffee = (three: THREE): CoffeeScene => {
     });
   }
 
-  return { group, steam, height: 4.7 };
+  const paint = (next: ScenePalette): void => {
+    ceramic.color.set(next.ceramic);
+    (body.material as THREE_NS.MeshStandardMaterial).color.set(next.ceramic);
+    (surface.material as THREE_NS.MeshStandardMaterial).color.set(next.coffee);
+    for (const wisp of steam) {
+      (wisp.mesh.material as THREE_NS.MeshBasicMaterial).color.set(next.steam);
+    }
+  };
+
+  return { group, steam, height: 4.7, paint };
 };
 
 /**
