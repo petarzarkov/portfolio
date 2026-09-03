@@ -4,6 +4,7 @@ import { IconBrandGithub, IconSearch } from '@tabler/icons-react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 import { lazy, Suspense, useEffect, useState } from 'react';
 import { site } from '@config';
+import { ROUTES } from './routes';
 import { ThemePicker } from './ThemePicker';
 import classes from './Header.module.css';
 
@@ -15,12 +16,6 @@ import classes from './Header.module.css';
 const NavDrawer = lazy(() =>
   import('./NavDrawer').then((m) => ({ default: m.NavDrawer })),
 );
-
-const ROUTES = [
-  ['/projects', 'Projects'],
-  ['/skills', 'Skills'],
-  ['/about', 'About'],
-] as const;
 
 export const Header = () => {
   const [opened, { toggle, close }] = useDisclosure(false);
@@ -39,18 +34,6 @@ export const Header = () => {
   // A drawer left open across a route change hides the page behind it.
   useEffect(close, [pathname, close]);
 
-  const links = ROUTES.map(([to, label]) => (
-    <NavLink
-      key={to}
-      to={to}
-      className={({ isActive }) =>
-        isActive ? `${classes.link} ${classes.active}` : classes.link
-      }
-    >
-      {label}
-    </NavLink>
-  ));
-
   return (
     <header className={classes.header}>
       <Container size="lg" className={classes.inner}>
@@ -59,7 +42,17 @@ export const Header = () => {
         </Link>
 
         <nav className={classes.nav} aria-label="Primary">
-          {links}
+          {ROUTES.map(([to, label]) => (
+            <NavLink
+              key={to}
+              to={to}
+              className={({ isActive }) =>
+                isActive ? `${classes.link} ${classes.active}` : classes.link
+              }
+            >
+              {label}
+            </NavLink>
+          ))}
         </nav>
 
         <Group gap="xs">
@@ -107,9 +100,7 @@ export const Header = () => {
 
       {requested && (
         <Suspense fallback={null}>
-          <NavDrawer opened={opened} onClose={close}>
-            {links}
-          </NavDrawer>
+          <NavDrawer opened={opened} onClose={close} />
         </Suspense>
       )}
     </header>

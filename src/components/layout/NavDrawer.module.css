@@ -1,0 +1,57 @@
+/**
+ * Full-bleed rows with a rule between them, rather than small pills floating in
+ * a panel.
+ *
+ * The drawer used to reuse the header's link style: 14px type in a 6px pill,
+ * which is a fine desktop hover target and a poor phone one - well under the
+ * 44px a finger needs, with nothing to say where one row ends and the next
+ * begins. These are rows in a list, and they read as a list.
+ */
+.list {
+  display: flex;
+  flex-direction: column;
+  /* Cancels the drawer body's padding so the rules run edge to edge. */
+  margin: 0 calc(var(--mantine-spacing-md) * -1);
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--mantine-spacing-sm);
+  min-height: 52px;
+  padding: 0 var(--mantine-spacing-md);
+  font-size: var(--mantine-font-size-md);
+  font-weight: 500;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border);
+  transition:
+    background-color 120ms ease,
+    color 120ms ease;
+}
+
+.link:first-child {
+  border-top: 1px solid var(--border);
+}
+
+.link:active {
+  background: var(--surface-sunken);
+}
+
+/* `aria-current` comes from react-router, so the styling follows the same
+   signal a screen reader is given rather than a second source of truth. */
+.link[aria-current='page'] {
+  color: var(--accent-text);
+  background: var(--accent-wash);
+  font-weight: 650;
+}
+
+.chevron {
+  flex: none;
+  opacity: 0.45;
+}
+
+.link[aria-current='page'] .chevron {
+  opacity: 1;
+}
