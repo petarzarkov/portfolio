@@ -270,6 +270,32 @@ describe('the about backdrop', () => {
   }, 20_000);
 
   /**
+   * The reduced-motion contract is "one static frame", and a frame with no
+   * steam in it is not the scene. The wisps are built at zero opacity and lit
+   * by the animation loop, so when the loop correctly never starts they stayed
+   * invisible - a cup with nothing coming off it, which is most of the point of
+   * a hot drink.
+   */
+  test('reduced motion still gets a scene, just a still one', async () => {
+    await preview.view(1440, 900);
+    await preview.motion('reduce');
+    await preview.open('/about');
+    await Bun.sleep(2500);
+
+    expect(await preview.count('canvas')).toBe(1);
+
+    const first = await preview.screenshot();
+    await Bun.sleep(1200);
+    const second = await preview.screenshot();
+    const hash = async (b: Blob) =>
+      Bun.SHA1.hash(new Uint8Array(await b.arrayBuffer()), 'hex');
+
+    // Still, and identically still.
+    expect(await hash(first)).toBe(await hash(second));
+    await preview.motion('no-preference');
+  }, 30_000);
+
+  /**
    * Narrow gets the scene too, in a band of its own rather than behind the
    * text.
    *

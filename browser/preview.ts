@@ -41,6 +41,8 @@ export interface Preview {
   /** Navigate to a path and wait for it to have rendered a heading. */
   open(path: string): Promise<void>;
   scheme(scheme: Scheme): Promise<void>;
+  /** Emulates `prefers-reduced-motion`, which several contracts hang off. */
+  motion(value: 'reduce' | 'no-preference'): Promise<void>;
   view(width: number, height: number, ratio?: number): Promise<void>;
   heading(): Promise<string>;
   /** True when the document scrolls sideways at the current viewport. */
@@ -139,7 +141,26 @@ export const startPreview = async (dist: string): Promise<Preview> => {
   const base = `http://localhost:${server.port}`;
 
   let logged: ConsoleLine[] = [];
-  let applied = { scheme: '', width: 0, height: 0, ratio: 0 };
+  let applied = { width: 0, height: 0, ratio: 0 };
+
+  /**
+   * Emulated media, tracked together and always sent together.
+   *
+   * `Emulation.setEmulatedMedia` replaces the entire feature list rather than
+   * merging into it, so setting the colour scheme on its own silently drops the
+   * reduced-motion override and vice versa - with a per-setter cache on top,
+   * that turns into a test passing against the wrong emulation.
+   */
+  const media = { scheme: 'dark', motion: 'no-preference' };
+
+  const applyMedia = async (): Promise<void> => {
+    await view.cdp('Emulation.setEmulatedMedia', {
+      features: [
+        { name: 'prefers-color-scheme', value: media.scheme },
+        { name: 'prefers-reduced-motion', value: media.motion },
+      ],
+    });
+  };
 
   // The supported console hook: a `(type, ...args)` callback on the
   // constructor. There is no `cdp.on` - `cdp()` is a plain request function,
@@ -201,6 +222,11 @@ export const startPreview = async (dist: string): Promise<Preview> => {
   // constructor's is still in flight here.
   await settle();
 
+  // Make the tracked media match reality before anything reads the cache, or
+  // the first `scheme()` call for the value it already claims is a no-op
+  // against an emulation that was never applied.
+  await applyMedia();
+
   return {
     origin: base,
 
@@ -212,11 +238,15 @@ export const startPreview = async (dist: string): Promise<Preview> => {
     },
 
     async scheme(scheme) {
-      if (applied.scheme === scheme) return;
-      applied.scheme = scheme;
-      await view.cdp('Emulation.setEmulatedMedia', {
-        features: [{ name: 'prefers-color-scheme', value: scheme }],
-      });
+      if (media.scheme === scheme) return;
+      media.scheme = scheme;
+      await applyMedia();
+    },
+
+    async motion(value) {
+      if (media.motion === value) return;
+      media.motion = value;
+      await applyMedia();
     },
 
     async view(width, height, ratio = 1) {

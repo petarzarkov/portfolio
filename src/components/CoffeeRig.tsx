@@ -106,6 +106,18 @@ export const CoffeeRig = () => {
       const camera = new THREE.PerspectiveCamera(38, 1, 0.1, 200);
 
       const coffee = buildCoffee(THREE, readScenePalette());
+
+      /**
+       * Pose the steam once, before anything renders.
+       *
+       * `advanceSteam` is what gives a wisp any opacity at all - they are built
+       * at zero and the loop fades them in - so under `prefers-reduced-motion`,
+       * where the loop never starts, the "one static frame rather than no
+       * scene" this component promises was a cup with no steam coming off it.
+       * The constant is arbitrary; the eleven wisps carry their own offsets, so
+       * any moment shows a full column.
+       */
+      advanceSteam(coffee.steam, 3);
       scene.add(coffee.group);
 
       const AIM = new THREE.Vector3(0, 1.55, 0);
