@@ -182,9 +182,16 @@ neither them nor `viewer.contributionsCollection`.
 
 ## Accessibility
 
-`prefers-reduced-motion` is a contract, not a fallback — every entrance is
-either a CSS animation that `global.css` neutralises or a `motion` component
-that checks it. `jsx-a11y` runs in the lint gate.
+`prefers-reduced-motion` stops everything that moves content: every entrance,
+the rotating word, the counting stats, the treemap and heatmap sweeps — either a
+CSS animation `global.css` neutralises or a `motion` component that checks it.
+
+Two decorative loops are exempt, marked `data-ambient` and carved out of that
+rule by name: the spark that laps the hero heading, and the cup on the About
+page. Both are slow, sit behind the text rather than in it, and displace
+nothing. That is a deliberate choice rather than an oversight, and the browser
+suite asserts both halves — that the scene still moves, and that no entrance is
+left mid-fade. `jsx-a11y` runs in the lint gate.
 
 Every text colour clears WCAG AA on the surface it lands on, in **every**
 theme, and three of Mantine's own defaults had to be overridden to get there:

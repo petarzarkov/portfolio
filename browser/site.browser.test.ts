@@ -177,6 +177,30 @@ describe('embeds', () => {
   });
 });
 
+describe('reduced motion', () => {
+  /**
+   * The half of the policy that still holds: anything that displaces what is
+   * being read stops. `Reveal` is the one with the widest reach - every section
+   * entrance on every route goes through it - so a wrapper left transparent is
+   * the failure this catches.
+   */
+  test('entrances are neutralised, and the spark is not', async () => {
+    await preview.view(1440, 900);
+    await preview.motion('reduce');
+    await preview.open('/');
+
+    expect(
+      await preview.attr('h1 [class*="spark"]', 'data-ambient'),
+    ).not.toBeNull();
+
+    // Nothing on screen is left mid-entrance.
+    const faded = await preview.count('[style*="opacity: 0"]');
+    expect(faded).toBe(0);
+
+    await preview.motion('no-preference');
+  }, 20_000);
+});
+
 describe('accessibility', () => {
   test('every route has exactly one h1', async () => {
     await preview.view(1440, 900);
@@ -270,13 +294,12 @@ describe('the about backdrop', () => {
   }, 20_000);
 
   /**
-   * The reduced-motion contract is "one static frame", and a frame with no
-   * steam in it is not the scene. The wisps are built at zero opacity and lit
-   * by the animation loop, so when the loop correctly never starts they stayed
-   * invisible - a cup with nothing coming off it, which is most of the point of
-   * a hot drink.
+   * The two ambient loops keep running under `prefers-reduced-motion`, by an
+   * explicit decision recorded in global.css - everything that moves content
+   * still stops. Asserted because it is the surprising half of the policy, and
+   * the kind of thing a later well-meaning edit quietly reverts.
    */
-  test('reduced motion still gets a scene, just a still one', async () => {
+  test('the scene keeps moving under reduced motion', async () => {
     await preview.view(1440, 900);
     await preview.motion('reduce');
     await preview.open('/about');
@@ -284,14 +307,15 @@ describe('the about backdrop', () => {
 
     expect(await preview.count('canvas')).toBe(1);
 
-    const first = await preview.screenshot();
+    const hash = async (): Promise<string> =>
+      Bun.SHA1.hash(
+        new Uint8Array(await (await preview.screenshot()).arrayBuffer()),
+        'hex',
+      );
+    const first = await hash();
     await Bun.sleep(1200);
-    const second = await preview.screenshot();
-    const hash = async (b: Blob) =>
-      Bun.SHA1.hash(new Uint8Array(await b.arrayBuffer()), 'hex');
+    expect(await hash()).not.toBe(first);
 
-    // Still, and identically still.
-    expect(await hash(first)).toBe(await hash(second));
     await preview.motion('no-preference');
   }, 30_000);
 

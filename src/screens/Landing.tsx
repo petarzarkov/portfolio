@@ -10,7 +10,7 @@ import {
 } from '@mantine/core';
 import { IconArrowRight, IconBrandGithub, IconStar } from '@tabler/icons-react';
 import { useRef } from 'react';
-import { useInView, useReducedMotion } from 'motion/react';
+import { useInView } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { site } from '@config';
 import { formatDay } from '@lib';
@@ -54,8 +54,8 @@ const Stat = ({ value, label }: { value: string; label: string }) => (
  */
 export const Landing = () => {
   // Gated on being in view so the lap is not running against a heading nobody
-  // is looking at, and off entirely under reduced motion.
-  const reduced = useReducedMotion();
+  // is looking at. Not gated on reduced motion: it is `data-ambient`, and
+  // global.css explains why that exists.
   const title = useRef<HTMLHeadingElement>(null);
   const inView = useInView(title, { amount: 0.4 });
 
@@ -77,9 +77,9 @@ export const Landing = () => {
           mb="md"
           ref={title}
           className={classes.heroTitle}
-          data-spark={reduced !== true && inView}
+          data-spark={inView}
         >
-          <span className={classes.spark} aria-hidden />
+          <span className={classes.spark} data-ambient aria-hidden />
           <TextReveal text={site.name} />
         </Title>
         <p className={classes.thesis}>

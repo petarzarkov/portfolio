@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
 import { createPortal } from 'react-dom';
-import { useReducedMotion } from 'motion/react';
 import {
   advanceSteam,
   buildCoffee,
@@ -43,9 +42,14 @@ const useWideViewport = (): boolean =>
  *   - three is imported only once the page asks for it, so it is nowhere near
  *     the entry chunk and the route that hosts it stays a few KB.
  *   - It renders only while the tab is visible.
- *   - `prefers-reduced-motion` gets one static frame rather than no scene.
  *   - Everything is disposed on unmount. WebGL contexts are a limited
  *     per-browser resource and strict mode alone mounts this twice.
+ *
+ * It does *not* stop for `prefers-reduced-motion`. The scene is `data-ambient`
+ * in the sense global.css describes: a slow drift behind a text column that
+ * displaces nothing, kept running by an explicit decision of the site's owner
+ * while every entrance, the rotating word and the counting stats still honour
+ * the setting.
  *
  * Rendered through a portal to `document.body`. `position: fixed` resolves
  * against the nearest ancestor with a transform, filter or containment rather
@@ -66,7 +70,6 @@ const useWideViewport = (): boolean =>
  * visible, at full strength, and overlaps nothing.
  */
 export const CoffeeRig = () => {
-  const reduced = useReducedMotion();
   const wide = useWideViewport();
   const { current } = useTheme();
   const host = useRef<HTMLDivElement>(null);
@@ -111,11 +114,10 @@ export const CoffeeRig = () => {
        * Pose the steam once, before anything renders.
        *
        * `advanceSteam` is what gives a wisp any opacity at all - they are built
-       * at zero and the loop fades them in - so under `prefers-reduced-motion`,
-       * where the loop never starts, the "one static frame rather than no
-       * scene" this component promises was a cup with no steam coming off it.
-       * The constant is arbitrary; the eleven wisps carry their own offsets, so
-       * any moment shows a full column.
+       * at zero and the loop fades them in - so the very first frame, drawn by
+       * `frame()` below before the loop has ticked, would otherwise be a cup
+       * with no steam coming off it. The constant is arbitrary; the eleven
+       * wisps carry their own offsets, so any moment shows a full column.
        */
       advanceSteam(coffee.steam, 3);
       scene.add(coffee.group);
@@ -180,8 +182,8 @@ export const CoffeeRig = () => {
 
       /**
        * Recolours everything the theme owns: three lights, the ambient fill,
-       * the cup and the steam. Renders once afterwards, so the frame updates
-       * even under reduced motion, where no loop is running to pick it up.
+       * the cup and the steam, then renders once so the change lands even if
+       * the loop happens to be stopped - a backgrounded tab, say.
        */
       repaint.current = (palette) => {
         lights[0]?.color.set(palette.key);
@@ -289,7 +291,7 @@ export const CoffeeRig = () => {
       };
 
       const start = () => {
-        if (running || reduced === true) return;
+        if (running) return;
         running = true;
         clock.start();
         renderer.setAnimationLoop(tick);
@@ -342,7 +344,7 @@ export const CoffeeRig = () => {
       disposed = true;
       cleanup?.();
     };
-  }, [reduced, wide]);
+  }, [wide]);
 
   // Recolour on a theme change rather than rebuilding: no new WebGL context,
   // and no gap where the canvas is blank.

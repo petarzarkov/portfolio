@@ -41,20 +41,32 @@ html {
 }
 
 /**
- * Reduced motion is a contract, not a fallback.
+ * Reduced motion, with one deliberate exception.
  *
- * Everything animated is either a CSS transition or a `motion` component; this
- * neutralises the first, and `useReducedMotion` handles the second. Both are
- * asserted by the browser suite.
+ * Everything that moves *content* still stops: entrances, the rotating word,
+ * the counting stats, the treemap and heatmap sweeps. That is the part of the
+ * setting worth honouring - motion that displaces what someone is reading.
+ *
+ * Marked `data-ambient` are two decorative loops that do not: the spark that
+ * laps the hero heading, and the cup on the About page. Both are small, slow,
+ * behind the text rather than in it, and are the site's signature - the owner's
+ * explicit call is that they run regardless. Anything given this attribute is
+ * making that claim about itself, so do not hand it out freely.
+ *
+ * The `:not()` is what carves them out: the blanket rule below is `!important`,
+ * so an exception cannot be written as an override - the value it would need to
+ * restore lives in the component's own stylesheet, and `revert` would roll back
+ * to the user agent's `0s` rather than to that. Excluding them from the match
+ * in the first place is the only thing that leaves the author value standing.
  */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
 
-  *,
-  *::before,
-  *::after {
+  *:not([data-ambient], [data-ambient] *),
+  *:not([data-ambient], [data-ambient] *)::before,
+  *:not([data-ambient], [data-ambient] *)::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
