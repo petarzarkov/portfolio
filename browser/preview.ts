@@ -21,8 +21,13 @@ export const VIEWPORTS = [
   ['desktop', 1440, 900],
 ] as const;
 
-// Dark only: the light palette is gone, so there is one scheme to check.
-export const SCHEMES = ['dark'] as const;
+/**
+ * Both, because a first visit follows the system preference: with nothing in
+ * storage, `theme-init.js` reads `prefers-color-scheme` and stamps the matching
+ * theme. Emulating the media feature therefore really does render the site in
+ * that theme, rather than only testing a media query nothing reads.
+ */
+export const SCHEMES = ['light', 'dark'] as const;
 export type Scheme = (typeof SCHEMES)[number];
 
 export interface ConsoleLine {
@@ -48,6 +53,10 @@ export interface Preview {
    * one, and a screenshot cannot be asserted on.
    */
   overlaps(a: string, b: string): Promise<boolean>;
+  /** Clicks the first match, for asserting on what a control actually does. */
+  click(selector: string): Promise<void>;
+  /** An attribute off the first match, or null. */
+  attr(selector: string, name: string): Promise<string | null>;
   background(): Promise<string>;
   screenshot(): Promise<Blob>;
   logged(): readonly ConsoleLine[];
@@ -95,6 +104,8 @@ const SETTLED = `
       return onScreen && Number(getComputedStyle(el).opacity) < 1;
     });
   })()`;
+
+const json = (value: string): string => JSON.stringify(value);
 
 export const startPreview = async (dist: string): Promise<Preview> => {
   const server = Bun.serve({
@@ -246,6 +257,20 @@ export const startPreview = async (dist: string): Promise<Preview> => {
             x.bottom > y.top
           );
         })()`),
+    async click(selector) {
+      await view.evaluate<boolean>(`
+        (() => {
+          const el = document.querySelector(${json(selector)});
+          if (!el) return false;
+          el.click();
+          return true;
+        })()`);
+      await rest();
+    },
+    attr: (selector, name) =>
+      view.evaluate<string | null>(
+        `document.querySelector(${json(selector)})?.getAttribute(${json(name)}) ?? null`,
+      ),
     background: () =>
       view.evaluate<string>('getComputedStyle(document.body).backgroundColor'),
     screenshot: () => view.screenshot(),

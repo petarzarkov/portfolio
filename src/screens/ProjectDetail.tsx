@@ -86,7 +86,7 @@ const ProjectDetail = () => {
           p="md"
           style={{
             borderLeft: '2px solid var(--mantine-color-sand-4)',
-            background: 'var(--mantine-color-dark-6)',
+            background: 'var(--surface-sunken)',
           }}
         >
           {project.retiredAt !== null && (

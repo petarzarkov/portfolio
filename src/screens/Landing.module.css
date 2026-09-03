@@ -22,7 +22,7 @@
   z-index: -1;
   pointer-events: none;
   filter: blur(56px);
-  opacity: 0.38;
+  opacity: var(--aurora-opacity);
   /* Clipping alone left a hard rectangular edge where the blur met the hero
      bounds. The mask fades the wash out before it reaches the clip, so there
      is nothing to see an edge of. */
@@ -47,11 +47,7 @@
   aspect-ratio: 1;
   left: 6%;
   top: 8%;
-  background: radial-gradient(
-    circle,
-    var(--mantine-color-brand-5) 0%,
-    transparent 68%
-  );
+  background: radial-gradient(circle, var(--aurora-near) 0%, transparent 68%);
   animation: drift-a 19s ease-in-out infinite alternate;
 }
 
@@ -60,11 +56,7 @@
   aspect-ratio: 1;
   left: 44%;
   top: 22%;
-  background: radial-gradient(
-    circle,
-    var(--mantine-color-brand-7) 0%,
-    transparent 66%
-  );
+  background: radial-gradient(circle, var(--aurora-far) 0%, transparent 66%);
   animation: drift-b 24s ease-in-out infinite alternate;
 }
 
@@ -89,7 +81,7 @@
 .thesis {
   font-size: clamp(1.05rem, 2.2vw, 1.4rem);
   line-height: 1.55;
-  color: var(--mantine-color-sand-2);
+  color: var(--ink);
   max-width: 34ch;
 }
 
@@ -97,18 +89,18 @@
   font-size: clamp(1.15rem, 2.6vw, 1.65rem);
   line-height: 1.4;
   margin-top: var(--mantine-spacing-md);
-  color: var(--mantine-color-sand-3);
+  color: var(--ink-soft);
 }
 
 .accent {
-  color: var(--mantine-color-brand-4);
+  color: var(--accent-text);
 }
 
 .flagship {
-  border: 1px solid var(--mantine-color-dark-4);
+  border: 1px solid var(--border-card);
   border-radius: var(--mantine-radius-lg);
   padding: clamp(1.25rem, 4vw, 2.25rem);
-  background: var(--mantine-color-dark-7);
+  background: var(--surface-raised);
 }
 
 .stats {
@@ -178,7 +170,7 @@
     offset-rotate: 0deg;
     background: radial-gradient(
       circle at 50% 50%,
-      var(--mantine-color-white) 0%,
+      var(--spark-core) 0%,
       color-mix(in srgb, var(--mantine-color-brand-5) 70%, transparent) 22%,
       color-mix(in srgb, var(--mantine-color-brand-7) 30%, transparent) 46%,
       transparent 70%

@@ -4,6 +4,7 @@ import { IconBrandGithub, IconSearch } from '@tabler/icons-react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 import { lazy, Suspense, useEffect, useState } from 'react';
 import { site } from '@config';
+import { ThemePicker } from './ThemePicker';
 import classes from './Header.module.css';
 
 /**
@@ -62,6 +63,11 @@ export const Header = () => {
         </nav>
 
         <Group gap="xs">
+          {/* Hidden on a phone, where it lives in the drawer instead: the
+              header has a wordmark, two icon buttons and a burger already. */}
+          <Group gap="xs" visibleFrom="sm">
+            <ThemePicker />
+          </Group>
           <Tooltip label="Search — press / or ⌘K" withArrow>
             <ActionIcon
               variant="default"

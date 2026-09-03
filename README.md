@@ -100,7 +100,7 @@ Three layers, each answering what the one below cannot:
 - **Layout** — the squarified treemap, checked for its invariants: every cell
   placed, none overlapping, areas proportional, no slivers.
 - **Browser** — the built bundle in real Chrome via `Bun.WebView`. Every route ×
-  3 viewports: correct heading, no horizontal overflow, zero
+  3 viewports × 2 colour schemes: correct heading, no horizontal overflow, zero
   console errors, plus the assertions that map onto what actually broke here —
   no offline embed rendered as an iframe, the WebGL backdrop actually animating
   rather than redrawing one frame, the cup never overlapping the copy it sits
@@ -120,6 +120,26 @@ commits only when it moved. That push deploys. Run it by hand with
 and exits 0, leaving the committed snapshot alone. It hard-fails on exactly one
 thing — a schema violation — rather than writing a snapshot that renders as a
 blank page.
+
+## Themes
+
+Themes are data. `src/theme/themes.ts` lists them, `themes.css` answers the same
+set of semantic questions once per theme — `--surface`, `--ink`, `--accent-text`
+and so on — and `public/theme-init.js` stamps the saved choice onto `<html>`
+before first paint. Adding one is a block and a list entry; no component
+changes.
+
+This replaced 29 `light-dark()` pairs across eleven files. That function takes
+exactly two values, so every one of them would have needed rewriting the moment
+a third theme existed.
+
+Two things are load bearing and both failed silently before they were fixed:
+the token blocks are `:root:root[...]` because `MantineProvider` injects its own
+`:root[...]` block at runtime and would otherwise win on order; and
+`theme-init.js` is a separate file, not an inline script, because the CSP allows
+no inline ones. `themes.test.ts` checks the list, the stylesheet and that script
+still agree — they cannot import each other, since the last must run before the
+bundle exists.
 
 ## Headers
 
@@ -149,10 +169,13 @@ neither them nor `viewer.contributionsCollection`.
 either a CSS animation that `global.css` neutralises or a `motion` component
 that checks it. `jsx-a11y` runs in the lint gate.
 
-Every text colour clears WCAG AA on the surface it lands on. Mantine's own
-`dimmed` is 4.29:1 on this background — under the 4.5:1 threshold, on the token
-that carries every card description, stat label and page intro — so `global.css`
-overrides it to the warm neutral the palette is already built from.
+Every text colour clears WCAG AA on the surface it lands on, in **both**
+themes, and three of Mantine's own defaults had to be overridden to get there:
+`dimmed` (4.29:1 dark, 3.05:1 light), `anchor` (2.25:1 light — every inline
+link), and the `light` variant's text (3.71:1 light — every badge and tier
+pill). The light accent is bronze rather than amber for the same reason: the
+brand ramp does not go dark enough to carry text on cream. Worst measured
+figure on any route is now 5.2:1.
 
 The treemap is keyboard operable and has a table equivalent behind a toggle,
 which is also the **default below 48em**: area is the message a treemap carries,

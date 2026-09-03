@@ -31,9 +31,20 @@
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
 
-    <!-- Dark only, declared before the bundle parses so there is no white
-         flash on first load. -->
-    <meta name="color-scheme" content="dark" />
+    <!-- Both, so the browser paints its own chrome correctly for whichever
+         theme theme-init.js is about to pick. -->
+    <meta name="color-scheme" content="light dark" />
+
+    <!--
+      Applies the saved theme before anything paints.
+
+      Blocking and in <head> on purpose: deferred, it would run after first
+      paint and every visitor on a non-default theme would see a frame of the
+      wrong one. A separate file rather than an inline block because the CSP
+      allows `script-src 'self'` with no `unsafe-inline`, and an inline script
+      here would simply be refused.
+    -->
+    <script src="/theme-init.js"></script>
   </head>
   <body>
     <div id="root"></div>

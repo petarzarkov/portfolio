@@ -2,7 +2,7 @@
   width: 100%;
   border: 0;
   border-radius: var(--mantine-radius-md);
-  background: var(--mantine-color-dark-6);
+  background: var(--surface-sunken);
 }
 
 .offline {
@@ -14,6 +14,6 @@
   text-align: center;
   padding: var(--mantine-spacing-xl);
   border-radius: var(--mantine-radius-md);
-  border: 1px dashed var(--mantine-color-dark-4);
-  background: var(--mantine-color-dark-7);
+  border: 1px dashed var(--border-card);
+  background: var(--surface-raised);
 }

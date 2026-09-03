@@ -10,7 +10,7 @@ const LEFT = 24;
 
 /** Five buckets, brand-tinted, so the scale reads at a glance. */
 const LEVELS = [
-  'var(--mantine-color-dark-5)',
+  'var(--heat-empty)',
   'var(--mantine-color-brand-2)',
   'var(--mantine-color-brand-4)',
   'var(--mantine-color-brand-6)',

@@ -2,8 +2,8 @@
   position: sticky;
   top: 0;
   z-index: 100;
-  border-bottom: 1px solid var(--mantine-color-dark-5);
-  background: color-mix(in srgb, var(--mantine-color-dark-8) 88%, transparent);
+  border-bottom: 1px solid var(--border);
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
   backdrop-filter: blur(10px);
 }
 
@@ -22,19 +22,19 @@
   font-size: var(--mantine-font-size-sm);
   font-weight: 500;
   text-decoration: none;
-  color: var(--mantine-color-sand-2);
+  color: var(--ink);
   transition:
     background-color 120ms ease,
     color 120ms ease;
 }
 
 .link:hover {
-  background: var(--mantine-color-dark-6);
+  background: var(--surface-sunken);
 }
 
 .active {
-  color: var(--mantine-color-brand-4);
-  background: color-mix(in srgb, var(--mantine-color-brand-9) 25%, transparent);
+  color: var(--accent-text);
+  background: var(--accent-wash);
 }
 
 .wordmark {

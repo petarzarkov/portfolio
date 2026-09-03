@@ -1,13 +1,13 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
-import { MantineProvider } from '@mantine/core';
 
 import '@mantine/core/styles.css';
 import '@mantine/spotlight/styles.css';
+import './theme/themes.css';
 import './theme/global.css';
 
-import { theme } from './theme/theme';
+import { ThemeProvider } from './theme/useTheme';
 import { App } from './App';
 
 const container = document.getElementById('root');
@@ -20,17 +20,16 @@ if (!container) throw new Error('No #root to mount into');
  *
  * No `ColorSchemeScript`. It exists to stamp the scheme onto <html> before a
  * server-rendered page paints; rendered by a client-only app it runs no earlier
- * than the provider beside it, so all it contributed was an inline <script> -
- * which is the one thing standing between this site and a CSP with no
- * `unsafe-inline` in `script-src`. `<meta name="color-scheme">` in index.html
- * is what actually prevents the flash, and it ships in the HTML.
+ * than the provider beside it, and all it contributed was an inline <script> -
+ * which the CSP refuses. `public/theme-init.js` does that job properly, from a
+ * same-origin file the policy allows, before first paint.
  */
 createRoot(container).render(
   <StrictMode>
-    <MantineProvider theme={theme} forceColorScheme="dark">
+    <ThemeProvider>
       <BrowserRouter>
         <App />
       </BrowserRouter>
-    </MantineProvider>
+    </ThemeProvider>
   </StrictMode>,
 );

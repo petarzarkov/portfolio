@@ -142,7 +142,7 @@ scope here; in scope if the client gets extracted.
 - No external URL renders as an embed unless a generator confirmed it answered.
 - Skills are measured from real byte counts, with proficiency stated honestly where
   volume misleads.
-- Browser suite green across 3 viewports; zero console errors.
+- Browser suite green across 3 viewports × 2 colour schemes; zero console errors.
 - Lighthouse ≥ 95; initial JS ≤ 150 KB gzipped.
 - `prefers-reduced-motion` fully honoured.
 - Nothing on the site reads as unmaintained.

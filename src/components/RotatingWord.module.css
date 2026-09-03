@@ -10,7 +10,7 @@
 .word {
   grid-area: word;
   white-space: nowrap;
-  color: var(--mantine-color-brand-4);
+  color: var(--accent-text);
   font-weight: 700;
 }
 

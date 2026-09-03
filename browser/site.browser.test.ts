@@ -74,20 +74,70 @@ for (const scheme of SCHEMES) {
   }
 }
 
-describe('colour scheme', () => {
-  test('the page is dark regardless of the system preference', async () => {
-    // `forceColorScheme="dark"`, so a light-preferring visitor still gets the
-    // dark palette rather than a half-converted page.
+describe('themes', () => {
+  /**
+   * The ground each theme paints, as the brightest channel of the body
+   * background. Absolute values would pin the test to a palette; the question
+   * is only whether the two are on opposite sides of mid.
+   */
+  const brightest = (colour: string): number =>
+    Math.max(...(colour.match(/\d+/g)?.slice(0, 3).map(Number) ?? [0]));
+
+  test('a first visit follows the system preference', async () => {
     await preview.view(1440, 900);
+
     await preview.scheme('dark');
     await preview.open('/');
-    const background = await preview.background();
+    expect({
+      theme: await preview.attr('html', 'data-theme'),
+      dark: brightest(await preview.background()) < 90,
+    }).toEqual({ theme: 'dark', dark: true });
 
-    // Dark ground: every channel well below mid.
-    const channels = background.match(/\d+/g)?.slice(0, 3).map(Number) ?? [];
-    expect(channels).toHaveLength(3);
-    expect(Math.max(...channels)).toBeLessThan(90);
-  });
+    await preview.scheme('light');
+    await preview.open('/');
+    expect({
+      theme: await preview.attr('html', 'data-theme'),
+      light: brightest(await preview.background()) > 200,
+    }).toEqual({ theme: 'light', light: true });
+  }, 30_000);
+
+  test('every theme drives Mantine to the scheme it is built for', async () => {
+    const { THEMES } = await import('../src/theme/themes');
+
+    await preview.scheme('dark');
+    await preview.open('/');
+
+    for (const entry of THEMES) {
+      await preview.click(`button[aria-label="${entry.label}"]`);
+      expect({
+        id: entry.id,
+        theme: await preview.attr('html', 'data-theme'),
+        scheme: await preview.attr('html', 'data-mantine-color-scheme'),
+      }).toEqual({ id: entry.id, theme: entry.id, scheme: entry.base });
+    }
+  }, 30_000);
+
+  /**
+   * The reason `theme-init.js` is a separate blocking file rather than an
+   * inline block: the CSP allows no inline script, so a choice that did not
+   * survive a reload would mean it never ran at all.
+   */
+  test('the choice survives a reload, with no flash of the other theme', async () => {
+    await preview.scheme('dark');
+    await preview.open('/');
+    await preview.click('button[aria-label="Light"]');
+
+    await preview.open('/projects');
+    expect({
+      theme: await preview.attr('html', 'data-theme'),
+      light: brightest(await preview.background()) > 200,
+    }).toEqual({ theme: 'light', light: true });
+
+    // Back to the default, so the shared preview does not leak a stored
+    // preference into every test that runs after this one.
+    await preview.click('button[aria-label="Dark"]');
+    expect(await preview.attr('html', 'data-theme')).toBe('dark');
+  }, 30_000);
 });
 
 describe('embeds', () => {

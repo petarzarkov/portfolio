@@ -49,7 +49,7 @@
 }
 
 .rect {
-  stroke: var(--mantine-color-dark-8);
+  stroke: var(--cell-edge);
   stroke-width: 2;
   transition: filter 200ms ease;
 }
@@ -97,7 +97,7 @@
 }
 
 .selected .rect {
-  stroke: var(--mantine-color-white);
+  stroke: var(--cell-edge-selected);
   stroke-width: 3;
 }
 

@@ -1,0 +1,133 @@
+/**
+ * One block of semantic tokens per theme.
+ *
+ * These replace the 29 `light-dark()` pairs the site used to carry. That
+ * function takes exactly two values, so every one of them would have had to be
+ * rewritten the moment a third theme existed - and picking the wrong branch in
+ * one of eleven files gives a colour that looks almost right, which is the kind
+ * of thing that survives review. A theme is now a list of answers to the same
+ * questions, and adding one means adding a block here and an entry in
+ * `themes.ts`. `themes.test.ts` fails if those two ever disagree.
+ *
+ * Names describe the job, not the colour: `--surface-raised` is "whatever a
+ * card sits on in this theme", which stays true in a theme that is neither
+ * light nor dark.
+ *
+ * `:root:root` is load bearing, and the doubling is not a typo.
+ *
+ * Mantine declares its tokens twice: once in its stylesheet and again in a
+ * <style> that `MantineProvider` injects at runtime, both under
+ * `:root[data-mantine-color-scheme=...]`. That runtime block lands after this
+ * file, so matching its specificity is not enough - it wins on order. Repeating
+ * `:root` outranks it outright, which is what makes the `dimmed`, `anchor` and
+ * `light-color` overrides below actually apply. Each was measured failing AA
+ * before this, and silently.
+ */
+
+:root:root[data-theme='dark'] {
+  color-scheme: dark;
+
+  --surface: var(--mantine-color-dark-8);
+  --surface-raised: var(--mantine-color-dark-7);
+  --surface-sunken: var(--mantine-color-dark-6);
+
+  --border: var(--mantine-color-dark-5);
+  --border-card: var(--mantine-color-dark-4);
+
+  --ink: var(--mantine-color-sand-2);
+  --ink-soft: var(--mantine-color-sand-3);
+
+  /**
+   * Mantine's dark `dimmed` is `dark-2`, #828282, which is 4.29:1 on this
+   * surface - under the 4.5:1 AA needs for body text, on the token that carries
+   * every card description, stat label and page intro.
+   */
+  --mantine-color-dimmed: var(--mantine-color-sand-4);
+
+  --accent-text: var(--mantine-color-brand-4);
+  --accent-wash: color-mix(
+    in srgb,
+    var(--mantine-color-brand-9) 25%,
+    transparent
+  );
+
+  /* Every inline link. Mantine derives this from `primaryShade` otherwise,
+     which is a fill colour and not chosen to be legible as text. */
+  --mantine-color-anchor: var(--accent-text);
+
+  /* Text on every `variant="light"` badge and button. Mantine's own value is
+     already legible on dark; stated anyway, so both themes answer the same
+     questions and `themes.test.ts` can check that they do. */
+  --mantine-color-brand-light-color: var(--mantine-color-brand-0);
+
+  --heat-empty: var(--mantine-color-dark-5);
+  --cell-edge: var(--mantine-color-dark-8);
+  --cell-edge-selected: var(--mantine-color-white);
+
+  --aurora-opacity: 0.38;
+  --aurora-near: var(--mantine-color-brand-5);
+  --aurora-far: var(--mantine-color-brand-7);
+  --spark-core: var(--mantine-color-white);
+
+  --scrim: color-mix(in srgb, var(--mantine-color-dark-8) 22%, transparent);
+}
+
+:root:root[data-theme='light'] {
+  color-scheme: light;
+
+  --surface: var(--mantine-color-sand-0);
+  --surface-raised: var(--mantine-color-white);
+  --surface-sunken: var(--mantine-color-sand-1);
+
+  --border: var(--mantine-color-sand-2);
+  --border-card: var(--mantine-color-sand-2);
+
+  --ink: var(--mantine-color-sand-9);
+  --ink-soft: var(--mantine-color-sand-8);
+
+  /**
+   * Mantine's light `dimmed` is `gray-6`, which is 3.05:1 on this surface -
+   * a worse failure than the dark one it mirrors. `sand-8` clears AA on all
+   * three light surfaces: 5.2:1 on the page, 5.7:1 on a card, 4.5:1 on the
+   * sunken one.
+   */
+  --mantine-color-dimmed: var(--mantine-color-sand-8);
+
+  /**
+   * A literal, and darker than the ramp goes.
+   *
+   * Amber on cream cannot carry text: `brand-8`, the darkest shade the palette
+   * offers before it stops looking like the brand, is 2.8:1 on this surface and
+   * 2.9:1 on the wash below - both well under AA, and both were shipped by the
+   * light theme this restores. The accent has to become bronze to be readable
+   * at this size, so it does. Measured: 6.4:1 on the page, 6.6:1 on the wash,
+   * 7.0:1 on a card.
+   */
+  --accent-text: #7a5100;
+  --accent-wash: var(--mantine-color-brand-0);
+
+  /* Text on every `variant="light"` badge and button - the Flagship pill, the
+     tier chips, "About this project". Mantine's own value here is `brand-9`,
+     which is 3.7:1 on the wash it sits on. */
+  --mantine-color-brand-light-color: var(--accent-text);
+
+  /**
+   * Same bronze, and for the same reason. Left to Mantine this resolves to
+   * `brand-7` from `primaryShade` - 2.25:1 on the page, which made every inline
+   * link on the light theme ("All projects", "Source", "LinkedIn") the worst
+   * contrast on the site.
+   */
+  --mantine-color-anchor: var(--accent-text);
+
+  --heat-empty: var(--mantine-color-sand-2);
+  --cell-edge: var(--mantine-color-white);
+  --cell-edge-selected: var(--mantine-color-dark-9);
+
+  /* The wash has to work harder to register against a light ground. */
+  --aurora-opacity: 0.55;
+  --aurora-near: var(--mantine-color-brand-4);
+  --aurora-far: var(--mantine-color-brand-3);
+  --spark-core: var(--mantine-color-brand-4);
+
+  --scrim: color-mix(in srgb, var(--mantine-color-sand-0) 26%, transparent);
+}

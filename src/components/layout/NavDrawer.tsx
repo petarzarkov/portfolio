@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
-import { Drawer, Stack } from '@mantine/core';
+import { Divider, Drawer, Group, Stack, Text } from '@mantine/core';
+import { ThemePicker } from './ThemePicker';
 
 /**
  * The mobile navigation drawer, in its own chunk.
@@ -26,6 +27,15 @@ export const NavDrawer = ({
     title="Navigate"
     hiddenFrom="sm"
   >
-    <Stack gap={4}>{children}</Stack>
+    <Stack gap={4}>
+      {children}
+      <Divider my="sm" />
+      <Group justify="space-between" px={10}>
+        <Text size="sm" fw={500}>
+          Theme
+        </Text>
+        <ThemePicker label={false} />
+      </Group>
+    </Stack>
   </Drawer>
 );

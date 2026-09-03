@@ -106,8 +106,7 @@ and six routes in **719 ms**, so the whole matrix is seconds, not minutes.
 
 ### The matrix
 
-Every route × 3 viewports (390 / 820 / 1440). One colour scheme: the site is
-dark only, so `SCHEMES` is a single entry and the matrix halved with it. Per case:
+Every route × 3 viewports (390 / 820 / 1440) × 2 colour schemes. Per case:
 
 ```ts
 expect(await preview.heading()).toMatch(expected); // right route, not a fallback
@@ -130,10 +129,11 @@ Beyond dunx's set, the checks that map onto what actually broke here:
 - **No offline embed is ever rendered as an `<iframe>`.** Given an `embeds.json`
   fixture marking a URL offline, the detail route must contain a still and no
   frame. This is the regression test for the three dead embeds.
-- **The page is dark whatever the visitor prefers.** With `forceColorScheme`
-  there is no second palette to compare against, so the assertion is absolute:
-  under `prefers-color-scheme: light` the body must still paint a dark ground.
-  A light-preferring visitor getting a half-converted page is the failure mode.
+- **Themes.** A first visit follows `prefers-color-scheme`; every theme drives
+  Mantine to the scheme its components are built for; and a choice survives a
+  reload. The last one matters most: the theme is applied by a separate blocking
+  script because the CSP forbids inline ones, so a preference that did not
+  survive a reload would mean that script never ran at all.
 - **Reduced motion is honoured.** With `prefers-reduced-motion: reduce`, assert no
   element carries a running animation.
 - **Per-route metadata.** After prerendering (phase 4), assert `<title>`,
