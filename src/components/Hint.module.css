@@ -35,28 +35,33 @@
   white-space: nowrap;
   box-shadow: var(--mantine-shadow-md);
 
-  opacity: 0;
   pointer-events: none;
-  transition: opacity 120ms ease;
+
+  /**
+   * `display: none`, not `opacity: 0`.
+   *
+   * A transparent absolutely-positioned box still takes part in scroll overflow:
+   * hidden, the widest of these ("Search - press / or Cmd-K") pushed the
+   * document past the viewport at tablet width and the suite caught it on every
+   * route. Nothing is a safer resting state than nothing.
+   */
+  display: none;
 }
 
-/* `:focus-visible`, not `:focus`: a hint that fires on a mouse click is noise,
-   and the keyboard user is the one who benefits from it. */
 .hint:hover::after,
 .hint:focus-within::after {
-  opacity: 1;
+  display: block;
 }
 
-/* Room is tight at the right edge of a phone header, so the last few anchor
-   their hint to that edge instead of centring it off screen. */
+/**
+ * Anchored to its right edge rather than centred, so it grows inwards.
+ *
+ * Everything wearing a hint on this site sits in the right-hand end of a header
+ * or footer, where a centred label has half its width hanging over the edge of
+ * the page.
+ */
 .end::after {
   left: auto;
   right: 0;
   translate: none;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hint::after {
-    transition: none;
-  }
 }

@@ -140,7 +140,7 @@ export const Header = () => {
 
         <Group gap="xs">
           <ThemePicker />
-          <Hint label="Search — press / or ⌘K">
+          <Hint label="Search — press / or ⌘K" align="end">
             <ActionIcon
               variant="default"
               size="lg"
