@@ -5,7 +5,7 @@
  * are plain module imports - no fetch, no loading state, no runtime dependency
  * on GitHub. The casts are the one place the JSON meets its contract; the
  * generator validates before writing, so a file that reached here is well
- * formed (docs/03-data-pipeline.md).
+ * formed.
  */
 import type { Activity, Languages, Meta, Project } from '@contracts';
 

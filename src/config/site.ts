@@ -1,6 +1,6 @@
 /**
  * Identity and links. Everything else about the site is generated
- * (docs/03-data-pipeline.md).
+ * by `scripts/gen`.
  */
 export const site = {
   name: 'Petar Zarkov',

@@ -5,7 +5,7 @@
 coverageDir = "coverage"
 coverageReporter = ["text", "lcov"]
 coverageSkipTestFiles = true
-# Generated from the GitHub/npm APIs by scripts/gen (docs/03-data-pipeline.md).
+# Generated from the GitHub/npm APIs by scripts/gen.
 # Counting a JSON snapshot's module against a coverage figure is noise.
 coveragePathIgnorePatterns = [
   "**/src/generated/**",

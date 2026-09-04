@@ -1,7 +1,7 @@
 name: Refresh data
 
 # The site's project list, language totals and activity come from a committed
-# snapshot under src/generated (docs/03-data-pipeline.md). This is what keeps
+# snapshot under src/generated. This is what keeps
 # that snapshot current without anyone touching the repo: tag a repo
 # `portfolio` on github.com and it appears here within a day.
 on:

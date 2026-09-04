@@ -76,7 +76,6 @@ export interface Project {
   readonly release: Release | null;
   readonly npm: NpmInfo | null;
   readonly embed: EmbedStatus | null;
-  readonly image: string | null;
   /** Why an archived project stopped running, from the overrides. */
   readonly retiredAt: string | null;
   readonly retiredNote: string | null;
@@ -92,11 +91,6 @@ export interface LanguageTotal {
   readonly color: string | null;
   /** How many repos contain it. */
   readonly repos: number;
-  /**
-   * Self-assessed, from the overrides, and only where byte volume misleads.
-   * Null means the volume speaks for itself.
-   */
-  readonly proficiency: string | null;
 }
 
 export interface Languages {

@@ -2,7 +2,7 @@
  * Serves `dist/` and drives it in a real browser through `Bun.WebView`.
  *
  * Ported from dunx's `internal/docs/scripts/preview.ts`, with its hard-won
- * details intact - see docs/06-testing.md. On Linux `Bun.WebView` drives an
+ * details intact. On Linux `Bun.WebView` drives an
  * installed Chrome over CDP and `ubuntu-latest` ships one, so CI downloads no
  * browser.
  */

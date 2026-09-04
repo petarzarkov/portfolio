@@ -8,8 +8,7 @@ Tag a repository `portfolio` on GitHub and it appears on the site — descriptio
 topics, language mix, stars and last push already filled in. No commit here.
 
 [petarzarkov.com](https://petarzarkov.com) ·
-[CI](https://github.com/petarzarkov/portfolio/actions/workflows/ci.yml) ·
-[Plan](./docs/README.md)
+[CI](https://github.com/petarzarkov/portfolio/actions/workflows/ci.yml)
 
 </div>
 
@@ -205,15 +204,6 @@ The treemap is keyboard operable and has a table equivalent behind a toggle,
 which is also the **default below 48em**: area is the message a treemap carries,
 and no setting shows all nine cells and letters them on a 390px screen. Headings
 run h1 → h2 → h3 with no level skipped.
-
-## Docs
-
-[`docs/`](./docs/README.md) holds the overhaul plan the current site was built
-from: [tooling](./docs/01-tooling.md), [CI/CD](./docs/02-ci-cd.md),
-[data pipeline](./docs/03-data-pipeline.md),
-[Mantine migration](./docs/04-mantine-migration.md),
-[experience](./docs/05-experience.md), [testing](./docs/06-testing.md),
-[execution](./docs/07-execution.md).
 
 ## License
 
