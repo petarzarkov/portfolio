@@ -96,7 +96,11 @@ jobs:
       # it left last time. Skipped on `main`, which has no PR to comment on.
       - name: Comment the preview URL
         if: github.event_name == 'pull_request'
-        uses: actions/github-script@v9
+        # Pinned to a commit, alone among the actions here, because it is the
+        # only step that runs with write access to the repository: a moving
+        # tag would be a moving tag holding `pull-requests: write`. The rest
+        # are read-only and stay on their major.
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         env:
           # The alias follows the branch and survives the next push, so it is
           # the one worth clicking twice; the deployment URL is immutable and
