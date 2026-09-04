@@ -345,7 +345,7 @@ describe('budget', () => {
    * that they do not count against first paint, and folding them back in here
    * would make the split pointless.
    *
-   * 150 KB is the figure docs/05-experience.md commits to. It has already been
+   * 150 KB is the budget this site commits to. It has already been
    * exceeded once, by @mantine/spotlight landing in the entry chunk, which is
    * why this test exists rather than the number living only in a document.
    */

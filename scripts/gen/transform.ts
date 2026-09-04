@@ -84,7 +84,6 @@ export const toProject = (
       : null,
   npm: null,
   embed: null,
-  image: override?.image ?? repo.openGraphImageUrl,
   retiredAt: override?.retiredAt ?? null,
   retiredNote: override?.retiredNote ?? null,
   source: 'github',
@@ -110,7 +109,6 @@ export const manualProject = (slug: string, override: Override): Project => ({
   release: null,
   npm: null,
   embed: null,
-  image: override.image ?? null,
   retiredAt: override.retiredAt ?? null,
   retiredNote: override.retiredNote ?? null,
   source: 'manual',
@@ -144,7 +142,6 @@ export const sortProjects = (projects: readonly Project[]): Project[] =>
  */
 export const aggregateLanguages = (
   repos: readonly RawRepo[],
-  proficiency: Readonly<Record<string, string>> = {},
   limit = 8,
   threshold = 0.005,
 ): Languages => {
@@ -186,7 +183,6 @@ export const aggregateLanguages = (
       share: value.bytes / totalBytes,
       color: value.color,
       repos: value.repos.size,
-      proficiency: proficiency[name] ?? null,
     }))
     .sort((a, b) => b.bytes - a.bytes);
 
@@ -212,7 +208,6 @@ export const aggregateLanguages = (
       share: tailShare,
       color: '#64748b',
       repos: tailRepos.size,
-      proficiency: null,
     });
   }
 

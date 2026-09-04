@@ -1,6 +1,5 @@
 import { useMemo, useRef, useState } from 'react';
 import {
-  Badge,
   Divider,
   Group,
   Paper,
@@ -141,7 +140,6 @@ const Skills = () => {
               <Table.Th>Share</Table.Th>
               <Table.Th>Size</Table.Th>
               <Table.Th>Repos</Table.Th>
-              <Table.Th>Note</Table.Th>
             </Table.Tr>
           </Table.Thead>
           <Table.Tbody>
@@ -151,7 +149,6 @@ const Skills = () => {
                 <Table.Td>{`${(lang.share * 100).toFixed(1)}%`}</Table.Td>
                 <Table.Td>{`${(lang.bytes / 1e6).toFixed(2)} MB`}</Table.Td>
                 <Table.Td>{lang.repos}</Table.Td>
-                <Table.Td>{lang.proficiency ?? ''}</Table.Td>
               </Table.Tr>
             ))}
           </Table.Tbody>
@@ -163,22 +160,6 @@ const Skills = () => {
           onSelect={setSelected}
         />
       )}
-
-      {languages.top.some((lang) => lang.proficiency !== null) && (
-        <Group gap="xs">
-          <Text size="sm" c="dimmed">
-            Where volume misleads, I say so:
-          </Text>
-          {languages.top
-            .filter((lang) => lang.proficiency !== null)
-            .map((lang) => (
-              <Badge key={lang.name} variant="default">
-                {`${lang.name} · ${lang.proficiency ?? ''}`}
-              </Badge>
-            ))}
-        </Group>
-      )}
-
       <Divider />
 
       <section aria-labelledby="activity-heading">

@@ -4,12 +4,12 @@ import type { Tier } from '@contracts';
  * The only hand-maintained project data in the repo.
  *
  * Everything a repo already knows - description, topics, language mix, stars,
- * homepage, last push - is generated from GitHub (docs/03-data-pipeline.md).
+ * homepage, last push - is generated from GitHub by `scripts/gen`.
  * This file covers only what GitHub cannot know:
  *
  *   1. closed-source work, which has no repo at all (`manual: true`)
  *   2. copy that beats the repo description
- *   3. media and embeds
+ *   3. embeds
  *   4. explicit ordering, via `pin`
  *
  * Generated fields lose to anything set here. A `manual` entry skips the GitHub
@@ -30,7 +30,6 @@ export interface Override {
   readonly description?: string;
   /** Overrides the repo's homepageUrl as the thing to embed. */
   readonly embed?: string;
-  readonly image?: string;
   readonly repo?: string;
   readonly topics?: readonly string[];
   /** npm package to pull version and download counts for. */

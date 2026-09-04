@@ -226,7 +226,7 @@ describe('aggregateLanguages', () => {
       `Lang${i}`,
       1000 - i * 10,
     ]);
-    const result = aggregateLanguages([repo(langs)], {}, 8);
+    const result = aggregateLanguages([repo(langs)], 8);
 
     expect(result.top).toHaveLength(9);
     expect(result.top.at(-1)?.name).toBe('Other');
@@ -244,29 +244,10 @@ describe('aggregateLanguages', () => {
       ]),
       ['Tiny', 1],
     ];
-    const result = aggregateLanguages([repo(langs)], {}, 8);
+    const result = aggregateLanguages([repo(langs)], 8);
 
     expect(result.top).toHaveLength(8);
     expect(result.top.map((l) => l.name)).not.toContain('Other');
-  });
-
-  test('attaches a proficiency label only where one is declared', () => {
-    const result = aggregateLanguages(
-      [
-        repo([
-          ['Go', 100],
-          ['TypeScript', 500],
-        ]),
-      ],
-      { Go: 'beginner' },
-    );
-
-    expect(result.top.find((l) => l.name === 'Go')?.proficiency).toBe(
-      'beginner',
-    );
-    expect(
-      result.top.find((l) => l.name === 'TypeScript')?.proficiency,
-    ).toBeNull();
   });
 
   test("a fork contributes nothing: it is somebody else's code", () => {
@@ -296,7 +277,7 @@ describe('aggregateLanguages', () => {
       ['TailB', 500],
       ['TailC', 500],
     ];
-    const result = aggregateLanguages([repo(langs)], {}, 8);
+    const result = aggregateLanguages([repo(langs)], 8);
 
     expect(result.top.at(-1)?.name).toBe('Other');
     expect(result.top.at(-1)?.repos).toBe(1);

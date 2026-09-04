@@ -126,8 +126,7 @@
     "latestRelease": {
       "tagName": "v3.1.3",
       "publishedAt": "2026-08-30T11:52:02Z"
-    },
-    "openGraphImageUrl": "https://opengraph.githubassets.com/1c9d6f9c543d36d4160af78d8727af9c3461fbdef76840e97e5b576ffdd4f933/petarzarkov/dunx"
+    }
   },
   {
     "name": "petarzarkov",
@@ -178,8 +177,7 @@
         }
       ]
     },
-    "latestRelease": null,
-    "openGraphImageUrl": "https://opengraph.githubassets.com/878fc49d844836b8364902e7cd13cc8550a5ca27af8cc710242a4906b2b9a4f8/petarzarkov/petarzarkov"
+    "latestRelease": null
   },
   {
     "name": "arkv",
@@ -239,8 +237,7 @@
         }
       ]
     },
-    "latestRelease": null,
-    "openGraphImageUrl": "https://opengraph.githubassets.com/07f8a76922a0ba164f933e130b888d987e13b29cf8196cd80aaf29c2cb4e3bc3/petarzarkov/arkv"
+    "latestRelease": null
   },
   {
     "name": "rust-beats",
@@ -322,8 +319,7 @@
         }
       ]
     },
-    "latestRelease": null,
-    "openGraphImageUrl": "https://opengraph.githubassets.com/b7a06eafdc9b7228e607672292a353831fcd057425e6dcab91ea50e811848662/petarzarkov/rust-beats"
+    "latestRelease": null
   },
   {
     "name": "wave-sim",
@@ -376,8 +372,7 @@
         }
       ]
     },
-    "latestRelease": null,
-    "openGraphImageUrl": "https://opengraph.githubassets.com/4a679fa1d1e651dc393f6e94265b43ea2699763704ecbb9bdd055ddc7077d73b/petarzarkov/wave-sim"
+    "latestRelease": null
   },
   {
     "name": "trivia-art",
@@ -416,8 +411,7 @@
         }
       ]
     },
-    "latestRelease": null,
-    "openGraphImageUrl": "https://opengraph.githubassets.com/25db932684b1e9f7fdfe8a89d7dfadd412ebf19eaaf20aef4e13cef0b47f2310/petarzarkov/trivia-art"
+    "latestRelease": null
   },
   {
     "name": "k8s",
@@ -439,7 +433,6 @@
       "totalSize": 0,
       "edges": []
     },
-    "latestRelease": null,
-    "openGraphImageUrl": "https://avatars.githubusercontent.com/u/46219231?s=400&v=4"
+    "latestRelease": null
   }
 ]

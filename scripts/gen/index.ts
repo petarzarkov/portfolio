@@ -28,15 +28,6 @@ import {
 
 const OUT = new URL('../../src/generated/', import.meta.url).pathname;
 
-/**
- * Byte volume is not proficiency. The languages list and its magnitudes are
- * measured; a label appears only where the volume would misrepresent things.
- */
-const PROFICIENCY: Record<string, string> = {
-  Go: 'beginner',
-  Rust: 'learning',
-};
-
 const write = async (name: string, value: unknown): Promise<void> => {
   // Whole object, then one write. Never stream into a file the app imports.
   await Bun.write(`${OUT}${name}`, `${JSON.stringify(value, null, 2)}\n`);
@@ -127,7 +118,7 @@ const run = async (): Promise<void> => {
   await mkdir(OUT, { recursive: true });
   await Promise.all([
     write('projects.json', projects),
-    write('languages.json', aggregateLanguages(repos, PROFICIENCY)),
+    write('languages.json', aggregateLanguages(repos)),
     write('activity.json', toActivity(contributions)),
     write('meta.json', meta),
   ]);

@@ -43,7 +43,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup
       # No browser download step: Bun.WebView drives the Chrome the runner image
-      # already ships. See docs/06-testing.md.
+      # already ships.
       - run: bun run ci build
       - run: bun run ci browser
       - uses: actions/upload-artifact@v4

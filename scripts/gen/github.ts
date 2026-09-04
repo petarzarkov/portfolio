@@ -6,7 +6,7 @@
  * denominator the skills map is drawn from, and public-only would badly
  * under-report - the account's private contributions outnumber its public ones.
  * `viewer` needs a token whose owner is the user, which is what `GH_DATA_TOKEN`
- * is for (docs/03-data-pipeline.md).
+ * is for.
  */
 
 const ENDPOINT = 'https://api.github.com/graphql';
@@ -109,7 +109,6 @@ export interface RawRepo {
     edges: { size: number; node: { name: string; color: string | null } }[];
   } | null;
   latestRelease: { tagName: string; publishedAt: string | null } | null;
-  openGraphImageUrl: string | null;
 }
 
 const REPOS_QUERY = `
@@ -133,7 +132,6 @@ query Repos($cursor: String) {
           edges { size node { name color } }
         }
         latestRelease { tagName publishedAt }
-        openGraphImageUrl
       }
     }
   }
