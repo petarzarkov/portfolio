@@ -109,6 +109,19 @@ Three layers, each answering what the one below cannot:
 No browser download in CI: `Bun.WebView` drives the Chrome the runner already
 ships.
 
+## Previews
+
+Every pull request deploys to Cloudflare Pages and the run comments the URL on
+the pull request itself, rewritten in place rather than appended so a long
+branch does not accumulate a stack of near-identical links.
+
+Two URLs, because they answer different questions. The **deployment URL** is
+immutable, pins exactly one build, and is always there — it is the one worth
+citing next to a commit. The **branch alias** follows the branch and survives
+the next push, which makes it the one worth clicking twice, but Cloudflare only
+returns one from wrangler 3.78 on and not for every deployment, so the comment
+falls back to the deployment URL when it is absent.
+
 ## Refreshing the data
 
 `.github/workflows/refresh-data.yml` runs nightly, regenerates the snapshot and

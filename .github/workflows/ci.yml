@@ -60,6 +60,8 @@ jobs:
     permissions:
       contents: read
       deployments: write
+      # Only so the preview comment below can be written as github-actions[bot].
+      pull-requests: write
     environment:
       name: ${{ github.ref == 'refs/heads/main' && 'production' || 'preview' }}
       url: ${{ steps.deploy.outputs.deployment-url }}
@@ -73,13 +75,20 @@ jobs:
       - name: Build
         run: bun run ci build
 
+      # Actions are pinned to a commit when they are third-party or when they
+      # hold something worth stealing - this one takes the Cloudflare deploy
+      # token, and the comment step below runs with `pull-requests: write`. A
+      # moving tag is a moving tag holding a credential. GitHub's own
+      # read-only actions (checkout, cache, upload-artifact) stay on a major,
+      # since pinning those without Dependabot only makes them rot quietly.
+      #
       # `--branch` is what separates a preview from production: Cloudflare treats
       # the project's production branch as production and gives every other
       # branch a `<hash>.<project>.pages.dev` preview URL, so one command covers
       # both cases.
       - name: Deploy to Cloudflare Pages
         id: deploy
-        uses: cloudflare/wrangler-action@v3
+        uses: cloudflare/wrangler-action@9acf94ace14e7dc412b076f2c5c20b8ce93c79cd # v3.15.0
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
@@ -87,6 +96,57 @@ jobs:
             pages deploy dist
             --project-name=portfolio
             --branch=${{ github.head_ref || github.ref_name }}
+
+      # One comment per pull request, rewritten in place rather than appended:
+      # a fresh comment on every push buries the conversation under a stack of
+      # near-identical links. The marker is how the next run finds the comment
+      # it left last time. Skipped on `main`, which has no PR to comment on.
+      - name: Comment the preview URL
+        if: github.event_name == 'pull_request'
+        # Pinned, like every action here that is third-party or holds a
+        # credential - see the note above the deploy step.
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        env:
+          # The alias follows the branch and survives the next push, so it is
+          # the one worth clicking twice; the deployment URL is immutable and
+          # pins the exact build, so it is the one worth citing. Wrangler only
+          # emits an alias from 3.78 on, hence the fallback.
+          ALIAS_URL: ${{ steps.deploy.outputs.pages-deployment-alias-url }}
+          DEPLOY_URL: ${{ steps.deploy.outputs.deployment-url }}
+        with:
+          script: |
+            const MARKER = '<!-- cloudflare-preview -->';
+            const { ALIAS_URL, DEPLOY_URL } = process.env;
+            const sha = context.payload.pull_request.head.sha.slice(0, 7);
+
+            const body = [
+              MARKER,
+              '### Preview',
+              '',
+              `**${ALIAS_URL || DEPLOY_URL}**`,
+              '',
+              `\`${sha}\` \u00b7 [this exact build](${DEPLOY_URL})`,
+            ].join('\n');
+
+            const comments = await github.paginate(
+              github.rest.issues.listComments,
+              { ...context.repo, issue_number: context.issue.number },
+            );
+            const mine = comments.find(
+              (c) => c.user.type === 'Bot' && c.body.startsWith(MARKER),
+            );
+
+            await (mine
+              ? github.rest.issues.updateComment({
+                  ...context.repo,
+                  comment_id: mine.id,
+                  body,
+                })
+              : github.rest.issues.createComment({
+                  ...context.repo,
+                  issue_number: context.issue.number,
+                  body,
+                }));
 
       - name: Summarise
         run: |
