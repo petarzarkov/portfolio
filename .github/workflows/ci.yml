@@ -60,6 +60,8 @@ jobs:
     permissions:
       contents: read
       deployments: write
+      # Only so the preview comment below can be written as github-actions[bot].
+      pull-requests: write
     environment:
       name: ${{ github.ref == 'refs/heads/main' && 'production' || 'preview' }}
       url: ${{ steps.deploy.outputs.deployment-url }}
@@ -87,6 +89,55 @@ jobs:
             pages deploy dist
             --project-name=portfolio
             --branch=${{ github.head_ref || github.ref_name }}
+
+      # One comment per pull request, rewritten in place rather than appended:
+      # a fresh comment on every push buries the conversation under a stack of
+      # near-identical links. The marker is how the next run finds the comment
+      # it left last time. Skipped on `main`, which has no PR to comment on.
+      - name: Comment the preview URL
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v9
+        env:
+          # The alias follows the branch and survives the next push, so it is
+          # the one worth clicking twice; the deployment URL is immutable and
+          # pins the exact build, so it is the one worth citing. Wrangler only
+          # emits an alias from 3.78 on, hence the fallback.
+          ALIAS_URL: ${{ steps.deploy.outputs.pages-deployment-alias-url }}
+          DEPLOY_URL: ${{ steps.deploy.outputs.deployment-url }}
+        with:
+          script: |
+            const MARKER = '<!-- cloudflare-preview -->';
+            const { ALIAS_URL, DEPLOY_URL } = process.env;
+            const sha = context.payload.pull_request.head.sha.slice(0, 7);
+
+            const body = [
+              MARKER,
+              '### Preview',
+              '',
+              `**${ALIAS_URL || DEPLOY_URL}**`,
+              '',
+              `\`${sha}\` \u00b7 [this exact build](${DEPLOY_URL})`,
+            ].join('\n');
+
+            const comments = await github.paginate(
+              github.rest.issues.listComments,
+              { ...context.repo, issue_number: context.issue.number },
+            );
+            const mine = comments.find(
+              (c) => c.user.type === 'Bot' && c.body.startsWith(MARKER),
+            );
+
+            await (mine
+              ? github.rest.issues.updateComment({
+                  ...context.repo,
+                  comment_id: mine.id,
+                  body,
+                })
+              : github.rest.issues.createComment({
+                  ...context.repo,
+                  issue_number: context.issue.number,
+                  body,
+                }));
 
       - name: Summarise
         run: |
