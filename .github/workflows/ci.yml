@@ -75,13 +75,20 @@ jobs:
       - name: Build
         run: bun run ci build
 
+      # Actions are pinned to a commit when they are third-party or when they
+      # hold something worth stealing - this one takes the Cloudflare deploy
+      # token, and the comment step below runs with `pull-requests: write`. A
+      # moving tag is a moving tag holding a credential. GitHub's own
+      # read-only actions (checkout, cache, upload-artifact) stay on a major,
+      # since pinning those without Dependabot only makes them rot quietly.
+      #
       # `--branch` is what separates a preview from production: Cloudflare treats
       # the project's production branch as production and gives every other
       # branch a `<hash>.<project>.pages.dev` preview URL, so one command covers
       # both cases.
       - name: Deploy to Cloudflare Pages
         id: deploy
-        uses: cloudflare/wrangler-action@v3
+        uses: cloudflare/wrangler-action@9acf94ace14e7dc412b076f2c5c20b8ce93c79cd # v3.15.0
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
@@ -96,10 +103,8 @@ jobs:
       # it left last time. Skipped on `main`, which has no PR to comment on.
       - name: Comment the preview URL
         if: github.event_name == 'pull_request'
-        # Pinned to a commit, alone among the actions here, because it is the
-        # only step that runs with write access to the repository: a moving
-        # tag would be a moving tag holding `pull-requests: write`. The rest
-        # are read-only and stay on their major.
+        # Pinned, like every action here that is third-party or holds a
+        # credential - see the note above the deploy step.
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         env:
           # The alias follows the branch and survives the next push, so it is
