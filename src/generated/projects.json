@@ -21,127 +21,73 @@
     "languages": [
       {
         "name": "TypeScript",
-        "bytes": 3506644,
-        "share": 0.9793125404946491,
+        "bytes": 3509453,
+        "share": 0.9793287566530088,
         "color": "#3178c6"
       },
       {
         "name": "CSS",
         "bytes": 42089,
-        "share": 0.011754339909291986,
+        "share": 0.011745126103346729,
         "color": "#663399"
       },
       {
         "name": "Python",
         "bytes": 9090,
-        "share": 0.0025385955897138006,
+        "share": 0.002536605675578459,
         "color": "#3572A5"
       },
       {
         "name": "C#",
         "bytes": 7022,
-        "share": 0.0019610581112178556,
+        "share": 0.0019595209080211155,
         "color": "#7355dd"
       },
       {
         "name": "Go",
         "bytes": 4777,
-        "share": 0.0013340892334502558,
+        "share": 0.0013330434886950823,
         "color": "#00ADD8"
       },
       {
         "name": "Rust",
         "bytes": 3059,
-        "share": 0.0008542974597287697,
+        "share": 0.0008536278065560514,
         "color": "#dea584"
       },
       {
         "name": "HTML",
         "bytes": 2869,
-        "share": 0.0008012355057083492,
+        "share": 0.000800607445900396,
         "color": "#e34c26"
       },
       {
         "name": "Java",
         "bytes": 2769,
-        "share": 0.0007733081614870752,
+        "share": 0.0007727019929237352,
         "color": "#b07219"
       },
       {
         "name": "JavaScript",
         "bytes": 2401,
-        "share": 0.0006705355347527872,
+        "share": 0.0006700099259696238,
         "color": "#f1e05a"
       }
     ],
     "license": "MIT",
     "createdAt": "2026-07-27T05:07:34Z",
-    "pushedAt": "2026-09-03T07:03:08Z",
+    "pushedAt": "2026-09-05T08:36:55Z",
     "release": {
-      "tag": "v3.2.0",
-      "publishedAt": "2026-09-02T11:12:50Z"
+      "tag": "v3.2.1",
+      "publishedAt": "2026-09-04T12:21:12Z"
     },
     "npm": null,
     "embed": {
       "url": "https://petarzarkov.github.io/dunx",
       "status": "live",
       "code": 200,
-      "ms": 252,
-      "checkedAt": "2026-09-04T09:39:07.554Z"
-    },
-    "retiredAt": null,
-    "retiredNote": null,
-    "source": "github"
-  },
-  {
-    "slug": "portfolio",
-    "title": "portfolio",
-    "headline": null,
-    "description": "The site at petarzarkov.com. Projects, language stats and activity are generated from the GitHub API into a committed snapshot — tagging a repo puts it on the site, with no commit here.",
-    "tier": "active",
-    "pin": null,
-    "repo": "https://github.com/petarzarkov/portfolio",
-    "homepage": "https://petarzarkov.com",
-    "stars": 3,
-    "forks": 1,
-    "topics": [],
-    "languages": [
-      {
-        "name": "TypeScript",
-        "bytes": 217504,
-        "share": 0.8566286081124191,
-        "color": "#3178c6"
-      },
-      {
-        "name": "CSS",
-        "bytes": 32326,
-        "share": 0.12731433162535888,
-        "color": "#663399"
-      },
-      {
-        "name": "JavaScript",
-        "bytes": 2068,
-        "share": 0.008144714403305147,
-        "color": "#f1e05a"
-      },
-      {
-        "name": "HTML",
-        "bytes": 2009,
-        "share": 0.007912345858916847,
-        "color": "#e34c26"
-      }
-    ],
-    "license": "MIT",
-    "createdAt": "2022-03-09T11:22:27Z",
-    "pushedAt": "2026-09-04T05:04:54Z",
-    "release": null,
-    "npm": null,
-    "embed": {
-      "url": "https://petarzarkov.com",
-      "status": "live",
-      "code": 200,
-      "ms": 259,
-      "checkedAt": "2026-09-04T09:39:07.554Z"
+      "ms": 175,
+      "checkedAt": "2026-09-05T09:04:45.240Z"
     },
     "retiredAt": null,
     "retiredNote": null,
@@ -187,15 +133,69 @@
     ],
     "license": null,
     "createdAt": "2022-03-22T12:56:31Z",
-    "pushedAt": "2026-09-04T04:05:07Z",
+    "pushedAt": "2026-09-05T04:01:14Z",
     "release": null,
     "npm": null,
     "embed": {
       "url": "https://petarzarkov.github.io/petarzarkov/",
       "status": "live",
       "code": 200,
-      "ms": 157,
-      "checkedAt": "2026-09-04T09:39:07.554Z"
+      "ms": 107,
+      "checkedAt": "2026-09-05T09:04:45.240Z"
+    },
+    "retiredAt": null,
+    "retiredNote": null,
+    "source": "github"
+  },
+  {
+    "slug": "portfolio",
+    "title": "portfolio",
+    "headline": null,
+    "description": "The site at petarzarkov.com. Projects, language stats and activity are generated from the GitHub API into a committed snapshot — tagging a repo puts it on the site, with no commit here.",
+    "tier": "active",
+    "pin": null,
+    "repo": "https://github.com/petarzarkov/portfolio",
+    "homepage": "https://petarzarkov.com",
+    "stars": 3,
+    "forks": 1,
+    "topics": [],
+    "languages": [
+      {
+        "name": "TypeScript",
+        "bytes": 217504,
+        "share": 0.8566286081124191,
+        "color": "#3178c6"
+      },
+      {
+        "name": "CSS",
+        "bytes": 32326,
+        "share": 0.12731433162535888,
+        "color": "#663399"
+      },
+      {
+        "name": "JavaScript",
+        "bytes": 2068,
+        "share": 0.008144714403305147,
+        "color": "#f1e05a"
+      },
+      {
+        "name": "HTML",
+        "bytes": 2009,
+        "share": 0.007912345858916847,
+        "color": "#e34c26"
+      }
+    ],
+    "license": "MIT",
+    "createdAt": "2022-03-09T11:22:27Z",
+    "pushedAt": "2026-09-04T09:39:12Z",
+    "release": null,
+    "npm": null,
+    "embed": {
+      "url": "https://petarzarkov.com",
+      "status": "live",
+      "code": 200,
+      "ms": 331,
+      "checkedAt": "2026-09-05T09:04:45.240Z"
     },
     "retiredAt": null,
     "retiredNote": null,
@@ -302,8 +302,8 @@
       "url": "https://petarzarkov.github.io/arkv/",
       "status": "live",
       "code": 200,
-      "ms": 144,
-      "checkedAt": "2026-09-04T09:39:07.554Z"
+      "ms": 120,
+      "checkedAt": "2026-09-05T09:04:45.240Z"
     },
     "retiredAt": null,
     "retiredNote": null,
@@ -538,8 +538,8 @@
       "url": "https://petarzarkov.github.io/iana-timezones/",
       "status": "live",
       "code": 200,
-      "ms": 168,
-      "checkedAt": "2026-09-04T09:39:07.554Z"
+      "ms": 105,
+      "checkedAt": "2026-09-05T09:04:45.240Z"
     },
     "retiredAt": null,
     "retiredNote": null,
@@ -782,8 +782,8 @@
       "url": "https://petarzarkov.github.io/rust-beats/",
       "status": "live",
       "code": 200,
-      "ms": 166,
-      "checkedAt": "2026-09-04T09:39:07.554Z"
+      "ms": 144,
+      "checkedAt": "2026-09-05T09:04:45.240Z"
     },
     "retiredAt": null,
     "retiredNote": null,
@@ -890,8 +890,8 @@
       "url": "https://petarzarkov.github.io/wave-sim/",
       "status": "live",
       "code": 200,
-      "ms": 149,
-      "checkedAt": "2026-09-04T09:39:07.554Z"
+      "ms": 114,
+      "checkedAt": "2026-09-05T09:04:45.240Z"
     },
     "retiredAt": null,
     "retiredNote": null,
