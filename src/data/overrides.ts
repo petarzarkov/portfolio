@@ -43,7 +43,7 @@ export const overrides: Readonly<Record<string, Override>> = {
   dunx: {
     pin: 1,
     headline: 'NestJS-shaped dependency injection at Bun speed',
-    embed: 'https://petarzarkov.github.io/dunx',
+    embed: 'https://dunx.win',
     npm: 'dunx',
   },
 
