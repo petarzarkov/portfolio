@@ -12,6 +12,8 @@ on:
 
 permissions:
   contents: write
+  # Only to dispatch ci.yml once the snapshot has moved - see the note there.
+  actions: write
 
 concurrency:
   group: refresh-data
@@ -33,9 +35,17 @@ jobs:
         env:
           GH_DATA_TOKEN: ${{ secrets.GH_DATA_TOKEN }}
 
-      # Deliberately not `[skip ci]`: pushing to main triggers ci.yml, which
-      # deploys. A refresh that never reaches production did nothing.
-      - name: Commit when the snapshot moved
+      # A refresh that never reaches production did nothing, and this push
+      # cannot deploy itself: a push authenticated with GITHUB_TOKEN starts no
+      # workflow run, which is how GitHub stops a workflow retriggering itself
+      # forever. So ci.yml never sees this commit on its own. `workflow_dispatch`
+      # is the documented exception to that rule, so the deploy is asked for by
+      # name. The alternative - pushing with a PAT, so the push event itself
+      # counts - buys the same run at the price of a second credential to
+      # rotate.
+      - name: Commit and deploy when the snapshot moved
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -46,4 +56,5 @@ jobs:
           fi
           git commit -m "chore(data): refresh generated snapshot"
           git push
-          echo "snapshot updated" >> $GITHUB_STEP_SUMMARY
+          gh workflow run ci.yml --ref "$GITHUB_REF_NAME"
+          echo "snapshot updated, deploy dispatched" >> $GITHUB_STEP_SUMMARY
