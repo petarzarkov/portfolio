@@ -8,7 +8,7 @@
     "pin": 1,
     "repo": "https://github.com/petarzarkov/dunx",
     "homepage": "https://petarzarkov.github.io/dunx",
-    "stars": 21,
+    "stars": 111,
     "forks": 0,
     "topics": [
       "backend-framework",
@@ -21,73 +21,73 @@
     "languages": [
       {
         "name": "TypeScript",
-        "bytes": 3509453,
-        "share": 0.9793287566530088,
+        "bytes": 3581130,
+        "share": 0.9797341107450579,
         "color": "#3178c6"
       },
       {
         "name": "CSS",
         "bytes": 42089,
-        "share": 0.011745126103346729,
+        "share": 0.0115148092884505,
         "color": "#663399"
       },
       {
         "name": "Python",
         "bytes": 9090,
-        "share": 0.002536605675578459,
+        "share": 0.0024868639414577453,
         "color": "#3572A5"
       },
       {
         "name": "C#",
         "bytes": 7022,
-        "share": 0.0019595209080211155,
+        "share": 0.0019210955552163133,
         "color": "#7355dd"
       },
       {
         "name": "Go",
         "bytes": 4777,
-        "share": 0.0013330434886950823,
+        "share": 0.0013069030856263642,
         "color": "#00ADD8"
       },
       {
         "name": "Rust",
         "bytes": 3059,
-        "share": 0.0008536278065560514,
+        "share": 0.0008368885365147682,
         "color": "#dea584"
       },
       {
         "name": "HTML",
         "bytes": 2869,
-        "share": 0.000800607445900396,
+        "share": 0.0007849078820728572,
         "color": "#e34c26"
       },
       {
         "name": "Java",
         "bytes": 2769,
-        "share": 0.0007727019929237352,
+        "share": 0.000757549642892904,
         "color": "#b07219"
       },
       {
         "name": "JavaScript",
         "bytes": 2401,
-        "share": 0.0006700099259696238,
+        "share": 0.0006568713227106763,
         "color": "#f1e05a"
       }
     ],
     "license": "MIT",
     "createdAt": "2026-07-27T05:07:34Z",
-    "pushedAt": "2026-09-05T08:36:55Z",
+    "pushedAt": "2026-09-06T09:02:28Z",
     "release": {
-      "tag": "v3.2.1",
-      "publishedAt": "2026-09-04T12:21:12Z"
+      "tag": "v3.3.1",
+      "publishedAt": "2026-09-05T11:18:44Z"
     },
     "npm": null,
     "embed": {
       "url": "https://petarzarkov.github.io/dunx",
       "status": "live",
       "code": 200,
-      "ms": 175,
-      "checkedAt": "2026-09-05T09:04:45.240Z"
+      "ms": 158,
+      "checkedAt": "2026-09-06T09:26:42.315Z"
     },
     "retiredAt": null,
     "retiredNote": null,
@@ -133,15 +133,15 @@
     ],
     "license": null,
     "createdAt": "2022-03-22T12:56:31Z",
-    "pushedAt": "2026-09-05T04:01:14Z",
+    "pushedAt": "2026-09-06T04:08:36Z",
     "release": null,
     "npm": null,
     "embed": {
       "url": "https://petarzarkov.github.io/petarzarkov/",
       "status": "live",
       "code": 200,
-      "ms": 107,
-      "checkedAt": "2026-09-05T09:04:45.240Z"
+      "ms": 102,
+      "checkedAt": "2026-09-06T09:26:42.315Z"
     },
     "retiredAt": null,
     "retiredNote": null,
@@ -187,15 +187,15 @@
     ],
     "license": "MIT",
     "createdAt": "2022-03-09T11:22:27Z",
-    "pushedAt": "2026-09-04T09:39:12Z",
+    "pushedAt": "2026-09-06T04:02:59Z",
     "release": null,
     "npm": null,
     "embed": {
       "url": "https://petarzarkov.com",
       "status": "live",
       "code": 200,
-      "ms": 331,
-      "checkedAt": "2026-09-05T09:04:45.240Z"
+      "ms": 195,
+      "checkedAt": "2026-09-06T09:26:42.316Z"
     },
     "retiredAt": null,
     "retiredNote": null,
@@ -302,8 +302,8 @@
       "url": "https://petarzarkov.github.io/arkv/",
       "status": "live",
       "code": 200,
-      "ms": 120,
-      "checkedAt": "2026-09-05T09:04:45.240Z"
+      "ms": 102,
+      "checkedAt": "2026-09-06T09:26:42.316Z"
     },
     "retiredAt": null,
     "retiredNote": null,
@@ -402,7 +402,7 @@
     "pin": null,
     "repo": "https://github.com/petarzarkov/nestjs-template",
     "homepage": null,
-    "stars": 5,
+    "stars": 4,
     "forks": 1,
     "topics": [],
     "languages": [
@@ -538,8 +538,8 @@
       "url": "https://petarzarkov.github.io/iana-timezones/",
       "status": "live",
       "code": 200,
-      "ms": 105,
-      "checkedAt": "2026-09-05T09:04:45.240Z"
+      "ms": 100,
+      "checkedAt": "2026-09-06T09:26:42.316Z"
     },
     "retiredAt": null,
     "retiredNote": null,
@@ -782,8 +782,8 @@
       "url": "https://petarzarkov.github.io/rust-beats/",
       "status": "live",
       "code": 200,
-      "ms": 144,
-      "checkedAt": "2026-09-05T09:04:45.240Z"
+      "ms": 132,
+      "checkedAt": "2026-09-06T09:26:42.316Z"
     },
     "retiredAt": null,
     "retiredNote": null,
@@ -890,8 +890,8 @@
       "url": "https://petarzarkov.github.io/wave-sim/",
       "status": "live",
       "code": 200,
-      "ms": 114,
-      "checkedAt": "2026-09-05T09:04:45.240Z"
+      "ms": 104,
+      "checkedAt": "2026-09-06T09:26:42.316Z"
     },
     "retiredAt": null,
     "retiredNote": null,
