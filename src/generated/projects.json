@@ -8,7 +8,7 @@
     "pin": 1,
     "repo": "https://github.com/petarzarkov/dunx",
     "homepage": "https://dunx.win",
-    "stars": 119,
+    "stars": 118,
     "forks": 0,
     "topics": [
       "backend-framework",
@@ -21,122 +21,74 @@
     "languages": [
       {
         "name": "TypeScript",
-        "bytes": 4862783,
-        "share": 0.980051642944583,
+        "bytes": 5083969,
+        "share": 0.9809029532999366,
         "color": "#3178c6"
       },
       {
         "name": "CSS",
         "bytes": 42526,
-        "share": 0.008570745634312971,
+        "share": 0.008204982955646091,
         "color": "#663399"
       },
       {
         "name": "C#",
         "bytes": 14657,
-        "share": 0.0029539909411213194,
+        "share": 0.0028279272722782477,
         "color": "#7355dd"
       },
       {
         "name": "Python",
         "bytes": 14419,
-        "share": 0.00290602410998351,
+        "share": 0.002782007459847176,
         "color": "#3572A5"
       },
       {
         "name": "Go",
         "bytes": 8181,
-        "share": 0.0016488094350353766,
+        "share": 0.00157844531722101,
         "color": "#00ADD8"
       },
       {
         "name": "Java",
         "bytes": 7353,
-        "share": 0.001481933232589552,
+        "share": 0.0014186906756540872,
         "color": "#b07219"
       },
       {
         "name": "Rust",
         "bytes": 6362,
-        "share": 0.0012822057970535467,
+        "share": 0.001227486750783531,
         "color": "#dea584"
       },
       {
         "name": "HTML",
         "bytes": 3080,
-        "share": 0.0006207472264892996,
+        "share": 0.0005942563961668147,
         "color": "#e34c26"
       },
       {
         "name": "JavaScript",
         "bytes": 2401,
-        "share": 0.0004839006788314313,
+        "share": 0.00046324987246640326,
         "color": "#f1e05a"
       }
     ],
     "license": "MIT",
     "createdAt": "2026-07-27T05:07:34Z",
-    "pushedAt": "2026-09-13T10:13:56Z",
+    "pushedAt": "2026-09-14T09:07:22Z",
     "release": {
-      "tag": "v3.8.1",
-      "publishedAt": "2026-09-13T06:29:00Z"
+      "tag": "v3.9.2",
+      "publishedAt": "2026-09-14T06:26:34Z"
     },
     "npm": null,
     "embed": {
       "url": "https://dunx.win",
       "status": "live",
       "code": 200,
-      "ms": 517,
-      "checkedAt": "2026-09-13T10:17:05.990Z"
+      "ms": 212,
+      "checkedAt": "2026-09-14T10:38:18.972Z"
     },
-    "retiredAt": null,
-    "retiredNote": null,
-    "source": "github"
-  },
-  {
-    "slug": "firecracker",
-    "title": "firecracker",
-    "headline": null,
-    "description": "A provably-fair crash game on Bun. Bet during the window, watch the rocket climb, cash out before it explodes — every round independently verifiable after the fact. Built on dunx, with Drizzle, BullMQ and native WebSockets.",
-    "tier": "active",
-    "pin": null,
-    "repo": "https://github.com/petarzarkov/firecracker",
-    "homepage": null,
-    "stars": 2,
-    "forks": 0,
-    "topics": [],
-    "languages": [
-      {
-        "name": "TypeScript",
-        "bytes": 1231240,
-        "share": 0.9925432691920129,
-        "color": "#3178c6"
-      },
-      {
-        "name": "Dockerfile",
-        "bytes": 6203,
-        "share": 0.005000443373183177,
-        "color": "#384d54"
-      },
-      {
-        "name": "HTML",
-        "bytes": 2682,
-        "share": 0.0021620488677861166,
-        "color": "#e34c26"
-      },
-      {
-        "name": "CSS",
-        "bytes": 365,
-        "share": 0.00029423856701787194,
-        "color": "#663399"
-      }
-    ],
-    "license": "MIT",
-    "createdAt": "2026-02-21T07:45:16Z",
-    "pushedAt": "2026-09-13T10:15:55Z",
-    "release": null,
-    "npm": null,
-    "embed": null,
     "retiredAt": null,
     "retiredNote": null,
     "source": "github"
@@ -181,16 +133,112 @@
     ],
     "license": null,
     "createdAt": "2022-03-22T12:56:31Z",
-    "pushedAt": "2026-09-13T04:23:40Z",
+    "pushedAt": "2026-09-14T04:30:24Z",
     "release": null,
     "npm": null,
     "embed": {
       "url": "https://petarzarkov.github.io/petarzarkov/",
       "status": "live",
       "code": 200,
-      "ms": 53,
-      "checkedAt": "2026-09-13T10:17:05.990Z"
+      "ms": 117,
+      "checkedAt": "2026-09-14T10:38:18.972Z"
     },
+    "retiredAt": null,
+    "retiredNote": null,
+    "source": "github"
+  },
+  {
+    "slug": "dunx-template",
+    "title": "dunx-template",
+    "headline": null,
+    "description": "A production-shaped dunx starter on Bun: Better Auth with invites, Drizzle, BullMQ with a worker process, native websockets, object storage, OpenAPI with two explorers, an ops dashboard, Docker and CI.",
+    "tier": "active",
+    "pin": null,
+    "repo": "https://github.com/petarzarkov/dunx-template",
+    "homepage": "https://petarzarkov.github.io/dunx/",
+    "stars": 4,
+    "forks": 1,
+    "topics": [],
+    "languages": [
+      {
+        "name": "TypeScript",
+        "bytes": 445951,
+        "share": 0.9719583188940253,
+        "color": "#3178c6"
+      },
+      {
+        "name": "HTML",
+        "bytes": 10479,
+        "share": 0.022839171172820538,
+        "color": "#e34c26"
+      },
+      {
+        "name": "Dockerfile",
+        "bytes": 2387,
+        "share": 0.005202509933154177,
+        "color": "#384d54"
+      }
+    ],
+    "license": "MIT",
+    "createdAt": "2025-12-21T10:48:06Z",
+    "pushedAt": "2026-09-13T17:42:08Z",
+    "release": null,
+    "npm": null,
+    "embed": {
+      "url": "https://petarzarkov.github.io/dunx/",
+      "status": "live",
+      "code": 200,
+      "ms": 124,
+      "checkedAt": "2026-09-14T10:38:18.972Z"
+    },
+    "retiredAt": null,
+    "retiredNote": null,
+    "source": "github"
+  },
+  {
+    "slug": "firecracker",
+    "title": "firecracker",
+    "headline": null,
+    "description": "A provably-fair crash game on Bun. Bet during the window, watch the rocket climb, cash out before it explodes — every round independently verifiable after the fact. Built on dunx, with Drizzle, BullMQ and native WebSockets.",
+    "tier": "active",
+    "pin": null,
+    "repo": "https://github.com/petarzarkov/firecracker",
+    "homepage": null,
+    "stars": 2,
+    "forks": 0,
+    "topics": [],
+    "languages": [
+      {
+        "name": "TypeScript",
+        "bytes": 1225638,
+        "share": 0.9925094421518389,
+        "color": "#3178c6"
+      },
+      {
+        "name": "Dockerfile",
+        "bytes": 6203,
+        "share": 0.005023127603474971,
+        "color": "#384d54"
+      },
+      {
+        "name": "HTML",
+        "bytes": 2682,
+        "share": 0.0021718568809479077,
+        "color": "#e34c26"
+      },
+      {
+        "name": "CSS",
+        "bytes": 365,
+        "share": 0.00029557336373824995,
+        "color": "#663399"
+      }
+    ],
+    "license": "MIT",
+    "createdAt": "2026-02-21T07:45:16Z",
+    "pushedAt": "2026-09-13T14:37:15Z",
+    "release": null,
+    "npm": null,
+    "embed": null,
     "retiredAt": null,
     "retiredNote": null,
     "source": "github"
@@ -235,15 +283,15 @@
     ],
     "license": "MIT",
     "createdAt": "2022-03-09T11:22:27Z",
-    "pushedAt": "2026-09-12T09:21:39Z",
+    "pushedAt": "2026-09-13T10:17:09Z",
     "release": null,
     "npm": null,
     "embed": {
       "url": "https://petarzarkov.com",
       "status": "live",
       "code": 200,
-      "ms": 177,
-      "checkedAt": "2026-09-13T10:17:05.990Z"
+      "ms": 280,
+      "checkedAt": "2026-09-14T10:38:18.972Z"
     },
     "retiredAt": null,
     "retiredNote": null,
@@ -302,8 +350,8 @@
       "url": "https://petarzarkov.github.io/arkv/",
       "status": "live",
       "code": 200,
-      "ms": 54,
-      "checkedAt": "2026-09-13T10:17:05.990Z"
+      "ms": 120,
+      "checkedAt": "2026-09-14T10:38:18.972Z"
     },
     "retiredAt": null,
     "retiredNote": null,
@@ -350,96 +398,6 @@
     "license": null,
     "createdAt": "2026-08-31T18:38:52Z",
     "pushedAt": "2026-09-02T09:48:25Z",
-    "release": null,
-    "npm": null,
-    "embed": null,
-    "retiredAt": null,
-    "retiredNote": null,
-    "source": "github"
-  },
-  {
-    "slug": "dunx-template",
-    "title": "dunx-template",
-    "headline": null,
-    "description": "A production-shaped starter for dunx: validated config, structured logging with request context, health endpoints, and zod-validated REST controllers.",
-    "tier": "active",
-    "pin": null,
-    "repo": "https://github.com/petarzarkov/dunx-template",
-    "homepage": null,
-    "stars": 0,
-    "forks": 0,
-    "topics": [],
-    "languages": [
-      {
-        "name": "TypeScript",
-        "bytes": 279909,
-        "share": 0.993268418699389,
-        "color": "#3178c6"
-      },
-      {
-        "name": "Dockerfile",
-        "bytes": 1897,
-        "share": 0.006731581300611059,
-        "color": "#384d54"
-      }
-    ],
-    "license": "MIT",
-    "createdAt": "2026-08-02T09:38:57Z",
-    "pushedAt": "2026-08-06T12:16:10Z",
-    "release": null,
-    "npm": null,
-    "embed": null,
-    "retiredAt": null,
-    "retiredNote": null,
-    "source": "github"
-  },
-  {
-    "slug": "nestjs-template",
-    "title": "nestjs-template",
-    "headline": null,
-    "description": "Production-ready NestJS starter on Bun: Drizzle, BullMQ queues in child processes, Redis, Better Auth, context-aware logging, oxlint and oxfmt.",
-    "tier": "active",
-    "pin": null,
-    "repo": "https://github.com/petarzarkov/nestjs-template",
-    "homepage": null,
-    "stars": 4,
-    "forks": 1,
-    "topics": [],
-    "languages": [
-      {
-        "name": "TypeScript",
-        "bytes": 354935,
-        "share": 0.9181292600592367,
-        "color": "#3178c6"
-      },
-      {
-        "name": "HTML",
-        "bytes": 26098,
-        "share": 0.06750908597074382,
-        "color": "#e34c26"
-      },
-      {
-        "name": "Shell",
-        "bytes": 3162,
-        "share": 0.00817931373436631,
-        "color": "#89e051"
-      },
-      {
-        "name": "Dockerfile",
-        "bytes": 1864,
-        "share": 0.004821708033162176,
-        "color": "#384d54"
-      },
-      {
-        "name": "JavaScript",
-        "bytes": 526,
-        "share": 0.0013606322024910433,
-        "color": "#f1e05a"
-      }
-    ],
-    "license": "MIT",
-    "createdAt": "2025-12-21T10:48:06Z",
-    "pushedAt": "2026-07-25T11:31:14Z",
     "release": null,
     "npm": null,
     "embed": null,
@@ -538,8 +496,8 @@
       "url": "https://petarzarkov.github.io/iana-timezones/",
       "status": "live",
       "code": 200,
-      "ms": 50,
-      "checkedAt": "2026-09-13T10:17:05.990Z"
+      "ms": 110,
+      "checkedAt": "2026-09-14T10:38:18.972Z"
     },
     "retiredAt": null,
     "retiredNote": null,
@@ -782,8 +740,8 @@
       "url": "https://petarzarkov.github.io/rust-beats/",
       "status": "live",
       "code": 200,
-      "ms": 96,
-      "checkedAt": "2026-09-13T10:17:05.991Z"
+      "ms": 132,
+      "checkedAt": "2026-09-14T10:38:18.972Z"
     },
     "retiredAt": null,
     "retiredNote": null,
@@ -890,8 +848,8 @@
       "url": "https://petarzarkov.github.io/wave-sim/",
       "status": "live",
       "code": 200,
-      "ms": 54,
-      "checkedAt": "2026-09-13T10:17:05.991Z"
+      "ms": 110,
+      "checkedAt": "2026-09-14T10:38:18.972Z"
     },
     "retiredAt": null,
     "retiredNote": null,
