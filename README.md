@@ -43,15 +43,24 @@ Three properties fall out of that:
 
 ## Tiers
 
-Projects opt in by topic, most specific first:
+One topic puts a project on the site: `portfolio`, and nothing else. Where it
+lands is decided after that.
 
-| Topic                | Meaning                                           |
-| -------------------- | ------------------------------------------------- |
-| `portfolio-flagship` | owns the landing page                             |
-| `portfolio`          | active work                                       |
-| `portfolio-lab`      | experiments and one-offs                          |
-| `portfolio-archive`  | shipped, no longer running — one line, not a card |
-| _(none)_             | not on the site                                   |
+| Tier       | Decided by                                              |
+| ---------- | ------------------------------------------------------- |
+| `flagship` | `overrides.ts`, owns the landing page                   |
+| `active`   | `overrides.ts`, maintained work                         |
+| `lab`      | the default for a tagged repo, experiments and one-offs |
+| `archive`  | GitHub's own archived flag, one line rather than a card |
+| _(none)_   | not tagged `portfolio`                                  |
+
+Rank used to be four topics, `portfolio-flagship` down to `portfolio-archive`.
+Topics are public, so that printed a verdict on the repo page of every project:
+`portfolio-lab` told every visitor the author considered it a toy, and
+`portfolio-flagship` made a claim the repo then had to carry. A repo knows two
+things about itself, whether it opted in and whether it is archived, and those
+are derived. The rest is a judgement, so it lives in `overrides.ts` where it is
+not the first thing a visitor to the repo reads.
 
 Every other topic on the repo becomes a tech chip, so the stack shown is the
 stack the repository declares. Repository **descriptions become site copy** —

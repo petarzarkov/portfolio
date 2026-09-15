@@ -22,7 +22,6 @@ import {
   sortProjects,
   tierOf,
   toActivity,
-  topicsOf,
   toProject,
 } from './transform';
 
@@ -60,7 +59,7 @@ const run = async (): Promise<void> => {
 
   const tagged: Project[] = [];
   for (const repo of repos) {
-    const tier = tierOf(topicsOf(repo));
+    const tier = tierOf(repo);
     if (tier === null) continue;
     tagged.push(toProject(repo, overrides[repo.name], tier));
   }
