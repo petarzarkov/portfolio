@@ -86,8 +86,62 @@
       "url": "https://dunx.win",
       "status": "live",
       "code": 200,
-      "ms": 212,
-      "checkedAt": "2026-09-14T10:38:18.972Z"
+      "ms": 395,
+      "checkedAt": "2026-09-15T03:38:12.270Z"
+    },
+    "retiredAt": null,
+    "retiredNote": null,
+    "source": "github"
+  },
+  {
+    "slug": "portfolio",
+    "title": "portfolio",
+    "headline": null,
+    "description": "The site at petarzarkov.com. Projects, language stats and activity are generated from the GitHub API into a committed snapshot — tagging a repo puts it on the site, with no commit here.",
+    "tier": "active",
+    "pin": null,
+    "repo": "https://github.com/petarzarkov/portfolio",
+    "homepage": "https://petarzarkov.com",
+    "stars": 3,
+    "forks": 1,
+    "topics": [],
+    "languages": [
+      {
+        "name": "TypeScript",
+        "bytes": 218459,
+        "share": 0.8571658387676468,
+        "color": "#3178c6"
+      },
+      {
+        "name": "CSS",
+        "bytes": 32326,
+        "share": 0.12683726879644672,
+        "color": "#663399"
+      },
+      {
+        "name": "JavaScript",
+        "bytes": 2068,
+        "share": 0.008114195133052397,
+        "color": "#f1e05a"
+      },
+      {
+        "name": "HTML",
+        "bytes": 2009,
+        "share": 0.007882697302854094,
+        "color": "#e34c26"
+      }
+    ],
+    "license": "MIT",
+    "createdAt": "2022-03-09T11:22:27Z",
+    "pushedAt": "2026-09-15T03:36:06Z",
+    "release": null,
+    "npm": null,
+    "embed": {
+      "url": "https://petarzarkov.com",
+      "status": "live",
+      "code": 200,
+      "ms": 131,
+      "checkedAt": "2026-09-15T03:38:12.270Z"
     },
     "retiredAt": null,
     "retiredNote": null,
@@ -140,8 +194,8 @@
       "url": "https://petarzarkov.github.io/petarzarkov/",
       "status": "live",
       "code": 200,
-      "ms": 117,
-      "checkedAt": "2026-09-14T10:38:18.972Z"
+      "ms": 318,
+      "checkedAt": "2026-09-15T03:38:12.270Z"
     },
     "retiredAt": null,
     "retiredNote": null,
@@ -188,8 +242,8 @@
       "url": "https://petarzarkov.github.io/dunx/",
       "status": "live",
       "code": 200,
-      "ms": 124,
-      "checkedAt": "2026-09-14T10:38:18.972Z"
+      "ms": 130,
+      "checkedAt": "2026-09-15T03:38:12.270Z"
     },
     "retiredAt": null,
     "retiredNote": null,
@@ -239,60 +293,6 @@
     "release": null,
     "npm": null,
     "embed": null,
-    "retiredAt": null,
-    "retiredNote": null,
-    "source": "github"
-  },
-  {
-    "slug": "portfolio",
-    "title": "portfolio",
-    "headline": null,
-    "description": "The site at petarzarkov.com. Projects, language stats and activity are generated from the GitHub API into a committed snapshot — tagging a repo puts it on the site, with no commit here.",
-    "tier": "active",
-    "pin": null,
-    "repo": "https://github.com/petarzarkov/portfolio",
-    "homepage": "https://petarzarkov.com",
-    "stars": 3,
-    "forks": 1,
-    "topics": [],
-    "languages": [
-      {
-        "name": "TypeScript",
-        "bytes": 217486,
-        "share": 0.8566184434930225,
-        "color": "#3178c6"
-      },
-      {
-        "name": "CSS",
-        "bytes": 32326,
-        "share": 0.12732335784535762,
-        "color": "#663399"
-      },
-      {
-        "name": "JavaScript",
-        "bytes": 2068,
-        "share": 0.008145291840134862,
-        "color": "#f1e05a"
-      },
-      {
-        "name": "HTML",
-        "bytes": 2009,
-        "share": 0.00791290682148498,
-        "color": "#e34c26"
-      }
-    ],
-    "license": "MIT",
-    "createdAt": "2022-03-09T11:22:27Z",
-    "pushedAt": "2026-09-13T10:17:09Z",
-    "release": null,
-    "npm": null,
-    "embed": {
-      "url": "https://petarzarkov.com",
-      "status": "live",
-      "code": 200,
-      "ms": 280,
-      "checkedAt": "2026-09-14T10:38:18.972Z"
-    },
     "retiredAt": null,
     "retiredNote": null,
     "source": "github"
@@ -350,8 +350,8 @@
       "url": "https://petarzarkov.github.io/arkv/",
       "status": "live",
       "code": 200,
-      "ms": 120,
-      "checkedAt": "2026-09-14T10:38:18.972Z"
+      "ms": 98,
+      "checkedAt": "2026-09-15T03:38:12.270Z"
     },
     "retiredAt": null,
     "retiredNote": null,
@@ -440,65 +440,6 @@
     },
     "npm": null,
     "embed": null,
-    "retiredAt": null,
-    "retiredNote": null,
-    "source": "github"
-  },
-  {
-    "slug": "iana-timezones",
-    "title": "iana-timezones",
-    "headline": null,
-    "description": "Auto generated timezones from iana db https://www.iana.org/time-zones with rich metadata, no dependencies, full TypeScript support, and Node/browser compatibility.",
-    "tier": "lab",
-    "pin": null,
-    "repo": "https://github.com/petarzarkov/iana-timezones",
-    "homepage": "https://petarzarkov.github.io/iana-timezones/",
-    "stars": 1,
-    "forks": 0,
-    "topics": [
-      "date",
-      "datetime",
-      "gmt",
-      "i18n",
-      "iana",
-      "javascript-library",
-      "json",
-      "localization",
-      "time",
-      "timezones",
-      "typescript",
-      "utc",
-      "zone"
-    ],
-    "languages": [
-      {
-        "name": "TypeScript",
-        "bytes": 196981,
-        "share": 0.9930229627202379,
-        "color": "#3178c6"
-      },
-      {
-        "name": "JavaScript",
-        "bytes": 1384,
-        "share": 0.006977037279762055,
-        "color": "#f1e05a"
-      }
-    ],
-    "license": "MIT",
-    "createdAt": "2025-05-08T10:54:19Z",
-    "pushedAt": "2026-07-26T10:26:24Z",
-    "release": {
-      "tag": "iana-db-timezones@0.2.8",
-      "publishedAt": "2026-04-08T14:34:09Z"
-    },
-    "npm": null,
-    "embed": {
-      "url": "https://petarzarkov.github.io/iana-timezones/",
-      "status": "live",
-      "code": 200,
-      "ms": 110,
-      "checkedAt": "2026-09-14T10:38:18.972Z"
-    },
     "retiredAt": null,
     "retiredNote": null,
     "source": "github"
@@ -740,8 +681,8 @@
       "url": "https://petarzarkov.github.io/rust-beats/",
       "status": "live",
       "code": 200,
-      "ms": 132,
-      "checkedAt": "2026-09-14T10:38:18.972Z"
+      "ms": 126,
+      "checkedAt": "2026-09-15T03:38:12.270Z"
     },
     "retiredAt": null,
     "retiredNote": null,
@@ -848,8 +789,8 @@
       "url": "https://petarzarkov.github.io/wave-sim/",
       "status": "live",
       "code": 200,
-      "ms": 110,
-      "checkedAt": "2026-09-14T10:38:18.972Z"
+      "ms": 111,
+      "checkedAt": "2026-09-15T03:38:12.271Z"
     },
     "retiredAt": null,
     "retiredNote": null,
@@ -971,6 +912,65 @@
     "release": null,
     "npm": null,
     "embed": null,
+    "retiredAt": null,
+    "retiredNote": null,
+    "source": "github"
+  },
+  {
+    "slug": "iana-timezones",
+    "title": "iana-timezones",
+    "headline": null,
+    "description": "Auto generated timezones from iana db https://www.iana.org/time-zones with rich metadata, no dependencies, full TypeScript support, and Node/browser compatibility.",
+    "tier": "archive",
+    "pin": null,
+    "repo": "https://github.com/petarzarkov/iana-timezones",
+    "homepage": "https://petarzarkov.github.io/iana-timezones/",
+    "stars": 1,
+    "forks": 0,
+    "topics": [
+      "date",
+      "datetime",
+      "gmt",
+      "i18n",
+      "iana",
+      "javascript-library",
+      "json",
+      "localization",
+      "time",
+      "timezones",
+      "typescript",
+      "utc",
+      "zone"
+    ],
+    "languages": [
+      {
+        "name": "TypeScript",
+        "bytes": 196981,
+        "share": 0.9930229627202379,
+        "color": "#3178c6"
+      },
+      {
+        "name": "JavaScript",
+        "bytes": 1384,
+        "share": 0.006977037279762055,
+        "color": "#f1e05a"
+      }
+    ],
+    "license": "MIT",
+    "createdAt": "2025-05-08T10:54:19Z",
+    "pushedAt": "2026-07-26T10:26:24Z",
+    "release": {
+      "tag": "iana-db-timezones@0.2.8",
+      "publishedAt": "2026-04-08T14:34:09Z"
+    },
+    "npm": null,
+    "embed": {
+      "url": "https://petarzarkov.github.io/iana-timezones/",
+      "status": "live",
+      "code": 200,
+      "ms": 122,
+      "checkedAt": "2026-09-15T03:38:12.270Z"
+    },
     "retiredAt": null,
     "retiredNote": null,
     "source": "github"
