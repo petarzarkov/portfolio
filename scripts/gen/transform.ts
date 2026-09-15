@@ -13,27 +13,32 @@ import type {
   Project,
   Tier,
 } from '../../src/contracts/portfolio';
-import { TIER_TOPICS } from '../../src/contracts/portfolio';
+import { MEMBER_TOPIC } from '../../src/contracts/portfolio';
 import type { RawContributions, RawRepo } from './github';
 
-/**
- * A repo's tier, or null when it carries no `portfolio*` topic and so is not on
- * the site at all. Precedence is `TIER_TOPICS` order, not GitHub's topic order,
- * so `portfolio` alongside `portfolio-lab` is deterministic.
- */
-export const tierOf = (topics: readonly string[]): Tier | null => {
-  for (const [topic, tier] of TIER_TOPICS) {
-    if (topics.includes(topic)) return tier;
-  }
-  return null;
-};
-
-/** Control topics are plumbing; they must not render as tech chips. */
+/** The control topic is plumbing; it must not render as a tech chip. */
 export const cleanTopics = (topics: readonly string[]): string[] =>
   topics.filter((topic) => !topic.startsWith('portfolio')).sort();
 
 export const topicsOf = (repo: RawRepo): string[] =>
   repo.repositoryTopics.nodes.map((node) => node.topic.name);
+
+/**
+ * A repo's tier, or null when it is not tagged `portfolio` and so is not on the
+ * site at all.
+ *
+ * Only two of the four tiers are derivable. Membership is the topic, and
+ * `archive` is GitHub's own `isArchived`, which is already the truth and
+ * already draws a banner on the repo page. `active` and `flagship` are
+ * judgements no repo field carries: a demo URL means a project has a demo, not
+ * that it is serious. They are promotions from `lab` in `overrides.ts`, which
+ * `toProject` applies over this. A project is a lab until it is called
+ * something better.
+ */
+export const tierOf = (repo: RawRepo): Tier | null => {
+  if (!topicsOf(repo).includes(MEMBER_TOPIC)) return null;
+  return repo.isArchived ? 'archive' : 'lab';
+};
 
 const slicesOf = (repo: RawRepo): LanguageSlice[] => {
   const total = repo.languages?.totalSize ?? 0;

@@ -7,23 +7,17 @@
  * interface that drifted from it.
  */
 
-/**
- * Which slot a project occupies on the site. Derived from GitHub topics, most
- * specific first - see `TIER_TOPICS`.
- */
+/** Which slot a project occupies on the site. */
 export type Tier = 'flagship' | 'active' | 'lab' | 'archive';
 
 /**
- * Topic -> tier, in precedence order. A repo carrying several is assigned the
- * first match, so `portfolio` alongside `portfolio-lab` reads as lab rather
- * than depending on the order GitHub returns topics in.
+ * The one topic that puts a repo on the site. It says nothing about rank,
+ * because a topic is public: `portfolio-lab` on a repo told every visitor its
+ * author considered it a toy, and `portfolio-flagship` made a claim the repo
+ * then had to live up to. Rank is set in `overrides.ts` instead, which nobody
+ * reads off the repo page.
  */
-export const TIER_TOPICS: readonly (readonly [string, Tier])[] = Object.freeze([
-  ['portfolio-flagship', 'flagship'],
-  ['portfolio-archive', 'archive'],
-  ['portfolio-lab', 'lab'],
-  ['portfolio', 'active'],
-]);
+export const MEMBER_TOPIC = 'portfolio';
 
 export interface LanguageSlice {
   readonly name: string;

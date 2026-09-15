@@ -33,25 +33,29 @@ const tagged = (repo: RawRepo, ...topics: string[]): RawRepo => ({
 });
 
 describe('tierOf', () => {
-  test('maps each control topic to its tier', () => {
-    expect(tierOf(['portfolio-flagship'])).toBe('flagship');
-    expect(tierOf(['portfolio'])).toBe('active');
-    expect(tierOf(['portfolio-lab'])).toBe('lab');
-    expect(tierOf(['portfolio-archive'])).toBe('archive');
+  const dunx = byName('dunx');
+
+  test('the topic puts a repo on the site, as a lab', () => {
+    expect(tierOf(tagged(dunx, 'portfolio'))).toBe('lab');
   });
 
   test('an untagged repo is not on the site', () => {
-    expect(tierOf(['bun', 'typescript'])).toBeNull();
-    expect(tierOf([])).toBeNull();
+    expect(tierOf(tagged(dunx, 'bun', 'typescript'))).toBeNull();
+    expect(tierOf(dunx)).toBeNull();
   });
 
-  test('the most specific topic wins regardless of order', () => {
-    // The whole reason precedence is a declared list rather than a find():
-    // GitHub does not promise an order, so this must not depend on one.
-    expect(tierOf(['portfolio', 'portfolio-lab'])).toBe('lab');
-    expect(tierOf(['portfolio-lab', 'portfolio'])).toBe('lab');
-    expect(tierOf(['portfolio', 'portfolio-flagship'])).toBe('flagship');
-    expect(tierOf(['portfolio-archive', 'portfolio-lab'])).toBe('archive');
+  test('the old tier topics no longer select anything', () => {
+    // They are ordinary topics now. A repo left carrying one and nothing else
+    // is off the site, which is what makes the sweep that removed them safe to
+    // do in either order.
+    expect(tierOf(tagged(dunx, 'portfolio-flagship'))).toBeNull();
+    expect(tierOf(tagged(dunx, 'portfolio-lab'))).toBeNull();
+    expect(tierOf(tagged(dunx, 'portfolio-archive'))).toBeNull();
+  });
+
+  test('archive comes from GitHub, not from a topic', () => {
+    const repo: RawRepo = { ...tagged(dunx, 'portfolio'), isArchived: true };
+    expect(tierOf(repo)).toBe('archive');
   });
 });
 

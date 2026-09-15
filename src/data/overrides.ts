@@ -11,12 +11,15 @@ import type { Tier } from '@contracts';
  *   2. copy that beats the repo description
  *   3. embeds
  *   4. explicit ordering, via `pin`
+ *   5. rank, via `tier`
  *
  * Generated fields lose to anything set here. A `manual` entry skips the GitHub
  * lookup entirely.
  *
  * Adding an open-source project does **not** belong here: tag the repo
- * `portfolio` on github.com and it appears at the next refresh.
+ * `portfolio` on github.com and it appears at the next refresh, as a `lab`.
+ * Promoting it does belong here, because rank is a judgement and a topic is
+ * public. `tierOf` derives only membership and `archive`.
  */
 export interface Override {
   /** No repo to read; every field is authored. */
@@ -41,11 +44,25 @@ export interface Override {
 
 export const overrides: Readonly<Record<string, Override>> = {
   dunx: {
+    tier: 'flagship',
     pin: 1,
     headline: 'NestJS-shaped dependency injection at Bun speed',
     embed: 'https://dunx.win',
     npm: 'dunx',
   },
+
+  // --- Active --------------------------------------------------------------
+  // Maintained work, promoted out of the `lab` default. Nothing on the repo
+  // itself distinguishes these: firecracker sets no homepage and would derive
+  // as a lab, while wave-sim has a demo URL and is not active work.
+
+  arkv: { tier: 'active' },
+  beacon: { tier: 'active' },
+  'dunx-template': { tier: 'active' },
+  firecracker: { tier: 'active' },
+  'gemini-code-review-action': { tier: 'active' },
+  petarzarkov: { tier: 'active' },
+  portfolio: { tier: 'active' },
 
   // --- Archive -------------------------------------------------------------
   // Shipped, no longer running. These render as one line each, not as cards:
