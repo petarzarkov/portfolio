@@ -21,73 +21,73 @@
     "languages": [
       {
         "name": "TypeScript",
-        "bytes": 5515626,
-        "share": 0.9823711552281951,
+        "bytes": 5587955,
+        "share": 0.9825953668532112,
         "color": "#3178c6"
       },
       {
         "name": "CSS",
         "bytes": 42526,
-        "share": 0.007574174852905948,
+        "share": 0.00747784306974549,
         "color": "#663399"
       },
       {
         "name": "C#",
         "bytes": 14657,
-        "share": 0.002610513117129344,
+        "share": 0.0025773114300253882,
         "color": "#7355dd"
       },
       {
         "name": "Python",
         "bytes": 14419,
-        "share": 0.0025681236703205303,
+        "share": 0.002535461111382689,
         "color": "#3572A5"
       },
       {
         "name": "Go",
         "bytes": 8181,
-        "share": 0.0014570927073231331,
+        "share": 0.001438560742924043,
         "color": "#00ADD8"
       },
       {
         "name": "Java",
         "bytes": 7353,
-        "share": 0.0013096201780891086,
+        "share": 0.0012929638360494424,
         "color": "#b07219"
       },
       {
         "name": "Rust",
         "bytes": 6362,
-        "share": 0.0011331162209986276,
+        "share": 0.001118704736154842,
         "color": "#dea584"
       },
       {
         "name": "HTML",
         "bytes": 3080,
-        "share": 0.0005485693116434727,
+        "share": 0.0005415923589055193,
         "color": "#e34c26"
       },
       {
         "name": "JavaScript",
         "bytes": 2401,
-        "share": 0.000427634713394798,
+        "share": 0.00042219586160134793,
         "color": "#f1e05a"
       }
     ],
     "license": "MIT",
     "createdAt": "2026-07-27T05:07:34Z",
-    "pushedAt": "2026-09-25T09:00:31Z",
+    "pushedAt": "2026-09-26T08:14:13Z",
     "release": {
-      "tag": "v3.9.6",
-      "publishedAt": "2026-09-23T16:44:43Z"
+      "tag": "v3.10.0",
+      "publishedAt": "2026-09-25T18:15:35Z"
     },
     "npm": null,
     "embed": {
       "url": "https://dunx.win",
       "status": "live",
       "code": 200,
-      "ms": 161,
-      "checkedAt": "2026-09-25T10:11:48.646Z"
+      "ms": 241,
+      "checkedAt": "2026-09-26T09:51:51.343Z"
     },
     "retiredAt": null,
     "retiredNote": null,
@@ -133,15 +133,75 @@
     ],
     "license": null,
     "createdAt": "2022-03-22T12:56:31Z",
-    "pushedAt": "2026-09-25T04:31:35Z",
+    "pushedAt": "2026-09-26T04:35:58Z",
     "release": null,
     "npm": null,
     "embed": {
       "url": "https://petarzarkov.github.io/petarzarkov/",
       "status": "live",
       "code": 200,
-      "ms": 135,
-      "checkedAt": "2026-09-25T10:11:48.646Z"
+      "ms": 240,
+      "checkedAt": "2026-09-26T09:51:51.343Z"
+    },
+    "retiredAt": null,
+    "retiredNote": null,
+    "source": "github"
+  },
+  {
+    "slug": "dunx-template",
+    "title": "dunx-template",
+    "headline": null,
+    "description": "A production-shaped dunx starter on Bun: Better Auth with invites, Drizzle, BullMQ with a worker process, native websockets, object storage, OpenAPI with two explorers, an ops dashboard, Docker and CI.",
+    "tier": "active",
+    "pin": null,
+    "repo": "https://github.com/petarzarkov/dunx-template",
+    "homepage": "https://petarzarkov.github.io/dunx/",
+    "stars": 4,
+    "forks": 1,
+    "topics": [],
+    "languages": [
+      {
+        "name": "TypeScript",
+        "bytes": 460266,
+        "share": 0.976613026429699,
+        "color": "#3178c6"
+      },
+      {
+        "name": "JavaScript",
+        "bytes": 3734,
+        "share": 0.007922968545772437,
+        "color": "#f1e05a"
+      },
+      {
+        "name": "CSS",
+        "bytes": 2786,
+        "share": 0.005911459659486344,
+        "color": "#663399"
+      },
+      {
+        "name": "Dockerfile",
+        "bytes": 2387,
+        "share": 0.005064843577600109,
+        "color": "#384d54"
+      },
+      {
+        "name": "HTML",
+        "bytes": 2115,
+        "share": 0.0044877017874420735,
+        "color": "#e34c26"
+      }
+    ],
+    "license": "MIT",
+    "createdAt": "2025-12-21T10:48:06Z",
+    "pushedAt": "2026-09-26T03:53:49Z",
+    "release": null,
+    "npm": null,
+    "embed": {
+      "url": "https://petarzarkov.github.io/dunx/",
+      "status": "live",
+      "code": 200,
+      "ms": 106,
+      "checkedAt": "2026-09-26T09:51:51.343Z"
     },
     "retiredAt": null,
     "retiredNote": null,
@@ -187,15 +247,15 @@
     ],
     "license": "MIT",
     "createdAt": "2022-03-09T11:22:27Z",
-    "pushedAt": "2026-09-24T10:00:37Z",
+    "pushedAt": "2026-09-25T10:11:51Z",
     "release": null,
     "npm": null,
     "embed": {
       "url": "https://petarzarkov.com",
       "status": "live",
       "code": 200,
-      "ms": 321,
-      "checkedAt": "2026-09-25T10:11:48.647Z"
+      "ms": 155,
+      "checkedAt": "2026-09-26T09:51:51.343Z"
     },
     "retiredAt": null,
     "retiredNote": null,
@@ -254,56 +314,8 @@
       "url": "https://petarzarkov.github.io/arkv/",
       "status": "live",
       "code": 200,
-      "ms": 123,
-      "checkedAt": "2026-09-25T10:11:48.647Z"
-    },
-    "retiredAt": null,
-    "retiredNote": null,
-    "source": "github"
-  },
-  {
-    "slug": "dunx-template",
-    "title": "dunx-template",
-    "headline": null,
-    "description": "A production-shaped dunx starter on Bun: Better Auth with invites, Drizzle, BullMQ with a worker process, native websockets, object storage, OpenAPI with two explorers, an ops dashboard, Docker and CI.",
-    "tier": "active",
-    "pin": null,
-    "repo": "https://github.com/petarzarkov/dunx-template",
-    "homepage": "https://petarzarkov.github.io/dunx/",
-    "stars": 4,
-    "forks": 1,
-    "topics": [],
-    "languages": [
-      {
-        "name": "TypeScript",
-        "bytes": 445951,
-        "share": 0.9719583188940253,
-        "color": "#3178c6"
-      },
-      {
-        "name": "HTML",
-        "bytes": 10479,
-        "share": 0.022839171172820538,
-        "color": "#e34c26"
-      },
-      {
-        "name": "Dockerfile",
-        "bytes": 2387,
-        "share": 0.005202509933154177,
-        "color": "#384d54"
-      }
-    ],
-    "license": "MIT",
-    "createdAt": "2025-12-21T10:48:06Z",
-    "pushedAt": "2026-09-13T17:42:08Z",
-    "release": null,
-    "npm": null,
-    "embed": {
-      "url": "https://petarzarkov.github.io/dunx/",
-      "status": "live",
-      "code": 200,
-      "ms": 146,
-      "checkedAt": "2026-09-25T10:11:48.647Z"
+      "ms": 137,
+      "checkedAt": "2026-09-26T09:51:51.343Z"
     },
     "retiredAt": null,
     "retiredNote": null,
@@ -681,8 +693,8 @@
       "url": "https://petarzarkov.github.io/rust-beats/",
       "status": "live",
       "code": 200,
-      "ms": 146,
-      "checkedAt": "2026-09-25T10:11:48.647Z"
+      "ms": 153,
+      "checkedAt": "2026-09-26T09:51:51.343Z"
     },
     "retiredAt": null,
     "retiredNote": null,
@@ -789,8 +801,8 @@
       "url": "https://petarzarkov.github.io/wave-sim/",
       "status": "live",
       "code": 200,
-      "ms": 124,
-      "checkedAt": "2026-09-25T10:11:48.647Z"
+      "ms": 117,
+      "checkedAt": "2026-09-26T09:51:51.343Z"
     },
     "retiredAt": null,
     "retiredNote": null,
@@ -968,8 +980,8 @@
       "url": "https://petarzarkov.github.io/iana-timezones/",
       "status": "live",
       "code": 200,
-      "ms": 142,
-      "checkedAt": "2026-09-25T10:11:48.647Z"
+      "ms": 113,
+      "checkedAt": "2026-09-26T09:51:51.343Z"
     },
     "retiredAt": null,
     "retiredNote": null,
