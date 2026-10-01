@@ -86,8 +86,68 @@
       "url": "https://dunx.win",
       "status": "live",
       "code": 200,
-      "ms": 113,
-      "checkedAt": "2026-09-30T11:09:57.146Z"
+      "ms": 478,
+      "checkedAt": "2026-10-01T11:37:14.037Z"
+    },
+    "retiredAt": null,
+    "retiredNote": null,
+    "source": "github"
+  },
+  {
+    "slug": "arkv",
+    "title": "arkv",
+    "headline": null,
+    "description": "Bun monorepo of zero-dependency TypeScript packages: structured logging with async context, the fastest pseudo-RNG in Node and the browser, ANSI colors, IANA timezone data, and a node_modules cost treemap.",
+    "tier": "active",
+    "pin": null,
+    "repo": "https://github.com/petarzarkov/arkv",
+    "homepage": "https://petarzarkov.github.io/arkv/",
+    "stars": 2,
+    "forks": 1,
+    "topics": [],
+    "languages": [
+      {
+        "name": "TypeScript",
+        "bytes": 817536,
+        "share": 0.9811130552495337,
+        "color": "#3178c6"
+      },
+      {
+        "name": "Rust",
+        "bytes": 11358,
+        "share": 0.01363057049661936,
+        "color": "#dea584"
+      },
+      {
+        "name": "HTML",
+        "bytes": 2054,
+        "share": 0.0024649755062560452,
+        "color": "#e34c26"
+      },
+      {
+        "name": "Shell",
+        "bytes": 1953,
+        "share": 0.0023437668762015854,
+        "color": "#89e051"
+      },
+      {
+        "name": "CSS",
+        "bytes": 373,
+        "share": 0.0004476318713892429,
+        "color": "#663399"
+      }
+    ],
+    "license": "MIT",
+    "createdAt": "2026-02-18T07:19:32Z",
+    "pushedAt": "2026-10-01T05:30:12Z",
+    "release": null,
+    "npm": null,
+    "embed": {
+      "url": "https://petarzarkov.github.io/arkv/",
+      "status": "live",
+      "code": 200,
+      "ms": 147,
+      "checkedAt": "2026-10-01T11:37:14.037Z"
     },
     "retiredAt": null,
     "retiredNote": null,
@@ -109,39 +169,39 @@
       {
         "name": "TypeScript",
         "bytes": 95511,
-        "share": 0.9232040674296319,
+        "share": 0.9232308391250132,
         "color": "#3178c6"
       },
       {
         "name": "HTML",
-        "bytes": 5022,
-        "share": 0.04854237550262914,
+        "bytes": 5019,
+        "share": 0.04851478449150822,
         "color": "#e34c26"
       },
       {
         "name": "JavaScript",
         "bytes": 2047,
-        "share": 0.01978618929786576,
+        "share": 0.019786763071153082,
         "color": "#f1e05a"
       },
       {
         "name": "Shell",
         "bytes": 876,
-        "share": 0.008467367769873183,
+        "share": 0.008467613312325404,
         "color": "#89e051"
       }
     ],
     "license": null,
     "createdAt": "2022-03-22T12:56:31Z",
-    "pushedAt": "2026-09-30T05:09:33Z",
+    "pushedAt": "2026-10-01T05:24:40Z",
     "release": null,
     "npm": null,
     "embed": {
       "url": "https://petarzarkov.github.io/petarzarkov/",
       "status": "live",
       "code": 200,
-      "ms": 156,
-      "checkedAt": "2026-09-30T11:09:57.146Z"
+      "ms": 270,
+      "checkedAt": "2026-10-01T11:37:14.037Z"
     },
     "retiredAt": null,
     "retiredNote": null,
@@ -187,15 +247,15 @@
     ],
     "license": "MIT",
     "createdAt": "2022-03-09T11:22:27Z",
-    "pushedAt": "2026-09-29T11:22:06Z",
+    "pushedAt": "2026-09-30T11:09:59Z",
     "release": null,
     "npm": null,
     "embed": {
       "url": "https://petarzarkov.com",
       "status": "live",
       "code": 200,
-      "ms": 175,
-      "checkedAt": "2026-09-30T11:09:57.146Z"
+      "ms": 479,
+      "checkedAt": "2026-10-01T11:37:14.037Z"
     },
     "retiredAt": null,
     "retiredNote": null,
@@ -254,68 +314,8 @@
       "url": "https://petarzarkov.github.io/dunx/",
       "status": "live",
       "code": 200,
-      "ms": 36,
-      "checkedAt": "2026-09-30T11:09:57.146Z"
-    },
-    "retiredAt": null,
-    "retiredNote": null,
-    "source": "github"
-  },
-  {
-    "slug": "arkv",
-    "title": "arkv",
-    "headline": null,
-    "description": "Bun monorepo of zero-dependency TypeScript packages: structured logging with async context, the fastest pseudo-RNG in Node and the browser, ANSI colors, IANA timezone data, and a node_modules cost treemap.",
-    "tier": "active",
-    "pin": null,
-    "repo": "https://github.com/petarzarkov/arkv",
-    "homepage": "https://petarzarkov.github.io/arkv/",
-    "stars": 2,
-    "forks": 1,
-    "topics": [],
-    "languages": [
-      {
-        "name": "TypeScript",
-        "bytes": 817535,
-        "share": 0.9811130325835591,
-        "color": "#3178c6"
-      },
-      {
-        "name": "Rust",
-        "bytes": 11358,
-        "share": 0.013630586854488265,
-        "color": "#dea584"
-      },
-      {
-        "name": "HTML",
-        "bytes": 2054,
-        "share": 0.0024649784644408257,
-        "color": "#e34c26"
-      },
-      {
-        "name": "Shell",
-        "bytes": 1953,
-        "share": 0.002343769688925478,
-        "color": "#89e051"
-      },
-      {
-        "name": "CSS",
-        "bytes": 373,
-        "share": 0.00044763240858638163,
-        "color": "#663399"
-      }
-    ],
-    "license": "MIT",
-    "createdAt": "2026-02-18T07:19:32Z",
-    "pushedAt": "2026-09-15T04:36:12Z",
-    "release": null,
-    "npm": null,
-    "embed": {
-      "url": "https://petarzarkov.github.io/arkv/",
-      "status": "live",
-      "code": 200,
-      "ms": 46,
-      "checkedAt": "2026-09-30T11:09:57.146Z"
+      "ms": 283,
+      "checkedAt": "2026-10-01T11:37:14.037Z"
     },
     "retiredAt": null,
     "retiredNote": null,
@@ -693,8 +693,8 @@
       "url": "https://petarzarkov.github.io/rust-beats/",
       "status": "live",
       "code": 200,
-      "ms": 55,
-      "checkedAt": "2026-09-30T11:09:57.146Z"
+      "ms": 153,
+      "checkedAt": "2026-10-01T11:37:14.037Z"
     },
     "retiredAt": null,
     "retiredNote": null,
@@ -801,8 +801,8 @@
       "url": "https://petarzarkov.github.io/wave-sim/",
       "status": "live",
       "code": 200,
-      "ms": 52,
-      "checkedAt": "2026-09-30T11:09:57.146Z"
+      "ms": 163,
+      "checkedAt": "2026-10-01T11:37:14.037Z"
     },
     "retiredAt": null,
     "retiredNote": null,
@@ -980,8 +980,8 @@
       "url": "https://petarzarkov.github.io/iana-timezones/",
       "status": "live",
       "code": 200,
-      "ms": 48,
-      "checkedAt": "2026-09-30T11:09:57.146Z"
+      "ms": 374,
+      "checkedAt": "2026-10-01T11:37:14.037Z"
     },
     "retiredAt": null,
     "retiredNote": null,
