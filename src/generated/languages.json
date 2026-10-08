@@ -2,68 +2,68 @@
   "top": [
     {
       "name": "TypeScript",
-      "bytes": 63342979,
-      "share": 0.5418172767737827,
+      "bytes": 63348848,
+      "share": 0.5418402771734055,
       "color": "#3178c6",
       "repos": 101
     },
     {
       "name": "Python",
       "bytes": 17678063,
-      "share": 0.1512129695272994,
+      "share": 0.15120537875935686,
       "color": "#3572A5",
       "repos": 10
     },
     {
       "name": "Gherkin",
       "bytes": 9612544,
-      "share": 0.08222288397500477,
+      "share": 0.0822187564531806,
       "color": "#5B2063",
       "repos": 10
     },
     {
       "name": "JavaScript",
       "bytes": 8106708,
-      "share": 0.0693424041859515,
+      "share": 0.0693389232537246,
       "color": "#f1e05a",
       "repos": 100
     },
     {
       "name": "C#",
       "bytes": 7266813,
-      "share": 0.06215818852606098,
+      "share": 0.06215506823561033,
       "color": "#7355dd",
       "repos": 18
     },
     {
       "name": "PLpgSQL",
       "bytes": 4016153,
-      "share": 0.034352995642450875,
+      "share": 0.034351271150042134,
       "color": "#336790",
       "repos": 3
     },
     {
       "name": "HTML",
       "bytes": 2695501,
-      "share": 0.02305652551265402,
+      "share": 0.02305536809384745,
       "color": "#e34c26",
       "repos": 57
     },
     {
       "name": "HCL",
       "bytes": 1730441,
-      "share": 0.01480168512816079,
+      "share": 0.014800942095619878,
       "color": "#844FBA",
       "repos": 8
     },
     {
       "name": "Other",
       "bytes": 2459176,
-      "share": 0.021035070728635034,
+      "share": 0.021034014785212617,
       "color": "#64748b",
       "repos": 121
     }
   ],
-  "totalBytes": 116908378,
+  "totalBytes": 116914247,
   "repoCount": 153
 }
