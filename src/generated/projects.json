@@ -86,8 +86,8 @@
       "url": "https://dunx.win",
       "status": "live",
       "code": 200,
-      "ms": 99,
-      "checkedAt": "2026-10-10T11:10:41.230Z"
+      "ms": 202,
+      "checkedAt": "2026-10-11T11:24:09.836Z"
     },
     "retiredAt": null,
     "retiredNote": null,
@@ -133,15 +133,15 @@
     ],
     "license": null,
     "createdAt": "2022-03-22T12:56:31Z",
-    "pushedAt": "2026-10-10T05:26:34Z",
+    "pushedAt": "2026-10-11T05:20:15Z",
     "release": null,
     "npm": null,
     "embed": {
       "url": "https://petarzarkov.github.io/petarzarkov/",
       "status": "live",
       "code": 200,
-      "ms": 97,
-      "checkedAt": "2026-10-10T11:10:41.230Z"
+      "ms": 117,
+      "checkedAt": "2026-10-11T11:24:09.835Z"
     },
     "retiredAt": null,
     "retiredNote": null,
@@ -187,15 +187,15 @@
     ],
     "license": "MIT",
     "createdAt": "2022-03-09T11:22:27Z",
-    "pushedAt": "2026-10-09T11:53:55Z",
+    "pushedAt": "2026-10-10T11:10:44Z",
     "release": null,
     "npm": null,
     "embed": {
       "url": "https://petarzarkov.com",
       "status": "live",
       "code": 200,
-      "ms": 183,
-      "checkedAt": "2026-10-10T11:10:41.230Z"
+      "ms": 397,
+      "checkedAt": "2026-10-11T11:24:09.836Z"
     },
     "retiredAt": null,
     "retiredNote": null,
@@ -254,8 +254,8 @@
       "url": "https://petarzarkov.github.io/arkv/",
       "status": "live",
       "code": 200,
-      "ms": 89,
-      "checkedAt": "2026-10-10T11:10:41.230Z"
+      "ms": 203,
+      "checkedAt": "2026-10-11T11:24:09.836Z"
     },
     "retiredAt": null,
     "retiredNote": null,
@@ -314,8 +314,8 @@
       "url": "https://petarzarkov.github.io/dunx/",
       "status": "live",
       "code": 200,
-      "ms": 84,
-      "checkedAt": "2026-10-10T11:10:41.230Z"
+      "ms": 120,
+      "checkedAt": "2026-10-11T11:24:09.836Z"
     },
     "retiredAt": null,
     "retiredNote": null,
@@ -693,8 +693,8 @@
       "url": "https://petarzarkov.github.io/rust-beats/",
       "status": "live",
       "code": 200,
-      "ms": 98,
-      "checkedAt": "2026-10-10T11:10:41.230Z"
+      "ms": 123,
+      "checkedAt": "2026-10-11T11:24:09.836Z"
     },
     "retiredAt": null,
     "retiredNote": null,
@@ -801,8 +801,8 @@
       "url": "https://petarzarkov.github.io/wave-sim/",
       "status": "live",
       "code": 200,
-      "ms": 105,
-      "checkedAt": "2026-10-10T11:10:41.230Z"
+      "ms": 147,
+      "checkedAt": "2026-10-11T11:24:09.836Z"
     },
     "retiredAt": null,
     "retiredNote": null,
@@ -980,8 +980,8 @@
       "url": "https://petarzarkov.github.io/iana-timezones/",
       "status": "live",
       "code": 200,
-      "ms": 92,
-      "checkedAt": "2026-10-10T11:10:41.230Z"
+      "ms": 109,
+      "checkedAt": "2026-10-11T11:24:09.836Z"
     },
     "retiredAt": null,
     "retiredNote": null,
