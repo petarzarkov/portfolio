@@ -9,7 +9,7 @@
     "repo": "https://github.com/petarzarkov/dunx",
     "homepage": "https://dunx.win",
     "stars": 100,
-    "forks": 1,
+    "forks": 2,
     "topics": [
       "backend-framework",
       "bun",
@@ -21,62 +21,62 @@
     "languages": [
       {
         "name": "TypeScript",
-        "bytes": 5577297,
-        "share": 0.9825626872266253,
+        "bytes": 5580272,
+        "share": 0.9825718215306913,
         "color": "#3178c6"
       },
       {
         "name": "CSS",
         "bytes": 42526,
-        "share": 0.007491883763227862,
+        "share": 0.007487959239695516,
         "color": "#663399"
       },
       {
         "name": "C#",
         "bytes": 14657,
-        "share": 0.002582150691756356,
+        "share": 0.002580798066505601,
         "color": "#7355dd"
       },
       {
         "name": "Python",
         "bytes": 14419,
-        "share": 0.00254022179330251,
+        "share": 0.002538891131946801,
         "color": "#3572A5"
       },
       {
         "name": "Go",
         "bytes": 8181,
-        "share": 0.0014412618413903763,
+        "share": 0.0014405068555695109,
         "color": "#00ADD8"
       },
       {
         "name": "Java",
         "bytes": 7353,
-        "share": 0.0012953915560131326,
+        "share": 0.0012947129823985591,
         "color": "#b07219"
       },
       {
         "name": "Rust",
         "bytes": 6362,
-        "share": 0.0011208052603502718,
+        "share": 0.0011202181414415387,
         "color": "#dea584"
       },
       {
         "name": "HTML",
         "bytes": 3080,
-        "share": 0.0005426092741085881,
+        "share": 0.0005423250354668248,
         "color": "#e34c26"
       },
       {
         "name": "JavaScript",
         "bytes": 2401,
-        "share": 0.0004229885932255584,
+        "share": 0.0004227670162843657,
         "color": "#f1e05a"
       }
     ],
     "license": "MIT",
     "createdAt": "2026-07-27T05:07:34Z",
-    "pushedAt": "2026-10-08T06:08:59Z",
+    "pushedAt": "2026-10-12T11:18:59Z",
     "release": {
       "tag": "v3.10.2",
       "publishedAt": "2026-10-08T06:09:00Z"
@@ -86,8 +86,8 @@
       "url": "https://dunx.win",
       "status": "live",
       "code": 200,
-      "ms": 202,
-      "checkedAt": "2026-10-11T11:24:09.836Z"
+      "ms": 130,
+      "checkedAt": "2026-10-12T13:09:55.277Z"
     },
     "retiredAt": null,
     "retiredNote": null,
@@ -133,15 +133,15 @@
     ],
     "license": null,
     "createdAt": "2022-03-22T12:56:31Z",
-    "pushedAt": "2026-10-11T05:20:15Z",
+    "pushedAt": "2026-10-12T05:32:14Z",
     "release": null,
     "npm": null,
     "embed": {
       "url": "https://petarzarkov.github.io/petarzarkov/",
       "status": "live",
       "code": 200,
-      "ms": 117,
-      "checkedAt": "2026-10-11T11:24:09.835Z"
+      "ms": 123,
+      "checkedAt": "2026-10-12T13:09:55.277Z"
     },
     "retiredAt": null,
     "retiredNote": null,
@@ -187,15 +187,15 @@
     ],
     "license": "MIT",
     "createdAt": "2022-03-09T11:22:27Z",
-    "pushedAt": "2026-10-10T11:10:44Z",
+    "pushedAt": "2026-10-11T11:24:12Z",
     "release": null,
     "npm": null,
     "embed": {
       "url": "https://petarzarkov.com",
       "status": "live",
       "code": 200,
-      "ms": 397,
-      "checkedAt": "2026-10-11T11:24:09.836Z"
+      "ms": 316,
+      "checkedAt": "2026-10-12T13:09:55.277Z"
     },
     "retiredAt": null,
     "retiredNote": null,
@@ -254,8 +254,8 @@
       "url": "https://petarzarkov.github.io/arkv/",
       "status": "live",
       "code": 200,
-      "ms": 203,
-      "checkedAt": "2026-10-11T11:24:09.836Z"
+      "ms": 115,
+      "checkedAt": "2026-10-12T13:09:55.277Z"
     },
     "retiredAt": null,
     "retiredNote": null,
@@ -314,8 +314,8 @@
       "url": "https://petarzarkov.github.io/dunx/",
       "status": "live",
       "code": 200,
-      "ms": 120,
-      "checkedAt": "2026-10-11T11:24:09.836Z"
+      "ms": 128,
+      "checkedAt": "2026-10-12T13:09:55.277Z"
     },
     "retiredAt": null,
     "retiredNote": null,
@@ -693,8 +693,8 @@
       "url": "https://petarzarkov.github.io/rust-beats/",
       "status": "live",
       "code": 200,
-      "ms": 123,
-      "checkedAt": "2026-10-11T11:24:09.836Z"
+      "ms": 126,
+      "checkedAt": "2026-10-12T13:09:55.277Z"
     },
     "retiredAt": null,
     "retiredNote": null,
@@ -801,8 +801,8 @@
       "url": "https://petarzarkov.github.io/wave-sim/",
       "status": "live",
       "code": 200,
-      "ms": 147,
-      "checkedAt": "2026-10-11T11:24:09.836Z"
+      "ms": 112,
+      "checkedAt": "2026-10-12T13:09:55.277Z"
     },
     "retiredAt": null,
     "retiredNote": null,
@@ -980,8 +980,8 @@
       "url": "https://petarzarkov.github.io/iana-timezones/",
       "status": "live",
       "code": 200,
-      "ms": 109,
-      "checkedAt": "2026-10-11T11:24:09.836Z"
+      "ms": 126,
+      "checkedAt": "2026-10-12T13:09:55.277Z"
     },
     "retiredAt": null,
     "retiredNote": null,
