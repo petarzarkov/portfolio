@@ -5,7 +5,7 @@
   "pullRequests": 192,
   "reviews": 4,
   "issues": 21,
-  "currentStreak": 1,
+  "currentStreak": 0,
   "longestStreak": 25,
   "days": [
     {
@@ -1486,6 +1486,10 @@
     },
     {
       "date": "2026-10-23",
+      "count": 0
+    },
+    {
+      "date": "2026-10-24",
       "count": 0
     }
   ]
