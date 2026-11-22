@@ -2,68 +2,68 @@
   "top": [
     {
       "name": "TypeScript",
-      "bytes": 63569793,
-      "share": 0.4602562009968905,
+      "bytes": 64155728,
+      "share": 0.46179245101031885,
       "color": "#3178c6",
-      "repos": 102
+      "repos": 103
     },
     {
       "name": "C#",
-      "bytes": 26294972,
-      "share": 0.1903801058159747,
+      "bytes": 26452418,
+      "share": 0.19040430720963025,
       "color": "#7355dd",
-      "repos": 19
+      "repos": 20
     },
     {
       "name": "Python",
-      "bytes": 19398528,
-      "share": 0.14044866879166665,
+      "bytes": 19411995,
+      "share": 0.13972739503556184,
       "color": "#3572A5",
-      "repos": 11
+      "repos": 12
     },
     {
       "name": "Gherkin",
       "bytes": 9612544,
-      "share": 0.06959646672682188,
+      "share": 0.0691910199227189,
       "color": "#5B2063",
       "repos": 10
     },
     {
       "name": "JavaScript",
       "bytes": 8108389,
-      "share": 0.05870612662440125,
+      "share": 0.05836412346618697,
       "color": "#f1e05a",
       "repos": 101
     },
     {
       "name": "PLpgSQL",
-      "bytes": 4016153,
-      "share": 0.029077636329604924,
+      "bytes": 4016748,
+      "share": 0.028912522105754863,
       "color": "#336790",
-      "repos": 3
+      "repos": 4
     },
     {
       "name": "HTML",
-      "bytes": 2716838,
-      "share": 0.01967037294905129,
+      "bytes": 2750218,
+      "share": 0.019796048624570156,
       "color": "#e34c26",
-      "repos": 58
+      "repos": 59
     },
     {
       "name": "HCL",
       "bytes": 1730441,
-      "share": 0.012528689541418834,
+      "share": 0.012455701394562107,
       "color": "#844FBA",
       "repos": 8
     },
     {
       "name": "Other",
-      "bytes": 2670618,
-      "share": 0.019335732224169958,
+      "bytes": 2689143,
+      "share": 0.019356431230696063,
       "color": "#64748b",
-      "repos": 122
+      "repos": 123
     }
   ],
-  "totalBytes": 138118276,
-  "repoCount": 155
+  "totalBytes": 138927624,
+  "repoCount": 156
 }
